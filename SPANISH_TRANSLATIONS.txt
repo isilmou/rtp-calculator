@@ -1,0 +1,48 @@
+RTP CALCULATOR — SPANISH TRANSLATIONS (es)
+Source: res/values/strings.xml (English) + res/values-fr/strings.xml (French)
+Reference only — NOT yet implemented in the project.
+
+Notes on betting terminology used:
+- "Cuota" is the standard word Spanish bettors/bookmakers use for "Odds" (not "probabilidades").
+- "Casa" (short for "casa de apuestas") is how Spanish bettors refer to a bookmaker / "Book".
+- "RTP (Retorno al Jugador)" — RTP is widely recognized in Spanish gambling; "Retorno al Jugador" is the established expansion.
+- "Margen de la casa" is the bettor term for the bookmaker's built-in margin/overround.
+- Placeholder examples localized to markets Spanish bettors know ("Más/Menos" = Over/Under).
+- Apostrophes shown plain here; in strings.xml they must be escaped as \' .
+
+key                          | Spanish
+-----------------------------+-------------------------------------------------
+app_name                     | Calculadora de RTP
+create_bet_analysis          | CREAR UN ANÁLISIS DE APUESTA
+new_bet_analysis             | Nuevo análisis de apuesta
+new_analysis                 | Nuevo análisis
+event_name_optional          | Nombre del evento (opcional)
+event_date_optional          | Fecha del evento (opcional)
+event_time_optional          | Hora del evento (opcional)
+bet_type_optional            | Tipo de apuesta (opcional)
+bet_type_placeholder         | 1X2, Más/Menos, etc.
+tap_to_pick_date             | Toca para elegir una fecha
+tap_to_pick_time             | Toca para elegir una hora
+outcomes                     | RESULTADOS
+outcome                      | Resultado
+odds                         | Cuota
+book                         | Casa
+add_outcome                  | Añadir resultado
+fill_odds_to_calculate_rtp   | Rellena todas las cuotas para calcular el RTP
+save_to_history              | GUARDAR
+rtp_return_to_player         | RTP (Retorno al Jugador)
+books_margin                 | Margen de la casa
+sort_by_event_date           | Ordenar por fecha del evento
+no_date                      | Sin fecha
+no_analyses_yet              | Aún no hay análisis. ¡Toca abajo para empezar!
+unnamed                      | Sin nombre
+action_ok                    | OK
+action_cancel                | Cancelar
+cd_close                     | Cerrar
+cd_clear_date                | Borrar la fecha
+cd_pick_date                 | Elegir una fecha
+cd_clear_time                | Borrar la hora
+cd_pick_time                 | Elegir una hora
+cd_remove_outcome            | Eliminar
+cd_delete                    | Eliminar
+cd_toggle_sort_order         | Invertir el orden de clasificación
