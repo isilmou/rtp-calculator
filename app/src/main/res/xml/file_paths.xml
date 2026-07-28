@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Shareable PNGs rendered from the history card. Lives in cacheDir/shares/ so the OS can
+         reclaim space; we also prune files older than a few hours on each share. -->
+    <cache-path name="shares" path="shares/" />
+</paths>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RTP Calculator — Lot logo v3 (arc jaune)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Inter',system-ui,sans-serif; color:#E9ECEE;
+        background:radial-gradient(120% 120% at 70% 0%, #161718 0%, #050506 70%); min-height:100vh; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:54px 40px 80px; }
+  .k{ font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; color:#7d8a91; text-transform:uppercase; }
+  h1{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:32px; letter-spacing:-.02em; margin:10px 0 8px; }
+  p.lead{ margin:0 0 8px; color:#9aa6ad; font-size:14.5px; line-height:1.6; max-width:600px; text-wrap:pretty; }
+  h2{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px; margin:46px 0 4px; }
+  .sub{ color:#7d8a91; font-size:12.5px; margin:0 0 22px; }
+  .swatch{ display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; font-size:12px; color:#cfd6da; }
+  .swatch i{ width:16px; height:16px; border-radius:4px; background:#FFD600; display:inline-block; }
+
+  .cmp{ display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:560px; }
+  .cmp figure{ margin:0; display:flex; flex-direction:column; gap:12px; align-items:center;
+               background:#0d0e0f; border:1px solid #ffffff10; border-radius:18px; padding:24px; }
+  .cmp img{ width:150px; height:150px; display:block; }
+  .tag{ font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; padding:3px 10px; border-radius:20px; }
+  .tag.old{ color:#cbd2d6; background:#ffffff10; border:1px solid #ffffff22; }
+  .tag.new{ color:#1a1300; background:#FFD600; border:1px solid #FFD600; font-weight:600; }
+  figcaption{ color:#8c969c; font-size:11.5px; text-align:center; }
+
+  .row{ display:flex; flex-wrap:wrap; gap:26px; align-items:flex-end; }
+  .item{ display:flex; flex-direction:column; align-items:center; gap:9px; }
+  .item .px{ font-family:'Space Grotesk',sans-serif; font-size:10.5px; color:#6a7177; letter-spacing:.04em; }
+  .chk{ background-color:#1a1b1c;
+        background-image:linear-gradient(45deg,#222 25%,transparent 25%,transparent 75%,#222 75%),
+                         linear-gradient(45deg,#222 25%,transparent 25%,transparent 75%,#222 75%);
+        background-size:14px 14px; background-position:0 0,7px 7px; border-radius:14px; padding:10px; }
+  .files{ font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:#9aa6ad; line-height:1.9; }
+  .files b{ color:#E9ECEE; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="k">RTP Calculator · Icône d'application</span>
+  <h1>Lot logo — v3</h1>
+  <p class="lead">L'arc passe du blanc au jaune des cotes — <span class="swatch"><i></i> #FFD600</span>. La taille réduite de la v2 (marge de respiration) est conservée à l'identique.</p>
+
+  <h2>Avant / Après</h2>
+  <p class="sub">Même fond, même diagramme, même taille — seule la couleur de l'arc change.</p>
+  <div class="cmp">
+    <figure>
+      <img src="../final-v2/playstore-icon-512.png" alt="Avant" />
+      <span class="tag old">v2 — arc blanc</span>
+    </figure>
+    <figure>
+      <img src="playstore-icon-512.png" alt="Après" />
+      <span class="tag new">v3 — arc jaune #FFD600</span>
+    </figure>
+  </div>
+
+  <h2>Icônes launcher (coins arrondis, transparents)</h2>
+  <p class="sub">launcher-48 / 72 / 96 / 144 / 192 .png</p>
+  <div class="row">
+    <div class="item"><div class="chk"><img src="launcher-192.png" width="120" height="120" alt="192"/></div><span class="px">192 px</span></div>
+    <div class="item"><div class="chk"><img src="launcher-144.png" width="90" height="90" alt="144"/></div><span class="px">144 px</span></div>
+    <div class="item"><div class="chk"><img src="launcher-96.png" width="72" height="72" alt="96"/></div><span class="px">96 px</span></div>
+    <div class="item"><div class="chk"><img src="launcher-72.png" width="56" height="56" alt="72"/></div><span class="px">72 px</span></div>
+    <div class="item"><div class="chk"><img src="launcher-48.png" width="40" height="40" alt="48"/></div><span class="px">48 px</span></div>
+  </div>
+
+  <h2>Icônes Play Store (carré plein, opaque)</h2>
+  <p class="sub">playstore-icon-512 / 1024 .png</p>
+  <div class="row">
+    <div class="item"><img src="playstore-icon-512.png" width="150" height="150" alt="512" style="border-radius:14px"/><span class="px">512 px</span></div>
+    <div class="item"><img src="playstore-icon-1024.png" width="150" height="150" alt="1024" style="border-radius:14px"/><span class="px">1024 px</span></div>
+  </div>
+
+  <h2>Contenu du lot</h2>
+  <p class="files">
+    <b>master-square.svg</b> · <b>master-rounded.svg</b> &nbsp;(sources vectorielles)<br/>
+    <b>launcher-48 / 72 / 96 / 144 / 192 .png</b> &nbsp;(coins arrondis transparents)<br/>
+    <b>playstore-icon-512 / 1024 .png</b> &nbsp;(carré plein opaque)
+  </p>
+</div>
+</body>
+</html>

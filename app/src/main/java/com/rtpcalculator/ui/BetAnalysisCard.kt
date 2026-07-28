@@ -2,26 +2,18 @@
 
 package com.rtpcalculator.ui
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.FocusInteraction
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.relocation.BringIntoViewRequester
-import androidx.compose.foundation.relocation.bringIntoViewRequester
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -30,22 +22,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.layout.LayoutCoordinates
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rtpcalculator.R
@@ -54,30 +44,35 @@ import com.rtpcalculator.model.OddsFormat
 import com.rtpcalculator.model.Outcome
 import com.rtpcalculator.model.RtpResult
 import com.rtpcalculator.model.calculateRtp
-import com.rtpcalculator.ui.theme.ActionAccent
-import com.rtpcalculator.ui.theme.ButtonLabel
+import com.rtpcalculator.ui.theme.AppShapeLarge
+import com.rtpcalculator.ui.theme.AppShapeSmall
 import com.rtpcalculator.ui.theme.CardBg
-import com.rtpcalculator.ui.theme.CardOutlineSoft
+import com.rtpcalculator.ui.theme.DangerRed
+import com.rtpcalculator.ui.theme.DarkSurface
+import com.rtpcalculator.ui.theme.DividerSubtle
 import com.rtpcalculator.ui.theme.FieldBackground
 import com.rtpcalculator.ui.theme.FieldFocus
-import com.rtpcalculator.ui.theme.FormatBadgeAmerican
-import com.rtpcalculator.ui.theme.FormatBadgeDecimal
-import com.rtpcalculator.ui.theme.FormatBadgeFractional
+import com.rtpcalculator.ui.theme.OddsYellow
 import com.rtpcalculator.ui.theme.OverlayWhite30
 import com.rtpcalculator.ui.theme.TextPrimary
 import com.rtpcalculator.ui.theme.TextSecondary
 import com.rtpcalculator.ui.theme.TextTertiary
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private val CardBorder = BorderStroke(1.dp, CardOutlineSoft)
-
-/** Matches the natural min height of the OutlinedTextField fields; used by the badge. */
-private val OutcomeFieldHeight = 56.dp
+// Compact field/row sizing — refactored to a denser layout per the new charte. Line 1 of an
+// OutcomeRow (Issue + Book) is 36dp tall; line 2 (selector + cote + trash) is tighter at 32dp
+// to compress the saisie screen onto a single page on a typical phone.
+private val OutcomeFieldHeight   = 36.dp
+private val OutcomeLineTwoHeight = 32.dp
+private val OutcomeRemoveSize    = 32.dp
+private val OutcomeRowSpacing    = 5.dp
+// Left inset of the field content (CompactField / FractionalField contentPadding).
+// internal: also read by the field composables extracted to OutcomeFields.kt.
+internal val OutcomeFieldContentInset = 8.dp
 
 @Composable
 private fun fieldColors() = OutlinedTextFieldDefaults.colors(
@@ -88,147 +83,113 @@ private fun fieldColors() = OutlinedTextFieldDefaults.colors(
     cursorColor             = FieldFocus
 )
 
-private fun Modifier.scrollIntoViewOnFocus(): Modifier = composed {
-    val requester = remember { BringIntoViewRequester() }
-    val scope = rememberCoroutineScope()
-    var job by remember { mutableStateOf<Job?>(null) }
-    bringIntoViewRequester(requester).onFocusEvent { state ->
-        if (state.isFocused) {
-            job = scope.launch {
-                delay(300)
-                requester.bringIntoView()
-            }
-        } else {
-            // Cancel a pending scroll so tapping another field doesn't yank the view.
-            job?.cancel()
-            job = null
-        }
-    }
-}
-
-private enum class FieldAlign { DYNAMIC, CENTER, START, END }
+/**
+ * CompositionLocals plumbed by the screen hosting the form (MainActivity → its LazyColumn).
+ * They give [scrollIntoViewOnFocus] direct access to the parent scroller and its live bounds
+ * so it can ACTIVELY reposition a focused field at a fixed offset above the IME — even when
+ * the field is already visible (BringIntoViewRequester cannot do that; it only scrolls the
+ * minimum needed to make a rect visible).
+ *
+ *  - [LocalFormScrollState]: the LazyListState owning the form's scroll.
+ *  - [LocalFormViewportCoords]: live LayoutCoordinates of the LazyColumn (its position in
+ *    window + its current height, which shrinks under imePadding() when the keyboard is up).
+ */
+internal val LocalFormScrollState = compositionLocalOf<LazyListState?> { null }
+internal val LocalFormViewportCoords = compositionLocalOf<State<LayoutCoordinates?>?> { null }
 
 /**
- * The single shared editable field for the whole form (Issue, Book, Event Name, Bet Type,
- * EU value, UK numerator/denominator, US value) — one place to tune field behaviour.
+ * On first focus, ACTIVELY scrolls the form so the field always lands at the same target:
+ * its bottom edge sits **1.2 × field-height above the visible viewport bottom** (i.e. above
+ * the IME when it is up). So a field too high on screen comes DOWN to the target (content
+ * scrolls down), and a field too low (hidden behind the IME) comes UP to the target (content
+ * scrolls up). The 1.2× factor multiplies the field's MEASURED height — no hard-coded dp,
+ * so the reserved band follows any future change to row heights automatically.
  *
- * - Holds ONE stable [TextFieldValue] in `remember`; it is NEVER reconstructed on
- *   recomposition. It is mutated only for: (1) a real edit, (2) focus -> select-all,
- *   (3) blur -> caret to start (first char visible at rest), (4) a real external string
- *   change while unfocused (e.g. decimal normalization). → native single-line scroll
- *   stays bounded to the content (no infinite drag).
- * - Select-all-on-tap via [LaunchedEffect] keyed on focus, so it runs AFTER the tap caret.
- * - [align] DYNAMIC = centre when the text fits, left-align when it overflows; CENTER /
- *   START / END are fixed (the odds fields).
- * - Optional in-field [placeholder] (shown when empty/floated label).
- * - Optional native floating [label]: short title when floated (focused/filled),
- *   [labelOptional] (e.g. "… (optional)") when resting empty. Used by the top fields.
- * - [bordered] true = shared OutlinedTextField border shell; false = bare (inside
- *   [OddsFieldShell], which owns the border).
+ * Implementation: drives the scroll directly via [LazyListState.animateScrollBy] using the
+ * difference between the field's current bottom and its target bottom in window-absolute
+ * coordinates ([LayoutCoordinates.positionInWindow]). The 300 ms delay lets the IME finish
+ * its appear animation (windowSoftInputMode = adjustResize → the LazyColumn shrinks under
+ * .imePadding()) before we read the post-resize viewport height.
+ *
+ * Unlike BringIntoViewRequester (passive: no-op when the rect is already visible), this also
+ * pulls already-visible-but-too-high fields down to the target position.
+ *
+ * internal: also applied by the field composables extracted to OutcomeFields.kt.
  */
-@Composable
-private fun AppTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    placeholder: String? = null,
-    label: String? = null,
-    labelOptional: String? = null,
-    keyboardType: KeyboardType = KeyboardType.Text,
-    align: FieldAlign = FieldAlign.DYNAMIC,
-    bordered: Boolean = true,
-    fixedHeight: Boolean = false,
-    cornerRadius: Dp = 14.dp,
-    focusRequester: FocusRequester? = null,
-    onFocusLost: () -> Unit = {}
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    var tfv by remember { mutableStateOf(TextFieldValue(value)) }
-    var focused by remember { mutableStateOf(false) }
-    var overflow by remember { mutableStateOf(false) }
+internal fun Modifier.scrollIntoViewOnFocus(): Modifier = composed {
+    val listState = LocalFormScrollState.current
+    val viewportCoordsState = LocalFormViewportCoords.current
+    val scope = rememberCoroutineScope()
+    var fieldCoords by remember { mutableStateOf<LayoutCoordinates?>(null) }
 
-    // (4) real external string change, only while unfocused
-    if (!focused && tfv.text != value) {
-        tfv = tfv.copy(text = value, selection = TextRange(0))
-    }
-    // (2) focus -> select all ; (3) blur -> caret to start (first char visible at rest)
-    LaunchedEffect(focused) {
-        tfv = if (focused) tfv.copy(selection = TextRange(0, tfv.text.length))
-              else tfv.copy(selection = TextRange(0))
-    }
-
-    val textAlign = when (align) {
-        FieldAlign.CENTER -> TextAlign.Center
-        FieldAlign.START -> TextAlign.Start
-        FieldAlign.END -> TextAlign.End
-        FieldAlign.DYNAMIC -> if (overflow) TextAlign.Start else TextAlign.Center
-    }
-    // Native label text: short title when floated (focused/filled), "… (optional)" at rest.
-    val labelText = label?.let { if (focused || tfv.text.isNotBlank()) it else (labelOptional ?: it) }
-
-    BasicTextField(
-        value = tfv,
-        onValueChange = {
-            tfv = it                                       // (1) real edit
-            if (it.text != value) onValueChange(it.text)
-        },
-        modifier = modifier
-            .then(if (fixedHeight) Modifier.height(OutcomeFieldHeight) else Modifier)
-            .then(if (focusRequester != null) Modifier.focusRequester(focusRequester) else Modifier)
-            .scrollIntoViewOnFocus()
-            .onFocusChanged { st ->
-                if (focused && !st.isFocused) onFocusLost()
-                focused = st.isFocused
-            },
-        singleLine = true,
-        textStyle = LocalTextStyle.current.copy(color = TextPrimary, textAlign = textAlign),
-        onTextLayout = { overflow = it.hasVisualOverflow },
-        cursorBrush = SolidColor(FieldFocus),
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        interactionSource = interactionSource,
-        decorationBox = { inner ->
-            if (bordered) {
-                OutlinedTextFieldDefaults.DecorationBox(
-                    value = tfv.text,
-                    innerTextField = inner,
-                    enabled = true,
-                    singleLine = true,
-                    visualTransformation = VisualTransformation.None,
-                    interactionSource = interactionSource,
-                    placeholder = placeholder?.let { ph ->
-                        @Composable {
-                            Text(
-                                ph,
-                                color = TextTertiary,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                textAlign = textAlign,
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-                    },
-                    label = labelText?.let { lt ->
-                        @Composable { Text(lt, color = TextSecondary, maxLines = 1, overflow = TextOverflow.Ellipsis) }
-                    },
-                    contentPadding = PaddingValues(
-                        horizontal = 8.dp,
-                        vertical = if (label != null) 16.dp else 10.dp
-                    ),
-                    container = {
-                        OutlinedTextFieldDefaults.Container(
-                            enabled = true,
-                            isError = false,
-                            interactionSource = interactionSource,
-                            colors = fieldColors(),
-                            shape = RoundedCornerShape(cornerRadius)
-                        )
+    onGloballyPositioned { coords -> fieldCoords = coords }
+        .onFocusEvent { state ->
+            // `hasFocus` (not `isFocused`) so the helper also fires when a DESCENDANT focusable
+            // gains focus — e.g. the UK denominator BasicTextField nested inside the FractionalField
+            // host's DecorationBox. Using the OUTER composable's measured size keeps the 1.2 × h
+            // target visually consistent regardless of which sub-zone the user tapped.
+            if (state.hasFocus && listState != null && viewportCoordsState != null) {
+                scope.launch {
+                    delay(300)
+                    val field = fieldCoords ?: return@launch
+                    val viewport = viewportCoordsState.value ?: return@launch
+                    val h = field.size.height.toFloat()
+                    val fieldTopInWindow = field.positionInWindow().y
+                    val viewportTopInWindow = viewport.positionInWindow().y
+                    val viewportBottomInWindow = viewportTopInWindow + viewport.size.height.toFloat()
+                    val targetFieldBottomInWindow = viewportBottomInWindow - 1.2f * h
+                    // delta > 0: field too low  -> scroll content UP   (LazyList scrollBy +).
+                    // delta < 0: field too high -> scroll content DOWN (LazyList scrollBy -).
+                    val delta = (fieldTopInWindow + h) - targetFieldBottomInWindow
+                    if (kotlin.math.abs(delta) > 0.5f) {
+                        listState.animateScrollBy(delta)
                     }
-                )
-            } else {
-                inner()
+                }
             }
         }
-    )
+}
+
+/**
+ * On the FIRST focus gained, sets the selection of [tfv] to the whole text so a single tap
+ * lets the user overwrite the existing value. Subsequent taps inside the same focused field
+ * place the cursor normally (the select-all branch only fires on focus=false -> focus=true).
+ * Also runs [onFocusLost] on focus=true -> focus=false.
+ *
+ * The selection update goes through a [LaunchedEffect] (not directly inside onFocusEvent) so
+ * it lands AFTER the IME has done its own initial selection sync on focus gain — otherwise
+ * the IME can stomp on our select-all and the cursor ends up at the end of the text instead.
+ * This was the cause of the "no select-all after a format change" bug.
+ * (See ~/memory/odds-input-scroll-selectall-gotcha.md.)
+ *
+ * internal: also applied by the field composables extracted to OutcomeFields.kt.
+ */
+internal fun Modifier.selectAllOnFirstFocus(
+    tfv: MutableState<TextFieldValue>,
+    onFocusLost: () -> Unit = {}
+): Modifier = composed {
+    var focused by remember { mutableStateOf(false) }
+    var wasFocused by remember { mutableStateOf(false) }
+    LaunchedEffect(focused) {
+        if (focused && !wasFocused) {
+            wasFocused = true
+            tfv.value = tfv.value.copy(selection = TextRange(0, tfv.value.text.length))
+        }
+    }
+    onFocusEvent { state ->
+        if (state.isFocused) {
+            focused = true
+        } else {
+            focused = false
+            // Run onFocusLost synchronously (not via the LaunchedEffect) so it still fires
+            // if the composable is being disposed right after losing focus — e.g. a format
+            // change replacing the cote field would otherwise cancel the LaunchedEffect
+            // before its body could pad the EU decimal to 2 decimals.
+            if (wasFocused) {
+                wasFocused = false
+                onFocusLost()
+            }
+        }
+    }
 }
 
 private fun parseTimeOrNull(time: String): Pair<Int, Int>? {
@@ -249,39 +210,37 @@ fun BetAnalysisCard(
     onBetTypeChange: (String) -> Unit,
     onOutcomeLabelChange: (String, String) -> Unit,
     onOutcomeOddsChange: (String, String) -> Unit,
-    onOutcomeBookmakerChange: (String, String) -> Unit,
-    onOutcomeFormatChange: (String, OddsFormat) -> Unit,
     onOutcomeFracNumeratorChange: (String, String) -> Unit,
     onOutcomeFracDenominatorChange: (String, String) -> Unit,
     onOutcomeAmericanValueChange: (String, String) -> Unit,
     onOutcomeAmericanSignToggle: (String) -> Unit,
+    onOutcomeBookmakerChange: (String, String) -> Unit,
+    onOutcomeFormatChange: (String, OddsFormat) -> Unit,
     onAddOutcome: () -> Unit,
     onRemoveOutcome: (String) -> Unit,
-    onSave: () -> Unit,
+    focusOutcomeId: String?,
+    onFocusOutcomeConsumed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val rtpResult = remember(analysis.outcomes) {
-        val allOddsFilled = analysis.outcomes.all { (it.odds.toDoubleOrNull() ?: 0.0) > 0.0 }
-        if (allOddsFilled) calculateRtp(analysis.outcomes) else null
-    }
-
+    // ---- Material 3 date picker (calendar). Display is localised by the picker; the value we
+    // store stays canonical dd/MM/yyyy so parseDateToMillis / history sorting are unaffected. ----
     var showDatePicker by remember { mutableStateOf(false) }
     val datePickerState = rememberDatePickerState(
         initialSelectedDateMillis = remember(analysis.id) { parseDateToMillis(analysis.date) }
     )
-
     if (showDatePicker) {
         DatePickerDialog(
             onDismissRequest = { showDatePicker = false },
+            colors = appDatePickerColors(),
+            shape = AppShapeLarge,
             confirmButton = {
                 TextButton(onClick = {
                     datePickerState.selectedDateMillis?.let { millis ->
-                        val formatted = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(millis))
-                        onDateChange(formatted)
+                        onDateChange(SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(millis)))
                     }
                     showDatePicker = false
                 }) {
-                    Text(stringResource(R.string.action_ok), color = MaterialTheme.colorScheme.primary)
+                    Text(stringResource(R.string.action_ok), color = TextPrimary)
                 }
             },
             dismissButton = {
@@ -290,10 +249,11 @@ fun BetAnalysisCard(
                 }
             }
         ) {
-            DatePicker(state = datePickerState)
+            DatePicker(state = datePickerState, colors = appDatePickerColors())
         }
     }
 
+    // ---- Material 3 time picker (clock), 24h. Stored as HH:mm (parseTimeOrNull-compatible). ----
     var showTimePicker by remember { mutableStateOf(false) }
     if (showTimePicker) {
         val (initialHour, initialMinute) = remember(analysis.id, analysis.time) {
@@ -306,12 +266,14 @@ fun BetAnalysisCard(
         )
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
+            containerColor = DarkSurface,
+            shape = AppShapeLarge,
             confirmButton = {
                 TextButton(onClick = {
                     onTimeChange("%02d:%02d".format(timePickerState.hour, timePickerState.minute))
                     showTimePicker = false
                 }) {
-                    Text(stringResource(R.string.action_ok), color = MaterialTheme.colorScheme.primary)
+                    Text(stringResource(R.string.action_ok), color = TextPrimary)
                 }
             },
             dismissButton = {
@@ -319,644 +281,465 @@ fun BetAnalysisCard(
                     Text(stringResource(R.string.action_cancel), color = TextSecondary)
                 }
             },
-            text = { TimePicker(state = timePickerState) }
+            text = { TimePicker(state = timePickerState, colors = appTimePickerColors()) }
         )
     }
 
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
-        border = CardBorder,
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardDefaults.cardColors(containerColor = CardBg)
-    ) {
-        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+    // Live TRJ: recomputed on every odds change so the pill at the bottom of the form updates
+    // in real time. Null when at least one outcome's `odds` is empty/invalid (incomplete entry).
+    val rtpResult: RtpResult? = remember(analysis.outcomes) { calculateRtp(analysis.outcomes) }
 
-            AppTextField(
+    // The pill must only surface once EVERY issue has a valid (> 0) decimal odds. calculateRtp
+    // returns a value as soon as 2 odds are valid (enough to preview a 2-way), so on a 3+ way
+    // bet it would otherwise flash a misleading TRJ computed from a partial set mid-entry.
+    val allOddsFilled = remember(analysis.outcomes) {
+        analysis.outcomes.all { (it.odds.toDoubleOrNull() ?: 0.0) > 0.0 }
+    }
+
+    // No outer card: the form sits on the screen background; cards (event + each issue) sit
+    // over it and fields sit over the cards.
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+
+        // ---- Event card: name + date/time + bet type, grouped as the "bet context" block. ----
+        SectionCard {
+            CompactField(
                 value = analysis.eventName,
                 onValueChange = onEventNameChange,
-                label = stringResource(R.string.event_name_title),
-                labelOptional = stringResource(R.string.event_name_optional),
-                cornerRadius = 16.dp,
-                modifier = Modifier.fillMaxWidth()
+                label = stringResource(R.string.event_name_optional),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(OutcomeFieldHeight)
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(5.dp))
 
-            Box(modifier = Modifier.fillMaxWidth()) {
-                OutlinedTextField(
+            // Date + Time side by side. Time stays disabled (greyed) until a date is set.
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(OutcomeFieldHeight),
+                horizontalArrangement = Arrangement.spacedBy(OutcomeRowSpacing),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                DateClickField(
                     value = analysis.date,
-                    onValueChange = {},
-                    readOnly = true,
-                    label = {
-                        Text(
-                            if (analysis.date.isNotBlank()) stringResource(R.string.event_date_title)
-                            else stringResource(R.string.event_date_optional),
-                            color = TextSecondary,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    },
-                    textStyle = LocalTextStyle.current.copy(color = TextPrimary, textAlign = TextAlign.Center),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = fieldColors(),
-                    trailingIcon = {
-                        if (analysis.date.isNotBlank()) {
-                            IconButton(onClick = { onDateChange("") }) {
-                                Icon(
-                                    Icons.Default.Close,
-                                    contentDescription = stringResource(R.string.cd_clear_date),
-                                    tint = TextSecondary
-                                )
-                            }
-                        } else {
-                            Icon(
-                                Icons.Default.DateRange,
-                                contentDescription = stringResource(R.string.cd_pick_date),
-                                tint = TextSecondary,
-                                modifier = Modifier.padding(end = 4.dp)
-                            )
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    singleLine = true
+                    onClear = { onDateChange("") },
+                    onClick = { showDatePicker = true },
+                    modifier = Modifier.weight(1.2f).fillMaxHeight()
                 )
-                // Transparent overlay captures taps and opens the picker.
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .padding(end = if (analysis.date.isNotBlank()) 48.dp else 0.dp)
-                        .clickable(
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() }
-                        ) { showDatePicker = true }
+                TimeClickField(
+                    value = analysis.time,
+                    enabled = analysis.date.isNotBlank(),
+                    onClear = { onTimeChange("") },
+                    onClick = { showTimePicker = true },
+                    modifier = Modifier.weight(1f).fillMaxHeight()
                 )
             }
 
-            if (analysis.date.isNotBlank()) {
-                Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(5.dp))
 
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    OutlinedTextField(
-                        value = analysis.time,
-                        onValueChange = {},
-                        readOnly = true,
-                        label = {
-                            Text(
-                                if (analysis.time.isNotBlank()) stringResource(R.string.event_time_title)
-                                else stringResource(R.string.event_time_optional),
-                                color = TextSecondary,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        },
-                        textStyle = LocalTextStyle.current.copy(color = TextPrimary, textAlign = TextAlign.Center),
-                        shape = RoundedCornerShape(16.dp),
-                        colors = fieldColors(),
-                        trailingIcon = {
-                            if (analysis.time.isNotBlank()) {
-                                IconButton(onClick = { onTimeChange("") }) {
-                                    Icon(
-                                        Icons.Default.Close,
-                                        contentDescription = stringResource(R.string.cd_clear_time),
-                                        tint = TextSecondary
-                                    )
-                                }
-                            } else {
-                                Icon(
-                                    Icons.Default.AccessTime,
-                                    contentDescription = stringResource(R.string.cd_pick_time),
-                                    tint = TextSecondary,
-                                    modifier = Modifier.padding(end = 4.dp)
-                                )
-                            }
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true
-                    )
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize()
-                            .padding(end = if (analysis.time.isNotBlank()) 48.dp else 0.dp)
-                            .clickable(
-                                indication = null,
-                                interactionSource = remember { MutableInteractionSource() }
-                            ) { showTimePicker = true }
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            AppTextField(
+            CompactField(
                 value = analysis.betType,
                 onValueChange = onBetTypeChange,
-                label = stringResource(R.string.bet_type_title),
-                labelOptional = stringResource(R.string.bet_type_optional),
-                placeholder = stringResource(R.string.bet_type_placeholder),
-                cornerRadius = 16.dp,
-                modifier = Modifier.fillMaxWidth()
+                // The placeholder string now embeds both the label "Type de pari (facultatif)"
+                // AND the examples ("1X2, …"), so the user keeps the field's purpose in mind
+                // even after the previous bare-examples placeholder was shown alone.
+                label = stringResource(R.string.bet_type_placeholder),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(OutcomeFieldHeight)
             )
+        }
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = stringResource(R.string.outcomes),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.5.sp,
-                color = TextSecondary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            val canRemoveOutcome = analysis.outcomes.size > 2
-            analysis.outcomes.forEach { outcome ->
-                key(outcome.id) {
+        // ---- One card per issue. ----
+        val canRemoveOutcome = analysis.outcomes.size > 2
+        analysis.outcomes.forEach { outcome ->
+            key(outcome.id) {
+                SectionCard {
                     OutcomeRow(
                         outcome = outcome,
                         canRemove = canRemoveOutcome,
+                        autoFocusIssue = focusOutcomeId == outcome.id,
+                        onAutoFocusConsumed = onFocusOutcomeConsumed,
                         onLabelChange     = { onOutcomeLabelChange(outcome.id, it) },
                         onOddsChange      = { onOutcomeOddsChange(outcome.id, it) },
-                        onBookmakerChange = { onOutcomeBookmakerChange(outcome.id, it) },
-                        onFormatChange    = { onOutcomeFormatChange(outcome.id, it) },
                         onFracNumeratorChange   = { onOutcomeFracNumeratorChange(outcome.id, it) },
                         onFracDenominatorChange = { onOutcomeFracDenominatorChange(outcome.id, it) },
                         onAmericanValueChange   = { onOutcomeAmericanValueChange(outcome.id, it) },
                         onAmericanSignToggle    = { onOutcomeAmericanSignToggle(outcome.id) },
+                        onBookmakerChange = { onOutcomeBookmakerChange(outcome.id, it) },
+                        onFormatChange    = { onOutcomeFormatChange(outcome.id, it) },
                         onRemove          = { onRemoveOutcome(outcome.id) }
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
                 }
             }
+        }
 
+        // ---- Bottom row: LIVE TRJ pill + "marge X.XX%" on the LEFT, "Add outcome" on the RIGHT.
+        // The pill only appears when calculateRtp(outcomes) is non-null (every odds filled).
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Left: real-time TRJ pill ONLY (margin removed per design refresh — keeping the
+            // input screen as quiet as possible while the user fills the odds). Shared RtpPill so
+            // it stays pixel-identical to the history card's pill.
+            if (allOddsFilled && rtpResult != null) {
+                RtpPill(rtp = rtpResult.rtp)
+            } else {
+                // Until every odds is filled, show NOTHING on the left — just keep the "Add
+                // outcome" button anchored to the right (no misleading partial TRJ, no help text).
+                Spacer(modifier = Modifier.width(1.dp))
+            }
+
+            // Right: "Add outcome" pill — label, then "+" icon.
             Row(
                 modifier = Modifier
-                    .align(Alignment.Start)
-                    .clip(RoundedCornerShape(20.dp))
+                    .clip(AppShapeSmall)
+                    .background(CardBg)
                     .clickable { onAddOutcome() }
-                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                    .padding(horizontal = 9.dp, vertical = 5.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Text(
+                    text = stringResource(R.string.add_outcome),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = TextSecondary
+                )
+                Spacer(modifier = Modifier.width(6.dp))
                 Icon(
                     imageVector = Icons.Outlined.AddCircle,
                     contentDescription = null,
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier.size(14.dp),
                     tint = TextSecondary
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = stringResource(R.string.add_outcome),
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = TextSecondary
-                )
-            }
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            if (rtpResult != null) {
-                RtpDisplay(result = rtpResult)
-            } else {
-                Text(
-                    text = stringResource(R.string.fill_odds_to_calculate_rtp),
-                    fontSize = 12.sp,
-                    color = TextTertiary,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Button(
-                onClick = onSave,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(1.dp, OverlayWhite30),
-                colors = ButtonDefaults.buttonColors(containerColor = ActionAccent)
-            ) {
-                Text(
-                    text = stringResource(R.string.save_to_history),
-                    fontFamily = FontFamily.Default,
-                    fontWeight = FontWeight.Bold,
-                    color = ButtonLabel,
-                    fontSize = 18.sp
-                )
             }
         }
+
+        // SAVE button moved out of the form content into the Scaffold's bottomBar
+        // (MainActivity.RtpApp) — it's now sticky at the bottom of the screen and lifts above
+        // the IME via .imePadding().
     }
 }
 
+/**
+ * A section surface: one visual level above the screen background, one below the input fields.
+ * Used for the event block and for each issue, so the eye separates them at a glance.
+ * Paddings stay compact — the hierarchy comes from the background/border, not empty space.
+ */
 @Composable
-private fun OutcomeRow(
-    outcome: Outcome,
-    canRemove: Boolean,
-    onLabelChange: (String) -> Unit,
-    onOddsChange: (String) -> Unit,
-    onBookmakerChange: (String) -> Unit,
-    onFormatChange: (OddsFormat) -> Unit,
-    onFracNumeratorChange: (String) -> Unit,
-    onFracDenominatorChange: (String) -> Unit,
-    onAmericanValueChange: (String) -> Unit,
-    onAmericanSignToggle: () -> Unit,
-    onRemove: () -> Unit
-) {
-    val oddsFocusRequester = remember { FocusRequester() }
-    val keyboard = LocalSoftwareKeyboardController.current
-    // Bumped when a format is picked from the badge; focuses the odds field afterwards.
-    var focusTick by remember { mutableStateOf(0) }
-    LaunchedEffect(focusTick) {
-        if (focusTick > 0) {
-            delay(50) // let the dropdown dismiss and the new field attach first
-            runCatching { oddsFocusRequester.requestFocus() }
-            keyboard?.show()
-        }
-    }
-
-    Row(
+private fun SectionCard(content: @Composable ColumnScope.() -> Unit) {
+    Card(
         modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        shape = AppShapeLarge,
+        // No border, no elevation — the dark CardBg on the slightly darker AppBackground gives
+        // enough hierarchy on its own (matches the new history-card look).
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        colors = CardDefaults.cardColors(containerColor = CardBg)
     ) {
-        AppTextField(
-            value = outcome.label,
-            onValueChange = onLabelChange,
-            placeholder = stringResource(R.string.outcome),
-            modifier = Modifier.weight(1.5f)
-        )
-        OddsFormatBadge(
-            format = outcome.oddsFormat,
-            onFormatSelected = {
-                onFormatChange(it)
-                focusTick++
-            }
-        )
-        OddsInput(
-            outcome = outcome,
-            focusRequester = oddsFocusRequester,
-            onDecimalChange = onOddsChange,
-            onFracNumeratorChange = onFracNumeratorChange,
-            onFracDenominatorChange = onFracDenominatorChange,
-            onAmericanValueChange = onAmericanValueChange,
-            onAmericanSignToggle = onAmericanSignToggle,
-            modifier = Modifier.weight(1.8f)
-        )
-        AppTextField(
-            value = outcome.bookmaker,
-            onValueChange = onBookmakerChange,
-            placeholder = stringResource(R.string.book),
-            modifier = Modifier.weight(1.2f)
-        )
-        IconButton(
-            onClick = onRemove,
-            enabled = canRemove,
-            modifier = Modifier.size(28.dp)
-        ) {
-            Icon(
-                Icons.Default.Delete,
-                contentDescription = stringResource(R.string.cd_remove_outcome),
-                tint = if (canRemove) MaterialTheme.colorScheme.error
-                       else TextTertiary.copy(alpha = 0.4f),
-                modifier = Modifier.size(16.dp)
-            )
-        }
-    }
-}
-
-@Composable
-private fun OddsInput(
-    outcome: Outcome,
-    focusRequester: FocusRequester,
-    onDecimalChange: (String) -> Unit,
-    onFracNumeratorChange: (String) -> Unit,
-    onFracDenominatorChange: (String) -> Unit,
-    onAmericanValueChange: (String) -> Unit,
-    onAmericanSignToggle: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    when (outcome.oddsFormat) {
-        OddsFormat.DECIMAL -> AppTextField(
-            value = outcome.odds,
-            onValueChange = onDecimalChange,
-            placeholder = stringResource(R.string.odds),
-            modifier = modifier,
-            keyboardType = KeyboardType.Decimal,
-            align = FieldAlign.CENTER,
-            fixedHeight = true,
-            focusRequester = focusRequester,
-            onFocusLost = {
-                if (outcome.odds.isNotBlank()) {
-                    val formatted = formatOddsTwoDecimals(outcome.odds)
-                    if (formatted != outcome.odds) onDecimalChange(formatted)
-                }
-            }
-        )
-
-        OddsFormat.FRACTIONAL -> FractionField(
-            numerator = outcome.fracNumerator,
-            denominator = outcome.fracDenominator,
-            onNumeratorChange = { onFracNumeratorChange(it.filter(Char::isDigit)) },
-            onDenominatorChange = { onFracDenominatorChange(it.filter(Char::isDigit)) },
-            numeratorFocusRequester = focusRequester,
-            modifier = modifier
-        )
-
-        OddsFormat.AMERICAN -> AmericanField(
-            negative = outcome.americanNegative,
-            value = outcome.americanValue,
-            onToggleSign = onAmericanSignToggle,
-            onValueChange = { onAmericanValueChange(it.filter(Char::isDigit)) },
-            valueFocusRequester = focusRequester,
-            modifier = modifier
+        Column(
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
+            content = content
         )
     }
 }
 
 /**
- * Wraps custom odds content (UK two fields, US sign+value) in the SAME bordered shell as
- * the standalone fields: identical border via [fieldColors], no label/placeholder. Child
- * focus is mirrored into the interaction source so the border highlights on focus.
+ * Read-only Date field that opens the Material 3 [DatePicker] on tap. A transparent overlay
+ * captures the tap (the field itself is read-only). When a date is set, the trailing clear "X"
+ * is exposed (the overlay leaves its area free); otherwise a calendar icon is shown.
  */
 @Composable
-private fun OddsFieldShell(
-    modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+private fun DateClickField(
+    value: String,
+    onClear: () -> Unit,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val scope = rememberCoroutineScope()
-    var focus by remember { mutableStateOf<FocusInteraction.Focus?>(null) }
+    // Compact box: tap anywhere opens the date picker (the Box is clickable). When a date is
+    // set, a trailing X clears it (its own clickable consumes the tap so the picker doesn't
+    // open). When empty, a small calendar glyph is shown.
+    val placeholder = stringResource(R.string.event_date_ph)
     Box(
         modifier = modifier
-            .height(OutcomeFieldHeight)
-            .onFocusChanged { state ->
-                if (state.hasFocus) {
-                    if (focus == null) {
-                        val f = FocusInteraction.Focus()
-                        focus = f
-                        scope.launch { interactionSource.emit(f) }
-                    }
-                } else {
-                    focus?.let { f -> scope.launch { interactionSource.emit(FocusInteraction.Unfocus(f)) } }
-                    focus = null
-                }
-            }
+            .clip(AppShapeSmall)
+            .background(FieldBackground)
+            .clickable(onClick = onClick)
+            .padding(horizontal = OutcomeFieldContentInset),
+        contentAlignment = Alignment.CenterStart
     ) {
-        OutlinedTextFieldDefaults.DecorationBox(
-            value = "",
-            innerTextField = content,
-            enabled = true,
-            singleLine = true,
-            visualTransformation = VisualTransformation.None,
-            interactionSource = interactionSource,
-            label = null,
-            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
-            container = {
-                OutlinedTextFieldDefaults.Container(
-                    enabled = true,
-                    isError = false,
-                    interactionSource = interactionSource,
-                    colors = fieldColors(),
-                    shape = RoundedCornerShape(14.dp)
-                )
-            }
-        )
-    }
-}
-
-/** US odds: same shell as EU; a left-pinned sign glyph + the value in the remaining space. */
-@Composable
-private fun AmericanField(
-    negative: Boolean,
-    value: String,
-    onToggleSign: () -> Unit,
-    onValueChange: (String) -> Unit,
-    valueFocusRequester: FocusRequester,
-    modifier: Modifier = Modifier
-) {
-    OddsFieldShell(modifier = modifier) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                modifier = Modifier.width(20.dp),
-                contentAlignment = Alignment.CenterStart
-            ) {
-                AmericanSignToggle(negative = negative, onToggle = onToggleSign)
-            }
-            AppTextField(
-                value = value,
-                onValueChange = onValueChange,
-                modifier = Modifier.weight(1f),
-                keyboardType = KeyboardType.Number,
-                align = FieldAlign.START,
-                bordered = false,
-                focusRequester = valueFocusRequester
+            Text(
+                text = if (value.isNotBlank()) value else placeholder,
+                color = if (value.isNotBlank()) TextPrimary else TextSecondary,
+                fontSize = if (value.isNotBlank()) 12.sp else 11.sp,
+                fontWeight = FontWeight.Normal,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f)
             )
+            if (value.isNotBlank()) {
+                IconButton(onClick = onClear, modifier = Modifier.size(28.dp)) {
+                    Icon(
+                        Icons.Default.Close,
+                        contentDescription = stringResource(R.string.cd_clear_date),
+                        tint = TextSecondary,
+                        modifier = Modifier.size(14.dp)
+                    )
+                }
+            } else {
+                Icon(
+                    Icons.Default.DateRange,
+                    contentDescription = stringResource(R.string.cd_pick_date),
+                    tint = TextSecondary,
+                    modifier = Modifier.size(14.dp)
+                )
+            }
         }
     }
 }
 
-/** UK odds: same shell as EU; [numerator] "/" [denominator], the slash fixed at the centre. */
+/**
+ * Read-only Time field that opens the Material 3 [TimePicker] on tap. Disabled (greyed, no
+ * overlay) until a date is present, so it can only be set after the date — kept side by side
+ * with the date rather than hidden.
+ */
 @Composable
-private fun FractionField(
-    numerator: String,
-    denominator: String,
-    onNumeratorChange: (String) -> Unit,
-    onDenominatorChange: (String) -> Unit,
-    numeratorFocusRequester: FocusRequester,
+private fun TimeClickField(
+    value: String,
+    enabled: Boolean,
+    onClear: () -> Unit,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    OddsFieldShell(modifier = modifier) {
+    // Same compact pattern as DateClickField; the whole Box becomes non-clickable when there's
+    // no date yet (kept side-by-side with the date but greyed out, per spec).
+    val placeholder = stringResource(R.string.event_time_ph)
+    Box(
+        modifier = modifier
+            .clip(AppShapeSmall)
+            .background(FieldBackground)
+            .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier)
+            .padding(horizontal = OutcomeFieldContentInset),
+        contentAlignment = Alignment.CenterStart
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            AppTextField(
-                value = numerator,
-                onValueChange = onNumeratorChange,
-                modifier = Modifier.weight(1f),
-                keyboardType = KeyboardType.Number,
-                align = FieldAlign.END,
-                bordered = false,
-                focusRequester = numeratorFocusRequester
-            )
             Text(
-                text = "/",
-                color = TextSecondary,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = 4.dp)
+                text = if (value.isNotBlank()) value else placeholder,
+                color = when {
+                    !enabled -> TextTertiary
+                    value.isNotBlank() -> TextPrimary
+                    else -> TextSecondary
+                },
+                fontSize = if (value.isNotBlank()) 12.sp else 11.sp,
+                fontWeight = FontWeight.Normal,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f)
             )
-            AppTextField(
-                value = denominator,
-                onValueChange = onDenominatorChange,
-                modifier = Modifier.weight(1f),
-                keyboardType = KeyboardType.Number,
-                align = FieldAlign.START,
-                bordered = false
-            )
+            if (enabled && value.isNotBlank()) {
+                IconButton(onClick = onClear, modifier = Modifier.size(28.dp)) {
+                    Icon(
+                        Icons.Default.Close,
+                        contentDescription = stringResource(R.string.cd_clear_time),
+                        tint = TextSecondary,
+                        modifier = Modifier.size(14.dp)
+                    )
+                }
+            } else {
+                Icon(
+                    Icons.Default.AccessTime,
+                    contentDescription = stringResource(R.string.cd_pick_time),
+                    tint = if (enabled) TextSecondary else TextTertiary,
+                    modifier = Modifier.size(14.dp)
+                )
+            }
         }
     }
 }
 
+/**
+ * Picker palette with the orange accent removed: selection is a WHITE container with BLACK text;
+ * "today" gets a neutral grey ring; everything else follows the dark theme.
+ */
 @Composable
-private fun AmericanSignToggle(
-    negative: Boolean,
-    onToggle: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        text = if (negative) "−" else "+",
-        color = TextPrimary,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Bold,
-        textAlign = TextAlign.Center,
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
-            .clickable { onToggle() }
-            .padding(horizontal = 2.dp, vertical = 2.dp)
-    )
-}
-
-private fun OddsFormat.shortLabelRes(): Int = when (this) {
-    OddsFormat.DECIMAL    -> R.string.odds_format_decimal_short
-    OddsFormat.FRACTIONAL -> R.string.odds_format_fractional_short
-    OddsFormat.AMERICAN   -> R.string.odds_format_american_short
-}
-
-private fun OddsFormat.labelRes(): Int = when (this) {
-    OddsFormat.DECIMAL    -> R.string.odds_format_decimal
-    OddsFormat.FRACTIONAL -> R.string.odds_format_fractional
-    OddsFormat.AMERICAN   -> R.string.odds_format_american
-}
-
-private fun OddsFormat.badgeColor(): Color = when (this) {
-    OddsFormat.DECIMAL    -> FormatBadgeDecimal
-    OddsFormat.FRACTIONAL -> FormatBadgeFractional
-    OddsFormat.AMERICAN   -> FormatBadgeAmerican
-}
+private fun appDatePickerColors() = DatePickerDefaults.colors(
+    containerColor             = DarkSurface,
+    titleContentColor          = TextSecondary,
+    headlineContentColor       = TextPrimary,
+    weekdayContentColor        = TextSecondary,
+    subheadContentColor        = TextSecondary,
+    navigationContentColor     = TextPrimary,
+    yearContentColor           = TextPrimary,
+    currentYearContentColor    = TextPrimary,
+    selectedYearContentColor   = Color.Black,
+    selectedYearContainerColor = Color.White,
+    dayContentColor            = TextPrimary,
+    selectedDayContentColor    = Color.Black,
+    selectedDayContainerColor  = Color.White,
+    todayContentColor          = TextPrimary,
+    todayDateBorderColor       = TextSecondary,
+    dividerColor               = DividerSubtle
+)
 
 @Composable
-private fun OddsFormatBadge(
-    format: OddsFormat,
-    onFormatSelected: (OddsFormat) -> Unit
+private fun appTimePickerColors() = TimePickerDefaults.colors(
+    clockDialColor                     = FieldBackground,
+    clockDialSelectedContentColor      = Color.Black,
+    clockDialUnselectedContentColor    = TextPrimary,
+    selectorColor                      = Color.White,
+    containerColor                     = DarkSurface,
+    timeSelectorSelectedContainerColor = Color.White,
+    timeSelectorSelectedContentColor   = Color.Black,
+    timeSelectorUnselectedContainerColor = FieldBackground,
+    timeSelectorUnselectedContentColor = TextPrimary
+)
+
+@Composable
+private fun OutcomeRow(
+    outcome: Outcome,
+    canRemove: Boolean,
+    autoFocusIssue: Boolean,
+    onAutoFocusConsumed: () -> Unit,
+    onLabelChange: (String) -> Unit,
+    onOddsChange: (String) -> Unit,
+    onFracNumeratorChange: (String) -> Unit,
+    onFracDenominatorChange: (String) -> Unit,
+    onAmericanValueChange: (String) -> Unit,
+    onAmericanSignToggle: () -> Unit,
+    onBookmakerChange: (String) -> Unit,
+    onFormatChange: (OddsFormat) -> Unit,
+    onRemove: () -> Unit
 ) {
-    var menuOpen by remember { mutableStateOf(false) }
-    Box {
+    // Auto-focus the Issue field of a freshly-added outcome (+ open the IME) so the user can
+    // start typing immediately. A short delay lets the new CompactField finish composing and
+    // attach to the FocusRequester before we requestFocus.
+    val labelFocusRequester = remember { FocusRequester() }
+    val keyboard = LocalSoftwareKeyboardController.current
+    LaunchedEffect(autoFocusIssue) {
+        if (autoFocusIssue) {
+            delay(50)
+            runCatching { labelFocusRequester.requestFocus() }
+            keyboard?.show()
+            onAutoFocusConsumed()
+        }
+    }
+
+    // Two lines per outcome:
+    //   Line 1: [Issue name (wide)] [Bookmaker]
+    //   Line 2: [EU/UK/US selector] [Cote field (remaining width)] [trash]
+    // scrollIntoViewOnFocus on the OUTER Column (the whole two-line OutcomeRow) so any
+    // sub-field gaining focus (Issue, Book, EU/UK/US cote, even the UK denominator nested in
+    // the FractionalField's host) scrolls the LazyColumn to keep the WHOLE issue visible
+    // above the IME — never half-cut. The inner fields' own scroll helpers are removed below
+    // to avoid double-firing.
+    Column(
+        modifier = Modifier.scrollIntoViewOnFocus(),
+        verticalArrangement = Arrangement.spacedBy(OutcomeRowSpacing)
+    ) {
+
+        // Line 1: Issue (weight 1.5f) + Book (weight 1f), 36dp tall, placeholder-only fields.
         Row(
             modifier = Modifier
-                .width(46.dp)
-                .height(OutcomeFieldHeight)
-                .clip(RoundedCornerShape(14.dp))
-                .background(format.badgeColor())
-                .clickable { menuOpen = true }
-                .padding(horizontal = 4.dp),
+                .fillMaxWidth()
+                .height(OutcomeFieldHeight),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.spacedBy(OutcomeRowSpacing)
         ) {
-            Text(
-                text = stringResource(format.shortLabelRes()),
-                color = TextPrimary,
-                fontSize = 11.sp,
-                fontWeight = FontWeight.Bold
+            CompactField(
+                value = outcome.label,
+                onValueChange = onLabelChange,
+                label = stringResource(R.string.outcome),
+                modifier = Modifier.weight(1.5f).fillMaxHeight(),
+                focusRequester = labelFocusRequester,
+                scrollIntoViewOnFocus = false  // handled by the outer OutcomeRow Column.
             )
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = stringResource(R.string.cd_select_odds_format),
-                tint = TextPrimary,
-                modifier = Modifier.size(13.dp)
+            CompactField(
+                value = outcome.bookmaker,
+                onValueChange = onBookmakerChange,
+                label = stringResource(R.string.book),
+                modifier = Modifier.weight(1f).fillMaxHeight(),
+                scrollIntoViewOnFocus = false
             )
         }
-        DropdownMenu(
-            expanded = menuOpen,
-            onDismissRequest = { menuOpen = false }
+
+        // Line 2: EU/UK/US selector + cote (yellow ExtraBold, no "Cote" label) + trash, 32dp tall.
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(OutcomeLineTwoHeight),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(OutcomeRowSpacing)
         ) {
-            OddsFormat.entries.forEach { option ->
-                DropdownMenuItem(
-                    text = { Text(stringResource(option.labelRes()), color = TextPrimary) },
-                    onClick = {
-                        menuOpen = false
-                        onFormatSelected(option)
-                    },
-                    trailingIcon = {
-                        if (option == format) {
-                            Icon(
-                                imageVector = Icons.Default.Check,
-                                contentDescription = null,
-                                tint = TextPrimary,
-                                modifier = Modifier.size(18.dp)
-                            )
-                        }
+            // clearFocus before a format change so the next tap on the (possibly replaced) cote
+            // field is a clean false→true focus transition, which retriggers select-all.
+            val focusManager = LocalFocusManager.current
+            OddsFormatSelector(
+                selected = outcome.oddsFormat,
+                onSelected = { format ->
+                    focusManager.clearFocus()
+                    onFormatChange(format)
+                },
+                modifier = Modifier.fillMaxHeight()
+            )
+            // Cote takes all remaining width to the right of the selector.
+            when (outcome.oddsFormat) {
+                OddsFormat.FRACTIONAL -> FractionalField(
+                    numerator = outcome.fracNumerator,
+                    denominator = outcome.fracDenominator,
+                    onNumeratorChange = onFracNumeratorChange,
+                    onDenominatorChange = onFracDenominatorChange,
+                    modifier = Modifier.weight(1f).fillMaxHeight()
+                )
+                OddsFormat.AMERICAN -> AmericanField(
+                    value = outcome.americanValue,
+                    negative = outcome.americanNegative,
+                    onValueChange = onAmericanValueChange,
+                    onToggleSign = onAmericanSignToggle,
+                    label = stringResource(R.string.odds),  // "Cote" placeholder when empty.
+                    modifier = Modifier.weight(1f).fillMaxHeight()
+                )
+                OddsFormat.DECIMAL -> CompactField(
+                    value = outcome.decimalRaw,
+                    onValueChange = onOddsChange,
+                    label = stringResource(R.string.odds),  // "Cote" placeholder when empty.
+                    modifier = Modifier.weight(1f).fillMaxHeight(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    textAlign = TextAlign.Center,
+                    textColor = OddsYellow,
+                    textFontSize = 14.sp,
+                    textFontWeight = FontWeight.ExtraBold,
+                    scrollIntoViewOnFocus = false,  // handled by the outer OutcomeRow Column.
+                    valueTransform = { it.replace(',', '.') },
+                    onFocusLost = {
+                        val padded = padDecimalToMinTwo(outcome.decimalRaw)
+                        if (padded != outcome.decimalRaw) onOddsChange(padded)
                     }
                 )
             }
-        }
-    }
-}
-
-@Composable
-fun RtpDisplay(result: RtpResult) {
-    val rtpColor = remember(result.rtp) { rtpGradientColor(result.rtp) }
-    val rtpText = remember(result.rtp, result.isSurebet) {
-        val pct = "%.2f".format(Locale.ENGLISH, result.rtp)
-        if (result.isSurebet) "⭐ $pct%" else "$pct%"
-    }
-    val marginText = remember(result.margin) {
-        "${"%.2f".format(Locale.ENGLISH, result.margin)}%"
-    }
-
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = androidx.compose.ui.graphics.Color.Black,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier.padding(vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
+            // Trash is always visible to keep the row aligned. With exactly 2 issues (minimum)
+            // both trashes are shown but greyed and inactive; with 3+ they turn red and active.
+            IconButton(
+                onClick = onRemove,
+                enabled = canRemove,
+                modifier = Modifier.size(OutcomeRemoveSize)
             ) {
-                Text(
-                    text = stringResource(R.string.rtp_return_to_player),
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Normal,
-                    color = TextSecondary
-                )
-                Text(
-                    text = rtpText,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = rtpColor
-                )
-            }
-            VerticalDivider(
-                modifier = Modifier.height(40.dp),
-                color = OverlayWhite30
-            )
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(R.string.books_margin),
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Normal,
-                    color = TextSecondary
-                )
-                Text(
-                    text = marginText,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = rtpColor
+                Icon(
+                    Icons.Default.Delete,
+                    contentDescription = stringResource(R.string.cd_remove_outcome),
+                    tint = if (canRemove) DangerRed else OverlayWhite30,
+                    modifier = Modifier.size(14.dp)
                 )
             }
         }

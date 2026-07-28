@@ -13,3 +13,12 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Android Studio local/IDE config (machine-specific)
+/.idea/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Generated release artifacts (AAB/APK/baseline profiles) — not source
+/app/release/

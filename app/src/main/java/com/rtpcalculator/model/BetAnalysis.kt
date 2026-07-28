@@ -15,7 +15,14 @@ data class Outcome(
     val fracNumerator: String = "",
     val fracDenominator: String = "",
     val americanNegative: Boolean = false,
-    val americanValue: String = ""
+    val americanValue: String = "",
+    // Raw decimal (EU) DISPLAY string: exactly what the user typed (e.g. "2.180", trailing
+    // zero preserved) when entered in decimal, or the formatted result when converted.
+    val decimalRaw: String = "",
+    // Exact decimal reference = the decimal translation of the user's LAST MANUAL entry.
+    // ALL format conversions start from this value (never from an already-converted display),
+    // so rounding never accumulates. Updated only on a manual edit.
+    val refDecimal: String = ""
 )
 
 @Immutable
@@ -28,6 +35,25 @@ data class BetAnalysis(
     val outcomes: List<Outcome> = listOf(Outcome(), Outcome()),
     val savedAt: Long = 0L
 )
+
+/**
+ * "Generous" guard for the silent auto-save on exit: returns true as soon as the form holds the
+ * slightest real input, in ANY odds format. Used so leaving the form (back button or close icon)
+ * persists a genuine analysis instead of discarding it, while a pristine/blank form is dropped.
+ */
+fun BetAnalysis.hasMeaningfulContent(): Boolean {
+    if (eventName.isNotBlank()) return true
+    if (betType.isNotBlank()) return true
+    return outcomes.any { o ->
+        o.label.isNotBlank() ||
+        o.bookmaker.isNotBlank() ||
+        o.decimalRaw.isNotBlank() ||
+        o.fracNumerator.isNotBlank() ||
+        o.fracDenominator.isNotBlank() ||
+        o.americanValue.isNotBlank() ||
+        (o.odds.toDoubleOrNull()?.let { it > 0.0 } == true)
+    }
+}
 
 @Immutable
 data class RtpResult(

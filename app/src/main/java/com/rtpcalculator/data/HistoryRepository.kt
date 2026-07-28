@@ -42,9 +42,19 @@ internal fun List<BetAnalysis>.withLegacyOddsDefaults(): List<BetAnalysis> =
         analysis.copy(outcomes = analysis.outcomes.map { it.withLegacyOddsDefaults() })
     }
 
-private fun Outcome.withLegacyOddsDefaults(): Outcome = copy(
-    oddsFormat = (oddsFormat as OddsFormat?) ?: OddsFormat.DECIMAL,
-    fracNumerator = (fracNumerator as String?).orEmpty(),
-    fracDenominator = (fracDenominator as String?).orEmpty(),
-    americanValue = (americanValue as String?).orEmpty()
-)
+private fun Outcome.withLegacyOddsDefaults(): Outcome {
+    val fmt = (oddsFormat as OddsFormat?) ?: OddsFormat.DECIMAL
+    // Pre-auto-conversion analyses have no decimalRaw/refDecimal: seed them from the stored
+    // decimal `odds` so the EU field still shows a value and conversions have a reference.
+    val dRaw = (decimalRaw as String?).orEmpty().ifEmpty { if (fmt == OddsFormat.DECIMAL) odds else "" }
+    val ref = (refDecimal as String?).orEmpty()
+        .ifEmpty { odds.replace(',', '.').toDoubleOrNull()?.toString() ?: "" }
+    return copy(
+        oddsFormat = fmt,
+        fracNumerator = (fracNumerator as String?).orEmpty(),
+        fracDenominator = (fracDenominator as String?).orEmpty(),
+        americanValue = (americanValue as String?).orEmpty(),
+        decimalRaw = dRaw,
+        refDecimal = ref
+    )
+}

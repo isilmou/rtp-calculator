@@ -13,8 +13,3 @@ fun normalizeOddsOrNull(raw: String): String? {
 
 fun formatOddsTwoDecimals(raw: String): String =
     normalizeOddsOrNull(raw) ?: raw
-
-fun formatOddsForDisplay(raw: String): String {
-    if (raw.isBlank()) return "—"
-    return normalizeOddsOrNull(raw) ?: raw
-}

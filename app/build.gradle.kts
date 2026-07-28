@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.rtpcalculator"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rtpcalculator"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 3
-        versionName = "1.0.2"
+        targetSdk = 36
+        versionCode = 8
+        versionName = "2.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -47,6 +47,9 @@ android {
 }
 
 dependencies {
+    constraints {
+        implementation("androidx.fragment:fragment:1.8.6")
+    }
     implementation(libs.androidx.core.ktx)
     implementation(libs.gson)
     implementation(libs.play.review)
