@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">RTP Calculator</string>
+    <string name="create_bet_analysis">CREATE A BET ANALYSIS</string>
+    <string name="new_bet_analysis">New Bet Analysis</string>
+    <string name="event_name_optional">Event Name (optional)</string>
+    <string name="event_date_ph">Date (optional)</string>
+    <string name="event_time_ph">Time (optional)</string>
+    <string name="bet_type_placeholder">Bet type (optional): 1X2, Both teams to score, etc.</string>
+    <string name="outcome_optional">Outcome (optional)</string>
+    <string name="odds">Odds</string>
+    <string name="book_optional">Book (optional)</string>
+    <string name="odds_format_decimal_short">EU</string>
+    <string name="odds_format_fractional_short">UK</string>
+    <string name="odds_format_american_short">US</string>
+    <string name="add_outcome">Add Outcome</string>
+    <string name="save_to_history">SAVE TO HISTORY</string>
+    <string name="sort_by_event_date">Sort by event date</string>
+    <string name="no_analyses_yet">No analyses yet. Tap below to get started!</string>
+
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="cd_close">Close</string>
+    <string name="cd_clear_date">Clear date</string>
+    <string name="cd_pick_date">Pick date</string>
+    <string name="cd_clear_time">Clear time</string>
+    <string name="cd_pick_time">Pick time</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="share">Share</string>
+    <string name="rtp_short">RTP</string>
+    <string name="show_less">Show less</string>
+    <string name="share_signature_available_on">Available on Google Play</string>
+    <string name="share_error">Couldn\'t generate share image</string>
+    <string name="cd_remove_outcome">Remove</string>
+    <string name="cd_delete">Delete</string>
+    <string name="cd_toggle_sort_order">Toggle sort order</string>
+</resources>

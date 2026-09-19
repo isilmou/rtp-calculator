@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Calculateur de TRJ</string>
+    <string name="create_bet_analysis">CRÉER UNE ANALYSE DE PARI</string>
+    <string name="new_bet_analysis">Nouvelle analyse de pari</string>
+    <string name="event_name_optional">Nom évènement (facultatif)</string>
+    <string name="event_date_ph">Date (facultatif)</string>
+    <string name="event_time_ph">Heure (facultatif)</string>
+    <string name="bet_type_placeholder">Type de pari (facultatif) : 1X2, Les deux équipes marquent, etc.</string>
+    <string name="outcome_optional">Issue (facultatif)</string>
+    <string name="odds">Cote</string>
+    <string name="book_optional">Book (facultatif)</string>
+    <string name="odds_format_decimal_short">EU</string>
+    <string name="odds_format_fractional_short">UK</string>
+    <string name="odds_format_american_short">US</string>
+    <string name="add_outcome">Ajouter une issue</string>
+    <string name="save_to_history">ENREGISTRER</string>
+    <string name="sort_by_event_date">Trier par date d\'évènement</string>
+    <string name="no_analyses_yet">Aucune analyse. Appuyez ci-dessous pour commencer !</string>
+
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="cd_close">Fermer</string>
+    <string name="cd_clear_date">Effacer la date</string>
+    <string name="cd_pick_date">Choisir une date</string>
+    <string name="cd_clear_time">Effacer l\'heure</string>
+    <string name="cd_pick_time">Choisir une heure</string>
+    <string name="duplicate">Dupliquer</string>
+    <string name="share">Partager</string>
+    <string name="rtp_short">TRJ</string>
+    <string name="show_less">Voir moins</string>
+    <string name="share_signature_available_on">Disponible sur le Play Store</string>
+    <string name="share_error">Impossible de générer l\'image</string>
+    <string name="cd_remove_outcome">Supprimer</string>
+    <string name="cd_delete">Supprimer</string>
+    <string name="cd_toggle_sort_order">Inverser l\'ordre de tri</string>
+</resources>

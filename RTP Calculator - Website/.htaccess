@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# HTTPS + domaine canonique (www -> nu) en un seul saut
+# %{HTTPS} est masque par le proxy Infomaniak (cause de la boucle du 04/07) :
+# on lit l'en-tete X-Forwarded-Proto ajoute par le proxy, qui porte le vrai protocole.
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
+RewriteCond %{HTTP_HOST} ^www\.rtpcalculator\.com$ [NC]
+RewriteRule ^(.*)$ https://rtpcalculator.com/$1 [R=301,L]
+
+# /index.html -> /  (racine et sous-dossiers)
+# Cible ABSOLUE en https : avec une cible relative (/$1), Apache reconstruit
+# l'URL avec le protocole qu'il percoit (port 80 derriere le proxy) et renvoie
+# un Location en http:// -> saut supplementaire en clair.
+RewriteRule ^(.*/)?index\.html$ https://rtpcalculator.com/$1 [R=301,L]

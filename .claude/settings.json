@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "blockReadsOutsideWorkingDirectories": true,
+    "deny": [
+      "Cd",
+      "Read(**/*.jks)",
+      "Read(**/*.keystore)",
+      "Edit(**/*.jks)",
+      "Edit(**/*.keystore)",
+      "Bash(git push *)"
+    ]
+  }
+}

@@ -1,24 +1,7 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-
-# Android Studio local/IDE config (machine-specific)
-/.idea/
-
-# Claude Code local settings
+# Claude Code — configuration locale à la machine
 .claude/settings.local.json
 
-# Generated release artifacts (AAB/APK/baseline profiles) — not source
-/app/release/
+# Caches et configuration IDE propres à la machine
+.gradle/
+.idea/
+*.iml

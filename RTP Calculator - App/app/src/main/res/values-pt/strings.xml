@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Calculadora de RTP</string>
+    <string name="create_bet_analysis">CRIAR UMA ANÁLISE DE APOSTA</string>
+    <string name="new_bet_analysis">Nova análise de aposta</string>
+    <string name="event_name_optional">Nome do evento (opcional)</string>
+    <string name="event_date_ph">Data (opcional)</string>
+    <string name="event_time_ph">Hora (opcional)</string>
+    <string name="bet_type_placeholder">Tipo de aposta (opcional): 1X2, Ambos os times marcam, etc.</string>
+    <string name="outcome_optional">Resultado (opcional)</string>
+    <string name="odds">Odd</string>
+    <string name="book_optional">Casa (opcional)</string>
+    <string name="odds_format_decimal_short">EU</string>
+    <string name="odds_format_fractional_short">UK</string>
+    <string name="odds_format_american_short">US</string>
+    <string name="add_outcome">Adicionar resultado</string>
+    <string name="save_to_history">SALVAR</string>
+    <string name="sort_by_event_date">Ordenar por data do evento</string>
+    <string name="no_analyses_yet">Ainda não há análises. Toque abaixo para começar!</string>
+
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="cd_close">Fechar</string>
+    <string name="cd_clear_date">Limpar a data</string>
+    <string name="cd_pick_date">Escolher uma data</string>
+    <string name="cd_clear_time">Limpar a hora</string>
+    <string name="cd_pick_time">Escolher uma hora</string>
+    <string name="duplicate">Duplicar</string>
+    <string name="share">Compartilhar</string>
+    <string name="rtp_short">RTP</string>
+    <string name="show_less">Mostrar menos</string>
+    <string name="share_signature_available_on">Disponível no Google Play</string>
+    <string name="share_error">Não foi possível gerar a imagem</string>
+    <string name="cd_remove_outcome">Remover</string>
+    <string name="cd_delete">Excluir</string>
+    <string name="cd_toggle_sort_order">Inverter a ordem de classificação</string>
+</resources>

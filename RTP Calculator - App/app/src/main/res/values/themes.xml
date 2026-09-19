@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.RTPCalculator" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <!-- Cold-start theme: the single splash (app icon on the icon background), backported to
+         Android 5-11 by androidx.core:core-splashscreen and mapped onto the system splash on
+         Android 12+. MainActivity calls installSplashScreen() and then switches to
+         postSplashScreenTheme. The icon is only REFERENCED here, never regenerated. -->
+    <style name="Theme.RTPCalculator.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/ic_launcher_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.RTPCalculator</item>
+    </style>
+</resources>

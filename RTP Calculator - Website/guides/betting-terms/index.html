@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sports betting terms explained: 30 key words</title>
+<meta name="description" content="RTP, margin, implied probability, value bet, free bet, rollover, surebet, CLV… The vocabulary of sports betting defined clearly, with no jargon and no betting tips.">
+<link rel="canonical" href="https://rtpcalculator.com/guides/betting-terms/">
+<link rel="alternate" hreflang="en" href="https://rtpcalculator.com/guides/betting-terms/">
+<link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/guides/lexique-paris-sportifs/">
+<link rel="alternate" hreflang="es" href="https://rtpcalculator.com/es/guides/lexico-apuestas-deportivas/">
+<link rel="alternate" hreflang="de" href="https://rtpcalculator.com/de/guides/wett-lexikon/">
+<link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/guides/lexico-apostas-esportivas/">
+<link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/guides/betting-terms/">
+<meta property="og:title" content="Sports betting terms explained: 30 key words">
+<meta property="og:description" content="RTP, margin, implied probability, value bet, free bet, rollover, surebet, CLV… The vocabulary of sports betting defined clearly, with no jargon and no betting tips.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rtpcalculator.com/guides/betting-terms/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WD1V10FW80"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-WD1V10FW80');
+</script>
+
+<!-- ================= BANNIÈRE DE CONSENTEMENT RTP (v1) =================
+     À insérer dans le <head> de chaque page portant GA4,
+     JUSTE APRÈS le bloc gtag('consent','default', ...) existant
+     et AVANT le chargement de gtag.js.
+     Ne rien insérer sur les pages /privacy/ (sans GA4, volontairement).
+     ==================================================================== -->
+<script>
+(function () {
+  var KEY = 'rtp_consent_v1';
+
+  /* --- gtag local : pousse dans dataLayer exactement comme gtag.js --- */
+  window.dataLayer = window.dataLayer || [];
+  function g() { window.dataLayer.push(arguments); }
+
+  /* --- textes localisés --- */
+  var T = {
+    fr: {
+      title: "Votre choix sur les cookies",
+      body: "Ce site mesure son audience et pourra afficher des publicités sur les pages du calculateur. Aucun cookie n'est déposé sans votre accord.",
+      accept: "Tout accepter", reject: "Tout refuser", custom: "Personnaliser",
+      save: "Enregistrer mes choix", close: "Fermer",
+      a_h: "Mesure d'audience", a_p: "Nous aide à savoir quelles pages sont consultées. Aucune donnée n'est revendue.",
+      d_h: "Publicité", d_p: "Permet d'afficher des annonces sur les pages du calculateur et d'en mesurer la performance.",
+      privacy: "Politique de confidentialité", privacy_url: "/fr/privacy/"
+    },
+    en: {
+      title: "Your cookie choices",
+      body: "This site measures its audience and may display ads on the calculator pages. No cookie is set without your consent.",
+      accept: "Accept all", reject: "Reject all", custom: "Customise",
+      save: "Save my choices", close: "Close",
+      a_h: "Audience measurement", a_p: "Helps us know which pages are viewed. No data is ever sold.",
+      d_h: "Advertising", d_p: "Allows ads to be shown on the calculator pages and their performance measured.",
+      privacy: "Privacy policy", privacy_url: "/privacy/"
+    },
+    es: {
+      title: "Tus opciones sobre las cookies",
+      body: "Este sitio mide su audiencia y podrá mostrar anuncios en las páginas de la calculadora. No se instala ninguna cookie sin tu consentimiento.",
+      accept: "Aceptar todo", reject: "Rechazar todo", custom: "Personalizar",
+      save: "Guardar mis opciones", close: "Cerrar",
+      a_h: "Medición de audiencia", a_p: "Nos ayuda a saber qué páginas se consultan. Ningún dato se revende.",
+      d_h: "Publicidad", d_p: "Permite mostrar anuncios en las páginas de la calculadora y medir su rendimiento.",
+      privacy: "Política de privacidad", privacy_url: "/es/privacy/"
+    },
+    de: {
+      title: "Ihre Cookie-Einstellungen",
+      body: "Diese Website misst ihre Reichweite und kann auf den Rechner-Seiten Werbung anzeigen. Ohne Ihre Zustimmung wird kein Cookie gesetzt.",
+      accept: "Alle akzeptieren", reject: "Alle ablehnen", custom: "Anpassen",
+      save: "Auswahl speichern", close: "Schließen",
+      a_h: "Reichweitenmessung", a_p: "Hilft uns zu erkennen, welche Seiten aufgerufen werden. Keine Daten werden verkauft.",
+      d_h: "Werbung", d_p: "Ermöglicht Anzeigen auf den Rechner-Seiten und deren Erfolgsmessung.",
+      privacy: "Datenschutz", privacy_url: "/de/privacy/"
+    }
+  };
+  var lang = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+  if (!T[lang]) lang = 'en';
+  var t = T[lang];
+
+  /* --- lecture / écriture du choix --- */
+  function read() {
+    try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; }
+  }
+  function write(c) {
+    try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
+  }
+
+  /* --- application au Consent Mode v2 --- */
+  function apply(c, firstTime) {
+    g('consent', 'update', {
+      analytics_storage:   c.analytics ? 'granted' : 'denied',
+      ad_storage:          c.ads ? 'granted' : 'denied',
+      ad_user_data:        c.ads ? 'granted' : 'denied',
+      ad_personalization:  c.ads ? 'granted' : 'denied'
+    });
+    // Au tout premier accord, la page vue initiale est déjà partie sans cookie :
+    // on en renvoie une pour que la visite soit comptée correctement.
+    if (firstTime && c.analytics) { g('event', 'page_view'); }
+  }
+
+  /* --- APPLICATION IMMÉDIATE si un choix existe (avant gtag config) --- */
+  var stored = read();
+  if (stored) { apply(stored, false); }
+
+  /* --- interface --- */
+  var CSS =
+  '#rtp-cmp{position:fixed;left:0;right:0;bottom:0;z-index:99999;padding:14px;display:none;' +
+  'font-family:Archivo,system-ui,-apple-system,sans-serif}' +
+  '#rtp-cmp.on{display:block}' +
+  '#rtp-cmp .box{max-width:900px;margin:0 auto;background:#141414;border:1px solid #1F1F1F;' +
+  'border-radius:8px;box-shadow:0 16px 44px rgba(0,0,0,.65);padding:18px 20px}' +
+  '#rtp-cmp h2{font-size:15px;font-weight:800;color:#fff;margin:0 0 6px}' +
+  '#rtp-cmp p{font-size:13.5px;line-height:1.55;color:#AAA;margin:0 0 12px}' +
+  '#rtp-cmp a.pl{color:#FFD600;font-weight:600;text-decoration:none}' +
+  '#rtp-cmp a.pl:hover{text-decoration:underline}' +
+  '#rtp-cmp .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}' +
+  '#rtp-cmp button{font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:.04em;' +
+  'border-radius:6px;height:42px;padding:0 18px;cursor:pointer;border:1px solid transparent}' +
+  '#rtp-cmp .b-yes{background:#FAFAFA;color:#0A0A0A}' +
+  '#rtp-cmp .b-yes:hover{background:#fff}' +
+  '#rtp-cmp .b-no{background:transparent;color:#FAFAFA;border-color:#3A3A3A}' +
+  '#rtp-cmp .b-no:hover{border-color:#666}' +
+  '#rtp-cmp .b-more{background:transparent;color:#AAA;border-color:transparent;padding:0 6px;' +
+  'text-decoration:underline;font-weight:600}' +
+  '#rtp-cmp .b-more:hover{color:#fff}' +
+  '#rtp-cmp .panel{display:none;margin:14px 0 4px;border-top:1px solid #1F1F1F;padding-top:14px}' +
+  '#rtp-cmp .panel.on{display:block}' +
+  '#rtp-cmp .opt{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}' +
+  '#rtp-cmp .opt input{margin-top:3px;width:16px;height:16px;accent-color:#FFD600;flex:none}' +
+  '#rtp-cmp .opt h3{font-size:13.5px;font-weight:700;color:#fff;margin:0 0 2px}' +
+  '#rtp-cmp .opt p{font-size:12.5px;margin:0;color:#888}' +
+  '@media (max-width:560px){#rtp-cmp .row{flex-direction:column;align-items:stretch}' +
+  '#rtp-cmp button{width:100%}}';
+
+  function build() {
+    var s = document.createElement('style'); s.textContent = CSS;
+    document.head.appendChild(s);
+
+    var d = document.createElement('div');
+    d.id = 'rtp-cmp';
+    d.setAttribute('role', 'dialog');
+    d.setAttribute('aria-label', t.title);
+    d.innerHTML =
+      '<div class="box">' +
+        '<h2>' + t.title + '</h2>' +
+        '<p>' + t.body + ' <a class="pl" href="' + t.privacy_url + '">' + t.privacy + '</a></p>' +
+        '<div class="panel" id="rtp-cmp-panel">' +
+          '<div class="opt"><input type="checkbox" id="rtp-cmp-a"><div>' +
+            '<h3>' + t.a_h + '</h3><p>' + t.a_p + '</p></div></div>' +
+          '<div class="opt"><input type="checkbox" id="rtp-cmp-d"><div>' +
+            '<h3>' + t.d_h + '</h3><p>' + t.d_p + '</p></div></div>' +
+        '</div>' +
+        '<div class="row">' +
+          '<button class="b-yes" id="rtp-cmp-yes">' + t.accept + '</button>' +
+          '<button class="b-no"  id="rtp-cmp-no">'  + t.reject + '</button>' +
+          '<button class="b-more" id="rtp-cmp-more">' + t.custom + '</button>' +
+          '<button class="b-no"  id="rtp-cmp-save" style="display:none">' + t.save + '</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(d);
+
+    var panel = d.querySelector('#rtp-cmp-panel'),
+        cbA   = d.querySelector('#rtp-cmp-a'),
+        cbD   = d.querySelector('#rtp-cmp-d'),
+        bSave = d.querySelector('#rtp-cmp-save'),
+        bMore = d.querySelector('#rtp-cmp-more');
+
+    function decide(c) { write(c); apply(c, true); d.classList.remove('on'); }
+
+    d.querySelector('#rtp-cmp-yes').onclick = function () { decide({ analytics: true,  ads: true,  ts: Date.now() }); };
+    d.querySelector('#rtp-cmp-no').onclick  = function () { decide({ analytics: false, ads: false, ts: Date.now() }); };
+    bMore.onclick = function () {
+      panel.classList.add('on'); bMore.style.display = 'none'; bSave.style.display = '';
+      var cur = read() || { analytics: false, ads: false };
+      cbA.checked = !!cur.analytics; cbD.checked = !!cur.ads;
+    };
+    bSave.onclick = function () { decide({ analytics: cbA.checked, ads: cbD.checked, ts: Date.now() }); };
+
+    return d;
+  }
+
+  var el = null;
+  function show() {
+    if (!el) el = build();
+    var cur = read();
+    if (cur) {   // réouverture : on pré-affiche le détail
+      el.querySelector('#rtp-cmp-more').click();
+    }
+    el.classList.add('on');
+  }
+
+  /* --- point d'entrée public : lien « Paramètres des cookies » --- */
+  window.rtpConsentOpen = function (e) { if (e && e.preventDefault) e.preventDefault(); show(); return false; };
+
+  /* --- affichage au premier passage --- */
+  function init() { if (!read()) show(); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+<!-- =============== FIN BANNIÈRE DE CONSENTEMENT RTP =============== -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Sports betting terms explained", "inLanguage": "en", "datePublished": "2026-08-22", "dateModified": "2026-08-22", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/guides/betting-terms/"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0A0A0A;--card:#141414;--divider:#1F1F1F;--yellow:#FFD600;--cta:#FAFAFA;--on-cta:#0A0A0A;
+        --text:#FFFFFF;--text-2:#AAAAAA;--text-3:#666666;
+        --f-active-bg:#E8E8E8;--f-active-tx:#0A0A0A;--f-inactive-bg:#1F1F1F;--f-inactive-tx:#888888;--radius-s:6px;--radius-l:8px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Archivo',system-ui,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--yellow);text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible{outline:2px solid var(--yellow);outline-offset:2px;border-radius:4px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .rtp-rule{height:3px;background:linear-gradient(90deg,#E53935,#FB8C00,#FDD835,#43A047)}
+  header.site{background:rgba(10,10,10,.92);border-bottom:1px solid var(--divider)}
+  .nav{display:flex;align-items:center;gap:18px;height:64px;max-width:1060px;margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:800;font-size:15px;white-space:nowrap}
+  .brand:hover{text-decoration:none}
+  .brand svg{width:26px;height:26px;flex:none}
+  .lang{display:flex;border-radius:var(--radius-s);overflow:hidden;flex:none;margin-left:auto}
+  .lang a{display:flex;align-items:center;justify-content:center;width:36px;height:26px;font-size:10.5px;color:var(--f-inactive-tx);background:var(--f-inactive-bg)}
+  .lang a:hover{text-decoration:none;color:var(--text-2)}
+  .lang a.on{background:var(--f-active-bg);color:var(--f-active-tx);font-weight:700}
+  .nav-links{display:flex;align-items:center;gap:20px;margin-left:auto;font-size:13.5px;font-weight:600}
+  .nav-links a{color:var(--text-2)}
+  .nav-links a:hover{color:var(--text);text-decoration:none}
+  .nav-links a.on{color:var(--yellow);font-weight:700}
+  @media (max-width:820px){
+    .nav{height:auto;flex-wrap:wrap;padding-top:10px;row-gap:2px}
+    .nav-links{order:3;width:100%;margin-left:0;overflow-x:auto;padding:8px 0 12px;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .nav-links::-webkit-scrollbar{display:none}
+    .lang{margin-left:auto}
+  }
+  main{padding:36px 0 10px}
+  .crumb{font-size:13px;margin-bottom:14px;display:inline-block}
+  h1{font-size:clamp(25px,4.4vw,34px);font-weight:800;letter-spacing:-.015em;line-height:1.15}
+  .date{font-size:12.5px;color:var(--text-3);margin:10px 0 26px}
+  .dek{color:var(--text-2);font-size:16px;margin-top:12px;max-width:60ch}
+  article p{color:var(--text-2);font-size:15.5px;margin:14px 0}
+  article strong{color:var(--text)}
+  article h2{font-size:20px;font-weight:800;margin:34px 0 6px;letter-spacing:-.01em}
+  article a{font-weight:600}
+  .ex{background:var(--card);border-left:3px solid var(--yellow);border-radius:var(--radius-s);padding:14px 18px;margin:18px 0}
+  .ex p{margin:6px 0;font-size:14.5px}
+  .tbl{border-collapse:collapse;margin:18px 0;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+  .tbl th{background:var(--card);color:var(--text);font-weight:700;text-align:left}
+  .tbl th,.tbl td{border:1px solid var(--divider);padding:8px 12px;color:var(--text-2)}
+  .cta{background:var(--card);border:1px solid var(--divider);border-radius:var(--radius-l);padding:20px;margin:36px 0 8px;text-align:center}
+  .cta h3{font-size:17px;font-weight:800;margin-bottom:6px}
+  .cta p{color:var(--text-2);font-size:14px;margin-bottom:14px}
+  .cta a{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:var(--radius-s);background:var(--cta);color:var(--on-cta);font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:3px 4px}
+  .cta a:hover{background:#fff;text-decoration:none}
+  .more{margin:34px 0 8px}
+  .more h3{font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;font-family:'Archivo Narrow',sans-serif}
+  .more ul{list-style:none}
+  .more li{margin:7px 0;font-size:14.5px}
+  .cards{display:grid;gap:12px;margin-top:28px}
+  .gcard{background:var(--card);border:1px solid var(--divider);border-radius:var(--radius-l);padding:18px 20px;display:block}
+  .gcard:hover{text-decoration:none;border-color:#2c2c2c}
+  .gcard h2{font-size:17px;font-weight:800;color:var(--text);margin-bottom:6px}
+  .gcard p{font-size:14px;color:var(--text-2);margin-bottom:8px}
+  .gcard span{font-size:12.5px;color:var(--yellow);font-weight:700}
+  footer{border-top:1px solid var(--divider);margin-top:44px;padding:26px 0 38px;font-size:12.5px;color:var(--text-3)}
+  .foot-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+  footer a{color:var(--text-2)}
+  .foot-disclaimer{margin-top:16px;font-size:12px;color:var(--text-3);border-top:1px solid var(--divider);padding-top:12px}
+  @media (max-width:560px){.brand{font-size:13.5px}.nav{padding:0 16px;gap:12px}}
+</style>
+</head><body>
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="31" fill="none" stroke="#3A3B40" stroke-width="16"/>
+        <path d="M78.096 36.899 A31 31 0 1 1 63.101 21.904" fill="none" stroke="#FFD600" stroke-width="16"/>
+        <line x1="69.032" y1="41.125" x2="87.159" y2="32.673" stroke="#0A0A0B" stroke-width="4"/>
+        <line x1="58.875" y1="30.968" x2="67.327" y2="12.841" stroke="#0A0A0B" stroke-width="4"/>
+      </svg>
+      RTP&nbsp;Calculator
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="/app/">Online calculator</a>
+      <a class="on" href="/guides/">Guides</a>
+      <a href="/#apps">App</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/about/">About</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <nav class="lang" aria-label="Language">
+      <a href="/guides/betting-terms/" class="on" aria-current="true" lang="en" hreflang="en">EN</a>
+      <a href="/fr/guides/lexique-paris-sportifs/" lang="fr" hreflang="fr">FR</a>
+      <a href="/es/guides/lexico-apuestas-deportivas/" lang="es" hreflang="es">ES</a>
+      <a href="/de/guides/wett-lexikon/" lang="de" hreflang="de">DE</a>
+      <a href="/pt/guides/lexico-apostas-esportivas/" lang="pt-BR" hreflang="pt">PT</a>
+    </nav>
+  </div>
+  <div class="rtp-rule" aria-hidden="true"></div>
+</header>
+<main class="wrap">
+  <a class="crumb" href="/guides/">&larr; All guides</a>
+  <article>
+    <h1>Sports betting terms explained</h1>
+    <p class="date">Published on 22 August 2026</p>
+<p>The vocabulary of sports betting mixes probability terms, anglicisms and operators' own expressions. Here are some of the important ones, defined simply. Terms related to the real cost of a bet link through to the detailed guides.</p>
+
+<h2>1X2</h2>
+<p>The main three-outcome market of a football match: home win (1), draw (X), away win (2). It is usually the best-priced market of a fixture, and therefore the one with the highest RTP.</p>
+
+<h2>Account limitation</h2>
+<p>A unilateral measure by which a bookmaker reduces the maximum stake allowed on a bettor's account. It mainly targets the (very rare) long-term winning players, users of arbitrage techniques (<em>surebets</em>) and profiles flagged as a risk to the operator's profitability.</p>
+
+<h2>Accumulator (parlay)</h2>
+<p>A bet combining several selections, whose odds multiply — and so do the margins. The RTP of an accumulator is the product of the RTPs of each selection: three selections at 95% give 85.7%, eight selections give 66.3%. It is structurally the most expensive bet type for bettors. See <a href="/guides/parlay-rtp/">why accumulators are a gold mine for bookmakers</a>.</p>
+
+<h2>Bankroll</h2>
+<p>The amount of money a bettor holds across the various bookmakers they are registered with.</p>
+
+<h2>Betting exchange</h2>
+<p>A platform where bettors face each other directly, the operator earning an explicit commission on winnings rather than a margin built into the odds. The cost is visible there, which does not automatically make it lower.</p>
+
+<h2>Bookmaker</h2>
+<p>An operator that offers odds and accepts bets. It charges no visible commission: its revenue is baked into the odds it offers, in the form of a margin. See <a href="/guides/calculate-bookmaker-margin/">how to calculate a bookmaker's margin</a>.</p>
+
+<h2>Bookmaker's margin</h2>
+<p>The share of the stakes the operator keeps on average, expressed as a percentage. It is the exact complement of the RTP: margin = 100 &minus; RTP. It varies with the competition, the market type and the timing. See <a href="/guides/calculate-bookmaker-margin/">how to calculate a bookmaker's margin</a>.</p>
+
+<h2>Boosted odds</h2>
+<p>An odd temporarily increased by an operator for commercial purposes. It improves the RTP of the market concerned on a one-off basis.</p>
+
+<h2>Cash out</h2>
+<p>An option allowing a bet to be settled before the end of the event, for an amount offered by the operator. That amount carries an additional margin over the theoretical value of the position: convenience has a price.</p>
+
+<h2>Closing line</h2>
+<p>The final odd of a market, just before the event starts. It is regarded as the most accurate, since it incorporates all the information available to the bookmakers' pricing engines.</p>
+
+<h2>CLV (Closing Line Value)</h2>
+<p>The gap between the odd obtained at the time of the bet and the closing line. Consistently beating the closing odd is one of the rare serious indicators of a genuine edge over a bookmaker. An important nuance: securing a positive CLV long before kick-off is more demanding and far more complex, because early odds always carry wider margins.</p>
+
+<h2>Correct score</h2>
+<p>A bet on the precise result of a fixture. A market with a great many outcomes, generally among the highest-margin ones in the catalogue.</p>
+
+<h2>Double chance</h2>
+<p>A bet covering two of the three outcomes of a match (1X, 12 or X2). The odd is mechanically lower; the margin, however, is not necessarily smaller.</p>
+
+<h2>Dutching</h2>
+<p>Splitting a stake across several outcomes of the same market so as to obtain the same payout whichever one occurs. Useful for understanding the logic of implied probabilities, but with no effect on the market's margin.</p>
+
+<h2>Expected value</h2>
+<p>The average result expected from a bet repeated a large number of times. On a market where the RTP is below 100%, and short of a bookmaker pricing error allowing a value bet, expected value is systematically negative for bettors as a whole — it is the mathematical expression of the margin.</p>
+
+<h2>Free bet</h2>
+<p>A bet granted by the operator whose stake is not returned when it wins: a £100 free bet at odds of 2.00 returns only £100 of net profit. Its effective value is therefore well below its face amount.</p>
+
+<h2>Handicap</h2>
+<p>A fictional advantage or disadvantage given to a team to rebalance a lopsided match. The European handicap keeps three outcomes; the Asian handicap removes the draw, sometimes with fractional lines that split the stake.</p>
+
+<h2>Implied probability</h2>
+<p>The probability contained in an odd, obtained by inverting it: an odd of 2.50 corresponds to 1 &divide; 2.50 = 40%. The sum of the implied probabilities of all outcomes of a market always exceeds 100%; that excess is the margin. See <a href="/guides/rtp-sports-betting/">what is the RTP of a sports bet</a>.</p>
+
+<h2>Kelly criterion</h2>
+<p>A stake-sizing formula that allocates a fraction of the bankroll proportional to the estimated edge. It assumes knowing the true probability of an outcome — which nobody knows with certainty.</p>
+
+<h2>Live betting</h2>
+<p>A bet placed while the event is under way, on odds recalculated continuously. Margins there are generally wider than pre-match, as uncertainty and processing speed are both higher.</p>
+
+<h2>Odds</h2>
+<p>The numerical expression of the payout attached to an outcome. They contain both a probability estimate and the operator's margin. They are written in three main formats, depending notably on the bookmaker's region: decimal, fractional and American. See <a href="/guides/odds-formats/">the three main odds formats</a>.</p>
+
+<h2>Over / Under</h2>
+<p>A bet on whether a statistic exceeds a set threshold or not: number of goals, games, points. A two-outcome market, whose RTP is computed exactly like any other.</p>
+
+<h2>ROI (return on investment)</h2>
+<p>A profitability indicator computed by dividing net profit (or loss) by the total amount staked, expressed as a percentage.</p>
+
+<h2>Rollover (wagering requirements)</h2>
+<p>The number of times a bonus must be re-wagered before it can be withdrawn, often with a minimum odd and a deadline attached. It is one of the mechanisms that reduce the real value of a promotional offer.</p>
+
+<h2>RTP (Return To Player)</h2>
+<p>The share of the stakes a market gives back to bettors, on average. An RTP of 94% means that for every €100 staked, across all outcomes, the odds give back the equivalent of €94. It is the central notion of this site. See <a href="/guides/rtp-sports-betting/">what is the RTP of a sports bet</a>. A side note: in some countries the RTP is also framed by regulation — in France, for instance, the average annual RTP of licensed operators is capped at 85% by the national gambling authority.</p>
+
+<h2>Stake</h2>
+<p>The amount committed to a bet. With decimal odds, the total return displayed includes the stake; with fractional and American odds, the figures express net profit, stake excluded — a frequent source of confusion.</p>
+
+<h2>Surebet (arbitrage)</h2>
+<p>A situation where the odds of different operators on the same market allow every outcome to be covered with a guaranteed profit. It corresponds to an RTP above 100% and is generally rare and short-lived.</p>
+
+<h2>Value bet</h2>
+<p>A bet whose offered odd is higher than the fair odd corresponding to the true probability of the outcome. Identifying a value bet requires a better estimate of an event's true probability than the bookmakers have, which is very difficult. A low RTP makes the exercise almost impossible.</p>
+
+<h2>Variance</h2>
+<p>The dispersion of results around their average. It is what allows a short run to be profitable despite an unfavourable RTP — and what makes any conclusion drawn from a few dozen bets unreliable.</p>
+
+<h2>Welcome bonus</h2>
+<p>A commercial offer aimed at new registrants. Its real value is almost always lower than the headline amount: it is most often paid in free bets rather than real money, and comes with conditions. An RTP gap, by contrast, applies to every bet and never expires — which is why it matters far more over time. See the guide <a href="/guides/compare-bookmakers-rtp/">compare bookmakers by RTP rather than bonuses</a>.</p>
+  </article>
+  <div class="cta">
+    <h3>Work out the RTP yourself</h3>
+    <p>Enter the odds of any bet and get its RTP instantly, no sign-up.</p>
+    <a href="/app/">Open the calculator (browser version)</a>
+    <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en">Download the Android version</a>
+  </div>
+  <div class="more">
+    <h3>Read next</h3>
+    <ul><li><a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a></li><li><a href="/guides/calculate-bookmaker-margin/">How to calculate a bookmaker's margin</a></li><li><a href="/guides/parlay-rtp/">Why accumulators are a gold mine for bookmakers</a></li><li><a href="/guides/odds-formats/">Decimal, fractional, American odds: the three main formats</a></li><li><a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP rather than bonuses</a></li></ul>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span>© 2026 RTP — SIREN 103980686</span>
+      <span><a href="/privacy/">Privacy</a></span>
+      <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
+      <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en">Available on Google Play</a></span>
+    </div>
+    <p class="foot-disclaimer">18+ · Gambling involves risks. Informational content: no betting tips, no encouragement to gamble.</p>
+  </div>
+</footer>
+</body>
+</html>

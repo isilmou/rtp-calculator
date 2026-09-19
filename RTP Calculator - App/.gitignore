@@ -1,0 +1,27 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Android Studio local/IDE config (machine-specific)
+/.idea/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Generated release artifacts (AAB/APK/baseline profiles) — not source
+/app/release/
+
+# Icon-generation tooling (generate_icons.mjs) — installed locally with npm, never versioned
+/node_modules/
