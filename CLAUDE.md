@@ -22,7 +22,9 @@ de guillemets dans les commandes PowerShell.
 3. **Français = langue maîtresse.** Toute copie est rédigée en français, validée par moi,
    puis propagée vers EN / ES / DE / PT-BR. Ne jamais modifier une traduction si la source
    FR n'est pas à jour.
-4. **Aucun commit Git automatique.** Je commite moi-même, après validation sur device.
+4. **Aucun commit ni push Git automatique.** Je commite et je pousse moi-même, après
+   validation sur device. Dépôt distant : GitHub privé `isilmou/rtp-calculator`, branche
+   `main`, sauvegarde des sources uniquement (pas de CI, pas d'hébergement du site).
 5. **Aucune publication automatique.** Le build signé et l'envoi Play Console sont manuels.
 6. Réponses structurées, tableaux pour les données comparatives, pas de jargon décoratif.
 7. **Périmètre confiné à `C:\RTP-Calculator\`.**
@@ -35,6 +37,8 @@ de guillemets dans les commandes PowerShell.
      en indiquant le chemin voulu et la raison. Ne pas contourner par une commande shell.
    - Les commandes shell obéissent à la même règle : pas de `cd ..`, pas de chemin absolu
      remontant hors de la racine, pas de script qui ouvre des fichiers hors périmètre.
+   - Sauvegardes Git locales (`git bundle`) dans `C:\RTP-Calculator\_backup\` (ignoré par
+     Git), jamais dans le scratchpad.
 
 ## 3. Journal de bord — `journal.md`
 
@@ -94,7 +98,7 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
 
 1. Tests sur devices physiques : Samsung Galaxy S9 **et** S23+ — obligatoire avant tout
    build de release. Le S9 est le garde-fou sur les vieilles API et la mémoire.
-2. Commit Git (par moi).
+2. Commit Git puis `git push` (par moi).
 3. AAB signé via l'assistant Android Studio.
 4. Play Console. **Publication gérée activée** : après approbation, la mise en ligne exige
    un clic explicite sur « Publier les modifications ». Ne jamais considérer une release
