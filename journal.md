@@ -10,16 +10,16 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 | Élément | Valeur |
 |---|---|
-| Version en production | 2.1.0 |
-| Version prête, non publiée | 2.1.1 / versionCode 10 — tout est appliqué et validé sur S9 + S23+ |
-| Chantier prioritaire | Obscurcissement DEX : fait côté code, reste à publier et vérifier l'alerte |
+| Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
+| Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 
 ### À faire
 
-1. **Julien** : commit (réorganisation des dossiers comprise), AAB signé, Play Console,
-   clic « Publier les modifications », puis vérifier sous 48 h que l'alerte
-   « Obscurcissement 0 % » a disparu. Mettre ensuite à jour CLAUDE.md §4 et §9.
+1. **Vérifier sous 48 h** dans la Play Console que l'alerte « Obscurcissement 0 % » a disparu
+   sur la 2.1.1. Si elle persiste, relire le score par catégorie avant de toucher aux règles.
+   Non commités en fin de session : CLAUDE.md (§3, §4, §9), journal.md,
+   `RTP Calculator - App/release-notes-2.1.1.txt`.
 2. **Sauvegarde du code** : Git local seul depuis l'abandon de Drive. Dépôt distant privé
    (GitHub/GitLab) à mettre en place. Non tranché.
 3. **Option restante de l'audit** : retirer `material-icons-extended` (AAR 35 Mo, seules

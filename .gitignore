@@ -5,3 +5,9 @@
 .gradle/
 .idea/
 *.iml
+
+# Archives d'upload du site (les ZIP vivent sur Drive)
+*.zip
+
+# Sauvegardes Git locales (bundles avant réécriture d'historique)
+_backup/

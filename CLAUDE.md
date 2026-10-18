@@ -51,9 +51,11 @@ inter-sessions à Claude Code, qui repart d'un contexte vide à chaque lancement
 - une piste est abandonnée — écrire pourquoi, pour ne pas la rouvrir dans six mois ;
 - une session se termine.
 
-**Format** : entrées datées, la plus récente en haut de la section « Sessions ».
-Factuel et court. On ajoute, on ne réécrit jamais l'historique : une information
-devenue fausse est corrigée par une nouvelle entrée qui dit qu'elle l'est.
+**Format** : entrées datées. Le journal ne contient que ce qu'une future session doit savoir :
+état courant, décisions et leurs raisons, pistes écartées et pourquoi, points en suspens.
+Pas de narration ni de compte rendu pas à pas. Une information devenue inutile est retirée,
+une information devenue fausse est corrigée sur place. Les contraintes durables remontent
+dans `CLAUDE.md` et ne sont pas dupliquées ici.
 
 **Interdit dans `journal.md`** : mots de passe, clés API privées, identifiants FTP,
 contenu du keystore ou mot de passe de signature.
@@ -86,9 +88,7 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
 
 - patch `x.x.1` : correction de bug
 - mineure `x.1.0` : nouvelle fonctionnalité ou nouvelle langue
-- version en production au 19/09/2026 : **2.1.0**
-- version préparée le 19/09/2026, non encore publiée : **2.1.1** (versionCode 10). Mettre cette
-  ligne à jour après le clic « Publier les modifications ».
+- version en production au 19/09/2026 : **2.1.1** (versionCode 10, publiée le 19/09/2026)
 
 ## 5. Chaîne de publication Android
 
@@ -169,6 +169,6 @@ le 19/09/2026, en lecture et exécution uniquement, sans écriture.
 
 ## 9. Chantier prioritaire en cours
 
-Obscurcissement DEX sous le seuil Google Play (échéance février 2027). Côté code, c'est fait
-le 19/09/2026 (R8 actif, 2.1.1). Reste : publication de la 2.1.1 et vérification de la
-disparition de l'alerte dans la Play Console. État détaillé : voir `journal.md`.
+Obscurcissement DEX (échéance Play février 2027) : traité par la 2.1.1, publiée le 19/09/2026
+avec R8 actif. Dernier contrôle en attente : disparition de l'alerte dans la Play Console sous
+48 h. Prochain chantier à définir avec Julien ; candidats et état : voir `journal.md`.
