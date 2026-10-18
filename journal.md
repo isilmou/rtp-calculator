@@ -39,7 +39,8 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
   commits de mai et juillet. Piège rencontré : ces deux commits avaient l'app à la racine du
   dépôt, le dossier `RTP Calculator - App/` n'existe que depuis la 2.1.1 ; le filtre doit viser
   les deux jeux de chemins. `.git` : 49 Mo → 0,5 Mo. Les SHA ont changé, messages et dates
-  conservés. Sauvegarde de l'historique d'origine : `_backup/*.bundle` (ignoré par Git).
+  conservés. Le bundle de sauvegarde de l'historique d'origine a été supprimé le 18/10/2026
+  après vérification du push ; les sources 2.1.1 et 07/09/2026 (site) restent sur Drive.
 - **`master` → `main`** (convention GitHub). `init.defaultBranch` global non modifié.
 - **Authentification** : Git Credential Manager (HTTPS, jeton dans le gestionnaire Windows).
   Pas de `gh`, pas de clé SSH. `.claude/settings.json` interdit `git push` à Claude Code :
