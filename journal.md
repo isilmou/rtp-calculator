@@ -6,25 +6,46 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (19/09/2026)
+## État courant (18/10/2026)
 
 | Élément | Valeur |
 |---|---|
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
+| Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
 ### À faire
 
 1. **Vérifier sous 48 h** dans la Play Console que l'alerte « Obscurcissement 0 % » a disparu
    sur la 2.1.1. Si elle persiste, relire le score par catégorie avant de toucher aux règles.
-   Non commités en fin de session : CLAUDE.md (§3, §4, §9), journal.md,
-   `RTP Calculator - App/release-notes-2.1.1.txt`.
-2. **Sauvegarde du code** : Git local seul depuis l'abandon de Drive. Dépôt distant privé
-   (GitHub/GitLab) à mettre en place. Non tranché.
-3. **Option restante de l'audit** : retirer `material-icons-extended` (AAR 35 Mo, seules
+2. **Option restante de l'audit** : retirer `material-icons-extended` (AAR 35 Mo, seules
    `AccessTime` et `ContentCopy` sont hors jeu de base). Gain sur le build debug uniquement.
-4. **Kotlin 2 / Compose récent** : chantier à part, après la 2.1.1.
+3. **Kotlin 2 / Compose récent** : chantier à part, après la 2.1.1.
+
+---
+
+## Dépôt GitHub (18/10/2026)
+
+- **Un seul dépôt** pour l'app et le site : ils étaient déjà suivis ensemble, avec CLAUDE.md et
+  journal.md partagés à la racine. Écarté : deux dépôts (aucun besoin de visibilité ni de
+  workflow distincts ; aurait imposé un `subtree split` et un choix d'emplacement pour les
+  fichiers racine).
+- **Privé** : le journal et CLAUDE.md n'ont pas vocation à être publics. Aucun secret n'est
+  suivi (vérifié : pas de keystore, `local.properties`, mot de passe ni identifiant FTP ;
+  AdMob/GA4 déjà publics dans l'APK et le site).
+- **Historique réécrit avant le premier push** (`git filter-branch`, outil intégré) pour
+  retirer `node_modules/` et `app/release/` (DLL 19 Mo, APK et AAB 14 Mo) présents dans les
+  commits de mai et juillet. Piège rencontré : ces deux commits avaient l'app à la racine du
+  dépôt, le dossier `RTP Calculator - App/` n'existe que depuis la 2.1.1 ; le filtre doit viser
+  les deux jeux de chemins. `.git` : 49 Mo → 0,5 Mo. Les SHA ont changé, messages et dates
+  conservés. Sauvegarde de l'historique d'origine : `_backup/*.bundle` (ignoré par Git).
+- **`master` → `main`** (convention GitHub). `init.defaultBranch` global non modifié.
+- **Authentification** : Git Credential Manager (HTTPS, jeton dans le gestionnaire Windows).
+  Pas de `gh`, pas de clé SSH. `.claude/settings.json` interdit `git push` à Claude Code :
+  tout push passe par Julien (`! git push`).
+- Ajouts `.gitignore` racine : `*.zip` (archives d'upload du site, conservées sur Drive) et
+  `_backup/`.
 
 ---
 
