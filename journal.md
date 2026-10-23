@@ -6,22 +6,57 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (18/10/2026)
+## État courant (23/10/2026)
 
 | Élément | Valeur |
 |---|---|
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
+| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources, historique complet sur disque). **Analyse initiale à faire** : prochaine session |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
 ### À faire
 
+0. **Analyse initiale des statistiques** (étape 5 du plan du 23/10/2026) : relancer
+   `npm run snapshot -- --all`, puis rapport site + app + croisement, pistes classées par impact.
+   Julien doit encore recouper deux chiffres avec les consoles : AdMob **1,36 €** de revenus
+   cumulés et Play **95** utilisateurs ayant installé l'app (depuis mai 2026).
 1. **Vérifier sous 48 h** dans la Play Console que l'alerte « Obscurcissement 0 % » a disparu
    sur la 2.1.1. Si elle persiste, relire le score par catégorie avant de toucher aux règles.
 2. **Option restante de l'audit** : retirer `material-icons-extended` (AAR 35 Mo, seules
    `AccessTime` et `ContentCopy` sont hors jeu de base). Gain sur le build debug uniquement.
 3. **Kotlin 2 / Compose récent** : chantier à part, après la 2.1.1.
+
+---
+
+## Statistiques Google (23/10/2026)
+
+Objectif : Claude lit lui-même toutes les statistiques, sans action de Julien à chaque analyse.
+Boîte à outils Node `stats/` (détail des commandes dans `CLAUDE.md` § 9).
+
+- **API officielles + OAuth du compte Julien** (`contact@rtpcalculator.com`, Workspace), tout en
+  lecture seule. Écarté : compte de service (refusé par l'API AdMob) ; serveurs MCP (GA officiel
+  en Python, absent ici ; rien d'officiel pour AdMob ni Play) ; exports CSV manuels et lecture
+  des consoles via navigateur (action humaine à chaque analyse).
+- **Projet Google Cloud `rtp-calculator-stats` sans compte de facturation** : coût nul garanti,
+  un service payant serait refusé et non facturé. Écran OAuth « Externe », publié **en
+  production** : en mode Test le jeton expire après 7 jours. Le bouton Publier reste grisé tant
+  que page d'accueil, règles de confidentialité et domaine autorisé ne sont pas renseignés.
+- **Play Console** : la page « Accès à l'API » (association d'un projet Cloud) n'existe plus en
+  2026 ; les droits du compte suffisent. Bucket des rapports : `pubsite_prod_<id développeur>`
+  (**sans** `_rev_`, contrairement à ce que je supposais). Vitals (plantages, ANR) : l'API répond
+  mais renvoie 0 ligne, app sous le seuil d'utilisateurs quotidiens de Google.
+- Identifiants découverts automatiquement et mémorisés dans `stats/config.json` : propriété GA4
+  `540143495`, Search Console `sc-domain:rtpcalculator.com`.
+- Pièges de code rencontrés : `start "" "<url>"` sous Windows ne doit pas échapper les `&`
+  (URL déformée, erreur 400 Google) ; noms des jeux de métriques Play en camelCase
+  (`crashRateMetricSet`).
+- **Premiers chiffres bruts** (06/05 → 22/10/2026) : 95 installations, 91 désinstallations,
+  7 appareils actifs, 1,36 € AdMob, note 5,0 (1 avis sans texte) ; site : 190 sessions GA4,
+  15 clics / 760 impressions Search Console. Volumes très faibles ; la rétention de l'app est
+  le problème numéro un. Écart GA4 (4 sessions sur 28 jours) vs Search Console (6 clics) à
+  creuser : consentement refusé ou collecte défaillante.
 
 ---
 

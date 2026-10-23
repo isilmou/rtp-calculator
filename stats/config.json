@@ -1,0 +1,19 @@
+{
+  "_comment": "Identifiants NON secrets. Les secrets (client OAuth, jeton) vivent dans ../_secrets/, jamais ici.",
+  "historyStart": "2026-01-01",
+  "admob": {
+    "publisherId": "pub-2303541955549784"
+  },
+  "ga4": {
+    "measurementId": "G-WD1V10FW80",
+    "propertyId": "540143495"
+  },
+  "gsc": {
+    "domain": "rtpcalculator.com",
+    "siteUrl": "sc-domain:rtpcalculator.com"
+  },
+  "play": {
+    "packageName": "com.rtpcalculator",
+    "bucket": "pubsite_prod_8635312597477126279"
+  }
+}

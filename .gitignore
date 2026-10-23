@@ -11,3 +11,8 @@
 
 # Sauvegardes Git locales (bundles avant réécriture d'historique)
 _backup/
+
+# Identifiants Google (OAuth client + jeton) et données statistiques collectées
+_secrets/
+stats/data/
+stats/node_modules/

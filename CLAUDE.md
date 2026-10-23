@@ -9,6 +9,7 @@ Développeur solo : Julien. Deux livrables sous cette racine.
 |---|---|---|
 | `RTP Calculator - App` | Application Android publiée sur Google Play | Kotlin, Jetpack Compose, Gradle, Android Studio |
 | `RTP Calculator - Website` | Site rtpcalculator.com | Site statique multilingue, hébergement Infomaniak |
+| `stats/` | Collecte des statistiques Google (AdMob, GA4, Search Console, Play), lecture seule | Node 24, `googleapis` |
 
 Les noms de dossiers contiennent des espaces : encadrer systématiquement les chemins
 de guillemets dans les commandes PowerShell.
@@ -154,6 +155,8 @@ Historique : le keystore était auparavant sur Google Drive ; en streaming, la s
   des utilisateurs (noms de champs = clés JSON). Ne jamais les retirer ni les remplacer par une
   règle globale, qui ramènerait le score d'obscurcissement à zéro.
 - Toute modification du `.htaccess` de production
+- `_secrets/` (client OAuth et jeton Google) : lecture interdite à Claude Code par
+  `settings.json`, jamais commité. Seuls les scripts de `stats/` y accèdent.
 
 ## 8. Commandes utiles
 
@@ -171,7 +174,26 @@ appeler `adb` par son chemin complet dans le SDK (`sdk.dir` de `local.properties
 `platform-tools/adb.exe`). Ces deux chemins sont hors périmètre : autorisation donnée par Julien
 le 19/09/2026, en lecture et exécution uniquement, sans écriture.
 
-## 9. Chantier prioritaire en cours
+## 9. Statistiques Google
+
+Avant toute analyse, Claude lance lui-même la collecte, sans rien demander à Julien :
+
+```powershell
+npm --prefix "C:\RTP-Calculator\stats" run snapshot                    # 28 derniers jours
+npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --all           # historique complet
+npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | ga4 | gsc | play
+```
+
+Résultats dans `stats/data/AAAA-MM-JJ/<source>.json` (+ `_status.json`, `latest.json`),
+non versionnés. Identifiants non secrets dans `stats/config.json`.
+- Projet Google Cloud `rtp-calculator-stats`, **sans compte de facturation** : ne jamais en
+  associer un, ne jamais saisir de carte. Toutes les API utilisées sont gratuites.
+- Jeton OAuth auto-renouvelé. Relancer `npm run auth` (navigateur, compte
+  contact@rtpcalculator.com) seulement si l'accès est révoqué ou inutilisé 6 mois.
+- Données en retard de 1 à 3 jours selon la source ; GA4 minoré par le Consent Mode ;
+  vitals Play vides tant que l'app reste sous le seuil d'utilisateurs de Google.
+
+## 10. Chantier prioritaire en cours
 
 Obscurcissement DEX (échéance Play février 2027) : traité par la 2.1.1, publiée le 19/09/2026
 avec R8 actif. Dernier contrôle en attente : disparition de l'alerte dans la Play Console sous

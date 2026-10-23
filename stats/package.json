@@ -1,0 +1,13 @@
+{
+  "name": "rtp-calculator-stats",
+  "private": true,
+  "type": "module",
+  "description": "Collecte en lecture seule des statistiques Google (AdMob, GA4, Search Console, Play) de RTP Calculator",
+  "scripts": {
+    "auth": "node lib/auth.mjs",
+    "snapshot": "node snapshot.mjs"
+  },
+  "dependencies": {
+    "googleapis": "^188.0.0"
+  }
+}
