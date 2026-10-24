@@ -77,6 +77,17 @@ Hors plan, toujours valables :
 - **Kotlin 2 / Compose récent** : chantier à part.
 - Revoir vers le 06/11/2026 le pic Search Console du 20–22/10 (45–55 impressions/jour).
 - Julien : recouper AdMob 1,36 € et Play 95 installs avec les consoles ; statut AdSense.
+- Meta description des 5 accueils : ≈ 195 caractères (choix de Julien, 24/10). Google tronque
+  vers 155 : vérifier l'extrait réellement affiché lors du prochain bilan Search Console.
+- Play Console, « Sécurité des données » : si les URL de politique / suppression pointent vers
+  `/fr/#privacy`, les faire pointer vers `/fr/privacy/` (les ancres restent valides).
+
+Méthode retenue pour éditer le site (24/10/2026) : scripts Node dans le scratchpad qui refusent
+d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git diff` montré.
+Éviter `node -e` ou un heredoc Bash pour un script contenant backticks ou apostrophes : écrire
+un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
+`gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
+recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
 
 ---
 
