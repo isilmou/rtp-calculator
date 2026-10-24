@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="es" href="https://rtpcalculator.com/es/app/">
 <link rel="alternate" hreflang="de" href="https://rtpcalculator.com/de/app/">
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
+<link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
 <meta property="og:title" content="Online-RTP-Rechner — Auszahlungsquote jeder Sportwette">
 <meta property="og:description" content="Berechnen Sie online den RTP (Auszahlungsquote) einer Sportwette: Geben Sie die Quoten jedes Tipps ein und erhalten Sie sofort den an die Spieler zurückgegebenen Anteil. Dezimal-, Bruch- und US-Quoten. Ohne Anmeldung.">
@@ -336,7 +337,10 @@
   .hact svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
   .hact.tr{color:var(--danger)}
 
-  .seo-note{margin:44px 0 0;color:var(--text-2);font-size:14px;max-width:66ch}
+  .seo-text{margin:52px 0 0;max-width:70ch;color:var(--text-2);font-size:14.5px;line-height:1.6}
+  .seo-text h2{font-size:17px;font-weight:800;color:var(--text);margin:26px 0 8px}
+  .seo-text h2:first-child{margin-top:0}
+  .seo-text p{margin:0 0 10px}
   footer{border-top:1px solid var(--divider);margin-top:48px;padding:28px 0 40px;font-size:12.5px;color:var(--text-3)}
   .foot-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
   footer a{color:var(--text-2)}
@@ -390,7 +394,7 @@
   <div class="page-head">
     <h1>Online-RTP-Rechner</h1>
     <p class="sub">Die Web-Version der Android-App: Geben Sie die Quoten einer Wette ein und erhalten Sie sofort die Auszahlungsquote. Ihre Analysen werden nur in Ihrem Browser gespeichert.</p>
-    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=de"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Android-Version herunterladen</a>
+    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=de&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-de"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Android-Version herunterladen</a>
   </div>
 
   <!-- FORM -->
@@ -425,7 +429,15 @@
   <div id="history"></div>
   <p class="hist-empty" id="empty">Noch keine Analysen. Geben Sie oben Quoten ein und speichern Sie.</p>
 
-  <p class="seo-note">Der RTP (Auszahlungsquote) ist der Anteil der Einsätze, den die Quoten eines Marktes an die Spieler zurückgeben — je höher, desto weniger verlieren Sie langfristig. Lieber auf dem Handy? Die Android-App funktioniert komplett offline: <a href="/de/">RTP-Rechner entdecken</a>.</p>
+  <section class="seo-text" aria-label="Über die RTP-Berechnung">
+    <h2>Wie wird der RTP berechnet?</h2>
+    <p>Der RTP (Auszahlungsquote, Return to Player) einer Wette ist der Kehrwert der Summe der impliziten Wahrscheinlichkeiten der Quoten. Für jeden Ausgang beträgt die implizite Wahrscheinlichkeit 1 geteilt durch die Dezimalquote. Diese Wahrscheinlichkeiten werden addiert, dann wird 1 durch die Summe geteilt. Beispiel für eine 1X2-Wette mit 2,10 / 3,40 / 3,60: Die impliziten Wahrscheinlichkeiten ergeben 47,6 % + 29,4 % + 27,8 % = 104,8 %, der RTP beträgt also 95,4 %. Die übrigen 4,6 % sind die Marge des Buchmachers.</p>
+    <h2>Wie ist das Ergebnis zu lesen?</h2>
+    <p>Je näher der RTP an 100 % liegt, desto weniger Marge behält der Buchmacher in diesem Markt ein. Ein RTP von 95 % bedeutet, dass langfristig 95 € von 100 € Einsatz an die Spieler zurückfließen. Manche Regulierungsbehörden deckeln ihn: In Frankreich etwa begrenzt die ANJ die durchschnittliche Auszahlungsquote bei Sportwetten auf 85 %. Zudem schwankt er stark von Markt zu Markt und von Anbieter zu Anbieter – genau das lässt sich mit diesem Rechner vergleichen.</p>
+    <h2>Unterstützte Quotenformate</h2>
+    <p>Dezimal (2,10), Bruch (11/10) oder US-Format (+110), wählbar im Umschalter. Die Anzahl der Ausgänge ist unbegrenzt. Ihre Analysen bleiben in Ihrem Browser und lassen sich als Bild teilen.</p>
+    <p>Zum Weiterlesen: <a href="/de/guides/rtp-sportwette/">Was ist der RTP einer Sportwette?</a> · <a href="/de/guides/buchmacher-marge-berechnen/">Wie man die Marge eines Buchmachers berechnet</a> · <a href="/de/guides/buchmacher-vergleichen-rtp/">Buchmacher nach RTP vergleichen</a>. Lieber auf dem Smartphone? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=de&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-de">Die Android-App</a> funktioniert vollständig offline.</p>
+  </section>
 </main>
 
 <footer>
@@ -435,7 +447,7 @@
     <span><a href="/de/privacy/">Datenschutz</a></span>
     <span><a href="#" id="cookie-prefs">Cookie-Einstellungen</a></span>
     <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
-    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=de">Verfügbar bei Google Play</a></span>
+    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=de&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-de">Verfügbar bei Google Play</a></span>
   </div>
 </footer>
 

@@ -214,8 +214,12 @@ function cmdCheck() {
 
 async function verifyPublished(rel, expectedSha) {
   for (let attempt = 1; attempt <= 3; attempt++) {
-    const remote = await fetchPublic(rel);
-    if (remote.status === 200 && sha256(remote.buf) === expectedSha) return true;
+    try {
+      const remote = await fetchPublic(rel);
+      if (remote.status === 200 && sha256(remote.buf) === expectedSha) return true;
+    } catch (err) {
+      console.log(`    relecture HTTPS, tentative ${attempt}/3 : ${err.message}`);
+    }
     await new Promise((r) => setTimeout(r, 2000 * attempt));
   }
   return false;

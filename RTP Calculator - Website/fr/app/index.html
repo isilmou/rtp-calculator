@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="es" href="https://rtpcalculator.com/es/app/">
 <link rel="alternate" hreflang="de" href="https://rtpcalculator.com/de/app/">
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
+<link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
 <meta property="og:title" content="Calculateur de TRJ en ligne — Taux de Retour Joueur d'un pari sportif">
 <meta property="og:description" content="Calculez en ligne le TRJ (Taux de Retour Joueur) d'un pari sportif : saisissez les cotes de chaque issue et obtenez instantanément la part redistribuée aux joueurs. Cotes décimales, fractionnaires et américaines. Sans inscription.">
@@ -336,7 +337,10 @@
   .hact svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
   .hact.tr{color:var(--danger)}
 
-  .seo-note{margin:44px 0 0;color:var(--text-2);font-size:14px;max-width:66ch}
+  .seo-text{margin:52px 0 0;max-width:70ch;color:var(--text-2);font-size:14.5px;line-height:1.6}
+  .seo-text h2{font-size:17px;font-weight:800;color:var(--text);margin:26px 0 8px}
+  .seo-text h2:first-child{margin-top:0}
+  .seo-text p{margin:0 0 10px}
   footer{border-top:1px solid var(--divider);margin-top:48px;padding:28px 0 40px;font-size:12.5px;color:var(--text-3)}
   .foot-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
   footer a{color:var(--text-2)}
@@ -390,7 +394,7 @@
   <div class="page-head">
     <h1>Calculateur de TRJ en ligne</h1>
     <p class="sub">La version web de l'application Android : saisissez les cotes d'un pari, obtenez son Taux de Retour Joueur instantanément. Vos analyses sont enregistrées uniquement dans votre navigateur.</p>
-    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Télécharger la version Android</a>
+    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-fr"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Télécharger la version Android</a>
   </div>
 
   <!-- FORM -->
@@ -425,7 +429,15 @@
   <div id="history"></div>
   <p class="hist-empty" id="empty">Aucune analyse. Saisissez des cotes ci-dessus, puis enregistrez.</p>
 
-  <p class="seo-note">Le TRJ (Taux de Retour Joueur) est la part des mises que les cotes d'un marché redistribuent aux joueurs — plus il est élevé, moins vous perdez sur le long terme. Vous préférez l'avoir sur votre téléphone ? L'application Android fonctionne entièrement hors ligne : <a href="/fr/">découvrir le Calculateur de TRJ</a>.</p>
+  <section class="seo-text" aria-label="À propos du calcul du TRJ">
+    <h2>Comment le TRJ est-il calculé ?</h2>
+    <p>Le TRJ (taux de retour joueur) d'un pari est l'inverse de la somme des probabilités implicites des cotes. Pour chaque issue, la probabilité implicite vaut 1 divisé par la cote décimale. On additionne ces probabilités, puis on calcule 1 divisé par ce total. Exemple sur un 1X2 à 2,10 / 3,40 / 3,60 : les probabilités implicites font 47,6 % + 29,4 % + 27,8 % = 104,8 %, donc un TRJ de 95,4 %. Les 4,6 % restants sont la marge du bookmaker.</p>
+    <h2>Comment lire le résultat ?</h2>
+    <p>Plus le TRJ est proche de 100 %, moins le bookmaker prélève de marge sur ce marché. Un TRJ de 95 % signifie que, sur le long terme, 95 € sur 100 € misés reviennent aux joueurs. En France, l'ANJ plafonne le TRJ moyen des paris sportifs à 85 %, mais il varie fortement d'un marché et d'un opérateur à l'autre : c'est précisément ce que ce calculateur permet de comparer.</p>
+    <h2>Cotes acceptées</h2>
+    <p>Décimales (2,10), fractionnaires (11/10) ou américaines (+110), au choix dans le sélecteur. Le nombre d'issues est illimité. Vos analyses restent dans votre navigateur et peuvent être partagées en image.</p>
+    <p>Pour aller plus loin : <a href="/fr/guides/trj-pari-sportif/">C'est quoi le TRJ d'un pari sportif ?</a> · <a href="/fr/guides/calculer-marge-bookmaker/">Comment calculer la marge d'un bookmaker</a> · <a href="/fr/guides/comparer-bookmakers-trj/">Comparer les bookmakers par le TRJ</a>. Vous préférez l'avoir sur votre téléphone ? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-fr">L'application Android</a> fonctionne entièrement hors ligne.</p>
+  </section>
 </main>
 
 <footer>
@@ -435,7 +447,7 @@
     <span><a href="/fr/privacy/">Confidentialité</a></span>
     <span><a href="#" id="cookie-prefs">Paramètres des cookies</a></span>
     <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
-    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr">Disponible sur le Play Store</a></span>
+    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-fr">Disponible sur le Play Store</a></span>
   </div>
 </footer>
 

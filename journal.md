@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étape 0 en attente des actions manuelles de Julien |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étape 2 (lot CTR du site) déployée le 24/10/2026, commit à faire ; prochaine : étape 3 (sitemap, inspection, réindexation) |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -26,9 +26,40 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
    Compte FTP : celui de l'hébergement (Starter refuse la création d'un compte supplémentaire),
    racine FTP = docroot du site (`remoteRoot` vide). `CLAUDE.md` mis à jour (règle 8, § 6, § 7, § 8).
 1. ~~Consigner l'analyse~~ — fait le 23/10/2026.
-2. **Site, lot CTR** : title/meta/bouton héro sur `/fr/` (validation FR) puis 4 langues ;
-   `referrer` UTM sur les liens Play ; `og:image` ; dédoublonnage de la politique de
-   confidentialité sur l'accueil ; hreflang `pt-BR` ; texte de `/app/` étoffé.
+2. **Site, lot CTR** — en cours. Fait le 24/10/2026 sur `/fr/` seulement (local, non déployé) :
+   title « Calcul du TRJ d'un pari sportif — Calculateur gratuit en ligne », meta description
+   et `og:*` réécrits (le calculateur web passe avant l'app Android : 57 % des impressions
+   sont desktop), H1 « Calculez le TRJ de vos paris sportifs », surtitre, lede, deux boutons
+   héros (`.hero-ctas` : « Calculer un TRJ » → `/fr/app/`, « Télécharger sur Android » → Play).
+   `referrer` UTM (`utm_source=rtpcalculator.com`, `utm_medium=web`, `utm_campaign=home-fr`,
+   encodé) sur les 3 liens Play de `/fr/` ; 16 autres liens Play dans les pages FR restent sans UTM.
+   `og:image` : `img/og-fr.png` (1200×630, 31 Ko) généré par un script `sharp` du scratchpad
+   (SVG composé : logo du site, H1, surtitre, URL, pastille TRJ ; police Archivo téléchargée
+   depuis google/fonts, chargée via `FONTCONFIG_FILE`), balises `og:image*` + `twitter:card`
+   sur `/fr/`. Le site n'avait aucune image bitmap. Outillage non versionné : à refaire si besoin.
+   Politique de confidentialité et suppression des données retirées de l'accueil (texte identique
+   à `/fr/privacy/`, 65 lignes) : remplacées par un résumé de 3 phrases + lien, ancres `#privacy`
+   et `#data-deletion` conservées (menu, et au cas où la Play Console les référence).
+   hreflang `pt-BR` ajouté à côté de `pt` (même URL `/pt/…`) dans les 55 pages du site, par
+   script ; le sitemap n'a pas de hreflang (étape 3).
+   `/fr/app/` : note de bas de page remplacée par une section `.seo-text` (≈ 230 mots : calcul du
+   TRJ avec exemple 2,10 / 3,40 / 3,60 → 95,4 %, lecture du résultat, plafond ANJ 85 %, formats de
+   cotes, 3 liens guides) ; UTM `app-fr` sur les 3 liens Play de la page.
+   **Lot FR terminé le 24/10/2026.** Propagation EN (validée), puis ES / DE / PT-BR le 24/10 :
+   script `propagate.mjs` + un JSON par langue (scratchpad, non versionné), qui refuse d'écrire
+   si un texte d'origine n'est pas trouvé exactement une fois ; 5 images `img/og-<lang>.png`.
+   Adaptation hors FR : la phrase sur le plafond ANJ est présentée comme exemple (« certains
+   régulateurs… en France, l'ANJ… »). Au passage, le H2 de la politique sur `/pt/` disait
+   « Política de privacidad » (espagnol) : corrigé par le dédoublonnage.
+   UTM `guides-<lang>` / `about-<lang>` posés par script sur les 70 liens restants : 100 liens
+   Play, 20 par langue, `hl` et campagne cohérents avec le dossier (vérifié). Piège : `path.join`
+   supprime `./`, lire la langue via `path.relative`.
+   **Étape 2 déployée le 24/10/2026** (60 fichiers : 5 images + 55 HTML, tous vérifiés en
+   HTTPS, diff à blanc vide ensuite ; `manifest.json` à jour). Reste : commit par Julien.
+   Piège rencontré : la relecture HTTPS (`fetch` Node) échoue parfois avec « fetch failed » alors
+   que le fichier est bien en ligne ; `verifyPublished` traite désormais l'exception comme une
+   tentative ratée (3 essais) au lieu d'interrompre le déploiement. Après une interruption, le
+   manifeste ne contient que les fichiers vérifiés : relancer `push` réenvoie le reste, sans risque.
 3. **Sitemap** `lastmod` + hreflang ; source `inspect` dans `stats/` ; réindexation `/`, `/fr/`, `/es/`.
 4. **Fiche Play** : lever l'ambiguïté casino dès le titre, 5 langues. Julien doit coller le
    texte actuel de la fiche.

@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="es" href="https://rtpcalculator.com/es/app/">
 <link rel="alternate" hreflang="de" href="https://rtpcalculator.com/de/app/">
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
+<link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
 <meta property="og:title" content="Online RTP calculator — Return To Player of any sports bet">
 <meta property="og:description" content="Calculate the RTP (Return To Player) of any sports bet online: enter the odds of each outcome and instantly get the share given back to players. Decimal, fractional and American odds. No sign-up.">
@@ -336,7 +337,10 @@
   .hact svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
   .hact.tr{color:var(--danger)}
 
-  .seo-note{margin:44px 0 0;color:var(--text-2);font-size:14px;max-width:66ch}
+  .seo-text{margin:52px 0 0;max-width:70ch;color:var(--text-2);font-size:14.5px;line-height:1.6}
+  .seo-text h2{font-size:17px;font-weight:800;color:var(--text);margin:26px 0 8px}
+  .seo-text h2:first-child{margin-top:0}
+  .seo-text p{margin:0 0 10px}
   footer{border-top:1px solid var(--divider);margin-top:48px;padding:28px 0 40px;font-size:12.5px;color:var(--text-3)}
   .foot-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
   footer a{color:var(--text-2)}
@@ -390,7 +394,7 @@
   <div class="page-head">
     <h1>Online RTP calculator</h1>
     <p class="sub">The web version of the Android app: enter the odds of a bet, get its Return To Player rate instantly. Your analyses are saved in your browser only.</p>
-    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Download the Android version</a>
+    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Download the Android version</a>
   </div>
 
   <!-- FORM -->
@@ -425,7 +429,15 @@
   <div id="history"></div>
   <p class="hist-empty" id="empty">No analyses yet. Enter the odds above, then save.</p>
 
-  <p class="seo-note">The RTP (Return To Player) is the share of the stakes that the odds of a market give back to players — the higher it is, the less you lose over the long run. Prefer it on your phone? The Android app works fully offline: <a href="/">discover RTP Calculator</a>.</p>
+  <section class="seo-text" aria-label="About the RTP calculation">
+    <h2>How is the RTP calculated?</h2>
+    <p>The RTP (return to player) of a bet is the inverse of the sum of the implied probabilities of the odds. For each outcome, the implied probability is 1 divided by the decimal odds. Add these probabilities up, then divide 1 by the total. Example on a 1X2 market at 2.10 / 3.40 / 3.60: the implied probabilities are 47.6% + 29.4% + 27.8% = 104.8%, so the RTP is 95.4%. The remaining 4.6% is the bookmaker's margin.</p>
+    <h2>How to read the result?</h2>
+    <p>The closer the RTP is to 100%, the less margin the bookmaker takes on that market. An RTP of 95% means that, over the long run, 95 of every 100 staked go back to players. Some regulators cap it: in France, for instance, the ANJ limits the average RTP of sports betting to 85%. It also varies widely from one market and one operator to another, which is exactly what this calculator lets you compare.</p>
+    <h2>Supported odds</h2>
+    <p>Decimal (2.10), fractional (11/10) or American (+110), selectable in the format switch. The number of outcomes is unlimited. Your analyses stay in your browser and can be shared as an image.</p>
+    <p>Going further: <a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a> · <a href="/guides/calculate-bookmaker-margin/">How to calculate a bookmaker's margin</a> · <a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP</a>. Prefer it on your phone? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en">The Android app</a> works fully offline.</p>
+  </section>
 </main>
 
 <footer>
@@ -435,7 +447,7 @@
     <span><a href="/privacy/">Privacy</a></span>
     <span><a href="#" id="cookie-prefs">Cookie settings</a></span>
     <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
-    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en">Available on Google Play</a></span>
+    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en">Available on Google Play</a></span>
   </div>
 </footer>
 

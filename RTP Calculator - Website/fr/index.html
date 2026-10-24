@@ -3,20 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculateur de TRJ — Taux de Retour Joueur d'un pari sportif</title>
-<meta name="description" content="Application Android gratuite qui calcule instantanément le TRJ (Taux de Retour Joueur) — la part des mises que les cotes des bookmakers redistribuent réellement aux joueurs. Cotes décimales, fractionnaires et américaines.">
+<title>Calcul du TRJ d'un pari sportif — Calculateur gratuit en ligne</title>
+<meta name="description" content="Entrez les cotes, obtenez instantanément le TRJ (taux de retour joueur) du pari. Cotes décimales, fractionnaires ou américaines prises en charge. - Calcul en ligne sur navigateur ou application Android gratuite.">
 <link rel="canonical" href="https://rtpcalculator.com/fr/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/">
 <link rel="alternate" hreflang="es" href="https://rtpcalculator.com/es/">
 <link rel="alternate" hreflang="de" href="https://rtpcalculator.com/de/">
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/">
+<link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/">
-<meta property="og:title" content="Calculateur de TRJ — Évaluez les cotes des bookmakers">
-<meta property="og:description" content="Révélez instantanément la part des mises que les cotes redistribuent réellement aux joueurs. Application Android gratuite.">
+<meta property="og:title" content="Calcul du TRJ d'un pari sportif — Calculateur gratuit en ligne">
+<meta property="og:description" content="Entrez les cotes d'un pari, obtenez la part des mises que les bookmakers redistribuent réellement aux joueurs. Calcul en ligne ou application Android gratuite.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rtpcalculator.com/fr/">
 <meta property="og:locale" content="fr">
+<meta property="og:image" content="https://rtpcalculator.com/img/og-fr.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculateur de TRJ — Calculez le TRJ de vos paris sportifs">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
 
 <!-- Google Analytics 4 -->
@@ -294,6 +300,7 @@
   h1{font-size:clamp(34px,4.6vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.015em;margin-bottom:20px}
   h1 .hl{color:var(--yellow)}
   .lede{color:var(--text-2);font-size:17px;max-width:46ch;margin-bottom:30px}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
 
   /* ---- the analysis card replica (signature element) ---- */
   .demo-card{background:var(--card);border-radius:var(--radius-l);display:flex;overflow:hidden;box-shadow:0 16px 44px rgba(0,0,0,.4);position:relative;max-width:420px;justify-self:end;width:100%}
@@ -418,9 +425,13 @@
   <!-- HERO -->
   <div class="wrap hero">
     <div>
-      <p class="eyebrow">Application Android gratuite</p>
-      <h1>Évaluez <span class="hl">les cotes</span> de vos paris sportifs</h1>
-      <p class="lede">Calculateur de TRJ révèle instantanément la part des mises que les cotes redistribuent réellement aux joueurs. Entrez les cotes, obtenez le TRJ (Taux de Retour Joueur).</p>
+      <p class="eyebrow">Calculateur gratuit · en ligne et sur Android</p>
+      <h1>Calculez <span class="hl">le TRJ</span> de vos paris sportifs</h1>
+      <p class="lede">Entrez les cotes d'un pari, obtenez la part des mises que les bookmakers redistribuent réellement aux joueurs. Sans inscription.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="/fr/app/">Calculer un TRJ</a>
+        <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dhome-fr">Télécharger sur Android</a>
+      </div>
     </div>
 
     <div class="demo-wrap">
@@ -482,7 +493,7 @@
         <div class="appcard">
           <h3>Application Android</h3>
           <p>Les mêmes fonctionnalités à la différence que les sauvegardes de vos analyses se font en local sur votre smartphone. Comme pour la version navigateur, vous avez la possibilité de partager en image vos analyses.</p>
-          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr">Télécharger la version Android</a>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dhome-fr">Télécharger la version Android</a>
         </div>
       </div>
       <p class="note"><strong style="color:var(--text)">Pour qui ?</strong> Les parieurs sportifs qui veulent savoir ce qu'un pari redistribue réellement et comparer les cotes des différents opérateurs. Le Calculateur de TRJ est un outil d'aide à la décision — il ne fournit aucun pronostic et n'encourage pas le jeu.</p>
@@ -499,67 +510,16 @@
     </div>
   </section>
 
-  <!-- PRIVACY POLICY -->
+  <!-- MENTIONS : politique de confidentialité et suppression des données (texte complet sur /fr/privacy/) -->
   <section id="privacy" class="legal">
     <div class="wrap max">
       <p class="kicker">Mentions</p>
       <h2>Politique de confidentialité</h2>
-      <p class="updated">Dernière mise à jour : 4 juillet 2026</p>
+      <p>Le Calculateur de TRJ ne demande ni compte ni inscription. Vos analyses sont enregistrées uniquement sur votre appareil (application Android) ou dans votre navigateur (calculateur en ligne), jamais sur un serveur. Le site mesure son audience avec Google Analytics ; l'application Android affiche des publicités Google AdMob.</p>
+      <p><a href="/fr/privacy/">Lire la politique de confidentialité complète &rarr;</a></p>
 
-      <h3>1. Généralités</h3>
-      <p>Le Calculateur de TRJ (RTP Calculator) est une application Android développée et éditée par RTP (SIREN 103980686). La présente politique de confidentialité décrit les informations collectées lors de l'utilisation de l'application, la manière dont elles sont utilisées et vos droits. Pour toute question relative à cette politique, contactez-nous à <a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a>.</p>
-
-      <h3>2. Données collectées par l'application</h3>
-      <p><strong style="color:var(--text)">Données que vous saisissez directement.</strong> L'application vous permet d'enregistrer vos analyses de paris localement sur votre appareil : noms d'évènements, dates et heures, issues, cotes, types de pari, noms de bookmakers, ainsi que les TRJ calculés que vous choisissez de conserver dans l'historique. Ces données sont stockées exclusivement sur votre appareil et ne sont jamais transmises à un serveur externe. Elles restent entièrement sous votre contrôle et peuvent être supprimées à tout moment en effaçant les données de l'application ou en la désinstallant.</p>
-      <p><strong style="color:var(--text)">Données que nous ne collectons pas.</strong> L'application ne nécessite ni création de compte ni connexion. Elle n'accède à aucune information personnelle stockée sur votre appareil (contacts, localisation, appareil photo, fichiers).</p>
-
-      <h3>3. Publicité — Google AdMob</h3>
-      <p>L'application affiche des publicités fournies par Google AdMob, un service publicitaire opéré par Google LLC. Dans ce cadre, Google AdMob peut collecter et utiliser certaines données pour diffuser et personnaliser les annonces, notamment :</p>
-      <ul>
-        <li>Les identifiants publicitaires de votre appareil (Android Advertising ID)</li>
-        <li>Des données relatives à votre utilisation de l'application</li>
-        <li>Des informations sur l'appareil (modèle, système d'exploitation)</li>
-        <li>Des données de localisation approximative (basées sur l'adresse IP)</li>
-      </ul>
-      <p>Ces données sont collectées et traitées par Google LLC conformément à sa propre politique de confidentialité, disponible à l'adresse <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>. Google AdMob peut partager ces données avec des partenaires publicitaires tiers à des fins de diffusion et de mesure des annonces.</p>
-
-      <h3>4. Conformité RGPD</h3>
-      <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants sur vos données personnelles : droit d'accès, droit de rectification, droit à l'effacement, droit d'opposition et droit à la limitation du traitement. Pour exercer ces droits, notamment concernant les données collectées par Google AdMob, vous pouvez utiliser les paramètres publicitaires de Google sur <a href="https://adssettings.google.com">adssettings.google.com</a>, ou nous contacter directement à <a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a>.</p>
-
-      <h3>5. Données collectées sur le site web</h3>
-      <p><strong style='color:var(--text)'>Calculateur en ligne.</strong> Les analyses que vous créez dans le calculateur en ligne (évènements, dates, issues, cotes, bookmakers, TRJ) sont enregistrées uniquement dans le stockage local de votre navigateur et ne sont jamais transmises à un serveur. Vous pouvez les supprimer à tout moment en effaçant les données de site de votre navigateur pour rtpcalculator.com.</p>
-      <p><strong style='color:var(--text)'>Mesure d'audience — Google Analytics.</strong> Le site utilise Google Analytics 4 (Google LLC) afin de mesurer son audience : pages consultées, type d'appareil, pays d'origine approximatif. Ces données sont traitées conformément à la politique de confidentialité de Google, disponible à l'adresse <a href='https://policies.google.com/privacy'>policies.google.com/privacy</a>.</p>
-      <p><strong style='color:var(--text)'>Publicité — Google AdSense.</strong> Les pages du calculateur en ligne peuvent afficher des annonces fournies par Google AdSense (Google LLC). Dans ce cadre, Google et ses partenaires publicitaires peuvent utiliser des cookies et des identifiants pour diffuser des annonces, mesurer leur performance et, avec votre consentement, les personnaliser. Lors de votre première visite, une bannière de consentement vous permet d'accepter, de refuser ou de paramétrer ces traitements ; en cas de refus, seules des annonces non personnalisées peuvent être affichées. Vous pouvez modifier votre choix à tout moment via le lien « Paramètres des cookies » en pied de page du calculateur.</p>
-
-      <h3>6. Réservé aux adultes</h3>
-      <p>Le Calculateur de TRJ est strictement destiné aux personnes ayant atteint la majorité légale dans leur pays de résidence. Les utilisateurs doivent également respecter l'âge légal applicable aux paris sportifs dans leur juridiction. L'application ne s'adresse en aucun cas aux mineurs et ne doit pas être utilisée par des personnes n'ayant pas l'âge légal requis.</p>
-
-      <h3>7. Modifications de cette politique</h3>
-      <p>Nous nous réservons le droit de mettre à jour cette politique de confidentialité à tout moment. En cas de changement significatif, la date de « dernière mise à jour » en tête de section sera révisée. Nous vous invitons à consulter cette page périodiquement.</p>
-
-      <h3>8. Contact</h3>
-      <p>RTP — SIREN 103980686 — <a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></p>
-    </div>
-  </section>
-
-  <!-- DATA DELETION -->
-  <section id="data-deletion" class="legal">
-    <div class="wrap max">
-      <p class="kicker">Mentions</p>
-      <h2>Suppression des données</h2>
-
-      <h3>1. Données stockées localement sur votre appareil</h3>
-      <p>L'application enregistre vos analyses de paris (noms d'évènements, dates et heures, issues, cotes, types de pari, noms de bookmakers, TRJ) exclusivement sur votre appareil. Ces données ne sont jamais transmises à un serveur. Pour les supprimer, vous pouvez :</p>
-      <ul>
-        <li>Aller dans les Paramètres du téléphone → Applications → Calculateur de TRJ → Stockage → Effacer les données</li>
-        <li>Ou simplement désinstaller l'application</li>
-      </ul>
-
-      <h3>2. Données publicitaires collectées par Google AdMob</h3>
-      <p>L'application affiche des publicités fournies par Google AdMob, qui peut collecter des identifiants publicitaires, des informations sur l'appareil et des données de localisation approximative. Pour supprimer ou réinitialiser ces données, rendez-vous sur <a href="https://adssettings.google.com">adssettings.google.com</a>.</p>
-
-      <h3>3. Demande de suppression par email</h3>
-      <p>Pour toute demande de suppression complémentaire, contactez-nous à <a href="mailto:contact@rtpcalculator.com?subject=Data%20Deletion%20Request%20-%20RTP%20Calculator">contact@rtpcalculator.com</a> avec l'objet « Demande de suppression de données — Calculateur de TRJ ». Votre demande sera traitée sous 30 jours.</p>
+      <h3 id="data-deletion">Suppression des données</h3>
+      <p>Effacez les données de l'application dans les paramètres Android ou désinstallez-la ; pour le calculateur en ligne, effacez les données de site de votre navigateur pour rtpcalculator.com. Pour toute autre demande, écrivez à <a href="mailto:contact@rtpcalculator.com?subject=Demande%20de%20suppression%20de%20donn%C3%A9es%20-%20Calculateur%20de%20TRJ">contact@rtpcalculator.com</a> : réponse sous 30 jours.</p>
     </div>
   </section>
 
@@ -570,7 +530,7 @@
     <div class="foot-row">
       <span>© 2026 RTP — SIREN 103980686 · Saint-Étienne, France</span>
       <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
-      <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr">Disponible sur le Play Store</a></span>
+      <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dhome-fr">Disponible sur le Play Store</a></span>
     </div>
     <p class="foot-disclaimer">18+ · Jouer comporte des risques : endettement, isolement, dépendance. Pour être aidé, appelez le 09 74 75 13 13 (appel non surtaxé). Le Calculateur de TRJ est un outil d'analyse : il ne fournit aucun pronostic et n'encourage pas le jeu.</p>
   </div>

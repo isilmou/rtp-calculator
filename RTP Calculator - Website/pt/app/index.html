@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="es" href="https://rtpcalculator.com/es/app/">
 <link rel="alternate" hreflang="de" href="https://rtpcalculator.com/de/app/">
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
+<link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
 <meta property="og:title" content="Calculadora de RTP online — Retorno ao Jogador de uma aposta">
 <meta property="og:description" content="Calcule online o RTP (Retorno ao Jogador) de uma aposta esportiva: informe as odds de cada resultado e veja na hora a parte devolvida aos jogadores. Odds decimais, fracionárias e americanas. Sem cadastro.">
@@ -345,7 +346,10 @@
   .hact svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
   .hact.tr{color:var(--danger)}
 
-  .seo-note{margin:44px 0 0;color:var(--text-2);font-size:14px;max-width:66ch}
+  .seo-text{margin:52px 0 0;max-width:70ch;color:var(--text-2);font-size:14.5px;line-height:1.6}
+  .seo-text h2{font-size:17px;font-weight:800;color:var(--text);margin:26px 0 8px}
+  .seo-text h2:first-child{margin-top:0}
+  .seo-text p{margin:0 0 10px}
   footer{border-top:1px solid var(--divider);margin-top:48px;padding:28px 0 40px;font-size:12.5px;color:var(--text-3)}
   .foot-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
   footer a{color:var(--text-2)}
@@ -399,7 +403,7 @@
   <div class="page-head">
     <h1>Calculadora de RTP online</h1>
     <p class="sub">A versão web do aplicativo Android: informe as odds de uma aposta e obtenha o Retorno ao Jogador na hora. Suas análises ficam salvas somente no seu navegador.</p>
-    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Baixar a versão Android</a>
+    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-pt"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Baixar a versão Android</a>
   </div>
 
   <!-- FORM -->
@@ -434,7 +438,15 @@
   <div id="history"></div>
   <p class="hist-empty" id="empty">Ainda não há análises. Informe as odds acima e salve.</p>
 
-  <p class="seo-note">O RTP (Retorno ao Jogador) é a parte do valor apostado que as odds de um mercado devolvem aos jogadores: quanto mais alto, menos você perde no longo prazo. Prefere no celular? O aplicativo Android funciona totalmente offline: <a href="/pt/">conheça a Calculadora de RTP</a>.</p>
+  <section class="seo-text" aria-label="Sobre o cálculo do RTP">
+    <h2>Como o RTP é calculado?</h2>
+    <p>O RTP (retorno ao jogador) de uma aposta é o inverso da soma das probabilidades implícitas das odds. Para cada resultado, a probabilidade implícita é 1 dividido pela odd decimal. Somam-se essas probabilidades e calcula-se 1 dividido pelo total. Exemplo com um 1X2 a 2,10 / 3,40 / 3,60: as probabilidades implícitas somam 47,6% + 29,4% + 27,8% = 104,8%, portanto o RTP é de 95,4%. Os 4,6% restantes são a margem da casa de apostas.</p>
+    <h2>Como interpretar o resultado?</h2>
+    <p>Quanto mais perto de 100% está o RTP, menos margem a casa de apostas retém nesse mercado. Um RTP de 95% significa que, no longo prazo, R$ 95 de cada R$ 100 apostados voltam aos jogadores. Alguns reguladores o limitam: na França, por exemplo, a ANJ limita o RTP médio das apostas esportivas a 85%. Ele também varia muito de um mercado e de um operador para outro: é exatamente isso que esta calculadora permite comparar.</p>
+    <h2>Odds aceitas</h2>
+    <p>Decimais (2,10), fracionárias (11/10) ou americanas (+110), à escolha no seletor. O número de resultados é ilimitado. Suas análises ficam no seu navegador e podem ser compartilhadas como imagem.</p>
+    <p>Para ir além: <a href="/pt/guides/rtp-aposta-esportiva/">O que é o RTP de uma aposta esportiva?</a> · <a href="/pt/guides/calcular-margem-casa-apostas/">Como calcular a margem de uma casa de apostas</a> · <a href="/pt/guides/comparar-casas-apostas-rtp/">Comparar casas de apostas pelo RTP</a>. Prefere no celular? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-pt">O aplicativo Android</a> funciona totalmente offline.</p>
+  </section>
 </main>
 
 <footer>
@@ -444,7 +456,7 @@
     <span><a href="/pt/privacy/">Privacidade</a></span>
     <span><a href="#" id="cookie-prefs">Configurações de cookies</a></span>
     <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
-    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR">Baixar a versão Android</a></span>
+    <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-pt">Baixar a versão Android</a></span>
   </div>
 </footer>
 
