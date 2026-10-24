@@ -147,7 +147,8 @@ sinon copie), identique depuis le premier commit du site (`6a11dd7`). Le site pr
   (script `patch-share.mjs` du scratchpad, 3 ancrages à occurrence unique par page ; entre langues, seules les
   chaînes et le drapeau décimal diffèrent). Rendu vérifié en Chromium headless (FR et DE, 5 cas chacun).
   `sitemap.xml` inchangé (lastmod déjà au 24/10). **Déployé le 24/10/2026 au soir** à la demande de Julien (6 fichiers vérifiés en HTTPS, diff à blanc vide ensuite,
-  `manifest.json` à jour). Reste : tests de Julien (Firefox PC → presse-papiers, Chrome S23 et S9 → feuille de partage).
+  `manifest.json` à jour). Commit `7ab11e3`, poussé. **Testé OK par Julien le 24/10/2026** : Firefox PC (presse-papiers) et Chrome S23
+  (feuille de partage). S9 non testé, non bloquant (canal download en dernier recours).
 
 ---
 ## Relecture des textes du site par Julien (24/10/2026)
