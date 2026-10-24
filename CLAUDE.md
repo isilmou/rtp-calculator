@@ -11,6 +11,7 @@ Développeur solo : Julien. Deux livrables sous cette racine.
 | `RTP Calculator - Website` | Site rtpcalculator.com | Site statique multilingue, hébergement Infomaniak |
 | `stats/` | Collecte des statistiques Google (AdMob, GA4, Search Console, Play), lecture seule | Node 24, `googleapis` |
 | `deploy/` | Déploiement du site vers Infomaniak (règle 8, § 6, § 8) | Node 24, `curl` |
+| `tools/` | Outillage du dépôt : génération du sitemap (§ 6) | Node 24 |
 
 Les noms de dossiers contiennent des espaces : toujours encadrer les chemins de guillemets.
 
@@ -141,6 +142,9 @@ mot de passe dans un fichier du dépôt.
   désactiver la bannière RGPD autonome pour éviter le conflit de double bandeau.
 - SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), contrairement
   à l'ASO qui apporte majoritairement du Tier 3-4. Ne pas dégrader l'existant SEO.
+- **`sitemap.xml` est généré**, jamais édité à la main : `node tools/sitemap.mjs` (`loc` = canonical,
+  `lastmod` = dernier commit Git, hreflang = balises des pages). À relancer après toute
+  modification de page, avant le déploiement ; `--check` vérifie sans écrire.
 
 ## 7. Zones interdites sans validation explicite
 
@@ -184,6 +188,7 @@ Avant toute analyse, Claude lance lui-même la collecte, sans rien demander à J
 npm --prefix "C:\RTP-Calculator\stats" run snapshot                    # 28 derniers jours
 npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --all           # historique complet
 npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | ga4 | gsc | play
+npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=inspect # indexation par URL, hors défaut
 ```
 
 Résultats non versionnés dans `stats/data/AAAA-MM-JJ/` ; identifiants non secrets dans `stats/config.json`.

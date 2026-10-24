@@ -6,14 +6,14 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (23/10/2026)
+## État courant (24/10/2026)
 
 | Élément | Valeur |
 |---|---|
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étape 2 (lot CTR du site) déployée le 24/10/2026, commit à faire ; prochaine : étape 3 (sitemap, inspection, réindexation) |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026 ; prochaine : étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -55,12 +55,45 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
    Play, 20 par langue, `hl` et campagne cohérents avec le dossier (vérifié). Piège : `path.join`
    supprime `./`, lire la langue via `path.relative`.
    **Étape 2 déployée le 24/10/2026** (60 fichiers : 5 images + 55 HTML, tous vérifiés en
-   HTTPS, diff à blanc vide ensuite ; `manifest.json` à jour). Reste : commit par Julien.
+   HTTPS, diff à blanc vide ensuite ; `manifest.json` à jour), commit `6e83ce9`.
    Piège rencontré : la relecture HTTPS (`fetch` Node) échoue parfois avec « fetch failed » alors
    que le fichier est bien en ligne ; `verifyPublished` traite désormais l'exception comme une
    tentative ratée (3 essais) au lieu d'interrompre le déploiement. Après une interruption, le
    manifeste ne contient que les fichiers vérifiés : relancer `push` réenvoie le reste, sans risque.
-3. **Sitemap** `lastmod` + hreflang ; source `inspect` dans `stats/` ; réindexation `/`, `/fr/`, `/es/`.
+3. **Sitemap, inspection, réindexation** — en cours.
+   - 3a fait le 24/10/2026, **local, non déployé** : `tools/sitemap.mjs` (Node sans dépendance,
+     `--check` pour vérifier sans écrire) régénère `sitemap.xml` depuis les 55 `index.html` :
+     `loc` = balise canonical (contrôlée contre le chemin), `lastmod` = date du dernier commit
+     Git du fichier (aujourd'hui si modifié non commité), `xhtml:link` = hreflang du `<head>`,
+     réciprocité des groupes vérifiée (55 pages, 385 liens, 0 erreur). Sitemap passé de 58 à
+     609 lignes, LF, mêmes 55 URL. **Ne plus éditer `sitemap.xml` à la main** : relancer le
+     script après chaque modification de page, avant le déploiement.
+   - 3b fait le 24/10/2026 : source `inspect` (`stats/fetch/inspect.mjs`, API URL Inspection,
+     scope `webmasters.readonly` suffisant, pas de ré-autorisation). Hors collecte par défaut :
+     `npm run snapshot -- --source=inspect` (59 appels ≈ 100 s ; quota 2 000/jour). URL = `<loc>`
+     du sitemap local + `config.inspect.extraUrls` (4 variantes http/www). Résultat de
+     référence `stats/data/2026-10-24/inspect.json`, **avant** déploiement du nouveau sitemap :
+     45/55 pages indexées ; non indexées : `/app/`, `/fr/app/`, `/pt/app/` (les 3 calculateurs !
+     `/fr/app/` et `/pt/app/` jamais vues par Google), `/es/` (explorée le 18/10, non indexée),
+     `/fr/privacy/`, `/es/privacy/`, `/de/privacy/`, `/pt/sobre/`, 2 guides PT. Variantes
+     `http://` et `www.` : redirection ou canonical `https://` correctement reconnus par Google,
+     rien à corriger, le rapport Pages est en retard. Aucune page recrawlée depuis le lot CTR
+     du 24/10 (dernier crawl de `/fr/` : 18/10). Mobile usability / rich results : non renseignés
+     par l'API (`VERDICT_UNSPECIFIED`), champ `sitemap` incomplet (20 sur 55), à ne pas interpréter.
+     Conséquence pour 3c : demander l'indexation de `/fr/app/` et `/app/` en plus de `/`, `/fr/`, `/es/`.
+   - 3c fait le 24/10/2026 : `sitemap.xml` déployé seul (vérifié en HTTPS, diff à blanc vide,
+     `manifest.json` à jour, 64 fichiers en production). **Aucune API de réindexation** pour un
+     site classique (Indexing API réservée aux offres d'emploi et directs ; ping sitemap supprimé
+     en 2023) : clics de Julien dans Search Console. Jeton `stats/` maintenu en lecture seule.
+     Piège : Julien avait resoumis le sitemap **avant** l'envoi (ancienne version relue) ;
+     resoumis après, puis demandes d'indexation faites le 24/10 pour `/fr/app/`, `/app/`, `/es/`,
+     `/fr/` (déjà indexée selon la console), `/` (quota ≈ 10/jour). **Contrôle vers le 31/10/2026** :
+     `npm run snapshot -- --source=inspect` puis comparer avec `data/2026-10-24/inspect.json`
+     (recrawl des 5 URL, indexation des calculateurs, disparition des variantes http/www du
+     rapport Pages).
+   - 3d fait le 24/10/2026 : `CLAUDE.md` § 1 (`tools/`), § 6 (sitemap généré), § 9 (`inspect`).
+     **Étape 3 terminée.** Reste : commit par Julien. `CLAUDE.md` atteint 205 lignes : à condenser
+     à la prochaine retouche (candidat : § 5 « pièges de release » vers `.claude/rules/`).
 4. **Fiche Play** : lever l'ambiguïté casino dès le titre, 5 langues. Julien doit coller le
    texte actuel de la fiche.
 5. **Guides FR** : « Comment calculer le TRJ d'un pari sportif » et « TRJ et plafond légal de

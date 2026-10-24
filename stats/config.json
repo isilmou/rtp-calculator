@@ -15,5 +15,14 @@
   "play": {
     "packageName": "com.rtpcalculator",
     "bucket": "pubsite_prod_8635312597477126279"
+  },
+  "inspect": {
+    "_comment": "Variantes non canoniques vues dans les rapports Search Console, inspectées en plus du sitemap.",
+    "extraUrls": [
+      "http://rtpcalculator.com/",
+      "http://rtpcalculator.com/fr/",
+      "http://rtpcalculator.com/es/",
+      "https://www.rtpcalculator.com/"
+    ]
   }
 }

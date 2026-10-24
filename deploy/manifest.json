@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-24T08:46:18.965Z",
+ "generatedAt": "2026-10-24T09:18:05.887Z",
  "siteUrl": "https://rtpcalculator.com",
  "files": {
   "about/index.html": {
@@ -318,9 +318,9 @@
    "deployedAt": "2026-10-24T07:46:32.343Z"
   },
   "sitemap.xml": {
-   "sha256": "734ede266c8a6bfb990a30c18d3c0bf55e0016ea35b8e8361b36fe9d5cb901b7",
-   "size": 4029,
-   "verifiedAt": "2026-10-23T21:40:04.937Z"
+   "sha256": "84e7e8002650cbf9ee4efa09549443c5cfbaa381fab8e82fce7432f1d0ec6c02",
+   "size": 46160,
+   "deployedAt": "2026-10-24T09:18:05.884Z"
   }
  }
 }
