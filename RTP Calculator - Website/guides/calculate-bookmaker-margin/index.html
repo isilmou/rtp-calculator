@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to calculate a bookmaker's margin (method and examples)</title>
-<meta name="description" content="A bookmaker's margin can be computed from the odds: implied probabilities, their sum, then 100 - RTP. Step-by-step method with two- and three-outcome examples, and what makes margins vary.">
+<title>How to calculate the RTP of a sports bet and the bookmaker's margin</title>
+<meta name="description" content="Calculate the RTP of a bet from the odds in three operations, and derive the bookmaker's margin from it. Step-by-step method, two- and three-outcome examples.">
 <link rel="canonical" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
@@ -13,8 +13,8 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
-<meta property="og:title" content="How to calculate a bookmaker's margin (method and examples)">
-<meta property="og:description" content="A bookmaker's margin can be computed from the odds: implied probabilities, their sum, then 100 - RTP. Step-by-step method with two- and three-outcome examples, and what makes margins vary.">
+<meta property="og:title" content="How to calculate the RTP of a sports bet and the bookmaker's margin">
+<meta property="og:description" content="Calculate the RTP of a bet from the odds in three operations, and derive the bookmaker's margin from it. Step-by-step method, two- and three-outcome examples.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
@@ -35,7 +35,7 @@
 </script>
 
 <script src="/assets/cmp.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to calculate a bookmaker's margin", "inLanguage": "en", "datePublished": "2026-07-29", "dateModified": "2026-07-29", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/guides/calculate-bookmaker-margin/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to calculate the RTP of a sports bet and the bookmaker's margin", "inLanguage": "en", "datePublished": "2026-07-29", "dateModified": "2026-10-24", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/guides/calculate-bookmaker-margin/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
@@ -73,30 +73,43 @@
 <main class="wrap">
   <a class="crumb" href="/guides/">&larr; All guides</a>
   <article>
-    <h1>How to calculate a bookmaker's margin</h1>
-    <p class="date">Published on 29 July 2026</p>
-<p>A bookmaker's margin is its commission &mdash; but unlike brokerage fees, it is written nowhere: it is hidden inside the odds. The good news is that it can be computed in three operations, with nothing more than a basic calculator.</p>
+    <h1>How to calculate the RTP of a sports bet and the bookmaker's margin</h1>
+    <p class="date">Published on 29 July 2026 · Updated on 24 October 2026</p>
 
-<h2>The three-step method</h2>
-<p><strong>Step 1 &mdash; convert each odd into an implied probability</strong>: probability = 1 &divide; decimal odd. <strong>Step 2 &mdash; add up</strong> the implied probabilities of every outcome of the market. <strong>Step 3 &mdash; derive the RTP and the margin</strong>: RTP = 100 &divide; total &times; 100, and margin = 100 &minus; RTP.</p>
+<p>The RTP (Return To Player) of a sports bet is displayed nowhere: betting sites show odds, never the share of the stakes those odds give back. Yet this figure, and its complement the bookmaker's margin, can be computed from the odds themselves, in three operations that any basic calculator can handle.</p>
+
+<h2>The formula in three operations</h2>
+<p><strong>1. Convert each odd into an implied probability</strong>: probability = 1 ÷ decimal odd. Odds of 2.00 are worth 50%, odds of 4.00 are worth 25%.</p>
+<p><strong>2. Add up</strong> the implied probabilities of every outcome of the market. If the odds were fair, the total would be exactly 100%; in practice, it always exceeds it.</p>
+<p><strong>3. Derive the RTP</strong>: RTP = 100 ÷ total × 100. <strong>The bookmaker's margin</strong> is what is missing to reach 100%: margin = 100 − RTP.</p>
 
 <h2>Two-outcome example (tennis)</h2>
 <div class="ex">
 <p>Player A at 1.80, player B at 1.95.</p>
-<p>1&divide;1.80 = 55.6%; 1&divide;1.95 = 51.3%. Total: <strong>106.8%</strong>.</p>
-<p>RTP = 100 &divide; 106.8 &times; 100 = <strong>93.6%</strong> &rarr; margin: <strong>6.4%</strong>.</p>
+<p>1÷1.80 = 55.6%; 1÷1.95 = 51.3%. Total: <strong>106.8%</strong>.</p>
+<p>RTP = 100 ÷ 106.8 × 100 = <strong>93.6%</strong>. Bookmaker's margin: 100 − 93.6 = <strong>6.4%</strong>.</p>
 </div>
+<p>In other words, on this match, bettors share on average €93.60 for every €100 staked, whoever wins; the remaining €6.40 goes to the operator.</p>
 
 <h2>Three-outcome example (football, 1X2)</h2>
 <div class="ex">
 <p>Home 2.10, draw 3.40, away 3.60.</p>
 <p>47.6% + 29.4% + 27.8% = <strong>104.8%</strong>.</p>
-<p>RTP = 100 &divide; 104.8 &times; 100 = <strong>95.4%</strong> &rarr; margin: <strong>4.6%</strong>.</p>
+<p>RTP = 100 ÷ 104.8 × 100 = <strong>95.4%</strong>. Margin: <strong>4.6%</strong>.</p>
 </div>
-<p>The method is identical whatever the number of outcomes: a 30-runner outright market is computed exactly the same way, by adding the 30 implied probabilities.</p>
+<p>The method does not change with the number of outcomes: a 30-runner outright market is computed the same way, by adding the 30 implied probabilities. The more outcomes a market has, the further the sum tends to drift from 100%, and the lower the RTP.</p>
 
-<h2>What makes the margin vary</h2>
-<p>Measure the margin on a handful of markets and patterns quickly emerge. <strong>The competition</strong>: the Premier League and other top leagues are priced tighter than lower divisions or exotic competitions, where the margin can be several times higher. <strong>The market type</strong>: in football, for example, the main 1X2 is usually the most competitive market of a match; side markets (goalscorers, corners, correct scores, handicaps) often carry substantially higher margins. <strong>Timing</strong>: far from kick-off, uncertainty is higher and margins wider; they tighten as the match approaches. <strong>The event</strong>: on some very big fixtures, operators temporarily compress their margin for commercial reasons. To measure those gaps on the markets you actually follow, the <a href="/app/">RTP Calculator</a> does the maths in seconds, whatever the number of outcomes.</p>
+<h2>What if the odds are not decimal?</h2>
+<p>The formula assumes decimal (European) odds. Fractional or American odds are converted first: 6/4 becomes 2.50, +150 also becomes 2.50, −200 becomes 1.50. The guide on <a href="/guides/odds-formats/">odds formats</a> details these conversions. The format has no effect on the result: the margin hides just as well in a fraction as in a decimal.</p>
+
+<h2>What the result tells you</h2>
+<p>The RTP is the real price of the bet, and the margin is the operator's commission. Unlike brokerage fees, it is written nowhere: it is hidden in the odds, and no regulation requires displaying it market by market. Two odds of 1.85 on two different matches look equivalent; if the opposite odd is 1.85 in one case and 2.05 in the other, the first market has an RTP of 92.5% and the second 97.2%. That is exactly what the calculation makes visible.</p>
+
+<h2>What makes the RTP vary</h2>
+<p>A few calculations are enough for patterns to emerge. <strong>The competition</strong>: the Premier League and other top leagues show better RTPs than lower divisions or exotic competitions, where the margin can be several times higher. <strong>The market type</strong>: in football, the main 1X2 is usually the most competitive market of a match; side markets (goalscorers, corners, correct scores, handicaps) often carry substantially higher margins. <strong>Timing</strong>: far from kick-off, uncertainty is higher and margins wider; they tighten as the match approaches. <strong>The event</strong>: on some very big fixtures, operators temporarily compress their margin for commercial reasons. The RTP is therefore measured market by market, not operator by operator.</p>
+
+<h2>Calculate it in seconds</h2>
+<p>The <a href="/app/">RTP Calculator</a> applies this method to any number of outcomes, accepts all three odds formats and keeps your readings in your browser. It also lets you <a href="/guides/compare-bookmakers-rtp/">compare bookmakers</a> on the same match, and measure what <a href="/guides/parlay-rtp/">accumulators</a> really cost.</p>
   </article>
   <div class="cta">
     <h3>Work out the RTP yourself</h3>
@@ -106,13 +119,13 @@
   </div>
   <div class="more">
     <h3>Read next</h3>
-    <ul><li><a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a></li><li><a href="/guides/parlay-rtp/">Why accumulators are a gold mine for bookmakers</a></li><li><a href="/guides/odds-formats/">Decimal, fractional, American odds: the three main formats</a></li><li><a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP rather than bonuses</a></li><li><a href="/guides/betting-terms/">Sports betting terms explained</a></li></ul>
+    <ul><li><a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a></li><li><a href="/guides/parlay-rtp/">Why accumulators are a gold mine for bookmakers</a></li><li><a href="/guides/odds-formats/">Decimal, fractional, American odds: the three main formats</a></li><li><a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP rather than by the promotions they offer</a></li><li><a href="/guides/betting-terms/">Sports betting terms explained</a></li></ul>
   </div>
 </main>
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/privacy/">Privacy</a></span>
       <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
       <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dguides-en">Available on Google Play</a></span>

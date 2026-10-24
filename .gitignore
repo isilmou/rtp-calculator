@@ -24,3 +24,6 @@ deploy/node_modules/
 tools/node_modules/
 tools/.browsers/
 tools/shots/
+
+# Extraction Word des textes du site (docx relu et snapshot : sorties régénérables)
+tools/copy/out/

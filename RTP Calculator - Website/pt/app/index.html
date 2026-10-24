@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculadora de RTP online — Retorno ao Jogador de uma aposta</title>
+<title>Calculadora de RTP online - Retorno ao Jogador de uma aposta</title>
 <meta name="description" content="Calcule online o RTP (Retorno ao Jogador) de uma aposta esportiva: informe as odds de cada resultado e veja na hora a parte devolvida aos jogadores. Odds decimais, fracionárias e americanas. Sem cadastro.">
 <link rel="canonical" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/app/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
-<meta property="og:title" content="Calculadora de RTP online — Retorno ao Jogador de uma aposta">
+<meta property="og:title" content="Calculadora de RTP online - Retorno ao Jogador de uma aposta">
 <meta property="og:description" content="Calcule online o RTP (Retorno ao Jogador) de uma aposta esportiva: informe as odds de cada resultado e veja na hora a parte devolvida aos jogadores. Odds decimais, fracionárias e americanas. Sem cadastro.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rtpcalculator.com/pt/app/">
@@ -103,7 +103,7 @@
   <div id="outcomes"></div>
 
   <div class="form-bottom">
-    <span class="rtp-pill" id="pill">RTP —</span>
+    <span class="rtp-pill" id="pill">RTP –</span>
     <button class="add-btn" id="add" type="button">+ Adicionar resultado</button>
   </div>
 
@@ -126,14 +126,14 @@
     <p>Quanto mais perto de 100% está o RTP, menos margem a casa de apostas retém nesse mercado. Um RTP de 95% significa que, no longo prazo, R$ 95 de cada R$ 100 apostados voltam aos jogadores. Alguns reguladores o limitam: na França, por exemplo, a ANJ limita o RTP médio das apostas esportivas a 85%. Ele também varia muito de um mercado e de um operador para outro: é exatamente isso que esta calculadora permite comparar.</p>
     <h2>Odds aceitas</h2>
     <p>Decimais (2,10), fracionárias (11/10) ou americanas (+110), à escolha no seletor. O número de resultados é ilimitado. Suas análises ficam no seu navegador e podem ser compartilhadas como imagem.</p>
-    <p>Para ir além: <a href="/pt/guides/rtp-aposta-esportiva/">O que é o RTP de uma aposta esportiva?</a> · <a href="/pt/guides/calcular-margem-casa-apostas/">Como calcular a margem de uma casa de apostas</a> · <a href="/pt/guides/comparar-casas-apostas-rtp/">Comparar casas de apostas pelo RTP</a>. Prefere no celular? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-pt">O aplicativo Android</a> funciona totalmente offline.</p>
+    <p>Para ir além: <a href="/pt/guides/rtp-aposta-esportiva/">O que é o RTP de uma aposta esportiva?</a> · <a href="/pt/guides/calcular-margem-casa-apostas/">Como calcular o RTP de uma aposta esportiva e a margem das casas de apostas?</a> · <a href="/pt/guides/comparar-casas-apostas-rtp/">Comparar casas de apostas pelo RTP</a>. Prefere no celular? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=pt_BR&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-pt">O aplicativo Android</a> funciona totalmente offline.</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/pt/guides/">Guias</a></span>
       <span><a href="/pt/privacy/">Privacidade</a></span>
       <span><a href="#" id="cookie-prefs">Configurações de cookies</a></span>
@@ -415,7 +415,7 @@ function frDate(iso){
 function displayOdds(o){
   if(o.format === 'UK' && o.fracN && o.fracD) return o.fracN + '/' + o.fracD;
   if(o.format === 'US' && o.usVal) return (o.usNeg ? '−' : '+') + o.usVal;
-  return o.decimalRaw || '—';
+  return o.decimalRaw || '–';
 }
 function renderHistory(flashId){
   var list = sorted();
@@ -428,7 +428,7 @@ function renderHistory(flashId){
     var body = el('div','hbody');
     var head = el('div','hhead');
     var meta = el('span','hmeta');
-    meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '—';
+    meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '–';
     head.appendChild(meta);
     if(r){ var pill = el('span','hpill'); pill.style.background = rtpColor(r.rtp); pill.textContent = T.rtp + ' ' + fmtPct(r.rtp) + '%'; head.appendChild(pill); }
     body.appendChild(head);
@@ -479,7 +479,7 @@ function shareA(a){
   if(a.betType) parts.push(a.betType);
   if(r) parts.push(T.rtp + ' ' + fmtPct(r.rtp) + '%');
   parts.push(a.outcomes.map(displayOdds).join(' / '));
-  var txt = parts.join(' — ') + ' · ' + T.shareVia;
+  var txt = parts.join(' · ') + ' · ' + T.shareVia;
   if(navigator.share){ navigator.share({text: txt}).catch(function(){}); }
   else if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ toast(T.copied); }); }
 }

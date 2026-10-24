@@ -11,7 +11,7 @@ Développeur solo : Julien. Deux livrables sous cette racine.
 | `RTP Calculator - Website` | Site rtpcalculator.com | Site statique multilingue, hébergement Infomaniak |
 | `stats/` | Collecte des statistiques Google (AdMob, GA4, Search Console, Play), lecture seule | Node 24, `googleapis` |
 | `deploy/` | Déploiement du site vers Infomaniak (règle 8, § 6, § 8) | Node 24, `curl` |
-| `tools/` | Outillage du dépôt : génération du sitemap (§ 6) | Node 24 |
+| `tools/` | Outillage du dépôt : génération du sitemap (§ 6), extraction des textes du site vers Word et réinjection (`copy/`) | Node 24 |
 
 Les noms de dossiers contiennent des espaces : toujours encadrer les chemins de guillemets.
 
@@ -108,19 +108,9 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
    un clic explicite sur « Publier les modifications ». Ne jamais considérer une release
    comme live avant ce clic.
 
-**Tests de release — pièges vérifiés le 19/09/2026**
-- Un « Run » Android Studio installe la variante **debug**, où R8 est inactif quel que soit le
-  réglage (AGP désactive l'obscurcissement des builds debuggables). Un test d'obscurcissement
-  exige un APK release signé via l'assistant, installé par `adb install -r`.
-- Debug et release ont des signatures incompatibles : passer de l'un à l'autre impose une
-  désinstallation, donc la perte des données locales. Sauvegarder `rtp_history.xml` avant.
-- Les deux devices ne portent pas la version Play Store. Un test de migration de données se
-  fait avec un build `debug { isMinifyEnabled = true; isDebuggable = false }` **temporaire**,
-  jamais commité : signé en debug, donc installable par-dessus sans perte.
-- **AdMob** : les appareils de test sont déclarés dans `MainActivity` via
-  `setTestDeviceIds` (empreintes SDK, pas des secrets). L'enregistrement en console AdMob ne
-  suffit pas. Ne jamais cliquer une annonce d'un build de test tant que logcat n'affiche pas
-  « This request is sent from a test device ».
+**Tests de release** : pièges vérifiés (variante debug sans R8, signatures incompatibles,
+migration de données, appareils de test AdMob) dans `.claude/rules/android-release.md`,
+chargé automatiquement pour tout travail sous `RTP Calculator - App/`.
 
 **Keystore** : `rtp-calculator.jks`, stocké en local dans `C:\RTP-Calculator-Keystore\`.
 Cet emplacement est **hors du périmètre de travail défini en règle 7** — c'est délibéré.
@@ -142,6 +132,7 @@ mot de passe dans un fichier du dépôt.
   désactiver la bannière RGPD autonome pour éviter le conflit de double bandeau.
 - SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), contrairement
   à l'ASO qui apporte majoritairement du Tier 3-4. Ne pas dégrader l'existant SEO.
+- **Typographie : aucun tiret long** (« — »). Titres « A - B », incises par virgules ou deux-points, « · » en pied de page.
 - **`sitemap.xml` est généré**, jamais édité à la main : `node tools/sitemap.mjs` (`loc` = canonical,
   `lastmod` = dernier commit Git, hreflang = balises des pages). À relancer après toute
   modification de page, avant le déploiement ; `--check` vérifie sans écrire.
@@ -174,6 +165,10 @@ mot de passe dans un fichier du dépôt.
 
 # Site (règle 8) : check = connexion FTP, init = relecture HTTPS + manifeste, diff = dry-run
 npm --prefix "C:\RTP-Calculator\deploy" run check|init|diff|push -- --apply [--only=<chemins>] [--htaccess] [--active]
+
+# Textes du site : Word relu par Julien (tools/copy/out/), apply = à blanc sans --apply
+npm --prefix "C:\RTP-Calculator\tools" run copy:extract
+npm --prefix "C:\RTP-Calculator\tools" run copy:apply -- <docx> [--apply] [--empty-ok]
 ```
 
 Aucun JDK dans le PATH : préfixer Gradle de `JAVA_HOME="C:/Program Files/Android/Android Studio/jbr"`

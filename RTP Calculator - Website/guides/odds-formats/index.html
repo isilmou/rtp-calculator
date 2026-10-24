@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Decimal, fractional, American odds: the three main formats explained</title>
-<meta name="description" content="Decimal (European), fractional (British) and American odds: how to read each format, convert between them, and the traps to avoid — with a conversion table.">
+<meta name="description" content="Decimal (European), fractional (British) and American odds: how to read each format, convert between them, and the traps to avoid, with a conversion table.">
 <link rel="canonical" href="https://rtpcalculator.com/guides/odds-formats/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/guides/odds-formats/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/guides/formats-de-cotes/">
@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/guides/formatos-de-odds/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/guides/odds-formats/">
 <meta property="og:title" content="Decimal, fractional, American odds: the three main formats explained">
-<meta property="og:description" content="Decimal (European), fractional (British) and American odds: how to read each format, convert between them, and the traps to avoid — with a conversion table.">
+<meta property="og:description" content="Decimal (European), fractional (British) and American odds: how to read each format, convert between them, and the traps to avoid, with a conversion table.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://rtpcalculator.com/guides/odds-formats/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
@@ -76,13 +76,13 @@
     <h1>Decimal, fractional, American odds: the three main formats</h1>
     <p class="date">Published on 29 July 2026</p>
     
-<p>The same probability can be written three main ways depending on the bookmaker's country. Nothing changes underneath — neither the payout nor the margin — but the reading changes completely.</p>
+<p>The same probability can be written three main ways depending on the bookmaker's country. Nothing changes underneath (neither the payout nor the margin), but the reading changes completely.</p>
 
 <h2>The three notations</h2>
 <p><strong>Decimal (continental Europe)</strong>: the odd states the total return per unit staked, stake included. At 2.50, a €10 stake returns €25 in total, i.e. €15 of net profit. It is the easiest format to compute with.</p>
-<p><strong>Fractional (United Kingdom, Ireland)</strong>: the fraction states the net profit relative to the stake. "6/4" means 6 units of profit for 4 staked — a €4 stake returns €6 of net profit, plus the stake. In decimal: 6÷4 + 1 = 2.50.</p>
+<p><strong>Fractional (United Kingdom, Ireland)</strong>: the fraction states the net profit relative to the stake. "6/4" means 6 units of profit for 4 staked: a €4 stake returns €6 of net profit, plus the stake. In decimal: 6÷4 + 1 = 2.50.</p>
 <p><strong>American (United States)</strong>: a signed number pivoting around a 100 stake. "+150": a 100 stake yields 150 of net profit (decimal 2.50). "−200": you must stake 200 to win 100 of net profit (decimal 1.50). The sign flips either side of decimal odds 2.00, which equals "+100".</p>
-<p>Other notations exist beyond these three standards — we will not cover prediction platforms here, whose "shares" trade at a price that corresponds directly to the implied probability.</p>
+<p>Other notations exist beyond these three standards. We will not cover prediction platforms here, whose "shares" trade at a price that corresponds directly to the implied probability.</p>
 
 <h2>Conversion table</h2>
 <div class="tbl-wrap" tabindex="0"><table class="tbl">
@@ -99,8 +99,8 @@
 <p>Fractional to decimal: numerator ÷ denominator + 1. Positive American to decimal: odd ÷ 100 + 1. Negative American to decimal: 100 ÷ |odd| + 1. And in every case, the implied probability is read from the decimal form: 1 ÷ decimal odd.</p>
 
 <h2>The traps</h2>
-<p><strong>Rounding</strong>: British fractions use a limited repertoire of traditional values; a round-trip conversion can slightly shift the result if you convert from the displayed value rather than the original one. <strong>The American sign</strong>: around 2.00, a simple sign flip (+105 / −105) corresponds to probabilities that are close but not equal — beware of quick readings. <strong>Cross-format comparison</strong>: comparing a fractional odd at a British operator with a decimal one at a French operator requires bringing everything to the same format first.</p>
-<p>One useful reminder: the format has no effect on the <a href="/guides/rtp-sports-betting/">RTP</a> — the margin hides just as well in a fraction as in a decimal. The <a href="/app/">online calculator</a> accepts all three formats, even mixed within a single analysis, and converts them instantly with no rounding drift.</p>
+<p><strong>Rounding</strong>: British fractions use a limited repertoire of traditional values; a round-trip conversion can slightly shift the result if you convert from the displayed value rather than the original one. <strong>The American sign</strong>: around 2.00, a simple sign flip (+105 / −105) corresponds to probabilities that are close but not equal. Beware of quick readings. <strong>Cross-format comparison</strong>: comparing a fractional odd at a British operator with a decimal one at a French operator requires bringing everything to the same format first.</p>
+<p>One useful reminder: the format has no effect on the <a href="/guides/rtp-sports-betting/">RTP</a>, since the margin hides just as well in a fraction as in a decimal. The <a href="/app/">online calculator</a> accepts all three formats, even mixed within a single analysis, and converts them instantly with no rounding drift.</p>
 
   </article>
   <div class="cta">
@@ -111,13 +111,13 @@
   </div>
   <div class="more">
     <h3>Read next</h3>
-    <ul><li><a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a></li><li><a href="/guides/calculate-bookmaker-margin/">How to calculate a bookmaker's margin</a></li><li><a href="/guides/parlay-rtp/">Why accumulators are a gold mine for bookmakers</a></li><li><a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP rather than bonuses</a></li><li><a href="/guides/betting-terms/">Sports betting terms explained</a></li></ul>
+    <ul><li><a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a></li><li><a href="/guides/calculate-bookmaker-margin/">How to calculate the RTP of a sports bet and the bookmaker's margin</a></li><li><a href="/guides/parlay-rtp/">Why accumulators are a gold mine for bookmakers</a></li><li><a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP rather than by the promotions they offer</a></li><li><a href="/guides/betting-terms/">Sports betting terms explained</a></li></ul>
   </div>
 </main>
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/privacy/">Privacy</a></span>
       <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
       <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dguides-en">Available on Google Play</a></span>

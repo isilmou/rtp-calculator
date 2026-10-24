@@ -1,4 +1,4 @@
-/* RTP Calculator — bannière de consentement (v1) et Consent Mode v2.
+/* RTP Calculator - bannière de consentement (v1) et Consent Mode v2.
    Extrait des pages le 24/10/2026 (lot 1a), inchangé. Chargé dans <head> juste après le bloc
    gtag('consent','default', …) et avant tout usage de window.rtpConsentOpen. Pas sur /privacy/. */
 (function () {

@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. **Intercalé le 24/10 : présentation du site** (audit fait, lots 1a → 6 à exécuter, section dédiée ci-dessous) ; ensuite étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `c68b553`, non déployé** ; section dédiée ci-dessous) ; ensuite étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -92,8 +92,8 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
      (recrawl des 5 URL, indexation des calculateurs, disparition des variantes http/www du
      rapport Pages).
    - 3d fait le 24/10/2026 : `CLAUDE.md` § 1 (`tools/`), § 6 (sitemap généré), § 9 (`inspect`).
-     **Étape 3 terminée et commitée (`6b662e7`).** `CLAUDE.md` atteint 205 lignes : à condenser
-     à la prochaine retouche (candidat : § 5 « pièges de release » vers `.claude/rules/`).
+     **Étape 3 terminée et commitée (`6b662e7`).** `CLAUDE.md` condensé le 24/10/2026 : les pièges
+     de release du § 5 sont dans `.claude/rules/android-release.md` (chargé pour `RTP Calculator - App/**`) ; 199 lignes.
 4. **Fiche Play** : lever l'ambiguïté casino dès le titre, 5 langues. Julien doit coller le
    texte actuel de la fiche.
 5. **Guides FR** : « Comment calculer le TRJ d'un pari sportif » et « TRJ et plafond légal de
@@ -121,6 +121,70 @@ d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git
 un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
 `gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
 recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
+
+---
+
+## Relecture des textes du site par Julien (24/10/2026)
+
+Demande de Julien : relire lui-même **tous** les textes du site dans un Word, puis me le rendre
+pour mise en ligne. Outil créé dans `tools/copy/` (non commité) :
+
+- `npm --prefix tools run copy:extract` → `tools/copy/out/site-textes-<date>.docx` +
+  `snapshot.json` (référence, **à conserver jusqu'au retour du Word** ; jeton commun aux deux,
+  vérifié par `apply`). Extraction du 24/10/2026 : **1 723 textes distincts, 3 045 emplacements**,
+  55 pages + bandeau cookies (`assets/cmp.js`) + chaînes JS du calculateur (`var T` des 5 `app/`).
+  Ordre : FR, EN, ES, DE, PT ; par page : `<title>`, metas, og, JSON-LD `headline`, feuilles HTML
+  (h1…td, boutons, liens de menu, attributs `aria-label` / `placeholder`).
+- `npm --prefix tools run copy:apply -- <docx> [--apply] [--empty-ok]` : relecture à blanc par
+  défaut, tout ou rien (garde : jeton, et chaque emplacement relu dans la source doit être
+  identique à l'extraction, sinon réextraire). Accepte aussi un `.docx` décompressé (tests).
+- Conception : analyseur HTML maison à offsets conservés (`lib.mjs`), aucune réécriture hors des
+  textes modifiés. **Dédoublonnage par langue** : un même texte (menus, pieds, boutons, titre
+  repris en `<title>` / `og:title` / H1 / `headline`) = une seule ligne Word (« ×N »), modification
+  propagée à tous ses emplacements. Mise en forme : gras / italique / liens = runs Word
+  (les `href` d'origine sont toujours conservés) ; autres balises inline (`span.hl`, `dd-car`) =
+  run sur fond gris `E6E6E6`, remis dans leur balise d'origine par ordre. Apostrophes courbes et
+  guillemets anglais de Word redressés, espace insécable Word devant `: ; ? !` retirée (signalés
+  dans le compte rendu), cellule vidée = non appliquée sans `--empty-ok`.
+- Testé : aller-retour sans modification = 0 changement ; 9 modifications simulées (menu ×11
+  pages, gras stylé, `span.hl`, texte de lien, chaîne JS avec guillemets, headline JSON-LD,
+  apostrophes courbes = inchangé) réinjectées correctement, puis `git checkout`.
+- Écarté : Playwright/Chromium pour l'analyse (DOM normalisé, impossible de réécrire la source à
+  l'identique) ; `cheerio`/`parse5` (même problème) ; tableau multilingue côte à côte (illisible).
+- Dépendance ajoutée : `docx` 9.5.1 dans `tools/`. Pas de LibreOffice ni pandoc sur la machine :
+  rendu Word non vérifié ici, Julien ouvrira le fichier.
+- `CLAUDE.md` mis à jour le 24/10/2026 (validé par Julien) : § 1 `tools/`, § 8 commandes `copy:*`.
+
+**Retour du Word (24/10/2026, soir) : fait, commité `c68b553` (sitemap inchangé, lastmod déjà au 24/10), non déployé.** Plan validé
+(`~/.claude/plans/proud-kindling-riddle.md`), exécuté en 4 étapes validées une à une :
+
+1. `copy:apply --apply` : 13 textes FR relus par Julien, 39 emplacements, 8 fichiers (garde OK).
+   Coquille « dans table de correspondance » corrigée en « dans une table » avec son accord.
+2. **Plus aucun tiret long sur le site** (demande de Julien : « trop associés à un texte écrit
+   par IA »). Règles tirées de ses propres corrections : titres de pages « A - B » ; incises par
+   virgules, deux-points ou phrase coupée ; pied de page « © 2026 RTP · SIREN » ; intitulés de la
+   confidentialité avec deux-points ; valeurs vides du calculateur (`TRJ –`, `|| '–'`) en
+   demi-cadratin, texte de partage `join(' · ')`. FR : 64 remplacements, 12 fichiers.
+3. Guide « Comment calculer la marge d'un bookmaker » → **« Comment calculer le TRJ d'un pari
+   sportif et la marge des bookmakers ? »** (titre de Julien, version du Word). Réécrit (angle
+   méthode, la marge comme complément du TRJ ; le guide `trj-pari-sportif` garde l'angle
+   définition). **URL conservée** (`calculer-marge-bookmaker` et équivalents) : un renommage
+   imposerait des 301 dans le `.htaccess` (zone interdite), 25 hreflang et une perte de
+   positionnement ; décidé avec Julien. `dateModified` 2026-10-24, date affichée « Mis à jour ».
+   Titre du comparatif : « … plutôt que par les promotions qu'ils proposent » (Julien).
+4. Propagation EN/ES/DE/PT par scripts à comptage exact (103 / 102 / 125 / 102 remplacements,
+   11 fichiers par langue) : équivalents des 13 corrections, tirets, guide traduit, cartes.
+   DE comptait ~20 tirets propres à sa traduction, traités de même ; son `<title>` du guide est
+   aligné sur le H1 comme ailleurs. Titres sans « ? » en EN/DE, « ¿ ? » en ES, « ? » en PT.
+
+Contrôles : 57 fichiers modifiés (+588/−531), 0 « — », `&mdash;` ou « – » hors JS ; balises
+équilibrées sur les 5 guides (19 p, 7 h2, 14 strong, 27 a, 8 div chacun) ; réextraction de
+contrôle : 55/60 pages au même nombre d'emplacements, les 5 guides passent de 43 à 52 ;
+captures locales (`tools/shots/2026-10-24-2105-relecture`, `…-2107-relecture-fr`) relues.
+Scripts de remplacement en scratchpad (non versionnés). **`snapshot.json` du 24/10 est périmé** :
+réextraire avant toute nouvelle relecture Word. Reste à faire : commit par Julien →
+`node tools/sitemap.mjs` (lastmod = dernier commit) → déploiement sur sa demande (diff d'abord).
+Règle typographique « aucun tiret long » ajoutée à `CLAUDE.md` § 6 le 24/10/2026 (validée par Julien).
 
 ---
 

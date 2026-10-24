@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculateur de TRJ en ligne — Taux de Retour Joueur d'un pari sportif</title>
+<title>Calculateur de TRJ en ligne - Taux de Retour Joueur d'un pari sportif</title>
 <meta name="description" content="Calculez en ligne le TRJ (Taux de Retour Joueur) d'un pari sportif : saisissez les cotes de chaque issue et obtenez instantanément la part redistribuée aux joueurs. Cotes décimales, fractionnaires et américaines. Sans inscription.">
 <link rel="canonical" href="https://rtpcalculator.com/fr/app/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/app/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
-<meta property="og:title" content="Calculateur de TRJ en ligne — Taux de Retour Joueur d'un pari sportif">
+<meta property="og:title" content="Calculateur de TRJ en ligne - Taux de Retour Joueur d'un pari sportif">
 <meta property="og:description" content="Calculez en ligne le TRJ (Taux de Retour Joueur) d'un pari sportif : saisissez les cotes de chaque issue et obtenez instantanément la part redistribuée aux joueurs. Cotes décimales, fractionnaires et américaines. Sans inscription.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rtpcalculator.com/fr/app/">
@@ -103,7 +103,7 @@
   <div id="outcomes"></div>
 
   <div class="form-bottom">
-    <span class="rtp-pill" id="pill">TRJ —</span>
+    <span class="rtp-pill" id="pill">TRJ –</span>
     <button class="add-btn" id="add" type="button">+ Ajouter une issue</button>
   </div>
 
@@ -126,14 +126,14 @@
     <p>Plus le TRJ est proche de 100 %, moins le bookmaker prélève de marge sur ce marché. Un TRJ de 95 % signifie que, sur le long terme, 95 € sur 100 € misés reviennent aux joueurs. En France, l'ANJ plafonne le TRJ moyen des paris sportifs à 85 %, mais il varie fortement d'un marché et d'un opérateur à l'autre : c'est précisément ce que ce calculateur permet de comparer.</p>
     <h2>Cotes acceptées</h2>
     <p>Décimales (2,10), fractionnaires (11/10) ou américaines (+110), au choix dans le sélecteur. Le nombre d'issues est illimité. Vos analyses restent dans votre navigateur et peuvent être partagées en image.</p>
-    <p>Pour aller plus loin : <a href="/fr/guides/trj-pari-sportif/">C'est quoi le TRJ d'un pari sportif ?</a> · <a href="/fr/guides/calculer-marge-bookmaker/">Comment calculer la marge d'un bookmaker</a> · <a href="/fr/guides/comparer-bookmakers-trj/">Comparer les bookmakers par le TRJ</a>. Vous préférez l'avoir sur votre téléphone ? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-fr">L'application Android</a> fonctionne entièrement hors ligne.</p>
+    <p>Pour aller plus loin : <a href="/fr/guides/trj-pari-sportif/">C'est quoi le TRJ d'un pari sportif ?</a> · <a href="/fr/guides/calculer-marge-bookmaker/">Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?</a> · <a href="/fr/guides/comparer-bookmakers-trj/">Comparer les bookmakers par le TRJ</a>. Vous préférez l'avoir sur votre téléphone ? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-fr">L'application Android</a> fonctionne entièrement hors ligne.</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/fr/guides/">Guides</a></span>
       <span><a href="/fr/privacy/">Confidentialité</a></span>
       <span><a href="#" id="cookie-prefs">Paramètres des cookies</a></span>
@@ -415,7 +415,7 @@ function frDate(iso){
 function displayOdds(o){
   if(o.format === 'UK' && o.fracN && o.fracD) return o.fracN + '/' + o.fracD;
   if(o.format === 'US' && o.usVal) return (o.usNeg ? '−' : '+') + o.usVal;
-  return o.decimalRaw || '—';
+  return o.decimalRaw || '–';
 }
 function renderHistory(flashId){
   var list = sorted();
@@ -428,7 +428,7 @@ function renderHistory(flashId){
     var body = el('div','hbody');
     var head = el('div','hhead');
     var meta = el('span','hmeta');
-    meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '—';
+    meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '–';
     head.appendChild(meta);
     if(r){ var pill = el('span','hpill'); pill.style.background = rtpColor(r.rtp); pill.textContent = T.rtp + ' ' + fmtPct(r.rtp) + '%'; head.appendChild(pill); }
     body.appendChild(head);
@@ -479,7 +479,7 @@ function shareA(a){
   if(a.betType) parts.push(a.betType);
   if(r) parts.push(T.rtp + ' ' + fmtPct(r.rtp) + '%');
   parts.push(a.outcomes.map(displayOdds).join(' / '));
-  var txt = parts.join(' — ') + ' · ' + T.shareVia;
+  var txt = parts.join(' · ') + ' · ' + T.shareVia;
   if(navigator.share){ navigator.share({text: txt}).catch(function(){}); }
   else if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ toast(T.copied); }); }
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Online RTP calculator — Return To Player of any sports bet</title>
+<title>Online RTP calculator - Return To Player of any sports bet</title>
 <meta name="description" content="Calculate the RTP (Return To Player) of any sports bet online: enter the odds of each outcome and instantly get the share given back to players. Decimal, fractional and American odds. No sign-up.">
 <link rel="canonical" href="https://rtpcalculator.com/app/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/app/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/app/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/app/">
-<meta property="og:title" content="Online RTP calculator — Return To Player of any sports bet">
+<meta property="og:title" content="Online RTP calculator - Return To Player of any sports bet">
 <meta property="og:description" content="Calculate the RTP (Return To Player) of any sports bet online: enter the odds of each outcome and instantly get the share given back to players. Decimal, fractional and American odds. No sign-up.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rtpcalculator.com/app/">
@@ -103,7 +103,7 @@
   <div id="outcomes"></div>
 
   <div class="form-bottom">
-    <span class="rtp-pill" id="pill">RTP —</span>
+    <span class="rtp-pill" id="pill">RTP –</span>
     <button class="add-btn" id="add" type="button">+ Add outcome</button>
   </div>
 
@@ -126,14 +126,14 @@
     <p>The closer the RTP is to 100%, the less margin the bookmaker takes on that market. An RTP of 95% means that, over the long run, 95 of every 100 staked go back to players. Some regulators cap it: in France, for instance, the ANJ limits the average RTP of sports betting to 85%. It also varies widely from one market and one operator to another, which is exactly what this calculator lets you compare.</p>
     <h2>Supported odds</h2>
     <p>Decimal (2.10), fractional (11/10) or American (+110), selectable in the format switch. The number of outcomes is unlimited. Your analyses stay in your browser and can be shared as an image.</p>
-    <p>Going further: <a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a> · <a href="/guides/calculate-bookmaker-margin/">How to calculate a bookmaker's margin</a> · <a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP</a>. Prefer it on your phone? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en">The Android app</a> works fully offline.</p>
+    <p>Going further: <a href="/guides/rtp-sports-betting/">What is the RTP of a sports bet?</a> · <a href="/guides/calculate-bookmaker-margin/">How to calculate the RTP of a sports bet and the bookmaker's margin</a> · <a href="/guides/compare-bookmakers-rtp/">Compare bookmakers by RTP</a>. Prefer it on your phone? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en">The Android app</a> works fully offline.</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/guides/">Guides</a></span>
       <span><a href="/privacy/">Privacy</a></span>
       <span><a href="#" id="cookie-prefs">Cookie settings</a></span>
@@ -415,7 +415,7 @@ function frDate(iso){
 function displayOdds(o){
   if(o.format === 'UK' && o.fracN && o.fracD) return o.fracN + '/' + o.fracD;
   if(o.format === 'US' && o.usVal) return (o.usNeg ? '−' : '+') + o.usVal;
-  return o.decimalRaw || '—';
+  return o.decimalRaw || '–';
 }
 function renderHistory(flashId){
   var list = sorted();
@@ -428,7 +428,7 @@ function renderHistory(flashId){
     var body = el('div','hbody');
     var head = el('div','hhead');
     var meta = el('span','hmeta');
-    meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '—';
+    meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '–';
     head.appendChild(meta);
     if(r){ var pill = el('span','hpill'); pill.style.background = rtpColor(r.rtp); pill.textContent = T.rtp + ' ' + fmtPct(r.rtp) + '%'; head.appendChild(pill); }
     body.appendChild(head);
@@ -479,7 +479,7 @@ function shareA(a){
   if(a.betType) parts.push(a.betType);
   if(r) parts.push(T.rtp + ' ' + fmtPct(r.rtp) + '%');
   parts.push(a.outcomes.map(displayOdds).join(' / '));
-  var txt = parts.join(' — ') + ' · ' + T.shareVia;
+  var txt = parts.join(' · ') + ' · ' + T.shareVia;
   if(navigator.share){ navigator.share({text: txt}).catch(function(){}); }
   else if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ toast(T.copied); }); }
 }

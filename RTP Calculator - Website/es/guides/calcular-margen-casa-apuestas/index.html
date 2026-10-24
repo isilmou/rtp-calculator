@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cómo calcular el margen de una casa de apuestas (método y ejemplos)</title>
-<meta name="description" content="El margen de una casa de apuestas se calcula a partir de las cuotas: probabilidades implícitas, su suma, y después 100 − RTP. Método paso a paso con ejemplos de dos y tres resultados, y qué hace variar el margen.">
+<title>¿Cómo calcular el RTP de una apuesta deportiva y el margen de las casas de apuestas?</title>
+<meta name="description" content="Calcular el RTP de una apuesta a partir de las cuotas en tres operaciones, y deducir el margen de la casa de apuestas. Método paso a paso, ejemplos con dos y tres resultados.">
 <link rel="canonical" href="https://rtpcalculator.com/es/guides/calcular-margen-casa-apuestas/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
@@ -13,8 +13,8 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
-<meta property="og:title" content="Cómo calcular el margen de una casa de apuestas (método y ejemplos)">
-<meta property="og:description" content="El margen de una casa de apuestas se calcula a partir de las cuotas: probabilidades implícitas, su suma, y después 100 − RTP. Método paso a paso con ejemplos de dos y tres resultados, y qué hace variar el margen.">
+<meta property="og:title" content="¿Cómo calcular el RTP de una apuesta deportiva y el margen de las casas de apuestas?">
+<meta property="og:description" content="Calcular el RTP de una apuesta a partir de las cuotas en tres operaciones, y deducir el margen de la casa de apuestas. Método paso a paso, ejemplos con dos y tres resultados.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://rtpcalculator.com/es/guides/calcular-margen-casa-apuestas/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
@@ -35,7 +35,7 @@
 </script>
 
 <script src="/assets/cmp.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Cómo calcular el margen de una casa de apuestas", "inLanguage": "es", "datePublished": "2026-07-29", "dateModified": "2026-07-29", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/es/guides/calcular-margen-casa-apuestas/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "¿Cómo calcular el RTP de una apuesta deportiva y el margen de las casas de apuestas?", "inLanguage": "es", "datePublished": "2026-07-29", "dateModified": "2026-10-24", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/es/guides/calcular-margen-casa-apuestas/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
@@ -73,32 +73,43 @@
 <main class="wrap">
   <a class="crumb" href="/es/guides/">&larr; Todas las guías</a>
   <article>
-    <h1>Cómo calcular el margen de una casa de apuestas</h1>
-    <p class="date">Publicado el 29 de julio de 2026</p>
-    
-<p>El margen de una casa de apuestas es su comisión — pero a diferencia de unas comisiones de corretaje, no está escrito en ninguna parte: se esconde dentro de las cuotas. La buena noticia es que se calcula en tres operaciones, al alcance de cualquier calculadora.</p>
+    <h1>¿Cómo calcular el RTP de una apuesta deportiva y el margen de las casas de apuestas?</h1>
+    <p class="date">Publicado el 29 de julio de 2026 · Actualizado el 24 de octubre de 2026</p>
 
-<h2>El método en tres pasos</h2>
-<p><strong>Paso 1 — convertir cada cuota en probabilidad implícita</strong>: probabilidad = 1 ÷ cuota decimal. <strong>Paso 2 — sumar</strong> las probabilidades implícitas de todos los resultados del mercado. <strong>Paso 3 — deducir el RTP y el margen</strong>: RTP = 100 ÷ total × 100, y margen = 100 − RTP.</p>
+<p>El RTP (Retorno al Jugador) de una apuesta deportiva no aparece en ninguna parte: los sitios de apuestas muestran cuotas, nunca la parte de lo apostado que esas cuotas devuelven. Sin embargo, esa cifra, y su complemento el margen de la casa de apuestas, se calculan a partir de las propias cuotas, en tres operaciones al alcance de cualquier calculadora.</p>
 
-<h2>Ejemplo de dos resultados (tenis)</h2>
+<h2>La fórmula en tres operaciones</h2>
+<p><strong>1. Convertir cada cuota en probabilidad implícita</strong>: probabilidad = 1 ÷ cuota decimal. Una cuota de 2,00 vale un 50 %; una cuota de 4,00, un 25 %.</p>
+<p><strong>2. Sumar</strong> las probabilidades implícitas de todos los resultados del mercado. Si las cuotas fueran justas, el total daría exactamente 100 %; en la práctica, siempre lo supera.</p>
+<p><strong>3. Deducir el RTP</strong>: RTP = 100 ÷ total × 100. <strong>El margen de la casa de apuestas</strong> es lo que falta para llegar al 100 %: margen = 100 − RTP.</p>
+
+<h2>Ejemplo con dos resultados (tenis)</h2>
 <div class="ex">
 <p>Jugador A a 1,80, jugador B a 1,95.</p>
-<p>1÷1,80 = 55,6%; 1÷1,95 = 51,3%. Total: <strong>106,8%</strong>.</p>
-<p>RTP = 100 ÷ 106,8 × 100 = <strong>93,6%</strong> → margen: <strong>6,4%</strong>.</p>
+<p>1÷1,80 = 55,6 %; 1÷1,95 = 51,3 %. Total: <strong>106,8 %</strong>.</p>
+<p>RTP = 100 ÷ 106,8 × 100 = <strong>93,6 %</strong>. Margen de la casa: 100 − 93,6 = <strong>6,4 %</strong>.</p>
 </div>
+<p>Dicho de otro modo, en este partido los apostantes se reparten de media 93,60 € por cada 100 € apostados, gane quien gane; los 6,40 € restantes se los queda el operador.</p>
 
-<h2>Ejemplo de tres resultados (fútbol, 1X2)</h2>
+<h2>Ejemplo con tres resultados (fútbol, 1X2)</h2>
 <div class="ex">
 <p>Local 2,10, empate 3,40, visitante 3,60.</p>
-<p>47,6% + 29,4% + 27,8% = <strong>104,8%</strong>.</p>
-<p>RTP = 100 ÷ 104,8 × 100 = <strong>95,4%</strong> → margen: <strong>4,6%</strong>.</p>
+<p>47,6 % + 29,4 % + 27,8 % = <strong>104,8 %</strong>.</p>
+<p>RTP = 100 ÷ 104,8 × 100 = <strong>95,4 %</strong>. Margen: <strong>4,6 %</strong>.</p>
 </div>
-<p>El método es idéntico sea cual sea el número de resultados: un mercado de ganador de torneo con 30 participantes se calcula exactamente igual, sumando las 30 probabilidades implícitas.</p>
+<p>El método no cambia con el número de resultados: el ganador de un torneo con 30 participantes se calcula de la misma forma, sumando las 30 probabilidades implícitas. Cuantos más resultados tiene un mercado, más tiende la suma a alejarse del 100 %, y más bajo es el RTP.</p>
 
-<h2>Qué hace variar el margen</h2>
-<p>Basta medir el margen en unos cuantos mercados para ver aparecer regularidades. <strong>La competición</strong>: LaLiga y las grandes ligas reciben mejor trato que las divisiones inferiores o las competiciones exóticas, donde el margen puede multiplicarse varias veces. <strong>El tipo de mercado</strong>: en fútbol, por ejemplo, el 1X2 principal suele ser el mercado más competitivo de un partido; las apuestas secundarias (goleadores, córners, resultados exactos, hándicaps) llevan a menudo márgenes claramente superiores. <strong>El momento</strong>: lejos del inicio del partido la incertidumbre es mayor y los márgenes más anchos; se estrechan a medida que se acerca el encuentro. <strong>El evento</strong>: en algunos grandes partidos, los operadores comprimen temporalmente su margen por motivos comerciales. Para medir estas diferencias en los mercados que realmente sigues, la <a href="/es/app/">Calculadora de RTP</a> hace el cálculo en segundos, sea cual sea el número de resultados.</p>
+<h2>¿Y si las cuotas no son decimales?</h2>
+<p>La fórmula supone cuotas decimales (europeas). Una cuota fraccionaria o americana se convierte primero: 6/4 pasa a 2,50, +150 también pasa a 2,50, −200 pasa a 1,50. La guía sobre los <a href="/es/guides/formatos-de-cuotas/">formatos de cuotas</a> detalla esas conversiones. El formato no tiene ningún efecto sobre el resultado: el margen se esconde igual de bien en una fracción que en un decimal.</p>
 
+<h2>Lo que te dice el resultado</h2>
+<p>El RTP es el precio real de la apuesta, y el margen es la comisión del operador. A diferencia de unos gastos de corretaje, no está escrito en ninguna parte: está disimulado en las cuotas, y ninguna normativa obliga a mostrarlo mercado a mercado. Dos cuotas de 1,85 en dos partidos distintos parecen equivalentes; si la cuota de enfrente es 1,85 en un caso y 2,05 en el otro, el primer mercado tiene un RTP del 92,5 % y el segundo del 97,2 %. Eso es exactamente lo que el cálculo hace visible.</p>
+
+<h2>Qué hace variar el RTP</h2>
+<p>Unos pocos cálculos bastan para que aparezcan regularidades. <strong>La competición</strong>: LaLiga y los grandes campeonatos muestran mejores RTP que las divisiones inferiores o las competiciones exóticas, donde el margen puede multiplicarse. <strong>El tipo de mercado</strong>: en fútbol, el 1X2 principal suele ser el mercado más competitivo de un partido; las apuestas secundarias (goleadores, córners, resultado exacto, hándicaps) llevan a menudo márgenes claramente superiores. <strong>El momento</strong>: lejos del inicio del partido, la incertidumbre es mayor y los márgenes más amplios; se estrechan a medida que se acerca el encuentro. <strong>El evento</strong>: en algunos grandes partidos, los operadores comprimen temporalmente su margen con fines comerciales. El RTP se mide, por tanto, mercado a mercado, no operador a operador.</p>
+
+<h2>Calcularlo en segundos</h2>
+<p>La <a href="/es/app/">Calculadora de RTP</a> aplica este método a cualquier número de resultados, acepta los tres formatos de cuotas y conserva tus mediciones en tu navegador. También permite <a href="/es/guides/comparar-casas-apuestas-rtp/">comparar casas de apuestas</a> en un mismo partido, y medir lo que cuestan realmente las <a href="/es/guides/apuestas-combinadas-rtp/">apuestas combinadas</a>.</p>
   </article>
   <div class="cta">
     <h3>Calcula tú mismo el RTP</h3>
@@ -108,13 +119,13 @@
   </div>
   <div class="more">
     <h3>Para seguir leyendo</h3>
-    <ul><li><a href="/es/guides/rtp-apuesta-deportiva/">¿Qué es el RTP de una apuesta deportiva?</a></li><li><a href="/es/guides/apuestas-combinadas-rtp/">Por qué las apuestas combinadas son una mina de oro para las casas de apuestas</a></li><li><a href="/es/guides/formatos-de-cuotas/">Cuotas decimales, fraccionarias, americanas: los tres formatos principales</a></li><li><a href="/es/guides/comparar-casas-apuestas-rtp/">Comparar casas de apuestas por el RTP y no por los bonos</a></li><li><a href="/es/guides/lexico-apuestas-deportivas/">Léxico de las apuestas deportivas</a></li></ul>
+    <ul><li><a href="/es/guides/rtp-apuesta-deportiva/">¿Qué es el RTP de una apuesta deportiva?</a></li><li><a href="/es/guides/apuestas-combinadas-rtp/">Por qué las apuestas combinadas son una mina de oro para las casas de apuestas</a></li><li><a href="/es/guides/formatos-de-cuotas/">Cuotas decimales, fraccionarias, americanas: los tres formatos principales</a></li><li><a href="/es/guides/comparar-casas-apuestas-rtp/">Comparar casas de apuestas por el RTP y no por las promociones que ofrecen</a></li><li><a href="/es/guides/lexico-apuestas-deportivas/">Léxico de las apuestas deportivas</a></li></ul>
   </div>
 </main>
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/es/privacy/">Privacidad</a></span>
       <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
       <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=es&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dguides-es">Descargar la versión Android</a></span>

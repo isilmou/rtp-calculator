@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comment calculer la marge d'un bookmaker (méthode et exemples)</title>
-<meta name="description" content="La marge d'un bookmaker se calcule à partir des cotes : probabilités implicites, somme, puis 100 − TRJ. Méthode pas à pas avec exemples à 2 et 3 issues, et ce qui fait varier la marge.">
+<title>Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?</title>
+<meta name="description" content="Calculer le TRJ d'un pari à partir des cotes en trois opérations, et en déduire la marge du bookmaker. Méthode pas à pas, exemples à deux et trois issues.">
 <link rel="canonical" href="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
@@ -13,8 +13,8 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
-<meta property="og:title" content="Comment calculer la marge d'un bookmaker (méthode et exemples)">
-<meta property="og:description" content="La marge d'un bookmaker se calcule à partir des cotes : probabilités implicites, somme, puis 100 − TRJ. Méthode pas à pas avec exemples à 2 et 3 issues, et ce qui fait varier la marge.">
+<meta property="og:title" content="Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?">
+<meta property="og:description" content="Calculer le TRJ d'un pari à partir des cotes en trois opérations, et en déduire la marge du bookmaker. Méthode pas à pas, exemples à deux et trois issues.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
@@ -35,7 +35,7 @@
 </script>
 
 <script src="/assets/cmp.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Comment calculer la marge d'un bookmaker", "inLanguage": "fr", "datePublished": "2026-07-29", "dateModified": "2026-07-29", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?", "inLanguage": "fr", "datePublished": "2026-07-29", "dateModified": "2026-10-24", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
@@ -73,32 +73,43 @@
 <main class="wrap">
   <a class="crumb" href="/fr/guides/">&larr; Tous les guides</a>
   <article>
-    <h1>Comment calculer la marge d'un bookmaker</h1>
-    <p class="date">Publié le 29 juillet 2026</p>
-    
-<p>La marge d'un bookmaker est sa commission — mais contrairement à des frais de courtage, elle n'est écrite nulle part : elle est dissimulée dans les cotes. La bonne nouvelle, c'est qu'elle se calcule en trois opérations, à la portée de n'importe quelle calculatrice.</p>
+    <h1>Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?</h1>
+    <p class="date">Publié le 29 juillet 2026 · Mis à jour le 24 octobre 2026</p>
 
-<h2>La méthode en trois étapes</h2>
-<p><strong>Étape 1 — convertir chaque cote en probabilité implicite</strong> : probabilité = 1 ÷ cote décimale. <strong>Étape 2 — additionner</strong> les probabilités implicites de toutes les issues du marché. <strong>Étape 3 — en déduire le TRJ et la marge</strong> : TRJ = 100 ÷ total × 100, et marge = 100 − TRJ.</p>
+<p>Le TRJ (Taux de Retour Joueur) d'un pari sportif n'est affiché nulle part : les sites de paris montrent des cotes, jamais la part des mises que ces cotes redistribuent. Pourtant ce chiffre, et son complément la marge du bookmaker, se calculent à partir des cotes elles-mêmes, en trois opérations à la portée de n'importe quelle calculatrice.</p>
+
+<h2>La formule en trois opérations</h2>
+<p><strong>1. Convertir chaque cote en probabilité implicite</strong> : probabilité = 1 ÷ cote décimale. Une cote de 2,00 vaut 50 %, une cote de 4,00 vaut 25 %.</p>
+<p><strong>2. Additionner</strong> les probabilités implicites de toutes les issues du marché. Si les cotes étaient justes, le total ferait exactement 100 % ; en pratique, il le dépasse toujours.</p>
+<p><strong>3. En déduire le TRJ</strong> : TRJ = 100 ÷ total × 100. <strong>La marge du bookmaker</strong> est ce qui manque pour atteindre 100 % : marge = 100 − TRJ.</p>
 
 <h2>Exemple à deux issues (tennis)</h2>
 <div class="ex">
 <p>Joueur A à 1,80, joueur B à 1,95.</p>
 <p>1÷1,80 = 55,6 % ; 1÷1,95 = 51,3 %. Total : <strong>106,8 %</strong>.</p>
-<p>TRJ = 100 ÷ 106,8 × 100 = <strong>93,6 %</strong> → marge : <strong>6,4 %</strong>.</p>
+<p>TRJ = 100 ÷ 106,8 × 100 = <strong>93,6 %</strong>. Marge du bookmaker : 100 − 93,6 = <strong>6,4 %</strong>.</p>
 </div>
+<p>Autrement dit, sur ce match, les parieurs se partagent en moyenne 93,60 € pour 100 € misés, quel que soit le vainqueur ; les 6,40 € restants reviennent à l'opérateur.</p>
 
 <h2>Exemple à trois issues (football, 1X2)</h2>
 <div class="ex">
 <p>Domicile 2,10, nul 3,40, extérieur 3,60.</p>
 <p>47,6 % + 29,4 % + 27,8 % = <strong>104,8 %</strong>.</p>
-<p>TRJ = 100 ÷ 104,8 × 100 = <strong>95,4 %</strong> → marge : <strong>4,6 %</strong>.</p>
+<p>TRJ = 100 ÷ 104,8 × 100 = <strong>95,4 %</strong>. Marge : <strong>4,6 %</strong>.</p>
 </div>
-<p>La méthode est identique quel que soit le nombre d'issues : un vainqueur de tournoi à 30 participants se calcule exactement de la même façon, en additionnant les 30 probabilités implicites.</p>
+<p>La méthode ne change pas avec le nombre d'issues : le vainqueur d'un tournoi à 30 participants se calcule de la même façon, en additionnant les 30 probabilités implicites. Plus un marché compte d'issues, plus la somme tend à s'éloigner de 100 %, et plus le TRJ est bas.</p>
 
-<h2>Ce qui fait varier la marge</h2>
-<p>Mesurer la marge sur quelques marchés suffit à voir apparaître des régularités. <strong>La compétition</strong> : la Ligue 1 et les grands championnats sont mieux traités que les divisions inférieures ou les compétitions exotiques, où la marge peut être démultipliée. <strong>Le type de marché</strong> : en football par exemple, le 1X2 principal est généralement le marché le plus compétitif d'un match ; les paris annexes (buteurs, corners, scores exacts, handicaps) portent souvent des marges nettement supérieures. <strong>Le moment</strong> : loin du coup d'envoi, l'incertitude est plus grande et les marges plus larges ; elles se resserrent à l'approche du match. <strong>L'événement</strong> : sur certaines très grandes affiches, des opérateurs compressent temporairement leur marge à des fins commerciales. Pour mesurer ces écarts sur les marchés que vous suivez réellement, le <a href="/fr/app/">Calculateur de TRJ</a> fait le calcul en quelques secondes, quel que soit le nombre d'issues.</p>
+<h2>Et si les cotes ne sont pas décimales ?</h2>
+<p>La formule suppose des cotes décimales (européennes). Une cote fractionnaire ou américaine se convertit d'abord : 6/4 devient 2,50, +150 devient 2,50 aussi, −200 devient 1,50. Le guide sur les <a href="/fr/guides/formats-de-cotes/">formats de cotes</a> détaille ces conversions. Le format n'a aucun effet sur le résultat : la marge se cache aussi bien dans une fraction que dans une décimale.</p>
 
+<h2>Ce que le résultat vous apprend</h2>
+<p>Le TRJ est le prix réel du pari, et la marge est la commission de l'opérateur. Contrairement à des frais de courtage, elle n'est écrite nulle part : elle est dissimulée dans les cotes, et aucune réglementation n'impose de l'afficher marché par marché. Deux cotes de 1,85 sur deux matchs différents semblent équivalentes ; si la cote d'en face est 1,85 dans un cas et 2,05 dans l'autre, le premier marché a un TRJ de 92,5 % et le second de 97,2 %. C'est exactement ce que le calcul rend visible.</p>
+
+<h2>Ce qui fait varier le TRJ</h2>
+<p>Quelques calculs suffisent à voir apparaître des régularités. <strong>La compétition</strong> : la Ligue 1 et les grands championnats affichent de meilleurs TRJ que les divisions inférieures ou les compétitions exotiques, où la marge peut être démultipliée. <strong>Le type de marché</strong> : en football, le 1X2 principal est généralement le marché le plus compétitif d'un match ; les paris annexes (buteurs, corners, scores exacts, handicaps) portent souvent des marges nettement supérieures. <strong>Le moment</strong> : loin du coup d'envoi, l'incertitude est plus grande et les marges plus larges ; elles se resserrent à l'approche du match. <strong>L'événement</strong> : sur certaines très grandes affiches, des opérateurs compressent temporairement leur marge à des fins commerciales. Le TRJ se mesure donc marché par marché, pas opérateur par opérateur.</p>
+
+<h2>Calculer en quelques secondes</h2>
+<p>Le <a href="/fr/app/">Calculateur de TRJ</a> applique cette méthode à n'importe quel nombre d'issues, accepte les trois formats de cotes et conserve vos relevés dans votre navigateur. Il permet aussi de <a href="/fr/guides/comparer-bookmakers-trj/">comparer les bookmakers</a> sur un même match, et de mesurer ce que les <a href="/fr/guides/trj-paris-combines/">paris combinés</a> coûtent réellement.</p>
   </article>
   <div class="cta">
     <h3>Calculez par vous-même le TRJ</h3>
@@ -108,13 +119,13 @@
   </div>
   <div class="more">
     <h3>À lire ensuite</h3>
-    <ul><li><a href="/fr/guides/trj-pari-sportif/">C'est quoi le TRJ d'un pari sportif ?</a></li><li><a href="/fr/guides/trj-paris-combines/">Pourquoi les paris combinés sont une mine d'or pour les bookmakers</a></li><li><a href="/fr/guides/formats-de-cotes/">Cotes décimales, fractionnaires, américaines : les trois principaux formats</a></li><li><a href="/fr/guides/comparer-bookmakers-trj/">Comparer les bookmakers par le TRJ plutôt que par les bonus</a></li><li><a href="/fr/guides/lexique-paris-sportifs/">Lexique des paris sportifs</a></li></ul>
+    <ul><li><a href="/fr/guides/trj-pari-sportif/">C'est quoi le TRJ d'un pari sportif ?</a></li><li><a href="/fr/guides/trj-paris-combines/">Pourquoi les paris combinés sont une mine d'or pour les bookmakers</a></li><li><a href="/fr/guides/formats-de-cotes/">Cotes décimales, fractionnaires, américaines : les trois principaux formats</a></li><li><a href="/fr/guides/comparer-bookmakers-trj/">Comparer les bookmakers par le TRJ plutôt que par les promotions qu'ils proposent</a></li><li><a href="/fr/guides/lexique-paris-sportifs/">Lexique des paris sportifs</a></li></ul>
   </div>
 </main>
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>© 2026 RTP — SIREN 103980686</span>
+      <span>© 2026 RTP · SIREN 103980686</span>
       <span><a href="/fr/privacy/">Confidentialité</a></span>
       <span><a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a></span>
       <span><a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dguides-fr">Disponible sur le Play Store</a></span>
