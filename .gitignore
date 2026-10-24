@@ -19,3 +19,8 @@ stats/node_modules/
 
 # Outil de déploiement du site (aucune dépendance prévue, par précaution)
 deploy/node_modules/
+
+# Outillage visuel (tools/) : dépendances, Chromium de Playwright, captures d'écran
+tools/node_modules/
+tools/.browsers/
+tools/shots/
