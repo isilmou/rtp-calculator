@@ -38,6 +38,7 @@
 </script>
 
 <script src="/assets/cmp.js"></script>
+<script src="/assets/share.js" defer></script>
 
 <!-- AdSense : script de chargement (sert aussi la bannière de consentement RGPD) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2303541955549784" crossorigin="anonymous"></script>
@@ -158,6 +159,7 @@ var T = {
   more: "mehr", less: "Weniger anzeigen"
 };
 
+T.copiedImg = "Bild in die Zwischenablage kopiert"; T.downloaded = "Bild heruntergeladen"; T.shareFail = "Teilen nicht möglich"; T.shareFile = "rtp";
 T.outcome_opt = "Tipp (optional)"; T.book_opt = "Buki (optional)"; T.odds_ph = "Quote";
 T.mode_new = "Neue Analyse"; T.mode_edit = "Analyse bearbeiten"; T.save_new = "Speichern"; T.save_edit = "Aktualisieren";
 
@@ -472,7 +474,7 @@ function duplicate(a){
   history.splice(i + 1, 0, copy);
   persist(); renderHistory(copy.id);
 }
-function shareA(a){
+function shareText(a){
   var r = calcRtp(a.outcomes);
   var parts = [];
   if(a.eventName) parts.push(a.eventName);
@@ -482,6 +484,22 @@ function shareA(a){
   var txt = parts.join(' · ') + ' · ' + T.shareVia;
   if(navigator.share){ navigator.share({text: txt}).catch(function(){}); }
   else if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ toast(T.copied); }); }
+}
+/* Partage en image (assets/share.js) : feuille de partage, presse-papiers ou téléchargement ; texte si le script manque. */
+function shareA(a){
+  if(!window.RTPShare){ shareText(a); return; }
+  var r = calcRtp(a.outcomes);
+  var vm = {
+    meta: [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '–',
+    eventName: a.eventName || '',
+    rtp: r ? {text: T.rtp + ' ' + fmtPct(r.rtp) + '%', color: rtpColor(r.rtp)} : null,
+    outcomes: a.outcomes.map(function(o){ return {label: o.label || '', odds: displayOdds(o), book: o.bookmaker || ''}; }),
+    signature: 'RTP Calculator', site: 'rtpcalculator.com'
+  };
+  var filename = T.shareFile + '-' + (a.date || new Date().toISOString().slice(0, 10)) + '.png';
+  RTPShare.render(vm).then(function(blob){
+    return RTPShare.deliver(blob, {filename: filename, toast: toast, T: T});
+  }).catch(function(){ toast(T.shareFail); });
 }
 var toastTimer;
 function toast(msg){

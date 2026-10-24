@@ -124,6 +124,32 @@ recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regén�
 
 ---
 
+## Partage en image depuis le calculateur web (24/10/2026)
+
+Constat de Julien (Firefox PC, Chrome S23) : « Partager » envoie du texte. **Pas une régression** :
+`shareA()` des 5 `*/app/index.html` n'a jamais produit qu'une ligne de texte (`navigator.share({text})`,
+sinon copie), identique depuis le premier commit du site (`6a11dd7`). Le site promettait pourtant l'image
+à 6 endroits (intro des 5 calculateurs, accueils FR/DE/PT) ; seule l'app Android le fait
+(`ShareableCard.kt` / `ShareImage.kt`, 1080 px).
+
+- **Choix** : rendu Canvas 2D maison dans `assets/share.js` (partagé par les 5 pages, comme `site.css` /
+  `cmp.js`), carte à 360 px dessinée à l'échelle 3 (1080 px), même structure que la carte d'historique et
+  que l'image de l'app (barre TRJ, méta + pastille, événement, blocs par 3, filet, logo + « RTP Calculator ·
+  rtpcalculator.com »). Écarté : html2canvas (dépendance, rendu infidèle des polices) ; capture DOM native
+  (inexistante). Polices Archivo demandées par `document.fonts.load()` avant le dessin (sinon police de repli).
+- **Canaux, dans l'ordre** : `navigator.share({files})` si `canShare` l'accepte (Chrome Android, Chrome/Edge
+  Windows, Safari) → `clipboard.write` image/png (Firefox ≥ 127, Chrome bureau) → téléchargement `<a download>`.
+  L'ancien partage texte reste en `shareText()`, utilisé seulement si `share.js` n'est pas chargé.
+- La page construit un modèle de vue déjà localisé (`meta`, `eventName`, `rtp{text,color}`, `outcomes`) :
+  `share.js` ne connaît ni les langues ni les formats de cotes. Chaînes ajoutées à `T` : `copiedImg`,
+  `downloaded`, `shareFail`, `shareFile` (préfixe du fichier : `trj` en FR, `rtp` ailleurs).
+- **État (24/10/2026 au soir)** : rendu et chaînes FR validés par Julien ; `assets/share.js` + les 5 pages patchés
+  (script `patch-share.mjs` du scratchpad, 3 ancrages à occurrence unique par page ; entre langues, seules les
+  chaînes et le drapeau décimal diffèrent). Rendu vérifié en Chromium headless (FR et DE, 5 cas chacun).
+  `sitemap.xml` inchangé (lastmod déjà au 24/10). **Déployé le 24/10/2026 au soir** à la demande de Julien (6 fichiers vérifiés en HTTPS, diff à blanc vide ensuite,
+  `manifest.json` à jour). Reste : tests de Julien (Firefox PC → presse-papiers, Chrome S23 et S9 → feuille de partage).
+
+---
 ## Relecture des textes du site par Julien (24/10/2026)
 
 Demande de Julien : relire lui-même **tous** les textes du site dans un Word, puis me le rendre

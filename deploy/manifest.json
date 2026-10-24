@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-24T19:15:01.054Z",
+ "generatedAt": "2026-10-24T19:42:18.239Z",
  "siteUrl": "https://rtpcalculator.com",
  "files": {
   "about/index.html": {
@@ -18,14 +18,19 @@
    "verifiedAt": "2026-10-23T21:40:03.436Z"
   },
   "app/index.html": {
-   "sha256": "9d3eec443db7dac145d990980cc413a729644ad0b288bcc340fc8781fc75d034",
-   "size": 26041,
-   "deployedAt": "2026-10-24T19:12:51.217Z"
+   "sha256": "4b5c35f5ad4a25328df579ac6027caa56575f795b9b39be87cb158bf74220643",
+   "size": 27121,
+   "deployedAt": "2026-10-24T19:42:08.715Z"
   },
   "assets/cmp.js": {
    "sha256": "a448e7c17fb44a53daf80662ff4204479615a10da3fc0154005f5a464f910844",
    "size": 9625,
    "deployedAt": "2026-10-24T19:12:53.439Z"
+  },
+  "assets/share.js": {
+   "sha256": "384dc7269e53d7b90858a461c5cc1e7a493942bb07c91ba36d2a412251cbd74b",
+   "size": 8672,
+   "deployedAt": "2026-10-24T19:42:06.342Z"
   },
   "assets/site.css": {
    "sha256": "45e42b97361132275b23d09304cc7281d105a4675805d37c4d7560e0317cf9b6",
@@ -33,9 +38,9 @@
    "deployedAt": "2026-10-24T19:12:55.648Z"
   },
   "de/app/index.html": {
-   "sha256": "e7287b6d6aed72e8648de008344a1c0f2896720413cd46fdf9bde5db9c1de416",
-   "size": 26496,
-   "deployedAt": "2026-10-24T19:12:57.972Z"
+   "sha256": "f3d5b0ddd81fa04b04225eee85bda876edeb6bd3f1a445cbd4599b9156feeb97",
+   "size": 27596,
+   "deployedAt": "2026-10-24T19:42:11.104Z"
   },
   "de/guides/buchmacher-marge-berechnen/index.html": {
    "sha256": "a9cea3f0e8bc5cb94c0beb11ff3abffeeea30dd1b3f028cd62af42f60fa16199",
@@ -93,9 +98,9 @@
    "deployedAt": "2026-10-24T19:13:23.109Z"
   },
   "es/app/index.html": {
-   "sha256": "edab968ad3f6e0b192ebcd36495e21bcde764f110ba01a48914eb1e5e9f6b248",
-   "size": 26538,
-   "deployedAt": "2026-10-24T19:13:25.406Z"
+   "sha256": "d81d5a1f240c6edb546e5d2a3b7b7bd68e983ccc1fc23efe73ace49634fb3980",
+   "size": 27630,
+   "deployedAt": "2026-10-24T19:42:13.439Z"
   },
   "es/guides/apuestas-combinadas-rtp/index.html": {
    "sha256": "2243dd678038964c714b441e4b56120236891ed1f6d0574db91853ed4e4c32a5",
@@ -148,9 +153,9 @@
    "deployedAt": "2026-10-24T19:13:48.447Z"
   },
   "fr/app/index.html": {
-   "sha256": "2fd4a9ec05e12fcb72846ed19ae4eada70e1ce0d9c863b8f32f227c4e3a23557",
-   "size": 26630,
-   "deployedAt": "2026-10-24T19:13:50.896Z"
+   "sha256": "b3ff2d8a0e25c0c3af9d3368fb0adeb5397567ec9481263f1a754946c865c0ab",
+   "size": 27729,
+   "deployedAt": "2026-10-24T19:42:15.840Z"
   },
   "fr/guides/calculer-marge-bookmaker/index.html": {
    "sha256": "09b83114c02159e7a70be7d5b4c0991f1d6921c63bc62ad7705e13a5453c046e",
@@ -268,9 +273,9 @@
    "deployedAt": "2026-10-24T19:14:33.136Z"
   },
   "pt/app/index.html": {
-   "sha256": "9999f791d65ad91074252d4f8d054381542e1cdd8de30efbc565b595fc6399b2",
-   "size": 26362,
-   "deployedAt": "2026-10-24T19:14:35.553Z"
+   "sha256": "76b2f81dd0a33a00a7662cb7f0aa23fb96e02865b8e19a1de7325a67d8873c71",
+   "size": 27477,
+   "deployedAt": "2026-10-24T19:42:18.239Z"
   },
   "pt/guides/apostas-multiplas-rtp/index.html": {
    "sha256": "66f8acb0a13d3b80d0091ba9c24a22afca97a59058c51c743642503bbb2f31b6",
