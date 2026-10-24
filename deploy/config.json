@@ -1,0 +1,7 @@
+{
+  "_comment": "Paramètres NON secrets. Hôte FTP, dossier distant et identifiants vivent dans ../_secrets/ (deploy.json + netrc), jamais ici.",
+  "siteUrl": "https://rtpcalculator.com",
+  "sourceDir": "../RTP Calculator - Website",
+  "exclude": ["*.zip", ".git"],
+  "protected": [".htaccess"]
+}

@@ -1,0 +1,301 @@
+{
+ "generatedAt": "2026-10-24T07:46:32.345Z",
+ "siteUrl": "https://rtpcalculator.com",
+ "files": {
+  "about/index.html": {
+   "sha256": "c69ae0f5541983c144fc9b304b1c530d55fc0e5f709e787852549273926a126f",
+   "size": 22632,
+   "verifiedAt": "2026-10-23T21:40:03.326Z"
+  },
+  "ads.txt": {
+   "sha256": "9e80d154f196caba28a4121957a5c89f9e8dd4bdc09461c9b62c5b8aebae5e79",
+   "size": 59,
+   "verifiedAt": "2026-10-23T21:40:03.358Z"
+  },
+  "app-ads.txt": {
+   "sha256": "113d3d04c2410eea2f1facd1e0b327674fa2fb6a416a5c2477f58c2984c9262e",
+   "size": 58,
+   "verifiedAt": "2026-10-23T21:40:03.436Z"
+  },
+  "app/index.html": {
+   "sha256": "3b50ede3c49a1647260b1eccada3d7f91e9138bfc56d5364eefb9528c8285929",
+   "size": 43023,
+   "verifiedAt": "2026-10-23T21:40:03.462Z"
+  },
+  "de/app/index.html": {
+   "sha256": "9283bebc7dcbeb9bca3851e661054ea34e9471dc0709fb0b6bdc66d771053f0a",
+   "size": 43211,
+   "verifiedAt": "2026-10-23T21:40:03.490Z"
+  },
+  "de/guides/buchmacher-marge-berechnen/index.html": {
+   "sha256": "26efc800093087dd7e4666097a54fa6b635d1460cab88ede58ebbe2bf544507c",
+   "size": 23415,
+   "verifiedAt": "2026-10-23T21:40:03.517Z"
+  },
+  "de/guides/buchmacher-vergleichen-rtp/index.html": {
+   "sha256": "40d185f94a76b4c8369ae29369d90d35405d9a0173d3d4ad15e9e676d6052a64",
+   "size": 24007,
+   "verifiedAt": "2026-10-23T21:40:03.544Z"
+  },
+  "de/guides/index.html": {
+   "sha256": "66c97870b3c582a0477bd2da912784065f13e8677c3a7f2d95054406edae6bcc",
+   "size": 20908,
+   "verifiedAt": "2026-10-23T21:40:03.570Z"
+  },
+  "de/guides/kombiwetten-rtp/index.html": {
+   "sha256": "c0b5f94b61fc826a9b26d1e94250f44c48b32c33ed23c5be1661c392919b59ad",
+   "size": 23676,
+   "verifiedAt": "2026-10-23T21:40:03.597Z"
+  },
+  "de/guides/quotenformate/index.html": {
+   "sha256": "9d90a3440277decc991c3f5914c64c7157d3dec22723401316bec995e29485c0",
+   "size": 24007,
+   "verifiedAt": "2026-10-23T21:40:03.627Z"
+  },
+  "de/guides/rtp-sportwette/index.html": {
+   "sha256": "a6e19a747b021539183ab8a04da9d759ec046ce5195f7f8d6de05564b4c0b902",
+   "size": 24776,
+   "verifiedAt": "2026-10-23T21:40:03.653Z"
+  },
+  "de/guides/wett-lexikon/index.html": {
+   "sha256": "667c40774504f93bfaab790b25c07a0a1f181fdfbdd736530ddd5a18ff78c5e3",
+   "size": 29712,
+   "verifiedAt": "2026-10-23T21:40:03.678Z"
+  },
+  "de/index.html": {
+   "sha256": "91f3f95e64a082304436831ca3709ffd30a39b8cabba776201503caa6c345c68",
+   "size": 37216,
+   "verifiedAt": "2026-10-23T21:40:03.702Z"
+  },
+  "de/privacy/index.html": {
+   "sha256": "ca87a5ab84af3ea2993cb1f47aa9b2d8f00420ca6cafce3b449600e0162a631b",
+   "size": 12635,
+   "verifiedAt": "2026-10-23T21:40:03.725Z"
+  },
+  "de/ueber-uns/index.html": {
+   "sha256": "24ae15bae57c2d5c6b53da8da5ed8ed143daf060d808bd3d964b38703e0dd97f",
+   "size": 23267,
+   "verifiedAt": "2026-10-23T21:40:03.748Z"
+  },
+  "es/acerca-de/index.html": {
+   "sha256": "c0f2bd6532e20c108da0aa0d5213b2d0b5ffe4417a904685d26b7947385c8a5d",
+   "size": 23313,
+   "verifiedAt": "2026-10-23T21:40:03.771Z"
+  },
+  "es/app/index.html": {
+   "sha256": "fd46cd32a31d4ec1a3f6b24737d1127cf327bcffd9452632f8a336ed4a6c5f34",
+   "size": 43274,
+   "verifiedAt": "2026-10-23T21:40:03.798Z"
+  },
+  "es/guides/apuestas-combinadas-rtp/index.html": {
+   "sha256": "a6f601d97ab560592ec199fdc2d9fb0a95e2ab7c11315c6d13a8af9d24641aaf",
+   "size": 23994,
+   "verifiedAt": "2026-10-23T21:40:03.822Z"
+  },
+  "es/guides/calcular-margen-casa-apuestas/index.html": {
+   "sha256": "6ff4fe640a96547a20ccada3b01f199176c9ba4253ce4dd21d8b3357181356f6",
+   "size": 23554,
+   "verifiedAt": "2026-10-23T21:40:03.847Z"
+  },
+  "es/guides/comparar-casas-apuestas-rtp/index.html": {
+   "sha256": "46c3c5ba9396cde437bc48c3c8578edef1d69f2a2be451e0899b2f0e2c4ed064",
+   "size": 24095,
+   "verifiedAt": "2026-10-23T21:40:03.873Z"
+  },
+  "es/guides/formatos-de-cuotas/index.html": {
+   "sha256": "b7dd14b6d25b55309c6d36507d7541b6e8da04dd69efb6a97a1829977a0be3ce",
+   "size": 24167,
+   "verifiedAt": "2026-10-23T21:40:03.904Z"
+  },
+  "es/guides/index.html": {
+   "sha256": "696821425907ef6f4e2577a14489a4ebb55bc784a5b929153827564d4399708f",
+   "size": 21067,
+   "verifiedAt": "2026-10-23T21:40:03.934Z"
+  },
+  "es/guides/lexico-apuestas-deportivas/index.html": {
+   "sha256": "fbfd8b08bcee46e29b48f73b1a8cc9a8188a5c7577f7182e7a8c94efaa3652b6",
+   "size": 30131,
+   "verifiedAt": "2026-10-23T21:40:03.964Z"
+  },
+  "es/guides/rtp-apuesta-deportiva/index.html": {
+   "sha256": "e9d28ae45a5b65327e246474a73c950f09d771a929ae2575f72ab64225bc2d52",
+   "size": 24765,
+   "verifiedAt": "2026-10-23T21:40:03.993Z"
+  },
+  "es/index.html": {
+   "sha256": "d852aa7d6f5b2283a723a5bd9955fa665078a3d9f32e74583525ce2d37e4bb54",
+   "size": 37651,
+   "verifiedAt": "2026-10-23T21:40:04.021Z"
+  },
+  "es/privacy/index.html": {
+   "sha256": "dccee4093c64faa7a0aa0ddd64ef6caaaa98982532f46924da2e4b696f4be4f6",
+   "size": 12917,
+   "verifiedAt": "2026-10-23T21:40:04.047Z"
+  },
+  "fr/a-propos/index.html": {
+   "sha256": "bd6306f2583b9048b64fa8977768ba11f38410327e085c0a72f442e2a4f3a29f",
+   "size": 23594,
+   "verifiedAt": "2026-10-23T21:40:04.076Z"
+  },
+  "fr/app/index.html": {
+   "sha256": "d16cc873de25ed97d2e8bb91dc37137a2a65849cd8ac50c0487adedb88aba23a",
+   "size": 43432,
+   "verifiedAt": "2026-10-23T21:40:04.105Z"
+  },
+  "fr/guides/calculer-marge-bookmaker/index.html": {
+   "sha256": "4c8cfd801f3e0ab21369d41d3642f18b62274b4c1569579133404545c03c2637",
+   "size": 23585,
+   "verifiedAt": "2026-10-23T21:40:04.130Z"
+  },
+  "fr/guides/comparer-bookmakers-trj/index.html": {
+   "sha256": "f6d25d0f2c733822d8035d8cdce99eb0907c72e8acd9e66066fe21d56939c4ba",
+   "size": 24230,
+   "verifiedAt": "2026-10-23T21:40:04.154Z"
+  },
+  "fr/guides/formats-de-cotes/index.html": {
+   "sha256": "fdaef204ecffbc75bb99a967e92076addf8e0413b05a8a57b3be12e24bfcb77f",
+   "size": 24273,
+   "verifiedAt": "2026-10-23T21:40:04.182Z"
+  },
+  "fr/guides/index.html": {
+   "sha256": "e2a9ba09b2d54855049385fe53a80a26a62fea9964bc03cb12d31aed871ee01c",
+   "size": 21157,
+   "verifiedAt": "2026-10-23T21:40:04.208Z"
+  },
+  "fr/guides/lexique-paris-sportifs/index.html": {
+   "sha256": "8b0190d0b1abd746a007b5039d847e2792bddeaeacf8c56bc461b72c433082ae",
+   "size": 30263,
+   "verifiedAt": "2026-10-23T21:40:04.236Z"
+  },
+  "fr/guides/trj-pari-sportif/index.html": {
+   "sha256": "5d7b9af0773c487d4ae410254d90c059c6311f2edba8c961c36ddf326a2122a4",
+   "size": 24882,
+   "verifiedAt": "2026-10-23T21:40:04.262Z"
+  },
+  "fr/guides/trj-paris-combines/index.html": {
+   "sha256": "867413fddb550bc2d65c8145bf9a54f3dbd12016b1de442132f82c4d727002c7",
+   "size": 24022,
+   "verifiedAt": "2026-10-23T21:40:04.290Z"
+  },
+  "fr/index.html": {
+   "sha256": "781eb14f90f081d2d62711871eff69cad8d144d76ff20433998e56beb3a46c93",
+   "size": 38480,
+   "verifiedAt": "2026-10-23T21:40:04.319Z"
+  },
+  "fr/privacy/index.html": {
+   "sha256": "ff0ed8f70d1ba415815b14c4a32bed52afeec90b0a0d2ddd105acfb661707908",
+   "size": 13520,
+   "verifiedAt": "2026-10-23T21:40:04.345Z"
+  },
+  "guides/betting-terms/index.html": {
+   "sha256": "f875e1adc8eb4d875a2009e6a3114af1a01bde19c6d9f34ab711a541af1cfb2b",
+   "size": 28817,
+   "verifiedAt": "2026-10-23T21:40:04.373Z"
+  },
+  "guides/calculate-bookmaker-margin/index.html": {
+   "sha256": "b9e42be1c47e84e7467d7cad1a09f9f4d0ffc7a755d42985931fdb87446f1309",
+   "size": 23034,
+   "verifiedAt": "2026-10-23T21:40:04.401Z"
+  },
+  "guides/compare-bookmakers-rtp/index.html": {
+   "sha256": "c25e93d47591187caf1eeab118b555c367d1ee2dbaed995bdb458e84bf6cd4c9",
+   "size": 23388,
+   "verifiedAt": "2026-10-23T21:40:04.428Z"
+  },
+  "guides/index.html": {
+   "sha256": "7983b79c8522cc07d2672ea80742c450bd8e0a676dbcafc230586b0c605c7b6c",
+   "size": 20664,
+   "verifiedAt": "2026-10-23T21:40:04.454Z"
+  },
+  "guides/odds-formats/index.html": {
+   "sha256": "1dce0dc6378b4daacdb8436412a8add7e48ca5252ebc7571054abeb6b3e40475",
+   "size": 23516,
+   "verifiedAt": "2026-10-23T21:40:04.490Z"
+  },
+  "guides/parlay-rtp/index.html": {
+   "sha256": "13a9f965d34245e1ad7732b30f84fa200c28b569d956dd7324cef9d81b352598",
+   "size": 23228,
+   "verifiedAt": "2026-10-23T21:40:04.513Z"
+  },
+  "guides/rtp-sports-betting/index.html": {
+   "sha256": "954244fa6538fbbe22a2c2c50f0a837adc56d82b8144eea2544c7cf44772cdc5",
+   "size": 24082,
+   "verifiedAt": "2026-10-23T21:40:04.536Z"
+  },
+  "index.html": {
+   "sha256": "207b3f3f32c8632a9974b1a3fc172fdf1c5381d6d733e3215886483d7c4ae994",
+   "size": 36555,
+   "verifiedAt": "2026-10-23T21:40:04.564Z"
+  },
+  "privacy/index.html": {
+   "sha256": "f4d7f2c1579c17299e63053116be1d42f7837ac10d4412ed7ced09aa24e9a477",
+   "size": 12397,
+   "verifiedAt": "2026-10-23T21:40:04.589Z"
+  },
+  "pt/app/index.html": {
+   "sha256": "fdf275de5941048f3d508a0cefaddedc710a52f9d088bdbc8f75a1219fc63abb",
+   "size": 43858,
+   "verifiedAt": "2026-10-23T21:40:04.618Z"
+  },
+  "pt/guides/apostas-multiplas-rtp/index.html": {
+   "sha256": "01fc309388c787085d88829fd245a7f3e510d513f9476fcd9653cf55df2f0c71",
+   "size": 24459,
+   "verifiedAt": "2026-10-23T21:40:04.644Z"
+  },
+  "pt/guides/calcular-margem-casa-apostas/index.html": {
+   "sha256": "25d265e03fdf5e4eead4cf6b6b62dead4e1d671ac38a8a2805b10b84eb575ca1",
+   "size": 24189,
+   "verifiedAt": "2026-10-23T21:40:04.671Z"
+  },
+  "pt/guides/comparar-casas-apostas-rtp/index.html": {
+   "sha256": "5e3fcb4bdd0a85be18d9115d3823015b54de656b263020b7ffc4b3cdc5cc3dbf",
+   "size": 24720,
+   "verifiedAt": "2026-10-23T21:40:04.698Z"
+  },
+  "pt/guides/formatos-de-odds/index.html": {
+   "sha256": "456fef8722cb0e9f5177d5d816149ac57dbb8b7781009ae66f72604963a4def6",
+   "size": 24703,
+   "verifiedAt": "2026-10-23T21:40:04.724Z"
+  },
+  "pt/guides/index.html": {
+   "sha256": "91d2a4237fa41bf9f76ce0f185bd12401ba76aa9d151d82d63ffc591fae11b4c",
+   "size": 21584,
+   "verifiedAt": "2026-10-23T21:40:04.751Z"
+  },
+  "pt/guides/lexico-apostas-esportivas/index.html": {
+   "sha256": "bfaa79a09d8651433d9fcdcdbbe716060c4dacc43c31fec157c1bbf8613ee002",
+   "size": 30410,
+   "verifiedAt": "2026-10-23T21:40:04.779Z"
+  },
+  "pt/guides/rtp-aposta-esportiva/index.html": {
+   "sha256": "b234b2aac3793343f4964f6bccb0d4f916968578ac765feb5f43fd8010b3284b",
+   "size": 25330,
+   "verifiedAt": "2026-10-23T21:40:04.805Z"
+  },
+  "pt/index.html": {
+   "sha256": "56d038fb3dbba65c0f07880666ee133f8d3d5cba7cf968a2b088415cc6f9a5fc",
+   "size": 38142,
+   "verifiedAt": "2026-10-23T21:40:04.833Z"
+  },
+  "pt/privacy/index.html": {
+   "sha256": "ed2df146071babaee2830b2972420488f7888774ced283a685fc8736f9456b82",
+   "size": 12925,
+   "verifiedAt": "2026-10-23T21:40:04.861Z"
+  },
+  "pt/sobre/index.html": {
+   "sha256": "e572b594636c36434c4f7f64f12f9d7d8d7a1660b11bcb897d4f088438f14a1f",
+   "size": 23821,
+   "verifiedAt": "2026-10-23T21:40:04.887Z"
+  },
+  "robots.txt": {
+   "sha256": "f928c59d5497240b25feb096be8f47b0ff99e1fab96a8fbec1b6d42919588abb",
+   "size": 71,
+   "deployedAt": "2026-10-24T07:46:32.343Z"
+  },
+  "sitemap.xml": {
+   "sha256": "734ede266c8a6bfb990a30c18d3c0bf55e0016ea35b8e8361b36fe9d5cb901b7",
+   "size": 4029,
+   "verifiedAt": "2026-10-23T21:40:04.937Z"
+  }
+ }
+}

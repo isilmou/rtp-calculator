@@ -16,3 +16,6 @@ _backup/
 _secrets/
 stats/data/
 stats/node_modules/
+
+# Outil de déploiement du site (aucune dépendance prévue, par précaution)
+deploy/node_modules/

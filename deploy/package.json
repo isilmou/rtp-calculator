@@ -1,0 +1,12 @@
+{
+  "name": "rtp-calculator-deploy",
+  "private": true,
+  "type": "module",
+  "description": "Déploiement du site rtpcalculator.com vers l'hébergement Infomaniak (FTP piloté par curl, vérification HTTPS)",
+  "scripts": {
+    "check": "node deploy.mjs check",
+    "init": "node deploy.mjs init",
+    "diff": "node deploy.mjs diff",
+    "push": "node deploy.mjs push"
+  }
+}

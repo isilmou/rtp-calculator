@@ -10,9 +10,9 @@ Développeur solo : Julien. Deux livrables sous cette racine.
 | `RTP Calculator - App` | Application Android publiée sur Google Play | Kotlin, Jetpack Compose, Gradle, Android Studio |
 | `RTP Calculator - Website` | Site rtpcalculator.com | Site statique multilingue, hébergement Infomaniak |
 | `stats/` | Collecte des statistiques Google (AdMob, GA4, Search Console, Play), lecture seule | Node 24, `googleapis` |
+| `deploy/` | Déploiement du site vers Infomaniak (règle 8, § 6, § 8) | Node 24, `curl` |
 
-Les noms de dossiers contiennent des espaces : encadrer systématiquement les chemins
-de guillemets dans les commandes PowerShell.
+Les noms de dossiers contiennent des espaces : toujours encadrer les chemins de guillemets.
 
 ## 2. Règles de travail — non négociables
 
@@ -40,6 +40,8 @@ de guillemets dans les commandes PowerShell.
      remontant hors de la racine, pas de script qui ouvre des fichiers hors périmètre.
    - Sauvegardes Git locales (`git bundle`) dans `C:\RTP-Calculator\_backup\` (ignoré par
      Git), jamais dans le scratchpad.
+8. **Déploiement du site uniquement sur demande explicite de Julien**, diff montré avant tout
+   envoi. `deploy/` ne supprime jamais rien à distance et n'envoie `.htaccess` que sur drapeau.
 
 ## 3. Journal de bord — `journal.md`
 
@@ -126,16 +128,14 @@ Studio. Ne jamais demander l'ajout de ce dossier en répertoire supplémentaire,
 copier le keystore dans `C:\RTP-Calculator\`, ne jamais le commiter, ne jamais écrire son
 mot de passe dans un fichier du dépôt.
 
-Historique : le keystore était auparavant sur Google Drive ; en streaming, la signature
-échouait avec `block not properly padded`. Le stockage local supprime ce problème.
-
 ## 6. Site web — contraintes connues
 
 - **`.htaccess` / Infomaniak** : le proxy masque `%{HTTPS}` (toujours lu `off`). Les
   conditions de redirection doivent utiliser `X-Forwarded-Proto`, et les cibles doivent
   être **absolues** — une cible relative est reconstruite en `http://` derrière le proxy.
-- **FTP** : FileZilla sur le port 21 sans TLS gèle fréquemment. Contournement fiable :
-  upload via navigateur puis extraction côté serveur dans Infomaniak Manager.
+- **Offre Starter** : FTP en clair port 21 seulement, ni TLS ni SSH. Déploiement par `deploy/`
+  (curl, `manifest.json` versionné = état de la production, vérification HTTPS, texte normalisé
+  en LF car `core.autocrlf=true` livre du CRLF). Secours : ZIP + extraction dans le Manager.
 - **GA4** (`G-WD1V10FW80`) : la chaîne Consent Mode est critique. Sans CMP, la collecte est
   nulle — signature `gcs=G100` dans les requêtes réseau. Si AdSense est un jour approuvé,
   désactiver la bannière RGPD autonome pour éviter le conflit de double bandeau.
@@ -155,8 +155,9 @@ Historique : le keystore était auparavant sur Google Drive ; en streaming, la s
   des utilisateurs (noms de champs = clés JSON). Ne jamais les retirer ni les remplacer par une
   règle globale, qui ramènerait le score d'obscurcissement à zéro.
 - Toute modification du `.htaccess` de production
-- `_secrets/` (client OAuth et jeton Google) : lecture interdite à Claude Code par
-  `settings.json`, jamais commité. Seuls les scripts de `stats/` y accèdent.
+- `_secrets/` (client OAuth et jeton Google ; identifiants FTP `netrc` et `deploy.json`) :
+  lecture interdite à Claude Code par `settings.json`, jamais commité. Seuls les scripts de
+  `stats/` et `deploy/` y accèdent.
 
 ## 8. Commandes utiles
 
@@ -166,13 +167,14 @@ Historique : le keystore était auparavant sur Google Drive ; en streaming, la s
 .\gradlew.bat assembleRelease        # APK release — vérifier le comportement post-R8
 .\gradlew.bat bundleRelease          # AAB (la signature reste faite via Android Studio)
 .\gradlew.bat clean                  # en cas de cache Gradle incohérent
+
+# Site (règle 8) : check = connexion FTP, init = relecture HTTPS + manifeste, diff = dry-run
+npm --prefix "C:\RTP-Calculator\deploy" run check|init|diff|push -- --apply [--only=<chemins>] [--htaccess] [--active]
 ```
 
-Aucun JDK dans le PATH du shell Claude Code. Préfixer les commandes Gradle de
-`JAVA_HOME="C:/Program Files/Android/Android Studio/jbr"` (JDK embarqué d'Android Studio) et
-appeler `adb` par son chemin complet dans le SDK (`sdk.dir` de `local.properties`,
-`platform-tools/adb.exe`). Ces deux chemins sont hors périmètre : autorisation donnée par Julien
-le 19/09/2026, en lecture et exécution uniquement, sans écriture.
+Aucun JDK dans le PATH : préfixer Gradle de `JAVA_HOME="C:/Program Files/Android/Android Studio/jbr"`
+et appeler `adb` par son chemin complet (`sdk.dir` de `local.properties` + `platform-tools/adb.exe`).
+Ces deux chemins hors périmètre sont autorisés par Julien (19/09/2026) en lecture et exécution seules.
 
 ## 9. Statistiques Google
 
@@ -184,8 +186,7 @@ npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --all           # histori
 npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | ga4 | gsc | play
 ```
 
-Résultats dans `stats/data/AAAA-MM-JJ/<source>.json` (+ `_status.json`, `latest.json`),
-non versionnés. Identifiants non secrets dans `stats/config.json`.
+Résultats non versionnés dans `stats/data/AAAA-MM-JJ/` ; identifiants non secrets dans `stats/config.json`.
 - Projet Google Cloud `rtp-calculator-stats`, **sans compte de facturation** : ne jamais en
   associer un, ne jamais saisir de carte. Toutes les API utilisées sont gratuites.
 - Jeton OAuth auto-renouvelé. Relancer `npm run auth` (navigateur, compte
@@ -193,8 +194,7 @@ non versionnés. Identifiants non secrets dans `stats/config.json`.
 - Données en retard de 1 à 3 jours selon la source ; GA4 minoré par le Consent Mode ;
   vitals Play vides tant que l'app reste sous le seuil d'utilisateurs de Google.
 
-## 10. Chantier prioritaire en cours
+## 10. Chantier en cours
 
-Obscurcissement DEX (échéance Play février 2027) : traité par la 2.1.1, publiée le 19/09/2026
-avec R8 actif. Dernier contrôle en attente : disparition de l'alerte dans la Play Console sous
-48 h. Prochain chantier à définir avec Julien ; candidats et état : voir `journal.md`.
+Plan d'amélioration validé le 23/10/2026 (`stats/reports/2026-10-23-analyse-globale.md`) ;
+ordre d'exécution et état courant dans `journal.md`.
