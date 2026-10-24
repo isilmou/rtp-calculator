@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, non déployé** ; section dédiée ci-dessous) ; ensuite étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; ensuite étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -155,7 +155,7 @@ pour mise en ligne. Outil créé dans `tools/copy/` (non commité) :
   rendu Word non vérifié ici, Julien ouvrira le fichier.
 - `CLAUDE.md` mis à jour le 24/10/2026 (validé par Julien) : § 1 `tools/`, § 8 commandes `copy:*`.
 
-**Retour du Word (24/10/2026, soir) : fait, commité `2d62671` (sitemap inchangé, lastmod déjà au 24/10), non déployé.** Plan validé
+**Retour du Word (24/10/2026, soir) : fait, commité `2d62671`, sitemap inchangé (lastmod déjà au 24/10), déployé le 24/10 au soir (57 fichiers, tous vérifiés en HTTPS, `diff` ensuite vide).** Plan validé
 (`~/.claude/plans/proud-kindling-riddle.md`), exécuté en 4 étapes validées une à une :
 
 1. `copy:apply --apply` : 13 textes FR relus par Julien, 39 emplacements, 8 fichiers (garde OK).
@@ -182,8 +182,8 @@ Contrôles : 57 fichiers modifiés (+588/−531), 0 « — », `&mdash;` ou « �
 contrôle : 55/60 pages au même nombre d'emplacements, les 5 guides passent de 43 à 52 ;
 captures locales (`tools/shots/2026-10-24-2105-relecture`, `…-2107-relecture-fr`) relues.
 Scripts de remplacement en scratchpad (non versionnés). **`snapshot.json` du 24/10 est périmé** :
-réextraire avant toute nouvelle relecture Word. Reste à faire : commit par Julien →
-`node tools/sitemap.mjs` (lastmod = dernier commit) → déploiement sur sa demande (diff d'abord).
+réextraire avant toute nouvelle relecture Word. Chaîne commit → sitemap → déploiement faite le 24/10 ;
+`git push` à faire par Julien.
 Règle typographique « aucun tiret long » ajoutée à `CLAUDE.md` § 6 le 24/10/2026 (validée par Julien).
 
 ---
