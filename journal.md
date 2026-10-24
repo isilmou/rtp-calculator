@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026 ; prochaine : étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. **Intercalé le 24/10 : présentation du site** (audit fait, lots 1a → 6 à exécuter, section dédiée ci-dessous) ; ensuite étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -121,6 +121,114 @@ d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git
 un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
 `gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
 recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
+
+---
+
+## Présentation du site : audit et chantier (24/10/2026)
+
+Rapport : `stats/reports/2026-10-24-audit-presentation-site.md` (constats mesurés, décisions,
+lots). À retenir :
+
+- **Défauts confirmés par mesure** (copie locale = production) : gouttière du héros perdue
+  (`.hero{padding:72px 0 84px}` écrase `.wrap`, H1 à x = 0 sur mobile, 24 px à gauche des H2 sur
+  desktop) ; section confidentialité de l'accueil centrée (H2 à x = 315 contre 134) ; défilement
+  horizontal de l'accueil à 375/768 px (+ 24 px, cause probable `.demo-wrap::before`) et du guide
+  « formats de cotes » (tableau, 422 px) ; menu mobile avec 3 entrées hors écran sans indice ;
+  en-tête mobile sur 3 rangées (112–123 px) ; boutons longs sur 2 lignes alignés à gauche ;
+  axe : 44 contrastes en défaut, tous dus à `--text-3:#666` (3,44:1), 18 liens repérables par la
+  couleur seule, graisse 400 non chargée. Infirmé : troncature des placeholders date/heure à 375 px.
+- **Décisions de Julien** : feuille de style partagée `assets/site.css` + `assets/cmp.js`
+  (écarté : inline propagé par script) ; menu mobile sur deux lignes (écarté : hamburger) ;
+  boutons en casse de phrase, graisse 600.
+- **Lot 1a fait le 24/10/2026, local, non déployé, non commité** : `assets/site.css` (32 Ko,
+  11 règles communes puis 5 sections préfixées `body.p-home|p-app|p-guides|p-article|p-privacy`,
+  `:root` → `body.p-x`, `html` → `html:has(body.p-x)`) et `assets/cmp.js` (variante PT du script,
+  qui contient toutes les langues) ; les 55 pages reçoivent `<link rel="stylesheet">`,
+  `<body class="p-x">` et `<script src="/assets/cmp.js">` (pas sur `/privacy/`, sans GA4). HTML
+  total 1 439 → 670 Ko. Script d'extraction : scratchpad (refus si un bloc n'est pas trouvé
+  exactement une fois ; 0 erreur). **Preuve** : 162 captures avant/après identiques au pixel
+  près sur 54 pages × 3 largeurs ; `/` (racine EN, non capturée « avant » : Git Bash transforme
+  `/` en chemin Windows, utiliser `MSYS_NO_PATHCONV=1`) identique à la production ; texte des
+  pages identique hors blocs extraits. Deux écarts de 0,07–0,09 % (`/privacy/`, `/de/privacy/`
+  à 768 px) étaient du bruit de rendu d'une capture isolée : recaptures et production identiques.
+  `npm --prefix deploy run diff` : 57 fichiers à envoyer (55 HTML + 2 assets), 9 inchangés.
+  Après déploiement, relancer `node tools/sitemap.mjs` (lastmod des 55 pages).
+- **Lot 1b fait le 24/10/2026, local, non déployé, non commité.** `site.css` réécrit (21 Ko,
+  267 lignes) : jetons (`--gutter` 24/20 px, `--max-wide` 1060, `--max-read` 720, `--max-app` 760,
+  `--text-3:#8A8A8A`, `--border-strong:#6A6A6A`), base, en-tête collant partout, **un seul système
+  de boutons** (`.btn`, `.play-btn`, `.btn-save`, `.cta a` : 44 px mini, 15 px casse de phrase
+  graisse 600, centrés, pleine largeur ≤ 560 px), pied unique ; puis sections par type (guides,
+  index des guides et à-propos fusionnés). Corrections : graisse 400 chargée (lien Google Fonts
+  des 55 pages), liens soulignés dans le texte, aucune taille < 11 px, halo du héros limité
+  (`inset:-48px 0`) → plus de défilement horizontal de l'accueil, bouton « supprimer » désactivé
+  en `rgba(255,255,255,.3)` (était `#4DFFFFFF`, ARGB Android → **cyan**), avertissement 18+ ajouté
+  aux pieds du calculateur et de la confidentialité (10 pages, texte copié de l'accueil de la
+  langue), boutons du bandeau cookies alignés (`cmp.js`). **axe : 0 violation** de contraste et
+  de lien (44 + 18 avant) ; reste `heading-order` sur `/privacy/` (lot 4).
+  **Régression attrapée par les mesures** : `main{padding:36px 0 10px}` (guides, à-propos,
+  confidentialité) l'emportait, une fois préfixé, sur la gouttière de `.wrap` porté par le même
+  `<main>` → contenu collé au bord. Corrigé en padding vertical seul. **Piège durable** (même
+  mécanisme que le héros, A0) : ne jamais écrire `padding:X 0 Y` sur un élément qui porte aussi
+  `.wrap` ; candidat `CLAUDE.md` § 6. Planches 1a → 1b : `tools/shots/2026-10-24-1350-compare/`
+  (différences attendues : boutons, graisse, pieds, couleurs). Scripts du lot : scratchpad
+  (`build-1b.mjs` reconstruit `site.css` depuis la version 1a avec garde-fous ; `apply-1b.mjs`
+  polices + pieds + cmp.js).
+- **Lot 2 fait le 24/10/2026, local, non déployé, non commité** (CSS seul, section `.p-home`
+  de `site.css`) : gouttière du héros rétablie (`padding-top/bottom` au lieu de `padding:72px 0
+  84px`, desktop et mobile), section confidentialité ramenée sur la grille des autres sections
+  (`.legal .max{max-width:var(--max)}`, lecture limitée par `.legal p{max-width:76ch}`), légende
+  de la carte démo alignée à gauche sous 820 px. Mesure : H1 et les 3 H2 à la même abscisse aux
+  3 largeurs (20 / 24 / 134 px), sur `/`, `/fr/`, `/de/`. Les boutons héros empilés pleine
+  largeur venaient déjà du lot 1b. Kickers et H2 raccourcis = copie → lot 6.
+  Planches 1b → 2 : `tools/shots/2026-10-24-1354-compare/`.
+- **Lot 3 fait le 24/10/2026, local, non déployé, non commité** (bloc mobile de l'en-tête dans
+  `site.css`) : menu sur deux lignes à retour automatique (plus de défilement masqué, 0 entrée
+  hors écran sur FR/DE/EN à 360 et 375 px), logo compacté (13 px, sans interlettrage) et
+  sélecteur de langue 30×30 px pour tenir sur la ligne du logo à 360 px. **Décision** : en-tête
+  **non collant sous 820 px** (il mesure 106–108 px, soit 14 % d'un écran de 740 px ; collant,
+  il aurait mangé l'écran à chaque défilement). Réversible en retirant
+  `header.site{position:static}` du bloc mobile. Hauteur mesurée : 106–108 px à 360/375,
+  77 px à 768 (avant : 112–123 px avec 3 entrées cachées).
+- **Lot 5 fait le 24/10/2026, local, non déployé, non commité** : les 10 tableaux (2 guides × 5
+  langues : formats de cotes, paris combinés) enveloppés d'un `<div class="tbl-wrap">` à
+  `overflow-x:auto` avec ombres de bord (dégradés `background-attachment: local/scroll`),
+  cellules en `nowrap`. Mesure : plus aucun défilement horizontal de page à 360/375 px sur les
+  4 pages testées (FR ×2, DE, EN) ; c'était le dernier du site.
+- **Lot 4 fait le 24/10/2026, local, non déployé, non commité** : calculateur — actions
+  d'historique et bouton de tri à 44 px, segments EU/UK/US et bouton supprimer à la hauteur du
+  champ (38 px, supprimer élargi à 44 px), « Ajouter une issue » à 38 px avec bordure visible,
+  H2 « Historique » et H2 du texte SEO à 19 px, placeholders date/heure avec points de suspension
+  sous 340 px. Confidentialité (5 pages) : les 8 sections numérotées de la politique passent de
+  `<h3>` à `<h2 class="sec">` au rendu identique (ordre des titres h1 → h2 → h3 ; les 3
+  sous-sections de « Suppression des données » restent en h3). Au passage, les 10 conteneurs de
+  tableau du lot 5 reçoivent `tabindex="0"` (axe `scrollable-region-focusable`). **axe : 0
+  violation** sur les 8 pages de référence × 2 largeurs.
+- **Lot 6 fait le 24/10/2026, local, non déployé, non commité.** Copie FR validée par Julien
+  (24/10) puis propagée EN/ES/DE/PT-BR par script à comptage exact (95 remplacements) :
+  boutons « Ouvrir le calculateur » (accueil + 35 pages guides) et « Télécharger l'application »
+  (accueil, 30 articles, 5 calculateurs ; les pieds de page ES/PT « Descargar la versión Android »
+  / « Baixar a versão Android » sont des liens de pied, pas des boutons : inchangés) ; accueil :
+  kicker « Application » + H2 « Sur navigateur ou sur Android », lede « Versions navigateur et
+  Android gratuites &amp; sans inscription. », kicker « Guides » + H2 « Comprendre le TRJ et les
+  cotes ». **Julien a refusé** de toucher la lede de la section guides : conservée. Traductions
+  des H2 : « In your browser or on Android » / « Understanding RTP and odds », « En el navegador
+  o en Android » / « Entender el RTP y las cuotas », « Im Browser oder auf Android » / « RTP und
+  Quoten verstehen », « No navegador ou no Android » / « Entender o RTP e as odds ».
+  Réserve notée : les deux H2 d'accueil avaient un léger poids SEO ; à surveiller au prochain
+  bilan Search Console.
+- **Chantier présentation terminé en local le 24/10/2026** (lots 1a → 6). Reste : validation
+  sur devices (S9, S23+) par Julien, `node tools/sitemap.mjs` (lastmod des 55 pages), commit,
+  puis déploiement sur demande (`npm --prefix deploy run diff` : 57 fichiers).
+  (corrections transversales) → 2 accueil → 3 menu → 5 guides → 4 calculateur → 6 copie (règle 3).
+  Chaque lot : diff + planche avant/après + validation, déploiement sur demande.
+- **Outillage `tools/`** (Playwright, axe-core, serveur local, comparaison d'images) : détail § 4
+  du rapport. Chromium confiné dans `tools/.browsers/` (719 Mo, ignoré par Git). Les captures
+  bloquent GA4/AdSense et pré-refusent le consentement : aucune session comptée en production.
+  Référence avant travaux : `tools/shots/2026-10-24-1224-local/`, `…-1225-prod/`, `…-1226-a11y/`.
+  Commandes : `npm --prefix tools run shots [-- --url=https://rtpcalculator.com --pages=… --widths=… --label=…]`,
+  `npm --prefix tools run shots -- --compare <A> <B>`, `npm --prefix tools run a11y`.
+  **`CLAUDE.md` à mettre à jour** (proposé à Julien, en attente) : § 1 `tools/` (sitemap + captures +
+  axe), § 8 commandes `tools/`.
 
 ---
 
