@@ -92,7 +92,7 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
      (recrawl des 5 URL, indexation des calculateurs, disparition des variantes http/www du
      rapport Pages).
    - 3d fait le 24/10/2026 : `CLAUDE.md` § 1 (`tools/`), § 6 (sitemap généré), § 9 (`inspect`).
-     **Étape 3 terminée.** Reste : commit par Julien. `CLAUDE.md` atteint 205 lignes : à condenser
+     **Étape 3 terminée et commitée (`6b662e7`).** `CLAUDE.md` atteint 205 lignes : à condenser
      à la prochaine retouche (candidat : § 5 « pièges de release » vers `.claude/rules/`).
 4. **Fiche Play** : lever l'ambiguïté casino dès le titre, 5 langues. Julien doit coller le
    texte actuel de la fiche.
