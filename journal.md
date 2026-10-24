@@ -216,9 +216,14 @@ lots). À retenir :
   Quoten verstehen », « No navegador ou no Android » / « Entender o RTP e as odds ».
   Réserve notée : les deux H2 d'accueil avaient un léger poids SEO ; à surveiller au prochain
   bilan Search Console.
-- **Chantier présentation terminé en local le 24/10/2026** (lots 1a → 6). Reste : validation
-  sur devices (S9, S23+) par Julien, `node tools/sitemap.mjs` (lastmod des 55 pages), commit,
-  puis déploiement sur demande (`npm --prefix deploy run diff` : 57 fichiers).
+- **Chantier présentation terminé et déployé le 24/10/2026** (lots 1a → 6), à la demande de
+  Julien : commits `48765d1` (outillage + audit) et `da63d6c` (site), puis `push --apply` :
+  57 fichiers (55 HTML + 2 assets) envoyés et vérifiés en HTTPS, diff à blanc vide ensuite,
+  `manifest.json` à jour (66 fichiers en production). Sitemap inchangé (lastmod déjà au 24/10).
+  Captures de production comparées à la copie locale après envoi : 8 sur 8 identiques au pixel
+  près (`/`, `/fr/`, `/fr/app/`, `/fr/guides/formats-de-cotes/` à 375 et 1280 px).
+  Reste : test sur devices S9 / S23+ par Julien ; `CLAUDE.md` § 1, § 6, § 8 (proposé, en attente) ;
+  surveiller au prochain bilan Search Console l'effet des deux H2 d'accueil modifiés.
   (corrections transversales) → 2 accueil → 3 menu → 5 guides → 4 calculateur → 6 copie (règle 3).
   Chaque lot : diff + planche avant/après + validation, déploiement sur demande.
 - **Outillage `tools/`** (Playwright, axe-core, serveur local, comparaison d'images) : détail § 4
