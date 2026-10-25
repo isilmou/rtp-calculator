@@ -1,0 +1,55 @@
+Der RTP-Rechner ist ein einfaches, kostenloses Werkzeug, das den wahren Wert jeder Sportwette sichtbar macht. Geben Sie die Quoten für jeden Ausgang ein und erhalten Sie sofort den RTP (Auszahlungsquote), den Anteil der Einsätze, den eine Wette theoretisch an die Spieler zurückgibt. Der Rest ist die Marge des Buchmachers.
+
+WAS IST DER RTP?
+
+Die Auszahlungsquote (RTP) ist der Anteil des Geldes, den ein Wettmarkt an die Spieler zurückgibt. Sie ist die Kehrseite der Buchmacher-Marge: Je höher der RTP, desto größer die Wahrscheinlichkeit, eine attraktive Quote zu finden.
+
+Der RTP-Rechner übernimmt die Berechnung für Sie, in Sekundenschnelle.
+
+SO FUNKTIONIERT ES
+
+• Erstellen Sie eine Wettanalyse und geben Sie die Quoten für jeden möglichen Ausgang ein.
+
+• Geben Sie jede Quote in dem Format ein, das Ihr Buchmacher anzeigt: dezimal (EU), Bruch (UK) oder amerikanisch (US). Auf Wunsch rechnen Sie sie mit einem Tippen in Ihr bevorzugtes Format um.
+
+• Der RTP wird sofort berechnet, mit einer Farbanzeige (von Rot bis Grün), um das Niveau der Quoten auf einen Blick einzuschätzen.
+
+• Speichern, bearbeiten, duplizieren oder teilen Sie Ihre Analysen jederzeit.
+
+WICHTIGSTE FUNKTIONEN
+
+• Sofortige RTP-Berechnung für jede Sportwette.
+
+• Alle Quotenformate: dezimal (EU), Bruch (UK) und amerikanisch (US), mit Umrechnung per Tippen.
+
+• Beliebig viele Ausgänge: ideal für 1X2, Ergebniswetten und komplexe Märkte.
+
+• Duplizieren Sie eine Analyse mit einem Tippen, um dieselbe Wette bei mehreren Buchmachern zu vergleichen und die beste Auszahlung zu finden.
+
+• Teilen Sie Ihre Wettanalysen als Bild.
+
+• Speichern und bearbeiten Sie Ihren gesamten Wettverlauf.
+
+• Eine dunkle, schnelle und aufgeräumte Oberfläche für Wettende.
+
+• 100 % offline: Ihre Daten bleiben auf Ihrem Gerät. Kein Konto, keine Anmeldung.
+
+FÜR WEN?
+
+• Sportwettende, die die mathematische Realität ihrer Wetten einschätzen möchten, bevor sie sie platzieren.
+
+• Wettende, die die Quoten verschiedener Buchmacher zum selben Event vergleichen.
+
+• Alle, die ihre Wetten bewusster auswählen möchten und, wenn schon kein langfristiger Gewinn, zumindest weniger verlieren wollen.
+
+WARUM DEN RTP-RECHNER NUTZEN?
+
+Ein hoher RTP bedeutet, dass die Buchmacher auf diesem Markt eine geringere Marge nehmen: Je näher der RTP an 100 % liegt, desto besser stehen die Chancen, eine wirklich attraktive Quote zu finden, weil sie falsch bewertet ist (im Fachjargon ein Value Bet).
+
+Den RTP vor einer Wette zu prüfen, ist daher eine grundlegende Disziplin für jeden ernsthaften Wettenden und für alle, die ihre Bankroll schützen möchten.
+
+Der RTP-Rechner ist in erster Linie eine Entscheidungshilfe. Er ermutigt nicht zum Glücksspiel und verspricht keine Gewinne. Spielen Sie verantwortungsbewusst und nur, wenn Sie in Ihrem Land volljährig sind.
+
+Auch im Browser verfügbar, ohne Installation: rtpcalculator.com
+
+Laden Sie den RTP-Rechner herunter und bewerten Sie die Quoten Ihrer Wetten!

@@ -1,0 +1,55 @@
+RTP Calculator is a simple, free tool that reveals the true value of any sports bet. Enter the odds for each outcome and instantly get the RTP (Return to Player), the percentage of stakes a bet theoretically returns to players, the rest being the bookmaker's margin.
+
+WHAT IS RTP?
+
+Return to Player (RTP) is the share of the money a betting market gives back to players. It is the flip side of the bookmaker's margin: the higher the RTP, the greater the chance of finding an attractive price.
+
+RTP Calculator does the maths for you in an instant.
+
+HOW IT WORKS
+
+• Create a bet analysis and enter the odds for every possible outcome.
+
+• Enter each price in the format your bookmaker displays: decimal (EU), fractional (UK) or American (US). Convert them to your preferred format in one tap if you wish.
+
+• The RTP is calculated instantly with a colour indicator (red to green) so you can judge the odds at a glance.
+
+• Save, edit, duplicate or share your analyses at any time.
+
+KEY FEATURES
+
+• Instant RTP calculation for any sports bet.
+
+• All odds formats supported: decimal (EU), fractional (UK) and American (US), with one-tap conversion.
+
+• As many outcomes as you need: ideal for 1X2, correct score and complex markets.
+
+• Duplicate an analysis in one tap to compare the same bet across several bookmakers and find the best return.
+
+• Share your bet analyses as an image.
+
+• Save and edit your entire betting history.
+
+• A dark, fast, uncluttered interface built for bettors.
+
+• 100% offline: your data stays on your device. No account, no sign-up.
+
+WHO IS IT FOR?
+
+• Sports bettors who want to assess the mathematical reality of their bets before placing them.
+
+• Bettors comparing odds from different bookmakers on the same event.
+
+• Anyone who wants to choose their bets more carefully and, failing to come out ahead in the long run, to lose less.
+
+WHY USE RTP CALCULATOR?
+
+A high RTP means bookmakers are taking a smaller margin on the market: the closer the RTP gets to 100%, the better the chances of finding a genuinely attractive price because it is mispriced (what the jargon calls a value bet).
+
+Checking the RTP before placing a bet is therefore a fundamental discipline for any serious bettor, and for anyone looking to protect their bankroll.
+
+RTP Calculator is first and foremost a decision-support tool. It does not encourage gambling and promises no winnings. Gamble responsibly and only if you are of legal age in your country.
+
+Also available in your browser, no installation needed: rtpcalculator.com
+
+Download RTP Calculator and start assessing the odds on your bets!

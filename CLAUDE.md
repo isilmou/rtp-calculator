@@ -104,9 +104,10 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
    build de release. Le S9 est le garde-fou sur les vieilles API et la mémoire.
 2. Commit Git puis `git push` (par moi).
 3. AAB signé via l'assistant Android Studio.
-4. Play Console. **Publication gérée activée** : après approbation, la mise en ligne exige
-   un clic explicite sur « Publier les modifications ». Ne jamais considérer une release
-   comme live avant ce clic.
+4. Play Console, **publication gérée** : après approbation, la mise en ligne exige un clic explicite
+   sur « Publier les modifications » ; rien n'est live avant ce clic.
+5. **Fiche Play** : source dans `RTP Calculator - App/play/listings/<langue>/` (title/short/full.txt).
+   Modifier les fichiers d'abord, puis la console ; vérifier par `snapshot -- --source=listing`.
 
 **Tests de release** : pièges vérifiés (variante debug sans R8, signatures incompatibles,
 migration de données, appareils de test AdMob) dans `.claude/rules/android-release.md`,
@@ -182,8 +183,7 @@ Avant toute analyse, Claude lance lui-même la collecte, sans rien demander à J
 ```powershell
 npm --prefix "C:\RTP-Calculator\stats" run snapshot                    # 28 derniers jours
 npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --all           # historique complet
-npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | ga4 | gsc | play
-npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=inspect # indexation par URL, hors défaut
+npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | ga4 | gsc | play ; hors défaut : inspect (indexation par URL), listing (fiche Play)
 ```
 
 Résultats non versionnés dans `stats/data/AAAA-MM-JJ/` ; identifiants non secrets dans `stats/config.json`.

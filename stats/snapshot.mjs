@@ -6,6 +6,7 @@
 //   npm run snapshot -- --all              depuis config.historyStart (GSC : 16 mois max)
 //   npm run snapshot -- --source=gsc       une seule source : admob | ga4 | gsc | play
 //   npm run snapshot -- --source=inspect   état d'indexation par URL (hors collecte par défaut : 59 appels)
+//   npm run snapshot -- --source=listing   texte de la fiche Play, toutes langues (hors collecte par défaut)
 //
 // Une source en échec n'arrête pas les autres : l'erreur est consignée dans _status.json.
 
@@ -19,6 +20,7 @@ import { fetchGa4 } from './fetch/ga4.mjs';
 import { fetchGsc } from './fetch/gsc.mjs';
 import { fetchPlay } from './fetch/play.mjs';
 import { fetchInspect } from './fetch/inspect.mjs';
+import { fetchListing } from './fetch/listing.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONFIG_PATH = path.join(__dirname, 'config.json');
@@ -42,6 +44,7 @@ const SOURCES = {
   gsc: (auth, cfg, opts) => fetchGsc(auth, cfg, { ...opts, startDate: maxYMD(opts.startDate, addDays(opts.endDate, -485)) }),
   play: fetchPlay,
   inspect: fetchInspect,
+  listing: fetchListing,
 };
 const DEFAULT_SOURCES = ['admob', 'ga4', 'gsc', 'play'];
 const wanted = args.source ? String(args.source).split(',') : DEFAULT_SOURCES;

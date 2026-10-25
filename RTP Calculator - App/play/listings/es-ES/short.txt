@@ -1,0 +1,1 @@
+Calcula el RTP de cualquier apuesta, convierte tus cuotas en EU, UK y US.

@@ -1,0 +1,55 @@
+Le Calculateur de TRJ est un outil simple et gratuit qui révèle la vraie valeur d'un pari sportif. Saisissez les cotes de chaque issue et obtenez instantanément le TRJ (taux de retour joueur), c'est-à-dire le pourcentage des mises qu'un pari reverse théoriquement aux joueurs, le reste étant la marge du bookmaker.
+
+QU'EST-CE QUE LE TRJ ?
+
+Le taux de retour joueur (TRJ) est la part de l'argent qu'un marché de paris redistribue aux joueurs. C'est l'envers de la marge du bookmaker : plus le TRJ est élevé, plus la probabilité de trouver une cote intéressante est forte. En France, l'ANJ plafonne le TRJ des paris sportifs en ligne à 85 % : connaître le TRJ d'un pari, c'est savoir où votre bookmaker se situe sous ce plafond.
+
+Le Calculateur de TRJ fait le calcul pour vous en un instant.
+
+COMMENT ÇA MARCHE
+
+• Créez une analyse de pari et saisissez les cotes de chaque issue possible.
+
+• Saisissez chaque cote dans le format affiché par votre bookmaker : décimal (EU), fractionnaire (UK) ou américain (US). Convertissez-les si vous le souhaitez en un clic dans votre format préféré.
+
+• Le TRJ est calculé instantanément, avec un indicateur de couleur (du rouge au vert) pour évaluer le niveau des cotes en un coup d'œil.
+
+• Enregistrez, modifiez, dupliquez ou partagez vos analyses à tout moment.
+
+FONCTIONNALITÉS CLÉS
+
+• Calcul instantané du TRJ pour n'importe quel pari sportif.
+
+• Tous les formats de cotes pris en charge : décimal (EU), fractionnaire (UK) et américain (US), avec conversion en un clic.
+
+• Autant d'issues que vous voulez : parfait pour le 1X2, le score exact et les marchés complexes.
+
+• Dupliquez une analyse en un clic pour comparer un même pari chez plusieurs bookmakers et trouver le meilleur retour.
+
+• Partagez vos analyses de paris sous forme d'image.
+
+• Enregistrez et modifiez tout votre historique de paris.
+
+• Interface sombre, rapide et épurée, pensée pour les parieurs.
+
+• 100 % hors ligne : vos données restent sur votre appareil. Aucun compte, aucune inscription.
+
+POUR QUI ?
+
+• Les parieurs sportifs qui veulent évaluer la réalité mathématique de leurs paris avant de les placer.
+
+• Les parieurs qui comparent les cotes de différents bookmakers sur un même événement.
+
+• Tous ceux qui veulent mieux choisir leurs paris et, à défaut d'être gagnants sur le long terme, être moins perdants.
+
+POURQUOI UTILISER LE CALCULATEUR DE TRJ ?
+
+Un TRJ élevé signifie que les bookmakers prennent une marge plus faible sur le marché : plus le TRJ se rapproche de 100 %, meilleures sont les chances de trouver une cote réellement intéressante parce que mal évaluée (ce qu'on appelle dans le jargon un value bet).
+
+Vérifier le TRJ avant de placer un pari est donc une discipline fondamentale de tout parieur sportif sérieux, ou désireux de protéger sa bankroll.
+
+Le Calculateur de TRJ est avant tout un outil d'aide à la décision. Il n'encourage pas le jeu et ne promet aucun gain. Jouez de manière responsable et uniquement si vous avez l'âge légal dans votre pays.
+
+Aussi disponible sur navigateur, sans installation : rtpcalculator.com
+
+Téléchargez le Calculateur de TRJ et commencez à évaluer les cotes de vos paris !

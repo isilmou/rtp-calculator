@@ -1,0 +1,55 @@
+A Calculadora de RTP é uma ferramenta simples e gratuita que revela o valor real de qualquer aposta esportiva. Insira as odds de cada resultado e obtenha na hora o RTP (Retorno ao Jogador), ou seja, a porcentagem das apostas que um mercado devolve teoricamente aos jogadores; o restante é a margem da casa de apostas.
+
+O QUE É O RTP?
+
+O Retorno ao Jogador (RTP) é a parte do dinheiro que um mercado de apostas devolve aos jogadores. É o outro lado da margem da casa: quanto maior o RTP, maior a chance de encontrar uma odd interessante.
+
+A Calculadora de RTP faz a conta para você em um instante.
+
+COMO FUNCIONA
+
+• Crie uma análise de aposta e insira as odds de cada resultado possível.
+
+• Insira cada odd no formato exibido pela sua casa de apostas: decimal (EU), fracionária (UK) ou americana (US). Converta-as para o formato que preferir com um toque.
+
+• O RTP é calculado na hora, com um indicador de cor (do vermelho ao verde) para avaliar o nível das odds num relance.
+
+• Salve, edite, duplique ou compartilhe suas análises quando quiser.
+
+PRINCIPAIS RECURSOS
+
+• Cálculo instantâneo do RTP para qualquer aposta esportiva.
+
+• Todos os formatos de odds: decimal (EU), fracionária (UK) e americana (US), com conversão em um toque.
+
+• Quantos resultados você quiser: ideal para 1X2, placar exato e mercados complexos.
+
+• Duplique uma análise com um toque para comparar a mesma aposta em várias casas e encontrar o melhor retorno.
+
+• Compartilhe suas análises de apostas em forma de imagem.
+
+• Salve e edite todo o seu histórico de apostas.
+
+• Uma interface escura, rápida e limpa, pensada para apostadores.
+
+• 100% offline: seus dados ficam no seu aparelho. Sem conta, sem cadastro.
+
+PARA QUEM?
+
+• Apostadores que querem avaliar a realidade matemática das suas apostas antes de fazê-las.
+
+• Apostadores que comparam as odds de diferentes casas no mesmo evento.
+
+• Todos que querem escolher melhor suas apostas e, se não der para lucrar no longo prazo, ao menos perder menos.
+
+POR QUE USAR A CALCULADORA DE RTP?
+
+Um RTP alto significa que as casas de apostas aplicam uma margem menor naquele mercado: quanto mais perto de 100% estiver o RTP, melhores são as chances de encontrar uma odd realmente interessante por estar mal precificada (o que no jargão se chama value bet).
+
+Conferir o RTP antes de apostar é, portanto, uma disciplina fundamental para qualquer apostador sério ou que queira proteger sua banca.
+
+A Calculadora de RTP é, antes de tudo, uma ferramenta de apoio à decisão. Não incentiva o jogo nem promete ganhos. Jogue com responsabilidade e apenas se tiver a idade legal no seu país.
+
+Também disponível no navegador, sem instalação: rtpcalculator.com
+
+Baixe a Calculadora de RTP e comece a avaliar as odds das suas apostas!
