@@ -339,7 +339,7 @@ drapeau liste `.htaccess` parmi les « absents en local » (il n'est pas lu sans
 **Testé OK sur S9 et S23+ par Julien le 25/10/2026.** Reste à faire par Julien : demandes
 d'indexation Search Console (5 articles TRJ, `/fr/`, `/fr/guides/`, `/fr/app/`, lexique FR, `/`, puis
 les 2 anciennes URL FR pour accélérer la prise en compte des 301), resoumission du sitemap,
-suppression distante facultative, `git commit` + `push`. Bilan GSC 4 à 6 semaines
+suppression distante facultative. **Commit `77103c7`** (60 fichiers, à la demande de Julien), push par Julien. Bilan GSC 4 à 6 semaines
 après (fin novembre 2026) : anciennes URL sorties de l'index, clics FR, position de « marge bookmaker »
 et « calcul trj ».
 
