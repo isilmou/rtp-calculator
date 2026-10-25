@@ -7,6 +7,12 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
 RewriteCond %{HTTP_HOST} ^www\.rtpcalculator\.com$ [NC]
 RewriteRule ^(.*)$ https://rtpcalculator.com/$1 [R=301,L]
 
+# Guides fusionnes ou supprimes le 25/10/2026 (10 URL, 5 langues) -> article TRJ de la langue
+RewriteRule ^guides/(rtp-sports-betting|compare-bookmakers-rtp)/?(index\.html)?$ https://rtpcalculator.com/guides/calculate-bookmaker-margin/ [R=301,L]
+RewriteRule ^fr/guides/(trj-pari-sportif|comparer-bookmakers-trj)/?(index\.html)?$ https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/ [R=301,L]
+RewriteRule ^es/guides/(rtp-apuesta-deportiva|comparar-casas-apuestas-rtp)/?(index\.html)?$ https://rtpcalculator.com/es/guides/calcular-margen-casa-apuestas/ [R=301,L]
+RewriteRule ^de/guides/(rtp-sportwette|buchmacher-vergleichen-rtp)/?(index\.html)?$ https://rtpcalculator.com/de/guides/buchmacher-marge-berechnen/ [R=301,L]
+RewriteRule ^pt/guides/(rtp-aposta-esportiva|comparar-casas-apostas-rtp)/?(index\.html)?$ https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/ [R=301,L]
 # /index.html -> /  (racine et sous-dossiers)
 # Cible ABSOLUE en https : avec une cible relative (/$1), Apache reconstruit
 # l'URL avec le protocole qu'il percoit (port 80 derriere le proxy) et renvoie

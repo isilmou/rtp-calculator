@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>À propos - RTP Calculator, le calculateur de TRJ indépendant</title>
-<meta name="description" content="Qui édite RTP Calculator, comment le TRJ est calculé, et pourquoi ce site ne publie ni pronostic, ni classement de bookmakers, ni lien d'affiliation.">
+<title>À propos - Calculateur de TRJ, un outil indépendant</title>
+<meta name="description" content="Qui édite le Calculateur de TRJ, comment le TRJ est calculé, et pourquoi ce site ne publie ni pronostic, ni classement de bookmakers, ni lien d'affiliation.">
 <link rel="canonical" href="https://rtpcalculator.com/fr/a-propos/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/about/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/a-propos/">
@@ -13,8 +13,8 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/sobre/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/sobre/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/about/">
-<meta property="og:title" content="À propos - RTP Calculator, le calculateur de TRJ indépendant">
-<meta property="og:description" content="Qui édite RTP Calculator, comment le TRJ est calculé, et pourquoi ce site ne publie ni pronostic, ni classement de bookmakers, ni lien d'affiliation.">
+<meta property="og:title" content="À propos - Calculateur de TRJ, un outil indépendant">
+<meta property="og:description" content="Qui édite le Calculateur de TRJ, comment le TRJ est calculé, et pourquoi ce site ne publie ni pronostic, ni classement de bookmakers, ni lien d'affiliation.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rtpcalculator.com/fr/a-propos/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
@@ -51,15 +51,13 @@
       </svg>
       Calculateur&nbsp;de&nbsp;TRJ
     </a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="/fr/app/">Calculateur en ligne</a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="/fr/app/">Calculateur</a>
       <a href="/fr/guides/">Guides</a>
       <a href="/fr/#apps">Application</a>
-      <a href="/fr/privacy/">Confidentialité</a>
       <a class="on" href="/fr/a-propos/">À propos</a>
-      <a href="/fr/#contact">Contact</a>
     </nav>
-    <nav class="lang" aria-label="Language">
+    <nav class="lang" aria-label="Langue">
       <a href="/about/" lang="en" hreflang="en">EN</a>
       <a href="/fr/a-propos/" class="on" aria-current="true" lang="fr" hreflang="fr">FR</a>
       <a href="/es/acerca-de/" lang="es" hreflang="es">ES</a>
@@ -76,20 +74,14 @@
 <h2>Pourquoi ce site existe</h2>
 <p>Les bookmakers proposent des cotes mais n'affichent jamais ce que ces cotes redistribuent réellement aux joueurs.</p>
 <p>Cette part s'appelle le TRJ, le Taux de Retour Joueur. Elle se calcule à partir des cotes elles-mêmes, en trois opérations, mais elle reste invisible pour l'immense majorité des parieurs. Conséquence : de nombreux parieurs et parieuses amplifient leurs pertes en misant sur des paris dont le TRJ est très défavorable.</p>
-<p>RTP Calculator a été créé afin d'assurer cette fonction très simple : calculer le Taux de Retour Joueur des paris sportifs, afin que chaque parieur ou parieuse puisse agir en connaissance de cause.</p>
+<p>Le Calculateur de TRJ (RTP Calculator) a été créé afin d'assurer cette fonction très simple : calculer le Taux de Retour Joueur des paris sportifs, afin que chaque parieur ou parieuse puisse agir en connaissance de cause.</p>
 
 <h2>Qui édite ce site</h2>
 <p>Ce site et l'application Android associée sont conçus, développés et financés par un développeur indépendant sous le statut d'entrepreneur individuel.</p>
 <p>Le site n'est affilié à aucun opérateur de paris.</p>
 
 <h2>Comment nous calculons</h2>
-<p>Tous les chiffres publiés sur ce site et produits par l'application reposent sur une seule formule, vérifiable par n'importe qui :</p>
-<div class="ex">
-<p>Chaque cote, qu'elle soit décimale, fractionnaire ou américaine, est convertie en probabilité implicite : <strong>probabilité = 1 &divide; cote</strong>.</p>
-<p>Les probabilités implicites de toutes les issues du marché sont additionnées. Le total dépasse toujours 100 % : cet excédent est la marge.</p>
-<p>Le taux de retour se déduit du total : <strong>TRJ = 100 &divide; total &times; 100</strong>, et <strong>marge = 100 &minus; TRJ</strong>.</p>
-</div>
-<p>Les exemples publiés dans les guides sont tous calculés selon cette méthode et peuvent être refaits à la main. L'application et le calculateur en ligne appliquent exactement la même logique, sans arrondi intermédiaire.</p>
+<p>Tous les chiffres publiés sur ce site et produits par l'application reposent sur une seule formule, vérifiable par n'importe qui : chaque cote est convertie en probabilité implicite, ces probabilités sont additionnées, et le TRJ se déduit du total. Elle est détaillée dans le guide <a href="/fr/guides/calculer-marge-bookmaker/">Le TRJ d'un pari sportif : définition et calcul</a>. L'application et le calculateur en ligne appliquent exactement la même logique, sans arrondi intermédiaire.</p>
 <p>Les cotes utilisées dans les exemples sont fournies à titre d'illustration : elles servent à démontrer une méthode, pas à représenter l'offre actuelle d'un opérateur.</p>
 
 <h2>Ce que ce site ne fait pas</h2>
@@ -109,7 +101,7 @@
 <p>Le calculateur en ligne enregistre vos analyses <strong>dans votre navigateur uniquement</strong> : elles ne sont jamais transmises à un serveur. L'application Android conserve votre historique <strong>en local sur votre téléphone</strong>. La mesure d'audience du site n'est activée qu'avec votre consentement, que vous pouvez modifier à tout moment. Le détail figure dans notre <a href="/fr/privacy/">politique de confidentialité</a>.</p>
 
 <h2>Mises à jour</h2>
-<p>Les guides sont relus et complétés régulièrement, et de nouveaux articles sont publiés au fil du temps. Chaque page indique sa date de publication.</p>
+<p>Les guides sont relus et complétés régulièrement, et de nouveaux articles sont publiés au fil du temps. Chaque guide indique sa date de publication et de mise à jour.</p>
 
 <h2>Nous écrire</h2>
 <p>Une erreur, une imprécision, une suggestion de sujet ? Écrivez à <a href="mailto:contact@rtpcalculator.com">contact@rtpcalculator.com</a> : toutes vos remarques ou observations seront les bienvenues.</p>

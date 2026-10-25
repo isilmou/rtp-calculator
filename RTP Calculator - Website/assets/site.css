@@ -47,28 +47,17 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.92);backd
 .lang a{display:flex;align-items:center;justify-content:center;width:36px;height:26px;font-size:11px;font-weight:400;color:var(--f-inactive-tx);background:var(--f-inactive-bg)}
 .lang a:hover{text-decoration:none;color:var(--text-2)}
 .lang a.on{background:var(--f-active-bg);color:var(--f-active-tx);font-weight:700}
-/* menu déroulant Guides (balisage présent sur les accueils) */
-.nav-dd{position:relative}
-.nav-dd>a{display:inline-flex;align-items:center;padding:21px 0}
-.nav-dd>a .dd-car{font-size:11px;color:var(--text-3);margin-left:4px}
-.nav-dd .dd{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--divider);border-radius:var(--radius-l);padding:8px;width:330px;z-index:60;box-shadow:0 14px 36px rgba(0,0,0,.5)}
-.nav-dd:hover .dd,.nav-dd:focus-within .dd{display:block}
-.nav-dd .dd a{display:block;padding:8px 12px;font-size:13px;line-height:1.4;color:var(--text-2);border-radius:var(--radius-s);font-weight:600;white-space:normal}
-.nav-dd .dd a:hover{background:var(--block);color:var(--text);text-decoration:none}
-.nav-dd .dd .dd-all{color:var(--yellow);margin-top:4px;border-top:1px solid var(--divider);border-radius:0;padding-top:10px}
 /* Mobile : en-tête non collant (il occuperait 14 % de l'écran), logo et langues sur la première
-   ligne, menu complet sur deux lignes avec retour automatique (plus rien hors écran). */
+   ligne, menu à 4 entrées sur la seconde (une seule ligne à 360 px dans les 5 langues, mesuré le 25/10/2026). */
 @media (max-width:820px){
   header.site{position:static}
   .nav{height:auto;flex-wrap:wrap;padding-top:10px;gap:0 12px}
   .nav-links{order:3;width:100%;margin-left:0;flex-wrap:wrap;white-space:normal;row-gap:4px;column-gap:16px;padding:6px 0 10px;font-size:13px}
   .lang{margin-left:auto}
-  .nav-dd>a{padding:0}
-  .nav-dd .dd{display:none !important}
 }
 @media (max-width:560px){
   .brand{font-size:13px;letter-spacing:0;gap:8px}
-  .lang a{width:30px;height:30px}
+  .lang a{width:28px;height:30px}
 }
 
 /* ===== Boutons (un seul système) ===== */
@@ -134,8 +123,11 @@ footer a{color:var(--text-2)}
 .p-home .legal p{max-width:76ch}
 @media (max-width:820px){
   .p-home .hero{grid-template-columns:1fr;gap:36px;padding-top:40px;padding-bottom:52px}
-  .p-home .demo-card,.p-home .demo-caption{justify-self:start}
-  .p-home .demo-caption{text-align:left}
+  .p-home .hero>div:first-child{text-align:center}
+  .p-home .lede{margin-left:auto;margin-right:auto}
+  .p-home .hero-ctas{justify-content:center}
+  .p-home .demo-card,.p-home .demo-caption{justify-self:center}
+  .p-home .demo-caption{text-align:center}
   .p-home section{padding:46px 0}
 }
 @media (max-width:560px){
@@ -148,6 +140,9 @@ footer a{color:var(--text-2)}
 .p-home .gcard p{font-size:13.5px;color:var(--text-2);margin-bottom:8px;line-height:1.55;flex:1}
 .p-home .gcard span{font-size:12.5px;color:var(--yellow);font-weight:700}
 .p-home .gall{margin-top:16px;font-size:14px;font-weight:600}
+/* zones vitrine centrées (sections Application et Guides) ; la section Mentions reste à gauche */
+.p-home #apps .kicker,.p-home #apps h2,.p-home #apps .section-lede,.p-home #guides .kicker,.p-home #guides h2,.p-home #guides .section-lede,.p-home .gall{text-align:center}
+.p-home #apps .section-lede,.p-home #guides .section-lede,.p-home .note{margin-left:auto;margin-right:auto}
 @media (max-width:700px){
   .p-home .gcards{grid-template-columns:1fr}
 }
@@ -161,9 +156,9 @@ footer a{color:var(--text-2)}
 
 /* ===== Calculateur en ligne (.p-app) ===== */
 body.p-app{--max:var(--max-app)}
-.p-app .page-head{padding:34px 0 6px}
+.p-app .page-head{padding:34px 0 6px;text-align:center}
 .p-app h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.01em}
-.p-app .sub{color:var(--text-2);font-size:14.5px;margin-top:8px;max-width:60ch}
+.p-app .sub{color:var(--text-2);font-size:14.5px;margin-top:8px;max-width:60ch;margin-left:auto;margin-right:auto}
 .p-app .kicker-sm{display:flex;align-items:baseline;gap:14px}
 .p-app #form-cancel{font-size:12px;color:var(--text-3);text-transform:none;letter-spacing:normal;font-family:'Archivo',sans-serif;font-weight:600}
 .p-app #form-cancel:hover{color:var(--danger);text-decoration:none}
@@ -238,6 +233,8 @@ body.p-article,body.p-guides{--max:var(--max-read)}
 .p-article h1,.p-guides h1{font-size:clamp(25px,4.4vw,34px);font-weight:800;letter-spacing:-.015em;line-height:1.15}
 .p-article .date,.p-guides .date{font-size:12.5px;color:var(--text-3);margin:10px 0 26px}
 .p-article .dek,.p-guides .dek{color:var(--text-2);font-size:16px;margin-top:12px;max-width:60ch}
+.p-guides h1,.p-guides .dek{text-align:center}
+.p-guides .dek{margin-left:auto;margin-right:auto}
 .p-article article p,.p-guides article p{color:var(--text-2);font-size:15.5px;margin:14px 0}
 .p-article article strong,.p-guides article strong{color:var(--text)}
 .p-article article h2,.p-guides article h2{font-size:20px;font-weight:800;margin:34px 0 6px;letter-spacing:-.01em}

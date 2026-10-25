@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
+| Chantier en cours | **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -173,6 +173,13 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
    web » prévue par le rapport, alors que la marge a été refusée dans l'app (écran calme) ; l'étape
    peut se limiter aux titres et textes EN.
 
+8. ~~**Refonte du contenu du site (audit du 25/10/2026)**~~ : **livrée, déployée et testée OK sur S9 et
+   S23+ le 25/10/2026** (plan validé par Julien le 25/10, `~/.claude/plans/j-aimerais-un-audit-du-linear-candle.md`,
+   détail dans la section dédiée ci-dessous). Reste : indexation Search Console et commit par Julien,
+   bilan fin novembre 2026.
+   **Décision : tout faire maintenant, sans attendre le bilan du 06/11**, qui mesurera donc l'ensemble
+   des changements d'octobre sans isoler le lot CTR.
+
 Hors plan, toujours valables :
 - Retirer `material-icons-extended` (AAR 35 Mo, seules `AccessTime` et `ContentCopy` sont hors
   jeu de base). Gain sur le build debug uniquement.
@@ -190,6 +197,151 @@ d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git
 un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
 `gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
 recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
+
+---
+
+## Refonte du contenu du site (25/10/2026)
+
+Demande de Julien : contenu redondant, lexique hors sujet, menu mobile sur deux lignes, centrage des
+titres à étudier. Audit par un **agent neutre de tout contexte** (prompt de Julien + chemin du site
+seulement), croisé avec Search Console 16 mois (`stats/data/2026-10-25/gsc.json`).
+
+Constats retenus : `trj-pari-sportif` et `calculer-marge-bookmaker` sont un même article coupé en deux
+(une phrase identique mot pour mot, mêmes exemples) ; formule écrite 5 fois sur le site, ANJ 85 % 3 fois,
+liste des 6 guides affichée 4 fois ; lexique : 14 termes employés sur le site, 16 jamais (dutching,
+Kelly, CLV…), mais page guide FR la plus vue (64 impressions, 1 clic) ; menu : 6 entrées dont 3 ancres
+vers l'accueil, ≈ 545 px de texte pour 320 px ; aucun titre centré.
+
+**Décisions (Julien, 25/10/2026)** :
+- Fusion des deux articles TRJ sur la famille d'URL **`calculer-marge-bookmaker`** (seule positionnée en
+  FR : 18 impressions pos. 8,9 ; `trj-pari-sportif` : 0 impression FR) ; 301 des 5 URL abandonnées dans
+  `.htaccess` (première règle de page, validation explicite). Revient sur la décision du 24/10 (deux angles).
+- Guide « comparer les bookmakers plutôt que les promotions » : **angle abandonné** (parieurs
+  multi-comptes, le choix d'un opérateur n'est pas la question ; 1 impression FR en 16 mois). Réécrit
+  sous l'angle « pour un pari donné, chez lequel de mes opérateurs le marché est le moins cher »,
+  URL conservée. Écarté : suppression avec 301.
+- Lexique réduit de 30 à 14 entrées (TRJ, marge, probabilité implicite, cote, mise, bookmaker, combiné,
+  1X2, double chance, over/under, handicap, score exact, surebet, cote boostée), URL conservée. Perte
+  de longue traîne acceptée. Écarté : suppression de la page.
+- Menu mobile : **4 entrées** (Calculateur · Guides · Application · À propos), Confidentialité et
+  Contact au pied de page, après mesure à 360 / 375 px. Écarté : hamburger (déjà le 24/10), défilement
+  horizontal. Revient sur le choix « deux lignes » du 24/10.
+- Centrage : zones vitrine (sections de l'accueil, héros empilé, têtes de l'index et du calculateur)
+  centrées ; articles, À propos, confidentialité à gauche. CSS seul.
+- Autres : bouton Play sous le formulaire du calculateur, encadré de formules retiré de l'À propos,
+  confidentialité dédoublonnée, titres de guides sous 60 caractères, « À lire ensuite » à 2 liens,
+  menu déroulant Guides supprimé, 5 cartes à l'accueil. Cible : 10 URL par langue au lieu de 11.
+
+**Étape 1 validée par Julien le 25/10/2026, avec corrections du plan initial** :
+- Titres FR : article TRJ fusionné « Le TRJ d'un pari sportif : définition et calcul » ; combinés
+  « Paris combinés : une mine d'or pour les bookmakers » ; formats de cotes **inchangé** (77 caractères,
+  choix de Julien) ; lexique : H1 « Lexique des paris sportifs » inchangé.
+- **Lexique : les 30 termes sont conservés** (revient sur la réduction à 14). Deux définitions à enrichir :
+  dutching (permet d'équilibrer ses gains en cas de surebet), surebet (peut parfois s'obtenir grâce à
+  des promotions ou des cotes boostées). Le `<title>` « 30 termes » reste donc exact.
+- **Guide « comparer » supprimé** (5 langues, « peu d'utilité »), 301 vers l'article TRJ fusionné, qui
+  absorbe l'usage « comparer ses opérateurs sur un même match ». Écarté : réécriture multi-comptes.
+  Cible : **9 URL par langue, 4 guides** (TRJ, combinés, formats, lexique). 10 règles 301 au total.
+
+**Étape 2 faite le 25/10/2026 (local, non commité, non déployé)** : article fusionné écrit sur
+`calculer-marge-bookmaker` et ses 4 équivalents (texte FR relu et amendé par Julien : intro, phrase
+sur la conversion automatique des formats, usages du TRJ ramenés à 3 phrases, lien combinés retiré du
+dernier paragraphe ; `title`, metas, `headline`, `dateModified` 2026-10-25, 9 H2, 17 `strong`
+équilibrés dans chaque langue). Traductions assemblées à partir des paragraphes déjà traduits des deux
+articles sources, seules les phrases nouvelles ont été traduites. Au passage (demande de Julien) :
+« , sans inscription » et équivalents retirés de la phrase du bloc `.cta` (7 pages × 5 langues = 35
+fichiers) ; les mentions de l'accueil et des metas sont conservées. Scripts : `scratchpad/apply-step2.mjs`,
+`apply-step2b.mjs`. Les anciennes pages `trj-pari-sportif` et `comparer-bookmakers-trj` existent
+encore et les liens internes pointent toujours vers elles : étape 3.
+
+**Étape 3 faite le 25/10/2026 (local, non commité, non déployé)** : 10 dossiers supprimés
+(`trj-pari-sportif`, `comparer-bookmakers-trj` et équivalents EN/ES/DE/PT), **45 pages** restantes,
+0 référence résiduelle aux 10 URL. 35 fichiers modifiés par `scratchpad/apply-step3.mjs` : menu
+déroulant Guides des 5 accueils remplacé par un lien simple (identique aux autres pages) ; cartes des
+5 accueils et des 5 index : 6 → 4, carte TRJ fusionné = nouveau titre + résumé de l'ancienne carte
+« C'est quoi » ; nouveau titre des combinés appliqué (`title`, `og:title`, H1, `headline`, 5 langues :
+« Paris combinés : une mine d'or pour les bookmakers », « Accumulators: a gold mine for bookmakers »,
+« Apuestas combinadas: una mina de oro… », « Kombiwetten: eine Goldgrube für Buchmacher », « Apostas
+múltiplas: uma mina de ouro… ») ; « À lire ensuite » à 2 liens (TRJ → combinés + formats ; combinés →
+TRJ + formats ; formats → TRJ + combinés ; lexique → TRJ + formats) ; « Pour aller plus loin » du
+calculateur → TRJ fusionné · formats · combinés ; lexique : phrase « Voir le guide comparer… » retirée
+de l'entrée Bonus, ancres « c'est quoi le TRJ » → titre fusionné. `sitemap.mjs --check` : 45 pages,
+315 hreflang, réciprocité OK, à régénérer (étape 9). **Bug trouvé** : `pt/guides/apostas-multiplas-rtp`
+l. 107 contient une fin de phrase en espagnol (« y, si lo deseas, comprobar por ti mismo… ») : à corriger
+(étape 4 ou 5). Les 10 pages supprimées restent en ligne jusqu'au déploiement ; `deploy/` ne supprime
+jamais à distance : les 301 (étape 9) s'appliqueront avant la lecture du fichier, suppression distante
+manuelle par Julien dans le Manager Infomaniak si souhaitée.
+
+**Étape 4 faite le 25/10/2026 (local)** : lexiques des 5 langues (`scratchpad/apply-step4.mjs`) :
+dutching (« la technique qui permet d'équilibrer ses gains en cas de surebet ») et surebet (« reste rare
+mais peut s'obtenir grâce aux promotions ou cotes boostées proposées par les bookmakers », phrase de
+Julien) enrichis ; ancres « Voir … » vers l'article TRJ (4 par langue) et vers les combinés prennent
+les nouveaux titres ; « Mis à jour le 25 octobre 2026 » et `dateModified`. Bug PT des combinés corrigé
+(fin de phrase traduite en portugais). Les 30 termes et le `<title>` « 30 termes » sont conservés.
+
+**Étape 5 faite le 25/10/2026 (local)**, 15 fichiers (`scratchpad/apply-step5.mjs`) : calculateur
+(5) : bouton Play retiré de `.page-head`, replacé en fin de `.seo-text` après « Pour aller plus loin » ;
+exemple du texte explicatif 2,10 / 3,40 / 3,60 → 2,00 / 3,50 / 3,80 (104,9 %, TRJ 95,3 %, marge 4,7 %),
+phrase ANJ conservée. À propos (5) : encadré `.ex` des formules + paragraphe « exemples publiés » →
+un paragraphe avec lien vers l'article TRJ ; `<title>` / `og:title` / descriptions « Calculateur de
+TRJ, un outil indépendant » (EN inchangé : « RTP Calculator » est le nom) ; « Chaque guide indique sa
+date de publication et de mise à jour ». Confidentialité (5) : § 1 « application Android et site web
+(rtpcalculator.com) », suppression § 1 et § 2 par renvoi aux sections 2 et 3, « Dernière mise à jour :
+25 octobre 2026 », ancre `#data-deletion` et section 5 inchangées.
+
+**Étape 6 faite le 25/10/2026 (local)**, 5 accueils (`scratchpad/apply-step6.mjs`) : « Sans
+inscription » retiré de la lede du héros (reste dans la section Application) ; lede de la section
+Guides raccourcie (« Différents articles pour mieux apprécier l'importance du TRJ pour les parieurs »,
+validé par Julien cette fois) ; lien « En savoir plus sur ce site → » vers l'À propos à la fin de la
+note « Pour qui ? » ; lien Confidentialité ajouté au pied des accueils (libellé repris du pied du
+calculateur de chaque langue).
+
+**Étape 7 faite le 25/10/2026 (local)**, 45 pages (`scratchpad/apply-step7.mjs`). **Mesure préalable
+dans Chromium** (`scratchpad/measure-menu.mjs`, Playwright de `tools/`, DOM modifié en mémoire) : menu
+actuel à 6 entrées = 2 lignes à 360 et 375 px dans les 5 langues (texte + écarts 381 à 502 px pour
+320 à 335 px disponibles), en-tête 106 px ; 4 entrées = 1 ligne partout (max FR 285 px), en-tête 81 px ;
+3 entrées = 1 ligne (max 203 px). Variante 4 entrées appliquée : « Calculateur · Guides · Application ·
+À propos » (EN « Calculator · Guides · App · About », ES « Calculadora · Guías · App · Acerca de », DE
+« Rechner · Ratgeber · App · Über uns », PT « Calculadora · Guias · App · Sobre »), attributs `class="on"`
+conservés, Confidentialité et Contact sortis du menu (présents au pied de chaque page), `aria-label`
+traduits (« Navigation principale » / « Langue » et équivalents). Constat annexe : à 360 px en ES et
+PT, la ligne marque + sélecteur de langue passe elle-même sur deux rangées (en-tête 132 px au lieu de
+106 ; 107 au lieu de 81 après l'étape 7) : « Calculadora de RTP » en insécables + 5 boutons de 30 px
+dépassent 320 px. À traiter à l'étape 8 (CSS).
+
+**Étape 8 faite le 25/10/2026 (local)**, `assets/site.css` seul (`scratchpad/apply-step8.mjs`, 274 lignes) :
+règles `.nav-dd` retirées (balisage disparu à l'étape 3), boutons de langue 30 → 28 px sous 560 px
+(ES / PT : première ligne 314 px à 360 px, en-tête 81 px dans les 5 langues, mesuré), centrage des
+zones vitrine : accueil sections `#apps` et `#guides` (kicker, H2, lede, « Tous les guides », lede et
+note en marges auto), héros empilé ≤ 820 px (texte, lede, boutons, carte démo et légende), index des
+guides (H1, `.dek`), tête du calculateur (`.page-head`, `.sub`). Articles, À propos, confidentialité
+inchangés (0 px de différence sur l'article à 768 et 1280). Planches : `tools/shots/2026-10-25-1531-compare`
+(app, guides, article, ES) et `…-1534-compare` (accueil FR, « avant » obtenu par `git stash` de
+`site.css`). Piège rencontré : `node shots.mjs --pages=/fr/` sous Git Bash transforme `/fr/` en
+`C:/Program Files/Git/fr/` ; exporter `MSYS_NO_PATHCONV=1` (déjà noté le 24/10 pour `/`).
+
+**Étape 9 faite le 25/10/2026 (local)** : `.htaccess` (**validé explicitement par Julien**, première
+règle de page du fichier) : 5 `RewriteRule` (une par langue, deux anciens slugs chacune, `/?(index\.html)?$`)
+vers l'article TRJ de la langue, cibles absolues `https://`, insérées entre le bloc HTTPS/www et la
+règle `index.html` (`scratchpad/apply-step9.mjs`). `sitemap.xml` régénéré : 45 URL, 315 hreflang,
+lastmod 2026-10-25. axe : 0 violation sur les 8 pages de référence × 2 largeurs
+(`tools/shots/2026-10-25-1536-a11y`).
+
+**Étape 10 : déployé le 25/10/2026** à la demande de Julien : `push --apply` (47 fichiers : 45 pages,
+`site.css`, `sitemap.xml`, tous vérifiés en HTTPS) puis `push --apply --htaccess` (1 fichier). Contrôles
+en production : les 10 anciennes URL répondent 301 vers l'article TRJ de leur langue (cible absolue
+`https://`), les cibles 200, menu à 4 entrées en ligne, sitemap 45 URL sans ancienne URL, H1 fusionné
+visible. `http://` sur une ancienne URL = 2 sauts (https même chemin, puis 301 de page) : attendu.
+`diff` à blanc ensuite : « Rien à déployer » ; le manifeste garde les 10 anciennes pages comme
+« absentes en local » tant que Julien ne les a pas supprimées dans le Manager Infomaniak (`deploy/`
+ne supprime jamais à distance). Quirk de `deploy/` : après un envoi `--htaccess`, le `diff` sans ce
+drapeau liste `.htaccess` parmi les « absents en local » (il n'est pas lu sans le drapeau) : sans gravité.
+**Testé OK sur S9 et S23+ par Julien le 25/10/2026.** Reste à faire par Julien : demandes
+d'indexation Search Console (5 articles TRJ, `/fr/`, `/fr/guides/`, `/fr/app/`, lexique FR, `/`, puis
+les 2 anciennes URL FR pour accélérer la prise en compte des 301), resoumission du sitemap,
+suppression distante facultative, `git commit` + `push`. Bilan GSC 4 à 6 semaines
+après (fin novembre 2026) : anciennes URL sorties de l'index, clics FR, position de « marge bookmaker »
+et « calcul trj ».
 
 ---
 

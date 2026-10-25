@@ -1,11 +1,16 @@
 {
- "generatedAt": "2026-10-24T19:42:18.239Z",
+ "generatedAt": "2026-10-25T14:41:54.145Z",
  "siteUrl": "https://rtpcalculator.com",
  "files": {
+  ".htaccess": {
+   "sha256": "c4437eba1b86a51e7135fbb2ff4f6eea18e90d2cba08fe98172b2fa56d4a90f3",
+   "size": 1629,
+   "deployedAt": "2026-10-25T14:41:54.143Z"
+  },
   "about/index.html": {
-   "sha256": "2772e648f1551708b346690022d19da7c58cb01fcb77a570aaa4cfa92e30881e",
-   "size": 8818,
-   "deployedAt": "2026-10-24T19:12:48.886Z"
+   "sha256": "96dd74c41ae0cde32bde957ee3b37d4044179bac2ffc6b20172f6d2139bb4f03",
+   "size": 8450,
+   "deployedAt": "2026-10-25T14:39:45.761Z"
   },
   "ads.txt": {
    "sha256": "9e80d154f196caba28a4121957a5c89f9e8dd4bdc09461c9b62c5b8aebae5e79",
@@ -18,9 +23,9 @@
    "verifiedAt": "2026-10-23T21:40:03.436Z"
   },
   "app/index.html": {
-   "sha256": "4b5c35f5ad4a25328df579ac6027caa56575f795b9b39be87cb158bf74220643",
-   "size": 27121,
-   "deployedAt": "2026-10-24T19:42:08.715Z"
+   "sha256": "de9288967d2bd63abb291b82d843811e0b1b7b6466c08df4d972a0733b49249f",
+   "size": 27056,
+   "deployedAt": "2026-10-25T14:39:48.148Z"
   },
   "assets/cmp.js": {
    "sha256": "a448e7c17fb44a53daf80662ff4204479615a10da3fc0154005f5a464f910844",
@@ -33,19 +38,19 @@
    "deployedAt": "2026-10-24T19:42:06.342Z"
   },
   "assets/site.css": {
-   "sha256": "45e42b97361132275b23d09304cc7281d105a4675805d37c4d7560e0317cf9b6",
-   "size": 22495,
-   "deployedAt": "2026-10-24T19:12:55.648Z"
+   "sha256": "c7239dfa9e19d0116663822a6f36014e972547f00059d6a473baf203a6662d0e",
+   "size": 22240,
+   "deployedAt": "2026-10-25T14:39:50.460Z"
   },
   "de/app/index.html": {
-   "sha256": "f3d5b0ddd81fa04b04225eee85bda876edeb6bd3f1a445cbd4599b9156feeb97",
-   "size": 27596,
-   "deployedAt": "2026-10-24T19:42:11.104Z"
+   "sha256": "e532c3e192d3c933c385f61950c1b551d727b6e9e4da0aa5d54815a5ea40f83b",
+   "size": 27520,
+   "deployedAt": "2026-10-25T14:39:52.812Z"
   },
   "de/guides/buchmacher-marge-berechnen/index.html": {
-   "sha256": "a9cea3f0e8bc5cb94c0beb11ff3abffeeea30dd1b3f028cd62af42f60fa16199",
-   "size": 11667,
-   "deployedAt": "2026-10-24T19:13:00.230Z"
+   "sha256": "cf63afdc5a1566ec6891c810664c1ebe5e74c91a289f7a669487aab583aed176",
+   "size": 12721,
+   "deployedAt": "2026-10-25T14:39:55.194Z"
   },
   "de/guides/buchmacher-vergleichen-rtp/index.html": {
    "sha256": "c3034c35753c1d29a3f002453064a7620a30ac60932509200456257211991fe5",
@@ -53,19 +58,19 @@
    "deployedAt": "2026-10-24T19:13:02.530Z"
   },
   "de/guides/index.html": {
-   "sha256": "d19a8889661fb5cce149deaf1e619070ac0fd741aa629be425496387d33e1942",
-   "size": 7061,
-   "deployedAt": "2026-10-24T19:13:04.814Z"
+   "sha256": "ecc543088f67a403261770a371457eafb5f88329fc9102448da0f98b169b5aae",
+   "size": 6329,
+   "deployedAt": "2026-10-25T14:39:57.542Z"
   },
   "de/guides/kombiwetten-rtp/index.html": {
-   "sha256": "9be8d39124e560158c287db90fee0cb43cf7303570ded171c9a9a8e41ab2a9a2",
-   "size": 10009,
-   "deployedAt": "2026-10-24T19:13:07.140Z"
+   "sha256": "3b8b47cd3b8f28bdc6499a321554660dd2a7587b9c06b99088450de464291d39",
+   "size": 9585,
+   "deployedAt": "2026-10-25T14:39:59.893Z"
   },
   "de/guides/quotenformate/index.html": {
-   "sha256": "5cf60bd8bd58cc1e00fe1b0466097664dca9e2c054ad7253467d7bbfde54c70b",
-   "size": 10336,
-   "deployedAt": "2026-10-24T19:13:09.460Z"
+   "sha256": "1755d21cd1a520c180fcd384af4b289f2721fddbd726371217bbb7b5b45616af",
+   "size": 9952,
+   "deployedAt": "2026-10-25T14:40:02.264Z"
   },
   "de/guides/rtp-sportwette/index.html": {
    "sha256": "7d6a9ce52033c42665f3cc05763bfbff4f8aae32cbfca4016c274ae8eb73aec9",
@@ -73,44 +78,44 @@
    "deployedAt": "2026-10-24T19:13:11.757Z"
   },
   "de/guides/wett-lexikon/index.html": {
-   "sha256": "bbc17bc9d109fcd5c9ccf9fcb0afc3e9ab26dec3731e04707e503f1db63ecb3f",
-   "size": 16065,
-   "deployedAt": "2026-10-24T19:13:14.085Z"
+   "sha256": "c3ea73a3c40d7d7a908bedebabd4c42d7b167ce5cfce4314e746dbfe84c5ff27",
+   "size": 15613,
+   "deployedAt": "2026-10-25T14:40:04.568Z"
   },
   "de/index.html": {
-   "sha256": "346230fd3962bd77d399148885f3311f8b7300fcd932e79cbaae19ac1913f639",
-   "size": 13971,
-   "deployedAt": "2026-10-24T19:13:16.353Z"
+   "sha256": "b15d01fc1c3e6e4a6a67ea3b3a7915ee0cd5841e45830374ea791a4401c5be09",
+   "size": 12606,
+   "deployedAt": "2026-10-25T14:40:06.848Z"
   },
   "de/privacy/index.html": {
-   "sha256": "f8f275a89d45e89abb3d1358b684a85dd0295fe0a8dfc7a1e14645f1f4f575e9",
-   "size": 10229,
-   "deployedAt": "2026-10-24T19:13:18.590Z"
+   "sha256": "dc044a6bcd8136e2e89acb748ae4c6d3ddf0c5c173b4287a62c2e8323042665e",
+   "size": 10067,
+   "deployedAt": "2026-10-25T14:40:09.125Z"
   },
   "de/ueber-uns/index.html": {
-   "sha256": "e76bc91d29a0312dd70a58ebf4ddcc8eaff69fbfa907405c5d0386417677be4e",
-   "size": 9444,
-   "deployedAt": "2026-10-24T19:13:20.843Z"
+   "sha256": "b93514f0d313510b7abb4aa0d95be5649e135bed970f1fabbf49b7ed4ef9b16a",
+   "size": 9042,
+   "deployedAt": "2026-10-25T14:40:11.468Z"
   },
   "es/acerca-de/index.html": {
-   "sha256": "5a1276ea38fefacc84b9ffce43f8c62fd0d2ba586a0080ab5051571e57fa9b43",
-   "size": 9493,
-   "deployedAt": "2026-10-24T19:13:23.109Z"
+   "sha256": "220917105a23b119222825c7a8a1774c7d217086308afaa760287b97c4b53149",
+   "size": 9144,
+   "deployedAt": "2026-10-25T14:40:13.707Z"
   },
   "es/app/index.html": {
-   "sha256": "d81d5a1f240c6edb546e5d2a3b7b7bd68e983ccc1fc23efe73ace49634fb3980",
-   "size": 27630,
-   "deployedAt": "2026-10-24T19:42:13.439Z"
+   "sha256": "c89d7d3bd0634bc80a8c2101828a5dd547a5c02c7c3affbd80a352366845cf12",
+   "size": 27572,
+   "deployedAt": "2026-10-25T14:40:16.096Z"
   },
   "es/guides/apuestas-combinadas-rtp/index.html": {
-   "sha256": "2243dd678038964c714b441e4b56120236891ed1f6d0574db91853ed4e4c32a5",
-   "size": 10359,
-   "deployedAt": "2026-10-24T19:13:27.672Z"
+   "sha256": "5b71243a4bb18b4ba39e090f7722a9efbea7b3ceeb7e2bb771467ff91e95e159",
+   "size": 9854,
+   "deployedAt": "2026-10-25T14:40:18.434Z"
   },
   "es/guides/calcular-margen-casa-apuestas/index.html": {
-   "sha256": "61380a441718003e13be89d085b2c369488d7acc0148a4167304ea4ab962dfff",
-   "size": 11830,
-   "deployedAt": "2026-10-24T19:13:29.991Z"
+   "sha256": "1e545f246281528a82c9b3a41d8e7394fa2f991634d9b1721b6bc5c40195e250",
+   "size": 12781,
+   "deployedAt": "2026-10-25T14:40:20.776Z"
   },
   "es/guides/comparar-casas-apuestas-rtp/index.html": {
    "sha256": "a511d4c634be3d99f2734de5521c63bca8c0742bad4050cc2a2b5c88bc2622e0",
@@ -118,19 +123,19 @@
    "deployedAt": "2026-10-24T19:13:32.347Z"
   },
   "es/guides/formatos-de-cuotas/index.html": {
-   "sha256": "8adf0037552c3034c68681a56d3c8d73c448302d0cb790071ced1c1e12390e6d",
-   "size": 10528,
-   "deployedAt": "2026-10-24T19:13:34.682Z"
+   "sha256": "009b0eb5c150dec62f68aa0f97d055453fdbc66af4252affbcda0bc4df496df6",
+   "size": 10065,
+   "deployedAt": "2026-10-25T14:40:23.102Z"
   },
   "es/guides/index.html": {
-   "sha256": "b12e9fd24e38e1782f3f6bbd3cbf491417726562f83f018ad7e43b69381a0f22",
-   "size": 7230,
-   "deployedAt": "2026-10-24T19:13:36.964Z"
+   "sha256": "b2075affa2b3cdd0e33258847e66f17eee38410641291090fad745a0e3383026",
+   "size": 6494,
+   "deployedAt": "2026-10-25T14:40:25.475Z"
   },
   "es/guides/lexico-apuestas-deportivas/index.html": {
-   "sha256": "0c0c4e168e84ef589e7937383ba7bc4123b468d6e10fdd2fd7227b99d78e24c0",
-   "size": 16545,
-   "deployedAt": "2026-10-24T19:13:39.259Z"
+   "sha256": "7fcd494b868c0551503a61375c03baedffd212891c4f7a9e21c5d2829d2c3b2b",
+   "size": 16019,
+   "deployedAt": "2026-10-25T14:40:27.817Z"
   },
   "es/guides/rtp-apuesta-deportiva/index.html": {
    "sha256": "0f5606bb1df6b04b0944c8770d191d02c44c4fb4184531595eeb0d19c6dbfd6a",
@@ -138,29 +143,29 @@
    "deployedAt": "2026-10-24T19:13:41.569Z"
   },
   "es/index.html": {
-   "sha256": "a7c092b5003bc4ccb1685078c949d2971569340081cb1d9248dff53fa4fabaff",
-   "size": 14125,
-   "deployedAt": "2026-10-24T19:13:43.915Z"
+   "sha256": "f439ad958b9eb5da73e0b2ff55468ac2d6fcd7bf1e2ce3cada595819b71a3743",
+   "size": 12610,
+   "deployedAt": "2026-10-25T14:40:30.111Z"
   },
   "es/privacy/index.html": {
-   "sha256": "2bdd654ce2396cadac8d8f26d6bfecbe846c4f456ac9d3ff230834f445cd6ca4",
-   "size": 10498,
-   "deployedAt": "2026-10-24T19:13:46.183Z"
+   "sha256": "3d58c3388e88eb71465e88b0dbc17dbf656b4e3edd1bed1ea74a2d90bbaf4a15",
+   "size": 10282,
+   "deployedAt": "2026-10-25T14:40:32.383Z"
   },
   "fr/a-propos/index.html": {
-   "sha256": "4cae5a239c821815a4dd71f3d7799669ed64495cb13c2e8e97ef0041d2ef40c9",
-   "size": 9779,
-   "deployedAt": "2026-10-24T19:13:48.447Z"
+   "sha256": "54f8f737a96fa55fab3b353b9a868f9079fa3521e91496640c5317a41a4699a3",
+   "size": 9382,
+   "deployedAt": "2026-10-25T14:40:34.630Z"
   },
   "fr/app/index.html": {
-   "sha256": "b3ff2d8a0e25c0c3af9d3368fb0adeb5397567ec9481263f1a754946c865c0ab",
-   "size": 27729,
-   "deployedAt": "2026-10-24T19:42:15.840Z"
+   "sha256": "658e61b521d7164752d8415e2f42e7b00e74c5fb5173c7c7a7e9a89a2415e31c",
+   "size": 27674,
+   "deployedAt": "2026-10-25T14:40:36.963Z"
   },
   "fr/guides/calculer-marge-bookmaker/index.html": {
-   "sha256": "09b83114c02159e7a70be7d5b4c0991f1d6921c63bc62ad7705e13a5453c046e",
-   "size": 11837,
-   "deployedAt": "2026-10-24T19:13:53.278Z"
+   "sha256": "f96667ca9e2dea1c79577b72450e5baf0aedeb16236a2bc4dd38633c6a07129e",
+   "size": 12866,
+   "deployedAt": "2026-10-25T14:40:39.267Z"
   },
   "fr/guides/comparer-bookmakers-trj/index.html": {
    "sha256": "5f413714a0f90eff9cf9309934daa3deabbeb486a7997886f4114a6727a36a4d",
@@ -168,19 +173,19 @@
    "deployedAt": "2026-10-24T19:13:55.717Z"
   },
   "fr/guides/formats-de-cotes/index.html": {
-   "sha256": "24193bed6fe070f42db2f3aab067fdba70458b98f6c98ccb7f1f3982888575d7",
-   "size": 10628,
-   "deployedAt": "2026-10-24T19:13:58.042Z"
+   "sha256": "569b8b5069da79cd7147bda55701341260cd806dcb692284bb4ccacad332ffde",
+   "size": 10181,
+   "deployedAt": "2026-10-25T14:40:41.594Z"
   },
   "fr/guides/index.html": {
-   "sha256": "1e93a7df1cbc5329543e9d4872555531c8e7252ccf0cb5cf2f35922e946f46aa",
-   "size": 7306,
-   "deployedAt": "2026-10-24T19:14:00.388Z"
+   "sha256": "d8ddbae415f83654be168658d18768a3f54fd1c5c78cbf65f247adf14270302b",
+   "size": 6573,
+   "deployedAt": "2026-10-25T14:40:43.981Z"
   },
   "fr/guides/lexique-paris-sportifs/index.html": {
-   "sha256": "7c3a0e6573ed084012148aa519a3e4ed8d01afc26f00aa19f2c93ad46bb0b3d7",
-   "size": 16666,
-   "deployedAt": "2026-10-24T19:14:02.779Z"
+   "sha256": "7fd3554592e508d4df84cebc647ff57c74240b48d4e185024778475a52ed3eb7",
+   "size": 16136,
+   "deployedAt": "2026-10-25T14:40:46.279Z"
   },
   "fr/guides/trj-pari-sportif/index.html": {
    "sha256": "5622512db99a61a0365f0bb1f8ad73dc5c8eaaab7b7e0c377d923966f8b40de4",
@@ -188,29 +193,29 @@
    "deployedAt": "2026-10-24T19:14:05.174Z"
   },
   "fr/guides/trj-paris-combines/index.html": {
-   "sha256": "1cb5be0979906f842ee56ee9870b4afc08ff7161f8367a49ae120d3ece2dea8d",
-   "size": 10379,
-   "deployedAt": "2026-10-24T19:14:07.537Z"
+   "sha256": "eb922a5565003021eed28e5940d99d165d913255319947428c054d9c344dc216",
+   "size": 9880,
+   "deployedAt": "2026-10-25T14:40:48.646Z"
   },
   "fr/index.html": {
-   "sha256": "58c4b04bf8c4a3ea6933bc8cc360984b16125fdf1892289456cdc9e1fe4f091d",
-   "size": 14420,
-   "deployedAt": "2026-10-24T19:14:09.840Z"
+   "sha256": "08525a2cf9ad3e4d7e2d9bbb613a9f9a11649eaff389334982a57cb8907caac2",
+   "size": 12953,
+   "deployedAt": "2026-10-25T14:40:50.925Z"
   },
   "fr/privacy/index.html": {
-   "sha256": "065bd00020a95d5748a61c089513015be5e360f15f713fa4e64d00a011153198",
-   "size": 11183,
-   "deployedAt": "2026-10-24T19:14:12.068Z"
+   "sha256": "a9073ae8a242b3c51dabc131fb4ed27a4525c3b718786b387e73387f90bcfe64",
+   "size": 10947,
+   "deployedAt": "2026-10-25T14:40:53.282Z"
   },
   "guides/betting-terms/index.html": {
-   "sha256": "06e988bceb0f3a06775da53d22f0330a930fe551e73cc70d649b135b92de3b88",
-   "size": 15214,
-   "deployedAt": "2026-10-24T19:14:14.485Z"
+   "sha256": "888bc0f9fe1e8cf3f4c35b342254c846a40e2840cca0b9ffa6609e14ca2fc260",
+   "size": 14817,
+   "deployedAt": "2026-10-25T14:40:55.623Z"
   },
   "guides/calculate-bookmaker-margin/index.html": {
-   "sha256": "0aa3fcd95bb137794e8c12f1430771b5c0b8f2d0808bc343d871a0d5dcf573c9",
-   "size": 10995,
-   "deployedAt": "2026-10-24T19:14:16.864Z"
+   "sha256": "ff521bb2c1f727f6a0d254e6cb119904208b18e88d62fe9cf074560212294799",
+   "size": 11979,
+   "deployedAt": "2026-10-25T14:40:58.002Z"
   },
   "guides/compare-bookmakers-rtp/index.html": {
    "sha256": "999cf06142515ac5c3b3cb915319d8e28770e25f3146332c8fbe47ccf5e23a00",
@@ -218,19 +223,19 @@
    "deployedAt": "2026-10-24T19:14:19.135Z"
   },
   "guides/index.html": {
-   "sha256": "11e4fd65d1299178f0d90f93daad0d50fe71ad79f70708bf1b736b5df6195e3f",
-   "size": 6812,
-   "deployedAt": "2026-10-24T19:14:21.458Z"
+   "sha256": "d6ba411011a7f432af123bd512d73d22a4606f92a25723548876d514be3d9ffd",
+   "size": 6162,
+   "deployedAt": "2026-10-25T14:41:00.364Z"
   },
   "guides/odds-formats/index.html": {
-   "sha256": "f372ce9179e7ddb7ecbed803592259c2bb2b5fc22f89d77828fe01f79416b502",
-   "size": 9859,
-   "deployedAt": "2026-10-24T19:14:23.805Z"
+   "sha256": "0e6e08ba8912f2028f0103e243bea61b8acd2251558852408d69789780b5e24a",
+   "size": 9480,
+   "deployedAt": "2026-10-25T14:41:02.617Z"
   },
   "guides/parlay-rtp/index.html": {
-   "sha256": "dfde8e4fcc65cb3c55150864e478bfdfd9b97c461497a87510a060e2562ff9c5",
-   "size": 9584,
-   "deployedAt": "2026-10-24T19:14:26.182Z"
+   "sha256": "6fd3973bd380ce2718beb631f4ff9371580a9706b71892fa915b062cd23581c9",
+   "size": 9184,
+   "deployedAt": "2026-10-25T14:41:04.863Z"
   },
   "guides/rtp-sports-betting/index.html": {
    "sha256": "f651d38bdd4272f64c50690b07acb6298cb8c76446bd382300f965eaa1be22d6",
@@ -263,29 +268,29 @@
    "deployedAt": "2026-10-24T08:44:04.515Z"
   },
   "index.html": {
-   "sha256": "487d5425ded6dae61efeb63142191209208ba3fdf2ecea9324c04a65c12a6899",
-   "size": 13325,
-   "deployedAt": "2026-10-24T19:14:30.799Z"
+   "sha256": "728e383d72cf7e615e639a696a03b2d4f5dfe6eece5dbfa2779def291a5a52ca",
+   "size": 12046,
+   "deployedAt": "2026-10-25T14:41:07.177Z"
   },
   "privacy/index.html": {
-   "sha256": "9b277d08c6e4a00a02c029a4736194f99035c99115b33acb6cec274ce8b8e917",
-   "size": 9943,
-   "deployedAt": "2026-10-24T19:14:33.136Z"
+   "sha256": "213fec5c0670ef04ff7d8fd3be527cd36db8b9cfcd61fa73b0eb567e480a8947",
+   "size": 9733,
+   "deployedAt": "2026-10-25T14:41:09.516Z"
   },
   "pt/app/index.html": {
-   "sha256": "76b2f81dd0a33a00a7662cb7f0aa23fb96e02865b8e19a1de7325a67d8873c71",
-   "size": 27477,
-   "deployedAt": "2026-10-24T19:42:18.239Z"
+   "sha256": "21528581ea56909c564d76e08c324a8816cef312b0be717893944445cae4a0bf",
+   "size": 27425,
+   "deployedAt": "2026-10-25T14:41:11.893Z"
   },
   "pt/guides/apostas-multiplas-rtp/index.html": {
-   "sha256": "66f8acb0a13d3b80d0091ba9c24a22afca97a59058c51c743642503bbb2f31b6",
-   "size": 10169,
-   "deployedAt": "2026-10-24T19:14:37.872Z"
+   "sha256": "84aa7a67a26d435dd733a046302a0325924307ac669a6aa87227144888f24fd1",
+   "size": 9683,
+   "deployedAt": "2026-10-25T14:41:14.240Z"
   },
   "pt/guides/calcular-margem-casa-apostas/index.html": {
-   "sha256": "e76c8b4fb02832d799e21eea87d03a889634fb33c513f29be5e96b83c5db433a",
-   "size": 11647,
-   "deployedAt": "2026-10-24T19:14:40.210Z"
+   "sha256": "98394922732028c0fcc69e76e6626a04703df6ce00e2a00dcddcf039b4f3b717",
+   "size": 12619,
+   "deployedAt": "2026-10-25T14:41:16.645Z"
   },
   "pt/guides/comparar-casas-apostas-rtp/index.html": {
    "sha256": "506a9024857d2ca910a16bf28392fb57611a0df075aadc1f14c4cd8023eabc2b",
@@ -293,19 +298,19 @@
    "deployedAt": "2026-10-24T19:14:42.526Z"
   },
   "pt/guides/formatos-de-odds/index.html": {
-   "sha256": "cb5fd11d0adce77fd2e37a16d68bfd33ea3d76f178d6cf0778b191ac36e17cd7",
-   "size": 10410,
-   "deployedAt": "2026-10-24T19:14:44.872Z"
+   "sha256": "95cc8c03e6757c647f8e223228243a86cd8754d95c08922bffb21b44653f25c7",
+   "size": 9968,
+   "deployedAt": "2026-10-25T14:41:19.007Z"
   },
   "pt/guides/index.html": {
-   "sha256": "cc5950715a93f89c5c516c0cfe9d1f50552f7712b8e9a0dd2fd119d5fc075781",
-   "size": 7089,
-   "deployedAt": "2026-10-24T19:14:47.180Z"
+   "sha256": "d1f86837737acec5458d9196eb893de053f033c8d2e55b179eec7e0d1615e3c8",
+   "size": 6374,
+   "deployedAt": "2026-10-25T14:41:21.358Z"
   },
   "pt/guides/lexico-apostas-esportivas/index.html": {
-   "sha256": "7fa3f6ed16165cc55dd69690842a30e531dc21e73ab984938dbd59954110cb5c",
-   "size": 16158,
-   "deployedAt": "2026-10-24T19:14:49.510Z"
+   "sha256": "a87f6677462a6e2bf0ec66377399242a83f607742e7831d145cc931d5f45b28f",
+   "size": 15659,
+   "deployedAt": "2026-10-25T14:41:23.691Z"
   },
   "pt/guides/rtp-aposta-esportiva/index.html": {
    "sha256": "d8a503519020264917d098dcec1c01ee9f55c2b7278d6d725a3af72ad36d2c2c",
@@ -313,19 +318,19 @@
    "deployedAt": "2026-10-24T19:14:51.930Z"
   },
   "pt/index.html": {
-   "sha256": "9a9615935bc1b7d6a0f7c1d68fc0a9950423ea8f9fc22588bbb7bc42c79c5b6a",
-   "size": 13950,
-   "deployedAt": "2026-10-24T19:14:54.320Z"
+   "sha256": "f7ef8dd1c0c03c4ea819963423147c5227462341f6912de78a4f3d9410f4e40b",
+   "size": 12499,
+   "deployedAt": "2026-10-25T14:41:26.006Z"
   },
   "pt/privacy/index.html": {
-   "sha256": "b91260bedf9eeae00df5fb2b8f9b1d0d67c90f7ea43e75b6da46da37fafbc1cc",
-   "size": 10500,
-   "deployedAt": "2026-10-24T19:14:58.685Z"
+   "sha256": "b6a33c35058ae9a21f5d31d97d2583924b38828454d1faefe0ceda67f05568e1",
+   "size": 10289,
+   "deployedAt": "2026-10-25T14:41:28.330Z"
   },
   "pt/sobre/index.html": {
-   "sha256": "b9a4644907734d85874dfee9bb074a9ef3cf66857a89eff87c7340f0aee52a32",
-   "size": 9352,
-   "deployedAt": "2026-10-24T19:15:01.054Z"
+   "sha256": "406718e476b6c174aea7ebec2be5a84d81f19d6687ba56d4ea11fffd4e235584",
+   "size": 9000,
+   "deployedAt": "2026-10-25T14:41:30.679Z"
   },
   "robots.txt": {
    "sha256": "f928c59d5497240b25feb096be8f47b0ff99e1fab96a8fbec1b6d42919588abb",
@@ -333,9 +338,9 @@
    "deployedAt": "2026-10-24T07:46:32.343Z"
   },
   "sitemap.xml": {
-   "sha256": "84e7e8002650cbf9ee4efa09549443c5cfbaa381fab8e82fce7432f1d0ec6c02",
-   "size": 46160,
-   "deployedAt": "2026-10-24T09:18:05.884Z"
+   "sha256": "f95832d30c30bd869b6369cc990ce2112ba1e499dff3c34b937b30cb9f5689f4",
+   "size": 36868,
+   "deployedAt": "2026-10-25T14:41:32.911Z"
   }
  }
 }

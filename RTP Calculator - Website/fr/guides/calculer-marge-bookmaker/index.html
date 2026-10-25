@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?</title>
-<meta name="description" content="Calculer le TRJ d'un pari à partir des cotes en trois opérations, et en déduire la marge du bookmaker. Méthode pas à pas, exemples à deux et trois issues.">
+<title>Le TRJ d'un pari sportif : définition et calcul</title>
+<meta name="description" content="Le TRJ (Taux de Retour Joueur) d'un pari sportif : ce qu'il mesure, comment le calculer à partir des cotes en trois opérations, et pourquoi il varie d'un marché à l'autre.">
 <link rel="canonical" href="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
 <link rel="alternate" hreflang="en" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
 <link rel="alternate" hreflang="fr" href="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
@@ -13,8 +13,8 @@
 <link rel="alternate" hreflang="pt" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="pt-BR" href="https://rtpcalculator.com/pt/guides/calcular-margem-casa-apostas/">
 <link rel="alternate" hreflang="x-default" href="https://rtpcalculator.com/guides/calculate-bookmaker-margin/">
-<meta property="og:title" content="Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?">
-<meta property="og:description" content="Calculer le TRJ d'un pari à partir des cotes en trois opérations, et en déduire la marge du bookmaker. Méthode pas à pas, exemples à deux et trois issues.">
+<meta property="og:title" content="Le TRJ d'un pari sportif : définition et calcul">
+<meta property="og:description" content="Le TRJ (Taux de Retour Joueur) d'un pari sportif : ce qu'il mesure, comment le calculer à partir des cotes en trois opérations, et pourquoi il varie d'un marché à l'autre.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%230A0A0B%22/%3E%3Cg transform=%22translate(50 50) scale(0.85) translate(-50 -50)%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2231%22 fill=%22none%22 stroke=%22%233A3B40%22 stroke-width=%2216%22/%3E%3Cpath d=%22M78.096 36.899 A31 31 0 1 1 63.101 21.904%22 fill=%22none%22 stroke=%22%23FFD600%22 stroke-width=%2216%22/%3E%3Cline x1=%2269.032%22 y1=%2241.125%22 x2=%2287.159%22 y2=%2232.673%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3Cline x1=%2258.875%22 y1=%2230.968%22 x2=%2267.327%22 y2=%2212.841%22 stroke=%22%230A0A0B%22 stroke-width=%224%22/%3E%3C/g%3E%3C/svg%3E">
@@ -35,7 +35,7 @@
 </script>
 
 <script src="/assets/cmp.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?", "inLanguage": "fr", "datePublished": "2026-07-29", "dateModified": "2026-10-24", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Le TRJ d'un pari sportif : définition et calcul", "inLanguage": "fr", "datePublished": "2026-07-29", "dateModified": "2026-10-25", "author": {"@type": "Organization", "name": "RTP"}, "publisher": {"@type": "Organization", "name": "RTP Calculator"}, "mainEntityOfPage": "https://rtpcalculator.com/fr/guides/calculer-marge-bookmaker/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
@@ -52,15 +52,13 @@
       </svg>
       Calculateur&nbsp;de&nbsp;TRJ
     </a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="/fr/app/">Calculateur en ligne</a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="/fr/app/">Calculateur</a>
       <a class="on" href="/fr/guides/">Guides</a>
       <a href="/fr/#apps">Application</a>
-      <a href="/fr/privacy/">Confidentialité</a>
       <a href="/fr/a-propos/">À propos</a>
-      <a href="/fr/#contact">Contact</a>
     </nav>
-    <nav class="lang" aria-label="Language">
+    <nav class="lang" aria-label="Langue">
       <a href="/guides/calculate-bookmaker-margin/" lang="en" hreflang="en">EN</a>
       <a href="/fr/guides/calculer-marge-bookmaker/" class="on" aria-current="true" lang="fr" hreflang="fr">FR</a>
       <a href="/es/guides/calcular-margen-casa-apuestas/" lang="es" hreflang="es">ES</a>
@@ -73,14 +71,18 @@
 <main class="wrap">
   <a class="crumb" href="/fr/guides/">&larr; Tous les guides</a>
   <article>
-    <h1>Comment calculer le TRJ d'un pari sportif et la marge des bookmakers ?</h1>
-    <p class="date">Publié le 29 juillet 2026 · Mis à jour le 24 octobre 2026</p>
+    <h1>Le TRJ d'un pari sportif : définition et calcul</h1>
+    <p class="date">Publié le 29 juillet 2026 · Mis à jour le 25 octobre 2026</p>
 
-<p>Le TRJ (Taux de Retour Joueur) d'un pari sportif n'est affiché nulle part : les sites de paris montrent des cotes, jamais la part des mises que ces cotes redistribuent. Pourtant ce chiffre, et son complément la marge du bookmaker, se calculent à partir des cotes elles-mêmes, en trois opérations à la portée de n'importe quelle calculatrice.</p>
+<p>Sur n'importe quel site de paris sportifs, un chiffre n'apparaît jamais à l'écran : la part des mises que chaque pari de chaque événement redistribue réellement aux joueurs. C'est ce que mesure le TRJ. Il n'est affiché nulle part et pourtant il se calcule à partir des cotes elles-mêmes, en trois opérations mathématiques.</p>
+
+<h2>La définition</h2>
+<p>Le TRJ (Taux de Retour Joueur) est le pourcentage des mises qu'un marché de paris redistribue aux parieurs, en moyenne. Un TRJ de 94 % signifie que pour 100 € misés sur ce marché, toutes issues confondues, les cotes redistribuent l'équivalent de 94 € de gains : les 6 € restants constituent la marge du bookmaker.</p>
+<p>Deux précisions pour bien le lire. D'abord, le TRJ n'est pas une promesse individuelle : sur un pari donné, vous gagnez ou vous perdez. C'est une moyenne structurelle, celle qui s'impose à l'ensemble des parieurs sur la durée. Ensuite, le TRJ se mesure marché par marché : chaque match, chaque type de pari a le sien, et les écarts sont bien plus grands qu'on ne l'imagine.</p>
 
 <h2>La formule en trois opérations</h2>
 <p><strong>1. Convertir chaque cote en probabilité implicite</strong> : probabilité = 1 ÷ cote décimale. Une cote de 2,00 vaut 50 %, une cote de 4,00 vaut 25 %.</p>
-<p><strong>2. Additionner</strong> les probabilités implicites de toutes les issues du marché. Si les cotes étaient justes, le total ferait exactement 100 % ; en pratique, il le dépasse toujours.</p>
+<p><strong>2. Additionner</strong> les probabilités implicites de toutes les issues du marché. Si les cotes étaient justes, le total ferait exactement 100 % ; en pratique, le total dépasse toujours 100 %, et c'est dans ce dépassement que loge la marge.</p>
 <p><strong>3. En déduire le TRJ</strong> : TRJ = 100 ÷ total × 100. <strong>La marge du bookmaker</strong> est ce qui manque pour atteindre 100 % : marge = 100 − TRJ.</p>
 
 <h2>Exemple à deux issues (tennis)</h2>
@@ -97,29 +99,35 @@
 <p>47,6 % + 29,4 % + 27,8 % = <strong>104,8 %</strong>.</p>
 <p>TRJ = 100 ÷ 104,8 × 100 = <strong>95,4 %</strong>. Marge : <strong>4,6 %</strong>.</p>
 </div>
+
+<h2>Quel que soit le nombre d'issues ou le format des cotes</h2>
 <p>La méthode ne change pas avec le nombre d'issues : le vainqueur d'un tournoi à 30 participants se calcule de la même façon, en additionnant les 30 probabilités implicites. Plus un marché compte d'issues, plus la somme tend à s'éloigner de 100 %, et plus le TRJ est bas.</p>
+<p>La formule suppose des cotes décimales (européennes). Une cote fractionnaire ou américaine se convertit d'abord : 6/4 devient 2,50, +150 devient 2,50 aussi, −200 devient 1,50. Le guide sur les <a href="/fr/guides/formats-de-cotes/">formats de cotes</a> détaille ces conversions, et le <a href="/fr/app/">Calculateur de TRJ</a> convertit automatiquement chaque cote que vous saisissez, quel que soit son format.</p>
 
-<h2>Et si les cotes ne sont pas décimales ?</h2>
-<p>La formule suppose des cotes décimales (européennes). Une cote fractionnaire ou américaine se convertit d'abord : 6/4 devient 2,50, +150 devient 2,50 aussi, −200 devient 1,50. Le guide sur les <a href="/fr/guides/formats-de-cotes/">formats de cotes</a> détaille ces conversions. Le format n'a aucun effet sur le résultat : la marge se cache aussi bien dans une fraction que dans une décimale.</p>
-
-<h2>Ce que le résultat vous apprend</h2>
-<p>Le TRJ est le prix réel du pari, et la marge est la commission de l'opérateur. Contrairement à des frais de courtage, elle n'est écrite nulle part : elle est dissimulée dans les cotes, et aucune réglementation n'impose de l'afficher marché par marché. Deux cotes de 1,85 sur deux matchs différents semblent équivalentes ; si la cote d'en face est 1,85 dans un cas et 2,05 dans l'autre, le premier marché a un TRJ de 92,5 % et le second de 97,2 %. C'est exactement ce que le calcul rend visible.</p>
+<h2>Pourquoi les bookmakers n'affichent jamais le TRJ</h2>
+<p>La marge est le prix du service. Contrairement à des frais de courtage, elle n'est écrite nulle part : elle est incorporée dans les cotes, et aucune réglementation n'impose de l'afficher marché par marché. Deux cotes de 1,85 sur deux matchs différents semblent équivalentes ; si la cote d'en face est 1,85 dans un cas et 2,05 dans l'autre, le premier marché a un TRJ de 92,5 % et le second de 97,2 %. C'est exactement ce que le calcul rend visible : le prix payé par le parieur.</p>
 
 <h2>Ce qui fait varier le TRJ</h2>
-<p>Quelques calculs suffisent à voir apparaître des régularités. <strong>La compétition</strong> : la Ligue 1 et les grands championnats affichent de meilleurs TRJ que les divisions inférieures ou les compétitions exotiques, où la marge peut être démultipliée. <strong>Le type de marché</strong> : en football, le 1X2 principal est généralement le marché le plus compétitif d'un match ; les paris annexes (buteurs, corners, scores exacts, handicaps) portent souvent des marges nettement supérieures. <strong>Le moment</strong> : loin du coup d'envoi, l'incertitude est plus grande et les marges plus larges ; elles se resserrent à l'approche du match. <strong>L'événement</strong> : sur certaines très grandes affiches, des opérateurs compressent temporairement leur marge à des fins commerciales. Le TRJ se mesure donc marché par marché, pas opérateur par opérateur.</p>
+<p>Quelques calculs suffisent à voir apparaître des régularités. <strong>La compétition</strong> : la Ligue 1 et les grands championnats affichent de meilleurs TRJ que les divisions inférieures ou les compétitions exotiques, où la marge des bookmakers peut être démultipliée. <strong>Le type de marché</strong> : en football, le 1X2 principal est généralement le marché le plus compétitif d'un match ; les paris annexes (buteurs, corners, scores exacts, handicaps) portent souvent des marges nettement supérieures. <strong>Le moment</strong> : loin du coup d'envoi, l'incertitude est plus grande et les marges plus larges ; elles se resserrent à l'approche du match. <strong>L'événement</strong> : sur certaines très grandes affiches, des opérateurs compressent temporairement leur marge à des fins commerciales. Le TRJ se mesure donc marché par marché, pas opérateur par opérateur.</p>
+<p>Remarque subsidiaire : dans certains pays, le TRJ est aussi une notion réglementaire. En France, le TRJ moyen annuel des opérateurs de paris sportifs en ligne agréés est plafonné à 85 %.</p>
+
+<h2>À quoi sert le TRJ au quotidien</h2>
+<p><strong>Connaître le prix réel d'un pari</strong> avant de le prendre, plutôt que de le deviner d'après une seule cote.</p>
+<p><strong>Comparer les marchés et types de pari entre eux</strong> : le calcul révèle des écarts systématiques entre le 1X2 et les paris annexes, ou entre une grande affiche et un match de division inférieure.</p>
+<p><strong>Comparer vos opérateurs sur un même match</strong> : pour un pari sur une seule issue, c'est bien sûr la cote de cette issue qui compte, mais le calcul du TRJ permet de repérer l'opérateur qui vend ses paris systématiquement plus cher.</p>
 
 <h2>Calculer en quelques secondes</h2>
-<p>Le <a href="/fr/app/">Calculateur de TRJ</a> applique cette méthode à n'importe quel nombre d'issues, accepte les trois formats de cotes et conserve vos relevés dans votre navigateur. Il permet aussi de <a href="/fr/guides/comparer-bookmakers-trj/">comparer les bookmakers</a> sur un même match, et de mesurer ce que les <a href="/fr/guides/trj-paris-combines/">paris combinés</a> coûtent réellement.</p>
+<p>Le <a href="/fr/app/">Calculateur de TRJ</a> applique cette méthode à n'importe quel nombre d'issues, accepte les trois formats de cotes, permet d'indiquer le bookmaker de chaque cote relevée et conserve l'historique dans votre navigateur.</p>
   </article>
   <div class="cta">
     <h3>Calculez par vous-même le TRJ</h3>
-    <p>Saisissez les cotes d'un pari et obtenez son TRJ instantanément, sans inscription.</p>
+    <p>Saisissez les cotes d'un pari et obtenez son TRJ instantanément.</p>
     <a href="/fr/app/">Ouvrir le calculateur</a>
     <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=fr&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dguides-fr">Télécharger l'application</a>
   </div>
   <div class="more">
     <h3>À lire ensuite</h3>
-    <ul><li><a href="/fr/guides/trj-pari-sportif/">C'est quoi le TRJ d'un pari sportif ?</a></li><li><a href="/fr/guides/trj-paris-combines/">Pourquoi les paris combinés sont une mine d'or pour les bookmakers</a></li><li><a href="/fr/guides/formats-de-cotes/">Cotes décimales, fractionnaires, américaines : les trois principaux formats</a></li><li><a href="/fr/guides/comparer-bookmakers-trj/">Comparer les bookmakers par le TRJ plutôt que par les promotions qu'ils proposent</a></li><li><a href="/fr/guides/lexique-paris-sportifs/">Lexique des paris sportifs</a></li></ul>
+    <ul><li><a href="/fr/guides/trj-paris-combines/">Paris combinés : une mine d'or pour les bookmakers</a></li><li><a href="/fr/guides/formats-de-cotes/">Cotes décimales, fractionnaires, américaines : les trois principaux formats</a></li></ul>
   </div>
 </main>
 <footer>
