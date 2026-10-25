@@ -6,14 +6,14 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (24/10/2026)
+## État courant (25/10/2026)
 
 | Élément | Valeur |
 |---|---|
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
-| Chantier prioritaire | Obscurcissement DEX : livré. Reste à vérifier la disparition de l'alerte Play sous 48 h |
+| Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; ensuite étape 4 (fiche Play, Julien doit coller le texte actuel). Contrôle `inspect` vers le 31/10 |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : envoyée en examen Google le 25/10/2026** par l'API (`stats/listing-push.mjs`). Reste le clic « Publier les modifications » de Julien après approbation. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, bilan vers le 06/11 |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -94,17 +94,89 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
    - 3d fait le 24/10/2026 : `CLAUDE.md` § 1 (`tools/`), § 6 (sitemap généré), § 9 (`inspect`).
      **Étape 3 terminée et commitée (`6b662e7`).** `CLAUDE.md` condensé le 24/10/2026 : les pièges
      de release du § 5 sont dans `.claude/rules/android-release.md` (chargé pour `RTP Calculator - App/**`) ; 199 lignes.
-4. **Fiche Play** : lever l'ambiguïté casino dès le titre, 5 langues. Julien doit coller le
-   texte actuel de la fiche.
-5. **Guides FR** : « Comment calculer le TRJ d'un pari sportif » et « TRJ et plafond légal de
-   85 % en France (ANJ) », puis traductions.
-6. **App 2.2.0** : afficher marge et surebet, URL du site dans l'image partagée ; analytics
-   in-app (Firebase) = décision séparée à prendre avant.
-7. **Repositionnement EN** (bookmaker margin / overround), puis `npm run report`.
+4. **Fiche Play** : lever l'ambiguïté casino dès le titre, 5 langues. **En cours (25/10/2026).**
+   - Texte actuel lu par l'API Android Publisher : source `listing` (`stats/fetch/listing.mjs`,
+     hors collecte par défaut, `npm run snapshot -- --source=listing`). L'API ne lit une fiche
+     qu'à travers un brouillon (`edits.insert` → `listings.list` → `edits.delete` en `finally`,
+     jamais `commit`) : rien n'est modifié dans la console. Jeton existant suffisant (portée
+     `androidpublisher` déjà accordée pour les avis). Résultat : `stats/data/2026-10-25/listing.json`.
+   - **Constat qui nuance le rapport du 23/10** : la fiche EN (langue par défaut, donc celle vue
+     au Myanmar, 32 installs en `en_US`) dit déjà « RTP Calculator for sports bets » (30/30) et
+     « sports bet » en description courte ; DE et ES aussi. Seuls les titres **FR « Calculateur de
+     TRJ » (18/30)** et **PT-BR « Calculadora de RTP » (18/30)** ne nomment pas les paris sportifs ;
+     PT-BR est le vrai trou (Brésil, 16 installs, « RTP » = machines à sous). Le titre EN n'est donc
+     pas le levier contre le Myanmar : regarder icône / captures (premier écran vu) et accepter que
+     des installs « RTP » casino persistent. Descriptions longues : tirets longs (FR, EN, PT), puces
+     « • » en FR contre « - » ailleurs, ligne « Design entièrement repensé » datée (note de version),
+     `contactWebsite` en `http://`.
+   - **Plan validé le 25/10/2026** (`~/.claude/plans/ne-lis-pas-pour-recursive-elephant.md`), textes
+     construits le même jour : `RTP Calculator - App/play/listings/<langue>/{title,short,full}.txt`
+     (15 fichiers, LF, source de vérité de la fiche, convention proche de fastlane). Titres : FR
+     « Calculateur TRJ paris sportifs » (30/30, contient « calculateur trj » et « trj paris sportifs »),
+     PT-BR « Calculadora RTP - Apostas » (25/30, modèle ES) ; EN / DE / ES inchangés. Descriptions
+     courtes inchangées. Descriptions longues (5) : tirets longs et demi-cadratins remplacés par
+     deux-points ou virgules, apostrophes droites, puces « • » partout (FR en avait, les autres « - »),
+     ligne « Design entièrement repensé » neutralisée, « value-bet » → « value bet », ligne « Aussi
+     disponible sur navigateur, sans installation : rtpcalculator.com » avant l'appel final. FR seul :
+     phrase ANJ 85 % dans « Qu'est-ce que le TRJ ? » (décision de Julien : pas de variante ailleurs).
+     Longueurs : 2 592 à 3 143 / 4 000, 15 puces et 5 rubriques dans chaque langue. Script de
+     construction en scratchpad (remplacements à occurrence unique, contrôles avant écriture).
+   - **Écarté (Julien, 25/10)** : phrase « pas un outil casino / machines à sous » dans les
+     descriptions. Lecture déjà claire, et ces mots-clés feraient remonter la fiche sur les
+     recherches casino de Play. Ne pas rouvrir. Icône et captures : non lues pour l'instant.
+   - **Envoi par l'API tenté le 25/10/2026** : `stats/listing-push.mjs` (`npm run listing:push`, à blanc
+     par défaut, `--apply` pour écrire ; garde-fous longueurs / typographie / langues). Objectif : des
+     « modifications non envoyées » dans la console, par `edits.commit` avec `changesNotSentForReview`.
+     **Refusé par Google** (400 : « Changes are sent for review automatically. The query parameter
+     changesNotSentForReview must not be set ») : ce drapeau n'existe que pour les apps où l'envoi
+     automatique est désactivé. Brouillon supprimé par le `finally`, fiche en ligne vérifiée inchangée
+     (lecture à blanc : mêmes 8 écarts). Seule voie API restante : `commit` sans drapeau = envoi en
+     examen immédiat, publication toujours manuelle (publication gérée). `changesInReviewBehavior` =
+     `ERROR_IF_IN_REVIEW` (le défaut annulerait des changements en examen).
+   - **Envoyé en examen le 25/10/2026** (voie choisie par Julien) : `listing:push --apply` sans le drapeau,
+     8 champs écrits (titres FR et PT-BR, 5 descriptions longues, `contactWebsite` en `https://`),
+     commit accepté. Relecture à blanc ensuite : « Aucun écart », la fiche lue par l'API est identique
+     aux fichiers `play/listings/`. Première écriture du jeton `stats/` dans la Play Console.
+     `stats/data/2026-10-25/listing.json` = version en examen ; `listing-avant.json` = fiche d'avant
+     (reconstituée). Piège : la collecte `listing` écrase le JSON du jour, archiver avant un envoi.
+   - **Reste à faire** : Julien clique « Publier les modifications » après l'approbation Google (jusqu'à
+     7 jours), puis note ici la date de mise en ligne, repère pour le bilan (part Brésil, désinstalls
+     J+1). `CLAUDE.md` § 5 et § 9 mis à jour le 25/10 (validé). Commit à faire par Julien :
+     `stats/fetch/listing.mjs`, `stats/listing-push.mjs`, `stats/snapshot.mjs`, `stats/package.json`,
+     `play/listings/`, `CLAUDE.md`, `journal.md`.
+5. ~~**Guides FR**~~ : **close le 25/10/2026 sans nouvelle page.**
+   - « Comment calculer le TRJ d'un pari sportif » : **écarté, cannibalisation**. `calculer-marge-bookmaker`
+     porte ce titre depuis le 24/10 (formule, 2 exemples), `trj-pari-sportif` contient aussi la
+     méthode, et « calcul trj » (70 impressions, pos. 9 à 10, 0 clic) comme « calculateur trj »
+     atterrissent sur `/fr/` (Search Console 16 mois, `stats/data/2026-10-25/gsc.json`). Une 3e
+     page diluerait le signal. Mesurer l'effet du lot CTR et du guide « marge » au bilan du 06/11.
+   - « TRJ et plafond légal de 85 % (ANJ) » : **écarté par Julien**. Aurait été la première page FR
+     seule ; `tools/sitemap.mjs` l'accepterait avec `hreflang="fr"` et `x-default` vers elle-même.
+   - Si l'idée d'un guide revient : probabilité implicite d'une cote, surebet / arbitrage, value
+     bet, à vérifier contre l'existant d'abord. Le lexique est le guide FR le plus vu (64 impressions,
+     pos. 8,2).
+6. ~~**App 2.2.0**~~ : **abandonnée pour l'instant (Julien, 25/10/2026).** Production inchangée :
+   2.1.1 / code 10.
+   - **Pas d'analytics in-app** (Firebase) : décidé. 7 appareils actifs, promesse « 100 % hors
+     ligne » de la fiche, déclaration Sécurité des données et politique de confidentialité à
+     modifier sinon. À réexaminer si l'app dépasse un seuil d'utilisateurs actifs.
+   - **Marge non affichée** : abandonné, ne pas rouvrir. Elle avait été retirée du formulaire lors
+     de la refonte graphique (`BetAnalysisCard.kt`, « input screen as quiet as possible ») ; Julien
+     confirme ce choix.
+   - **Surebet et URL du site dans l'image partagée** : principe accepté, **pour une prochaine mise à
+     jour**. Proposition prête : « TRJ 102.1% · Surebet +2.1% » dans `ui/RtpPill.kt` (composant
+     partagé par formulaire, historique et image ; fond inchangé) ; signature de l'image
+     « Calculateur de TRJ · rtpcalculator.com » à la place de « Disponible sur le Play Store »
+     (les deux ne tiennent pas sur la ligne de 10 sp), chaîne `share_signature_site` non traduisible ;
+     version 2.2.0 / code 11 ; notes de version à versionner dans `play/release-notes/<version>/`.
+     `RtpResult` n'est pas persisté : ni ProGuard ni migration.
+7. **Repositionnement EN** (bookmaker margin / overround), puis `npm run report`. **En attente
+   (Julien, 25/10/2026)** : ne pas commencer avant le bilan du 06/11, qui mesurera d'abord l'effet du
+   lot CTR et de la fiche Play. Question à trancher à ce moment : la « marge dans le calculateur
+   web » prévue par le rapport, alors que la marge a été refusée dans l'app (écran calme) ; l'étape
+   peut se limiter aux titres et textes EN.
 
 Hors plan, toujours valables :
-- **Vérifier** dans la Play Console que l'alerte « Obscurcissement 0 % » a disparu sur la
-  2.1.1. Si elle persiste, relire le score par catégorie avant de toucher aux règles.
 - Retirer `material-icons-extended` (AAR 35 Mo, seules `AccessTime` et `ContentCopy` sont hors
   jeu de base). Gain sur le build debug uniquement.
 - **Kotlin 2 / Compose récent** : chantier à part.
