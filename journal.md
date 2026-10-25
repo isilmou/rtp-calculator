@@ -339,7 +339,10 @@ drapeau liste `.htaccess` parmi les « absents en local » (il n'est pas lu sans
 **Testé OK sur S9 et S23+ par Julien le 25/10/2026.** Reste à faire par Julien : demandes
 d'indexation Search Console (5 articles TRJ, `/fr/`, `/fr/guides/`, `/fr/app/`, lexique FR, `/`, puis
 les 2 anciennes URL FR pour accélérer la prise en compte des 301), resoumission du sitemap,
-suppression distante facultative. **Commit `77103c7`** (60 fichiers, à la demande de Julien), push par Julien. Bilan GSC 4 à 6 semaines
+suppression distante facultative. **Commit `77103c7`** (60 fichiers, à la demande de Julien), poussé le 25/10. **Sitemap resoumis le
+25/10/2026 ; demandes d'indexation faites, les 10 URL étaient déjà connues de Google** (le recrawl est
+tout de même mis en file). `CLAUDE.md` mis à jour le 25/10 (§ 6 structure éditoriale et centrage, § 8 captures
+et `MSYS_NO_PATHCONV`, § 9 et § 10 condensés pour rester à 200 lignes), validé par Julien. Bilan GSC 4 à 6 semaines
 après (fin novembre 2026) : anciennes URL sorties de l'index, clics FR, position de « marge bookmaker »
 et « calcul trj ».
 

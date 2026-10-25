@@ -128,15 +128,18 @@ mot de passe dans un fichier du dépôt.
 - **Offre Starter** : FTP en clair port 21 seulement, ni TLS ni SSH. Déploiement par `deploy/`
   (curl, `manifest.json` versionné = état de la production, vérification HTTPS, texte normalisé
   en LF car `core.autocrlf=true` livre du CRLF). Secours : ZIP + extraction dans le Manager.
-- **GA4** (`G-WD1V10FW80`) : la chaîne Consent Mode est critique. Sans CMP, la collecte est
-  nulle — signature `gcs=G100` dans les requêtes réseau. Si AdSense est un jour approuvé,
-  désactiver la bannière RGPD autonome pour éviter le conflit de double bandeau.
-- SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), contrairement
-  à l'ASO qui apporte majoritairement du Tier 3-4. Ne pas dégrader l'existant SEO.
+- **GA4** (`G-WD1V10FW80`) : chaîne Consent Mode critique ; sans CMP, collecte nulle (`gcs=G100` dans
+  les requêtes). Si AdSense est un jour approuvé, désactiver la bannière RGPD autonome (double bandeau).
+- SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), l'ASO surtout du Tier 3-4. Ne pas dégrader l'existant.
 - **Typographie : aucun tiret long** (« — »). Titres « A - B », incises par virgules ou deux-points, « · » en pied de page.
 - **`sitemap.xml` est généré**, jamais édité à la main : `node tools/sitemap.mjs` (`loc` = canonical,
   `lastmod` = dernier commit Git, hreflang = balises des pages). À relancer après toute
   modification de page, avant le déploiement ; `--check` vérifie sans écrire.
+- **Structure éditoriale (25/10/2026)** : 9 pages par langue, 4 guides (TRJ, combinés, formats de cotes, lexique),
+  une seule page par idée ; titres de guides courts, repris à l'identique (cartes, « À lire ensuite », calculateur) ;
+  menu à 4 entrées (Calculateur · Guides · Application · À propos), Confidentialité et Contact au pied de page ;
+  toute page supprimée exige une 301 dans `.htaccess` (§ 7). Centrage : zones vitrine centrées (sections de
+  l'accueil, héros empilé, têtes de l'index des guides et du calculateur), pages de lecture à gauche.
 
 ## 7. Zones interdites sans validation explicite
 
@@ -167,14 +170,15 @@ mot de passe dans un fichier du dépôt.
 # Site (règle 8) : check = connexion FTP, init = relecture HTTPS + manifeste, diff = dry-run
 npm --prefix "C:\RTP-Calculator\deploy" run check|init|diff|push -- --apply [--only=<chemins>] [--htaccess] [--active]
 
-# Textes du site : Word relu par Julien (tools/copy/out/), apply = à blanc sans --apply
-npm --prefix "C:\RTP-Calculator\tools" run copy:extract
-npm --prefix "C:\RTP-Calculator\tools" run copy:apply -- <docx> [--apply] [--empty-ok]
+# Textes du site : Word relu par Julien (tools/copy/out/) ; copy:apply = à blanc sans --apply
+npm --prefix "C:\RTP-Calculator\tools" run copy:extract | copy:apply -- <docx> [--apply] [--empty-ok]
+# Captures et axe (Chromium dans tools/.browsers) ; sous Git Bash, MSYS_NO_PATHCONV=1 sinon « /fr/ » devient C:/Program Files/Git/fr/
+npm --prefix "C:\RTP-Calculator\tools" run shots [-- --pages=/fr/,/fr/app/ --widths=360,375,1280 --label=x] | shots -- --compare <A> <B> | a11y
 ```
 
-Aucun JDK dans le PATH : préfixer Gradle de `JAVA_HOME="C:/Program Files/Android/Android Studio/jbr"`
-et appeler `adb` par son chemin complet (`sdk.dir` de `local.properties` + `platform-tools/adb.exe`).
-Ces deux chemins hors périmètre sont autorisés par Julien (19/09/2026) en lecture et exécution seules.
+Aucun JDK dans le PATH : préfixer Gradle de `JAVA_HOME="C:/Program Files/Android/Android Studio/jbr"`, appeler
+`adb` par son chemin complet (`sdk.dir` de `local.properties` + `platform-tools/adb.exe`) ; ces deux chemins hors
+périmètre sont autorisés par Julien (19/09/2026) en lecture et exécution seules.
 
 ## 9. Statistiques Google
 
@@ -187,14 +191,10 @@ npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob |
 ```
 
 Résultats non versionnés dans `stats/data/AAAA-MM-JJ/` ; identifiants non secrets dans `stats/config.json`.
-- Projet Google Cloud `rtp-calculator-stats`, **sans compte de facturation** : ne jamais en
-  associer un, ne jamais saisir de carte. Toutes les API utilisées sont gratuites.
-- Jeton OAuth auto-renouvelé. Relancer `npm run auth` (navigateur, compte
-  contact@rtpcalculator.com) seulement si l'accès est révoqué ou inutilisé 6 mois.
-- Données en retard de 1 à 3 jours selon la source ; GA4 minoré par le Consent Mode ;
-  vitals Play vides tant que l'app reste sous le seuil d'utilisateurs de Google.
+- Projet Google Cloud `rtp-calculator-stats`, **sans compte de facturation** : n'en jamais associer, jamais de carte. API toutes gratuites.
+- Jeton OAuth auto-renouvelé. `npm run auth` (navigateur, compte contact@rtpcalculator.com) seulement si l'accès est révoqué ou inutilisé 6 mois.
+- Données en retard de 1 à 3 jours selon la source ; GA4 minoré par le Consent Mode ; vitals Play vides sous le seuil d'utilisateurs de Google.
 
 ## 10. Chantier en cours
 
-Plan d'amélioration validé le 23/10/2026 (`stats/reports/2026-10-23-analyse-globale.md`) ;
-ordre d'exécution et état courant dans `journal.md`.
+Plan d'amélioration validé le 23/10/2026 (`stats/reports/2026-10-23-analyse-globale.md`) ; ordre et état courant dans `journal.md`.
