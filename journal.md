@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : envoyée en examen Google le 25/10/2026** par l'API (`stats/listing-push.mjs`). Reste le clic « Publier les modifications » de Julien après approbation. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, bilan vers le 06/11 |
+| Chantier en cours | Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -139,11 +139,8 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
      aux fichiers `play/listings/`. Première écriture du jeton `stats/` dans la Play Console.
      `stats/data/2026-10-25/listing.json` = version en examen ; `listing-avant.json` = fiche d'avant
      (reconstituée). Piège : la collecte `listing` écrase le JSON du jour, archiver avant un envoi.
-   - **Reste à faire** : Julien clique « Publier les modifications » après l'approbation Google (jusqu'à
-     7 jours), puis note ici la date de mise en ligne, repère pour le bilan (part Brésil, désinstalls
-     J+1). `CLAUDE.md` § 5 et § 9 mis à jour le 25/10 (validé). Commit à faire par Julien :
-     `stats/fetch/listing.mjs`, `stats/listing-push.mjs`, `stats/snapshot.mjs`, `stats/package.json`,
-     `play/listings/`, `CLAUDE.md`, `journal.md`.
+   - **Fiche publiée le 25/10/2026** (approbation Google et clic « Publier » le jour même). Étape 4
+     terminée. Commits `064a1b7` (outillage, fiche, CLAUDE.md) et `f122155` (journal), poussés.
 5. ~~**Guides FR**~~ : **close le 25/10/2026 sans nouvelle page.**
    - « Comment calculer le TRJ d'un pari sportif » : **écarté, cannibalisation**. `calculer-marge-bookmaker`
      porte ce titre depuis le 24/10 (formule, 2 exemples), `trj-pari-sportif` contient aussi la
@@ -385,7 +382,7 @@ lots). À retenir :
   `manifest.json` à jour (66 fichiers en production). Sitemap inchangé (lastmod déjà au 24/10).
   Captures de production comparées à la copie locale après envoi : 8 sur 8 identiques au pixel
   près (`/`, `/fr/`, `/fr/app/`, `/fr/guides/formats-de-cotes/` à 375 et 1280 px).
-  Reste : test sur devices S9 / S23+ par Julien ; `CLAUDE.md` § 1, § 6, § 8 (proposé, en attente) ;
+  **Testé OK sur S9 et S23+ par Julien le 25/10/2026.** Reste : `CLAUDE.md` § 1, § 6, § 8 (proposé, en attente) ;
   surveiller au prochain bilan Search Console l'effet des deux H2 d'accueil modifiés.
   (corrections transversales) → 2 accueil → 3 menu → 5 guides → 4 calculateur → 6 copie (règle 3).
   Chaque lot : diff + planche avant/après + validation, déploiement sur demande.
