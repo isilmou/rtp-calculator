@@ -6,13 +6,13 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (25/10/2026)
+## État courant (29/10/2026)
 
 | Élément | Valeur |
 |---|---|
-| Version en production | 2.1.1 / versionCode 10, publiée le 19/09/2026 (commit `f0586de`) |
+| Version en production | **2.2.0 / versionCode 11, publiée le 29/10/2026** (commit du 29/10 ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
-| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 4 sources). Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
+| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
 | Chantier en cours | **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
@@ -197,6 +197,162 @@ d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git
 un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
 `gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
 recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
+
+---
+
+## Corrections de textes du site : guide combinés et formats de cotes (29/10/2026)
+
+Textes FR de Julien, plan validé le 29/10 (`~/.claude/plans/as-tu-la-possibilit-de-peaceful-shell.md`), traductions
+de Claude validées avec le plan. **Déployé le 29/10/2026** (`push --apply`, 36 fichiers vérifiés en HTTPS, diff à blanc
+vide ensuite, `manifest.json` à jour) ; **non commité**.
+
+- **Nouveau titre du guide combinés** : « Paris combinés : la poule aux œufs d'or des opérateurs » (EN « Accumulators:
+  the operators' golden goose », ES « … la gallina de los huevos de oro de los operadores », DE « Kombiwetten: der
+  Goldesel der Anbieter », PT « … a galinha dos ovos de ouro dos operadores »), URL inchangées, repris à l'identique
+  dans les 7 fichiers de chaque langue (article ×4 : title, og:title, headline, H1 ; accueil, index des guides,
+  calculateur, guides TRJ, formats et lexique). Ancien titre : 0 occurrence restante.
+- **Conclusion du guide combinés** en deux paragraphes (texte de Julien ; le paragraphe « Pourquoi… » était déjà
+  identique à son texte). Liens internes conservés sur « calculer le TRJ » (article TRJ) et « sélections
+  individuellement » (calculateur), cibles vérifiées dans les 5 langues. « parieurs/parieuses » rendu par le neutre
+  usuel hors FR.
+- **Formats de cotes** : « … mais la lecture est différente. » (5 langues).
+- Les 2 guides × 5 langues : `dateModified` 2026-10-29 et « Publié le … · Mis à jour le 29 octobre 2026 »
+  (balisage du lexique). `sitemap.xml` régénéré (lastmod 29/10), `--check` OK.
+- 35 pages HTML + sitemap. Script `scratchpad/textes-2910.mjs` (une langue par appel, comptages exacts : 4 dans
+  l'article, 1 ailleurs ; conclusion localisée comme le `<p>` qui suit le H2 de conclusion, sans regex).
+  Piège : un heredoc Bash, même en `'EOF'`, a mangé des `\` dans un script : écrire les scripts à regex avec
+  l'outil fichier, ou éviter les regex.
+- Captures `tools/shots/2026-10-29-*-textes-2910` (2 guides FR, 375 px), axe 0 violation.
+- Commit par Julien. Bilan GSC fin novembre : position du guide combinés après renommage (titre « poule aux œufs d'or »).
+
+---
+
+## Release 2.2.0 de l'app : surebet, signature de l'image, placeholder bleu (29/10/2026)
+
+Plan validé par Julien le 29/10 (`~/.claude/plans/as-tu-la-possibilit-de-peaceful-shell.md`) : version
+**2.2.0 / versionCode 11**, trois changements visibles (placeholder bleu, surebet, adresse du site dans l'image
+partagée), notes de version dans `play/release-notes/2.2.0/` (FR validée puis 4 traductions, ≤ 500 caractères,
+`all.txt` balisé à coller en une fois dans la Play Console), publication manuelle par Julien (§ 5).
+
+**Décisions de rendu (Julien, 29/10)** : en surebet (TRJ > 100 %), la pastille passe sur fond bleu ciel
+`#4FC3F7` (même couleur que le placeholder) avec le texte « TRJ 102.1% · SUREBET », **sans pourcentage de gain**
+(il se déduit du TRJ ; écarté : « SUREBET +2,1 % ») ; **le liseré vertical des cartes suit la couleur de la
+pastille** (demande en cours de route, après un premier rendu où il restait vert). Même rendu sur le calculateur
+web. Fiche Play et textes du site non touchés dans cette release (deux examens Google à ne pas mélanger).
+
+- **Étape 1 faite le 29/10, testée OK sur S9 et S23+** (pastille) : `ui/RtpPill.kt` : `rtpPillText()` (pure),
+  `isSurebetRtp()`, `rtpAccentColor()` = dégradé ou bleu ciel, utilisée par la pastille **et** le liseré de
+  `HistoryScreen.kt` et `ShareableCard.kt` (liseré ajouté après le test device, à revérifier) ; chaîne `surebet`
+  = « SUREBET » × 5 langues ; `RtpPillTextTest` (5 tests, 38 au total, 0 échec, présents par leur nom).
+- **Étape 1b faite et déployée le 29/10** (`push --apply`, 7 fichiers : 5 calculateurs, `share.js`, `sitemap.xml`, tous vérifiés en HTTPS, diff à blanc vide ensuite, `manifest.json` à jour ; non commité) : 5 `*/app/index.html` : `T.surebet`, `isSurebet()`,
+  `pillText()`, `pillColor()` (bleu lu depuis le jeton CSS `--odds-ph`, repli `#4FC3F7`) ; formulaire,
+  pastille et liseré de l'historique, partage texte et modèle de vue de l'image passent par ces fonctions ;
+  `assets/share.js` inchangé en logique (`rtp.color` peint pastille et barre), commentaire d'API mis à jour ;
+  `sitemap.xml` régénéré (lastmod 29/10 sur les 5 calculateurs). Vérifié en Chromium headless (script
+  scratchpad `verify-surebet-web.mjs`, Playwright de `tools/`, serveur local port 8124) : FR 2,10 / 2,10 →
+  « TRJ 105,0% · SUREBET » bleu sur formulaire, historique, liseré et image rendue par `RTPShare.render` ; FR
+  2,00 / 3,50 / 3,80 → « TRJ 95,3% » vert ; EN idem avec point décimal. axe : 0 violation. Pièges : les fonctions
+  du calculateur ne sont pas globales (IIFE), construire le modèle de vue depuis le DOM ; cibler les boutons
+  par `#add` / `#save` (libellés différents par langue).
+- **Étapes 2 et 3 faites le 29/10** : `ShareableCard.kt` signe « <nom de l'app> · rtpcalculator.com » (chaîne
+  `share_signature_site`, `translatable="false"`, base seule) ; `share_signature_available_on` retirée des 5
+  `strings.xml` ; `build.gradle.kts` 2.2.0 / versionCode 11. Tests 38 / 0 échec, `assembleDebug` OK.
+  Liseré bleu et signature : **testés OK sur S9 et S23+ par Julien le 29/10** (avec le surebet, étape 5).
+- **Étape 4 faite le 29/10** : `play/release-notes/2.2.0/{fr-FR,en-US,es-ES,de-DE,pt-BR}.txt` (texte FR de
+  Julien, 4 traductions ; 275 à 312 caractères sur 500, 3 puces « • », aucun tiret long, LF) et `all.txt` =
+  les 5 blocs `<xx-XX>…</xx-XX>` à coller en une fois dans le champ « Notes de version » de la Play Console.
+  Convention : un dossier par version, source de vérité des notes.
+- **Étape 5, part Claude faite le 29/10** : 38 tests unitaires / 0 échec (5 nouveaux présents par leur nom),
+  `assembleDebug` OK, `assembleRelease` OK sous R8 (APK non signé 3,4 Mo, `mapping.txt` produit, classes et
+  champs du package `model` conservés). Pas de test de migration : aucun modèle persisté ne change.
+  **Debug testé OK sur S9 et S23+ par Julien le 29/10** (surebet, liseré, signature, placeholder).
+  **Étape 6 : release 2.2.0 envoyée en examen, approuvée et publiée par Julien le 29/10/2026** (AAB signé,
+  notes depuis `all.txt`, publication gérée). `CLAUDE.md` § 4 et « État courant » mis à jour le 29/10. Commit
+  de l'ensemble du 29/10 fait par Claude à la demande de Julien, push par Julien. Chantier 2.2.0 clos.
+  Hors plan, à décider : puce « Détection des surebets » dans les 5 `play/listings/*/full.txt` + `listing:push`.
+
+---
+
+## Placeholder « Cote » en bleu ciel (29/10/2026)
+
+Demande de Julien : le texte des champs de cote vides (« Cote », Odds, Cuota, Quote, Odd) en bleu
+ciel pour signaler d'un coup d'œil les champs à remplir pour obtenir un TRJ ; les champs facultatifs
+(issue, book, évènement, type, date, heure) restent gris. Couleur `#4FC3F7` sur les deux supports.
+Plan validé le 29/10 (`~/.claude/plans/as-tu-la-possibilit-de-peaceful-shell.md`).
+
+- **Site, fait et déployé le 29/10/2026** (`push --apply --only=assets/site.css`, vérifié en HTTPS, diff à blanc vide ensuite, non commité) : `assets/site.css` seul, jeton `--odds-ph` et règle
+  `.p-app .odds-zone .fld::placeholder` (EU « Cote », UK « 1 / 1 », US « 100 », graisse 800 héritée).
+  HTML intact, sitemap inchangé. Captures `tools/shots/2026-10-29-1359-odds-ph` (FR et EN, 375 et
+  1280) relues ; axe 0 violation (`…-1359-a11y`).
+- **App, fait, non releasé, non commité** : `theme/Color.kt` `OddsPlaceholder`, `OutcomeFields.kt`
+  (`CompactField` reçoit `placeholderColor`, défaut `TextSecondary` ; `AmericanField` en bleu),
+  `BetAnalysisCard.kt` (champ EU). UK sans placeholder dans l'app : inchangé, à reposer si Julien
+  veut « 1 / 1 » comme sur le site. `assembleDebug` OK (APK 20,9 Mo). À tester sur S9 et S23+ par
+  Julien : **testé OK sur S9 et S23+ le 29/10/2026** ; partira avec la 2.2.0 (surebet, signature de l'image), pas de release dédiée.
+- **Piège** : `local.properties` (ignoré par Git) n'existe plus dans `RTP Calculator - App/`, Gradle
+  ne trouve pas le SDK en ligne de commande. Build fait avec `ANDROID_HOME` pointant sur le SDK
+  standard du profil (`AppData/Local/Android/Sdk`, lecture et exécution seules, cf. `CLAUDE.md` § 8).
+  Ouvrir le projet dans Android Studio régénère le fichier ; à faire par Julien.
+- Scripts de patch : `scratchpad/odds-ph.mjs` (occurrence unique, fins de ligne détectées : la copie
+  de travail est en CRLF, un motif en `
+` ne trouve rien).
+
+---
+
+## Collecte des données Google : compléments (29/10/2026)
+
+Question de Julien : Claude a-t-il toutes les données (Analytics, AdSense, AdMob, Play, Search
+Console) ? Inventaire : 4 services sur 5 collectés ; **AdSense absent** (script chargé sur les 5
+calculateurs, `#ad-slot` vide, statut de la demande inconnu). Plan validé le 29/10
+(`~/.claude/plans/as-tu-la-possibilit-de-peaceful-shell.md`) : 1 source `adsense`, 2 GSC
+`date × query` et `date × page`, 3 GA4 clics sortants vers Play (`linkUrl`, à recouper avec les
+colonnes UTM des CSV Play `store_performance`) + navigateur / OS, 4 facultatif `npm run summary`.
+Hors de portée API, ne pas chercher : Play « Portée et appareils », tests de fiche ; GSC statistiques
+d'exploration et Core Web Vitals (CrUX vide sous le seuil).
+
+- **Étape 1 faite le 29/10/2026** (code non commité) : `stats/fetch/adsense.mjs` (compte et `state`,
+  sites et leur état d'approbation, blocs, alertes, problèmes de règlement, rapports jour × pays ×
+  plateforme, jour × page, jour × bloc ; échecs partiels consignés dans `errors` comme `play.mjs`),
+  portée `adsense.readonly` dans `lib/auth.mjs` (API activée et jeton renouvelé par Julien le 29/10,
+  7 portées), source par défaut dans `snapshot.mjs`, section `adsense` de `config.json`. Collecte
+  complète des 5 sources OK (`data/2026-10-29/`).
+  **Constat AdSense (réponse à la question ouverte depuis le 23/10)** : compte `READY` (créé le
+  29/04/2026), mais site `rtpcalculator.com` en `NEEDS_ATTENTION`, client `ca-pub-…` en
+  `GETTING_READY`, **aucun bloc d'annonces**, 0 ligne de rapport, alerte « onboarding incomplet :
+  ajouter les informations de paiement et connecter le site ». Autrement dit AdSense n'a jamais été
+  activé pour le site ; le script chargé sur les 5 calculateurs ne sert à rien tant que l'inscription
+  n'est pas terminée (actions de Julien dans AdSense : paiement, vérification du site, puis examen).
+  **Décision de Julien (29/10/2026)** : deux refus AdSense essuyés à ce jour ; nouvelle demande
+  d'examen seulement si la fréquentation du site augmente. Script laissé en place. Rappel
+  `CLAUDE.md` § 6 : si AdSense est un jour approuvé, retirer la bannière RGPD autonome.
+  Piège (re)rencontré : un bloc avec backticks passé à `node -e` entre guillemets Bash est mangé
+  par le shell ; toujours écrire un fichier `.mjs` avec heredoc `'EOF'`. Erreurs DNS passagères
+  (`getaddrinfo ENOTFOUND adsense.googleapis.com`) sur un premier essai : relancer suffit.
+- **Étape 2 faite le 29/10/2026** : `stats/fetch/gsc.mjs` renvoie en plus `dailyQuery` (`date × query`)
+  et `dailyPage` (`date × page`), 127 et 203 lignes sur 28 jours. Piège : les clics par requête
+  (4) ne font pas le total journalier (13) car Search Console anonymise les requêtes rares ; pour
+  un total, utiliser `daily` ou `dailyPage` (13, exact), `dailyQuery` sert aux tendances des
+  requêtes connues. `CLAUDE.md` § 1 et § 9 mis à jour le 29/10 (validé par Julien).
+- **Étape 3 faite le 29/10/2026** : `stats/fetch/ga4.mjs` renvoie en plus `playClicks` (événement
+  `click` filtré sur `linkUrl` contenant `play.google.com`, par jour × page × lien × pays) et `tech`
+  (appareil × navigateur × OS). Historique complet : **4 clics vers Play depuis janvier** (`/` 2,
+  `/fr/` 1, `/app/` 1), tous antérieurs aux UTM posés le 24/10 ; GA4 reste minoré par le Consent
+  Mode, le recoupement avec les colonnes `UTM source / campaign` des CSV Play `store_performance`
+  se fera au bilan de novembre, **sous réserve** : dans le CSV d'octobre, source, terme de recherche et
+  UTM valent tous « Other » (agrégation de Google sous un seuil de visiteurs) ; le recoupement n'est
+  possible que si le volume monte. `tech` : 67 sessions desktop « (not set) » = robots probables, à
+  exclure des lectures. La mesure améliorée « clics sortants » est bien active (événements présents).
+- **Étape 4 faite le 29/10/2026** : `stats/summary.mjs` (`npm run summary [-- --dir=data/AAAA-MM-JJ]`),
+  lecture seule des JSON du dernier relevé, Markdown sur stdout : Play (installs / désinstalls /
+  actifs / visiteurs et acquisitions de la fiche / note / avis, pays), AdMob (revenus, impressions,
+  eCPM), AdSense (états, blocs, alertes), Search Console (clics, impressions, CTR, position, deux
+  moitiés des jours avec données, top requêtes et pages), GA4 (sessions, robots « (not set) »,
+  canaux, clics vers Play), inspect si présent. À lancer après `snapshot` avant toute analyse.
+  **Défaut corrigé au passage dans `snapshot.mjs`** : `_status.json` était écrasé par chaque
+  collecte partielle du même jour (une collecte `--source=ga4 --all` faisait croire à 301 jours pour
+  tout le dossier) ; il fusionne désormais les sources, chacune avec sa propre période, et
+  `summary` affiche la période par source. `CLAUDE.md` § 9 : commande `summary` ajoutée le 29/10 (validé
+  par Julien ; lignes `snapshot` et `--all` fusionnées pour rester à 200 lignes). Chantier « données Google » clos.
 
 ---
 

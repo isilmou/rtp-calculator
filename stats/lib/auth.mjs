@@ -22,6 +22,7 @@ const TOKEN_PATH = path.join(SECRETS_DIR, 'token.json');
 // (utilisé uniquement pour reviews.list).
 export const SCOPES = [
   'https://www.googleapis.com/auth/admob.readonly',
+  'https://www.googleapis.com/auth/adsense.readonly',
   'https://www.googleapis.com/auth/analytics.readonly',
   'https://www.googleapis.com/auth/webmasters.readonly',
   'https://www.googleapis.com/auth/playdeveloperreporting',

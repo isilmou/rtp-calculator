@@ -1,14 +1,15 @@
-// Collecte des statistiques des quatre sources -> data/AAAA-MM-JJ/<source>.json
+// Collecte des statistiques des cinq sources -> data/AAAA-MM-JJ/<source>.json
 //
 //   npm run snapshot                       28 derniers jours (jusqu'à hier)
 //   npm run snapshot -- --days=90
 //   npm run snapshot -- --start=2026-06-01 --end=2026-09-30
 //   npm run snapshot -- --all              depuis config.historyStart (GSC : 16 mois max)
-//   npm run snapshot -- --source=gsc       une seule source : admob | ga4 | gsc | play
+//   npm run snapshot -- --source=gsc       une seule source : admob | adsense | ga4 | gsc | play
 //   npm run snapshot -- --source=inspect   état d'indexation par URL (hors collecte par défaut : 59 appels)
 //   npm run snapshot -- --source=listing   texte de la fiche Play, toutes langues (hors collecte par défaut)
 //
 // Une source en échec n'arrête pas les autres : l'erreur est consignée dans _status.json.
+// Plusieurs collectes le même jour se cumulent dans _status.json (une entrée par source, avec sa période).
 
 import fs from 'fs';
 import path from 'path';
@@ -16,6 +17,7 @@ import { fileURLToPath } from 'url';
 import { getAuth } from './lib/auth.mjs';
 import { today, addDays, maxYMD } from './lib/dates.mjs';
 import { fetchAdmob } from './fetch/admob.mjs';
+import { fetchAdsense } from './fetch/adsense.mjs';
 import { fetchGa4 } from './fetch/ga4.mjs';
 import { fetchGsc } from './fetch/gsc.mjs';
 import { fetchPlay } from './fetch/play.mjs';
@@ -40,20 +42,23 @@ let startDate = args.start
 
 const SOURCES = {
   admob: fetchAdmob,
+  adsense: fetchAdsense,
   ga4: fetchGa4,
   gsc: (auth, cfg, opts) => fetchGsc(auth, cfg, { ...opts, startDate: maxYMD(opts.startDate, addDays(opts.endDate, -485)) }),
   play: fetchPlay,
   inspect: fetchInspect,
   listing: fetchListing,
 };
-const DEFAULT_SOURCES = ['admob', 'ga4', 'gsc', 'play'];
+const DEFAULT_SOURCES = ['admob', 'adsense', 'ga4', 'gsc', 'play'];
 const wanted = args.source ? String(args.source).split(',') : DEFAULT_SOURCES;
 
 const outDir = path.join(DATA_ROOT, today());
 fs.mkdirSync(outDir, { recursive: true });
 
 const auth = getAuth();
-const status = { generatedAt: new Date().toISOString(), range: { startDate, endDate }, sources: {} };
+const statusPath = path.join(outDir, '_status.json');
+const previous = fs.existsSync(statusPath) ? JSON.parse(fs.readFileSync(statusPath, 'utf8')) : {};
+const status = { generatedAt: new Date().toISOString(), range: { startDate, endDate }, sources: { ...(previous.sources ?? {}) } };
 
 console.log(`Collecte ${startDate} -> ${endDate} : ${wanted.join(', ')}`);
 for (const name of wanted) {
@@ -66,14 +71,14 @@ for (const name of wanted) {
     const counts = Object.fromEntries(
       Object.entries(result).filter(([, v]) => Array.isArray(v)).map(([k, v]) => [k, v.length])
     );
-    status.sources[name] = { ok: true, file: path.relative(__dirname, file), counts, partialErrors: result.errors ?? undefined };
+    status.sources[name] = { ok: true, file: path.relative(__dirname, file), range: { startDate, endDate }, counts, partialErrors: result.errors ?? undefined };
     console.log(`  ${name.padEnd(6)} OK  ${((Date.now() - t0) / 1000).toFixed(1)}s  ${JSON.stringify(counts)}`);
     if (result.errors && Object.keys(result.errors).length) {
       console.log(`         erreurs partielles : ${JSON.stringify(result.errors)}`);
     }
   } catch (err) {
     const detail = err.response?.data?.error ?? err.errors?.[0] ?? null;
-    status.sources[name] = { ok: false, error: err.message, detail };
+    status.sources[name] = { ok: false, range: { startDate, endDate }, error: err.message, detail };
     console.log(`  ${name.padEnd(6)} ÉCHEC  ${err.message}`);
     if (detail) console.log(`         ${JSON.stringify(detail).slice(0, 600)}`);
   }
@@ -90,6 +95,6 @@ if (configChanged) {
   console.log('config.json mis à jour avec les identifiants découverts.');
 }
 
-fs.writeFileSync(path.join(outDir, '_status.json'), JSON.stringify(status, null, 2));
+fs.writeFileSync(statusPath, JSON.stringify(status, null, 2));
 fs.writeFileSync(path.join(DATA_ROOT, 'latest.json'), JSON.stringify({ dir: path.relative(__dirname, outDir), ...status }, null, 2));
 console.log(`Résultats dans ${path.relative(process.cwd(), outDir) || outDir}`);

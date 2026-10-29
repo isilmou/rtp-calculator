@@ -124,7 +124,7 @@
     <p>The closer the RTP is to 100%, the less margin the bookmaker takes on that market. An RTP of 95% means that, over the long run, 95 of every 100 staked go back to players. Some regulators cap it: in France, for instance, the ANJ limits the average RTP of sports betting to 85%. It also varies widely from one market and one operator to another, which is exactly what this calculator lets you compare.</p>
     <h2>Supported odds</h2>
     <p>Decimal (2.10), fractional (11/10) or American (+110), selectable in the format switch. The number of outcomes is unlimited. Your analyses stay in your browser and can be shared as an image.</p>
-    <p>Going further: <a href="/guides/calculate-bookmaker-margin/">The RTP of a sports bet: definition and calculation</a> · <a href="/guides/odds-formats/">Decimal, fractional, American odds: the three main formats</a> · <a href="/guides/parlay-rtp/">Accumulators: a gold mine for bookmakers</a>. Prefer it on your phone? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en">The Android app</a> works fully offline.</p>
+    <p>Going further: <a href="/guides/calculate-bookmaker-margin/">The RTP of a sports bet: definition and calculation</a> · <a href="/guides/odds-formats/">Decimal, fractional, American odds: the three main formats</a> · <a href="/guides/parlay-rtp/">Accumulators: the operators' golden goose</a>. Prefer it on your phone? <a href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en">The Android app</a> works fully offline.</p>
     <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.rtpcalculator&hl=en&referrer=utm_source%3Drtpcalculator.com%26utm_medium%3Dweb%26utm_campaign%3Dapp-en"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5z"/></svg>Download the app</a>
   </section>
 </main>
@@ -158,7 +158,7 @@ var T = {
 };
 
 T.copiedImg = "Image copied to clipboard"; T.downloaded = "Image downloaded"; T.shareFail = "Sharing failed"; T.shareFile = "rtp";
-T.outcome_opt = "Outcome (optional)"; T.book_opt = "Book (optional)"; T.odds_ph = "Odds";
+T.surebet = "SUREBET"; T.outcome_opt = "Outcome (optional)"; T.book_opt = "Book (optional)"; T.odds_ph = "Odds";
 T.mode_new = "New analysis"; T.mode_edit = "Editing saved analysis"; T.save_new = "Save to history"; T.save_edit = "Update analysis";
 
 /* ============ modèle & conversions (port de OddsConversion.kt) ============ */
@@ -242,6 +242,17 @@ function rtpColor(r){
   if(r < 92) return mix('#FB8C00','#FDD835',(r-87)/5);
   if(r < 95) return mix('#FDD835','#43A047',(r-92)/3);
   return '#43A047';
+}
+/* pastille TRJ : texte et couleur. Surebet = TRJ > 100 % : fond bleu ciel (jeton --odds-ph, le même que le
+   placeholder des cotes vides), libellé SUREBET sans pourcentage de gain (il se déduit du TRJ). Partagé par le
+   formulaire, l'historique (pastille et liseré), le partage texte et l'image (share.js). Même règle que
+   rtpAccentColor() de RtpPill.kt dans l'app. */
+function isSurebet(r){ return r.rtp > 100; }
+function pillText(r){ var t = T.rtp + ' ' + fmtPct(r.rtp) + '%'; return isSurebet(r) ? t + ' · ' + T.surebet : t; }
+function pillColor(r){
+  if(!isSurebet(r)) return rtpColor(r.rtp);
+  var v = ''; try{ v = getComputedStyle(document.documentElement).getPropertyValue('--odds-ph').trim(); }catch(e){}
+  return v || '#4FC3F7';
 }
 function fmtPct(r){
   var s = (Math.round(r*10)/10).toFixed(1);
@@ -348,8 +359,8 @@ function updatePill(){
   var r = calcRtp(current.outcomes);
   if(allFilled && r){
     $pill.style.visibility = 'visible';
-    $pill.style.background = rtpColor(r.rtp);
-    $pill.textContent = T.rtp + ' ' + fmtPct(r.rtp) + '%';
+    $pill.style.background = pillColor(r);
+    $pill.textContent = pillText(r);
   } else {
     $pill.style.visibility = 'hidden';
   }
@@ -424,13 +435,13 @@ function renderHistory(flashId){
   list.forEach(function(a){
     var r = calcRtp(a.outcomes);
     var card = el('div','hcard',{role:'button', tabindex:'0'});
-    var bar = el('div','hbar'); bar.style.background = r ? rtpColor(r.rtp) : 'transparent';
+    var bar = el('div','hbar'); bar.style.background = r ? pillColor(r) : 'transparent';
     var body = el('div','hbody');
     var head = el('div','hhead');
     var meta = el('span','hmeta');
     meta.textContent = [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '–';
     head.appendChild(meta);
-    if(r){ var pill = el('span','hpill'); pill.style.background = rtpColor(r.rtp); pill.textContent = T.rtp + ' ' + fmtPct(r.rtp) + '%'; head.appendChild(pill); }
+    if(r){ var pill = el('span','hpill'); pill.style.background = pillColor(r); pill.textContent = pillText(r); head.appendChild(pill); }
     body.appendChild(head);
     if(a.eventName){ var ev = el('div','hevent'); ev.textContent = a.eventName; body.appendChild(ev); }
     var grid = el('div','hodds');
@@ -477,7 +488,7 @@ function shareText(a){
   var parts = [];
   if(a.eventName) parts.push(a.eventName);
   if(a.betType) parts.push(a.betType);
-  if(r) parts.push(T.rtp + ' ' + fmtPct(r.rtp) + '%');
+  if(r) parts.push(pillText(r));
   parts.push(a.outcomes.map(displayOdds).join(' / '));
   var txt = parts.join(' · ') + ' · ' + T.shareVia;
   if(navigator.share){ navigator.share({text: txt}).catch(function(){}); }
@@ -490,7 +501,7 @@ function shareA(a){
   var vm = {
     meta: [frDate(a.date), a.time, a.betType].filter(Boolean).join(' · ') || '–',
     eventName: a.eventName || '',
-    rtp: r ? {text: T.rtp + ' ' + fmtPct(r.rtp) + '%', color: rtpColor(r.rtp)} : null,
+    rtp: r ? {text: pillText(r), color: pillColor(r)} : null,
     outcomes: a.outcomes.map(function(o){ return {label: o.label || '', odds: displayOdds(o), book: o.bookmaker || ''}; }),
     signature: 'RTP Calculator', site: 'rtpcalculator.com'
   };

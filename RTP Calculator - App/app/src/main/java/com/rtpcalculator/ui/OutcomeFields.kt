@@ -37,6 +37,7 @@ import com.rtpcalculator.ui.theme.FormatActiveSurface
 import com.rtpcalculator.ui.theme.FormatActiveText
 import com.rtpcalculator.ui.theme.FormatInactiveSurface
 import com.rtpcalculator.ui.theme.FormatInactiveText
+import com.rtpcalculator.ui.theme.OddsPlaceholder
 import com.rtpcalculator.ui.theme.OddsYellow
 import com.rtpcalculator.ui.theme.TextPrimary
 import com.rtpcalculator.ui.theme.TextSecondary
@@ -112,6 +113,7 @@ internal fun CompactField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     textAlign: TextAlign = TextAlign.Start,
     textColor: Color = TextPrimary,
+    placeholderColor: Color = TextSecondary,  // odds fields pass OddsPlaceholder (sky blue).
     textFontSize: TextUnit = 12.sp,
     textFontWeight: FontWeight = FontWeight.Normal,
     focusRequester: FocusRequester? = null,
@@ -136,7 +138,7 @@ internal fun CompactField(
         if (tfv.value.text.isEmpty() && label != null) {
             Text(
                 text = label,
-                color = TextSecondary,
+                color = placeholderColor,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Normal,
                 maxLines = 1,
@@ -302,7 +304,7 @@ internal fun AmericanField(
                 if (tfv.value.text.isEmpty() && label != null) {
                     Text(
                         text = label,
-                        color = TextSecondary,
+                        color = OddsPlaceholder,  // "Cote" placeholder of the US odds field.
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Normal,
                         maxLines = 1,

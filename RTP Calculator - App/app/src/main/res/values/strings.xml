@@ -27,8 +27,9 @@
     <string name="duplicate">Duplicate</string>
     <string name="share">Share</string>
     <string name="rtp_short">RTP</string>
+    <string name="surebet">SUREBET</string>
     <string name="show_less">Show less</string>
-    <string name="share_signature_available_on">Available on Google Play</string>
+    <string name="share_signature_site" translatable="false">rtpcalculator.com</string>
     <string name="share_error">Couldn\'t generate share image</string>
     <string name="cd_remove_outcome">Remove</string>
     <string name="cd_delete">Delete</string>

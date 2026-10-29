@@ -4,6 +4,10 @@
   "admob": {
     "publisherId": "pub-2303541955549784"
   },
+  "adsense": {
+    "_comment": "Même identifiant éditeur que AdMob (compte Google commun).",
+    "publisherId": "pub-2303541955549784"
+  },
   "ga4": {
     "measurementId": "G-WD1V10FW80",
     "propertyId": "540143495"

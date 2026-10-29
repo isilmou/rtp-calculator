@@ -1,0 +1,5 @@
+Nouveautés de la version 2.2.0
+
+• Surebet : quand le TRJ dépasse 100 %, la pastille passe en bleu et affiche « SUREBET ».
+• Les champs de cote vides s'affichent en bleu ciel pour plus de clarté.
+• L'image de partage d'analyse indique désormais l'adresse du calculateur en ligne : rtpcalculator.com.

@@ -52,6 +52,7 @@ import com.rtpcalculator.ui.theme.DarkSurface
 import com.rtpcalculator.ui.theme.DividerSubtle
 import com.rtpcalculator.ui.theme.FieldBackground
 import com.rtpcalculator.ui.theme.FieldFocus
+import com.rtpcalculator.ui.theme.OddsPlaceholder
 import com.rtpcalculator.ui.theme.OddsYellow
 import com.rtpcalculator.ui.theme.OverlayWhite30
 import com.rtpcalculator.ui.theme.TextPrimary
@@ -701,6 +702,7 @@ private fun OutcomeRow(
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     textAlign = TextAlign.Center,
                     textColor = OddsYellow,
+                    placeholderColor = OddsPlaceholder,  // "Cote" in sky blue while empty.
                     textFontSize = 14.sp,
                     textFontWeight = FontWeight.ExtraBold,
                     scrollIntoViewOnFocus = false,  // handled by the outer OutcomeRow Column.

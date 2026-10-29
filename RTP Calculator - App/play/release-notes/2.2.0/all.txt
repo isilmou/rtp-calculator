@@ -1,0 +1,35 @@
+<fr-FR>
+Nouveautés de la version 2.2.0
+
+• Surebet : quand le TRJ dépasse 100 %, la pastille passe en bleu et affiche « SUREBET ».
+• Les champs de cote vides s'affichent en bleu ciel pour plus de clarté.
+• L'image de partage d'analyse indique désormais l'adresse du calculateur en ligne : rtpcalculator.com.
+</fr-FR>
+<en-US>
+What's new in version 2.2.0
+
+• Surebet: when the RTP exceeds 100%, the RTP badge turns blue and shows "SUREBET".
+• Empty odds fields are now shown in sky blue for better clarity.
+• The shared analysis image now includes the address of the online calculator: rtpcalculator.com.
+</en-US>
+<es-ES>
+Novedades de la versión 2.2.0
+
+• Surebet: cuando el RTP supera el 100 %, la etiqueta de RTP se vuelve azul y muestra «SUREBET».
+• Los campos de cuota vacíos se muestran en azul cielo para mayor claridad.
+• La imagen compartida del análisis ahora indica la dirección de la calculadora en línea: rtpcalculator.com.
+</es-ES>
+<de-DE>
+Neu in Version 2.2.0
+
+• Surebet: Übersteigt der RTP 100 %, wird die RTP-Anzeige blau und zeigt „SUREBET“ an.
+• Leere Quotenfelder werden zur besseren Übersicht in Himmelblau angezeigt.
+• Das geteilte Analysebild zeigt jetzt die Adresse des Online-Rechners: rtpcalculator.com.
+</de-DE>
+<pt-BR>
+Novidades da versão 2.2.0
+
+• Surebet: quando o RTP ultrapassa 100%, o selo de RTP fica azul e exibe "SUREBET".
+• Os campos de odd vazios aparecem em azul-claro para mais clareza.
+• A imagem de compartilhamento da análise agora indica o endereço da calculadora online: rtpcalculator.com.
+</pt-BR>

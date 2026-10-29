@@ -9,7 +9,7 @@ Développeur solo : Julien. Deux livrables sous cette racine.
 |---|---|---|
 | `RTP Calculator - App` | Application Android publiée sur Google Play | Kotlin, Jetpack Compose, Gradle, Android Studio |
 | `RTP Calculator - Website` | Site rtpcalculator.com | Site statique multilingue, hébergement Infomaniak |
-| `stats/` | Collecte des statistiques Google (AdMob, GA4, Search Console, Play), lecture seule | Node 24, `googleapis` |
+| `stats/` | Collecte des statistiques Google (AdMob, AdSense, GA4, Search Console, Play), lecture seule | Node 24, `googleapis` |
 | `deploy/` | Déploiement du site vers Infomaniak (règle 8, § 6, § 8) | Node 24, `curl` |
 | `tools/` | Outillage du dépôt : génération du sitemap (§ 6), extraction des textes du site vers Word et réinjection (`copy/`) | Node 24 |
 
@@ -96,7 +96,7 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
 
 - patch `x.x.1` : correction de bug
 - mineure `x.1.0` : nouvelle fonctionnalité ou nouvelle langue
-- version en production au 19/09/2026 : **2.1.1** (versionCode 10, publiée le 19/09/2026)
+- version en production au 29/10/2026 : **2.2.0** (versionCode 11, publiée le 29/10/2026)
 
 ## 5. Chaîne de publication Android
 
@@ -185,9 +185,9 @@ périmètre sont autorisés par Julien (19/09/2026) en lecture et exécution seu
 Avant toute analyse, Claude lance lui-même la collecte, sans rien demander à Julien :
 
 ```powershell
-npm --prefix "C:\RTP-Calculator\stats" run snapshot                    # 28 derniers jours
-npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --all           # historique complet
-npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | ga4 | gsc | play ; hors défaut : inspect (indexation par URL), listing (fiche Play)
+npm --prefix "C:\RTP-Calculator\stats" run snapshot [-- --all]         # 28 derniers jours ; --all = historique complet
+npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | adsense | ga4 | gsc | play ; hors défaut : inspect (indexation par URL), listing (fiche Play)
+npm --prefix "C:\RTP-Calculator\stats" run summary                     # chiffres clés du dernier relevé, à lire après snapshot
 ```
 
 Résultats non versionnés dans `stats/data/AAAA-MM-JJ/` ; identifiants non secrets dans `stats/config.json`.

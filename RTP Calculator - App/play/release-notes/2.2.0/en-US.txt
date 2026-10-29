@@ -1,0 +1,5 @@
+What's new in version 2.2.0
+
+• Surebet: when the RTP exceeds 100%, the RTP badge turns blue and shows "SUREBET".
+• Empty odds fields are now shown in sky blue for better clarity.
+• The shared analysis image now includes the address of the online calculator: rtpcalculator.com.

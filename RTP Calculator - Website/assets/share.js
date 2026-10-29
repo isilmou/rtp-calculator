@@ -5,6 +5,7 @@
    feuille de partage (fichier PNG), presse-papiers (image), téléchargement.
    API : window.RTPShare.render(vm) → Promise<Blob> ; window.RTPShare.deliver(blob, opts) → Promise.
    vm = {meta, eventName, rtp:{text,color}|null, outcomes:[{label, odds, book}], signature, site}
+   rtp.color = pastille et barre latérale (dégradé TRJ, bleu ciel en surebet)
    opts = {filename, toast(msg), T:{copiedImg, downloaded}} */
 (function(){
 "use strict";

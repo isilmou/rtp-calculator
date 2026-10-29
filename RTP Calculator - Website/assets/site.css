@@ -7,7 +7,7 @@
 /* ===== Jetons ===== */
 :root{
   --bg:#0A0A0A;--card:#141414;--block:#1E1E1E;--divider:#1F1F1F;
-  --yellow:#FFD600;--cta:#FAFAFA;--on-cta:#0A0A0A;
+  --yellow:#FFD600;--odds-ph:#4FC3F7;--cta:#FAFAFA;--on-cta:#0A0A0A;
   --text:#FFFFFF;--text-2:#AAAAAA;--text-3:#8A8A8A;--action:#BBBBBB;--danger:#EF5350;
   --border-strong:#6A6A6A;
   --rtp-red:#E53935;--rtp-orange:#FB8C00;--rtp-yellow:#FDD835;--rtp-green:#43A047;
@@ -184,6 +184,7 @@ body.p-app{--max:var(--max-app)}
 .p-app .fmt button.on{background:var(--f-active-bg);color:var(--f-active-tx);font-weight:700}
 .p-app .odds-zone{flex:1;display:flex;gap:6px;align-items:center;min-width:0}
 .p-app .odds-zone .fld{color:var(--yellow);font-weight:800;text-align:center;font-size:16px}
+.p-app .odds-zone .fld::placeholder{color:var(--odds-ph)}
 .p-app .frac-sep{color:var(--text-3);font-weight:700}
 .p-app .us-sign{flex:none;width:34px;height:38px;border:none;border-radius:var(--radius-s);background:var(--block);color:var(--yellow);font-size:17px;font-weight:800;cursor:pointer}
 .p-app .o-del{flex:none;width:44px;height:38px;border:none;background:none;color:var(--danger);cursor:pointer;font-size:16px;border-radius:var(--radius-s)}

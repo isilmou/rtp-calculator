@@ -1,0 +1,5 @@
+Neu in Version 2.2.0
+
+• Surebet: Übersteigt der RTP 100 %, wird die RTP-Anzeige blau und zeigt „SUREBET“ an.
+• Leere Quotenfelder werden zur besseren Übersicht in Himmelblau angezeigt.
+• Das geteilte Analysebild zeigt jetzt die Adresse des Online-Rechners: rtpcalculator.com.

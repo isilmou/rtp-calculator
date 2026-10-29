@@ -292,7 +292,7 @@ private fun HistoryCard(
 
     // Vertical TRJ accent bar on the LEFT of the card (3.dp wide, full card height).
     // Transparent when no RTP can be computed (incomplete odds) — keeps the card clean.
-    val sideBarColor = rtpResult?.let { rtpGradientColor(it.rtp) } ?: Color.Transparent
+    val sideBarColor = rtpResult?.let { rtpAccentColor(it.rtp) } ?: Color.Transparent  // same colour as the pill (sky blue for a surebet).
 
     Card(
         modifier = modifier

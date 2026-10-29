@@ -25,6 +25,10 @@ val DarkSurface = Color(0xFF141414)
 
 // --- Yellow accent — odds value (yellow on dark cards). ---
 val OddsYellow = Color(0xFFFFD600)
+// Sky blue, two roles: placeholder of the EMPTY odds fields ("Cote"), so the user spots at once the
+// fields to fill in to get an RTP, and background of the TRJ pill when the bet is a SUREBET
+// (RTP > 100 %). Same value as --odds-ph in the website's site.css.
+val OddsPlaceholder = Color(0xFF4FC3F7)
 
 // --- TRJ gradient — feeds rtpGradientColor (mapping unchanged) + history side bar. ---
 val RtpRed    = Color(0xFFE53935)

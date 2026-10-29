@@ -43,12 +43,12 @@ import com.rtpcalculator.ui.theme.TextTertiary
  *   - it is ALWAYS expanded (every outcome shown, in chunked rows of 3 with empty cells in
  *     incomplete trailing rows so column widths stay aligned with line 1),
  *   - the action bar (Duplicate / Share / Delete) is removed (no sense outside the app),
- *   - a discrete signature row (logo + app name + "Available on Play Store") is appended.
+ *   - a discrete signature row (logo + app name + "rtpcalculator.com") is appended.
  */
 @Composable
 fun ShareableHistoryCard(analysis: BetAnalysis) {
     val rtpResult = remember(analysis.outcomes) { calculateRtp(analysis.outcomes) }
-    val sideBarColor = rtpResult?.let { rtpGradientColor(it.rtp) } ?: Color.Transparent
+    val sideBarColor = rtpResult?.let { rtpAccentColor(it.rtp) } ?: Color.Transparent  // same colour as the pill (sky blue for a surebet).
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = AppShapeLarge,
@@ -118,7 +118,7 @@ private fun ShareSignature() {
     }
     // stringResource must be read in composable scope (buildAnnotatedString's lambda is not).
     val appName = stringResource(R.string.app_name)
-    val availableOn = stringResource(R.string.share_signature_available_on)
+    val site = stringResource(R.string.share_signature_site)  // not translated: the web calculator's address.
     Column(modifier = Modifier.fillMaxWidth()) {
         // Thin rule detaching the signature from the analysis above.
         Spacer(modifier = Modifier.height(6.dp))
@@ -138,9 +138,9 @@ private fun ShareSignature() {
                     .clip(AppShapeSmall)
             )
             Spacer(modifier = Modifier.width(8.dp))
-            // Single-line styled signature: "<app name> · <available on Play Store>" — bold app
-            // name + italic tagline, separated by a mid-dot. Ellipsis is a safety net for very
-            // long localisations (EN/FR/ES/DE all fit at 10 sp in the 1080-px render).
+            // Single-line styled signature: "<app name> · rtpcalculator.com" — bold app name +
+            // italic site address, separated by a mid-dot (2.2.0: replaces "Available on Google
+            // Play", the two together did not fit on the 10 sp line). Ellipsis is a safety net.
             Text(
                 text = buildAnnotatedString {
                     withStyle(SpanStyle(color = TextPrimary, fontWeight = FontWeight.Bold)) {
@@ -150,7 +150,7 @@ private fun ShareSignature() {
                         append(" · ")
                     }
                     withStyle(SpanStyle(color = TextTertiary, fontStyle = FontStyle.Italic)) {
-                        append(availableOn)
+                        append(site)
                     }
                 },
                 fontSize = 10.sp,

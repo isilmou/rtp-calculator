@@ -1,0 +1,5 @@
+Novedades de la versión 2.2.0
+
+• Surebet: cuando el RTP supera el 100 %, la etiqueta de RTP se vuelve azul y muestra «SUREBET».
+• Los campos de cuota vacíos se muestran en azul cielo para mayor claridad.
+• La imagen compartida del análisis ahora indica la dirección de la calculadora en línea: rtpcalculator.com.

@@ -1,4 +1,5 @@
-// Google Analytics 4 (site rtpcalculator.com) : trafic, pages, événements, sources.
+// Google Analytics 4 (site rtpcalculator.com) : trafic, pages, événements, sources, clics sortants
+// vers Google Play (entonnoir site -> fiche, à recouper avec les colonnes UTM des CSV Play), navigateurs.
 // Rappel : les chiffres sont minorés par les refus de consentement (Consent Mode).
 
 import { google } from 'googleapis';
@@ -59,7 +60,7 @@ export async function fetchGa4(auth, config, { startDate, endDate }) {
   const data = google.analyticsdata({ version: 'v1beta', auth });
   const dateRanges = [{ startDate, endDate }];
 
-  const [daily, pages, pagesMonthly, events, sources, languages, landing] = await Promise.all([
+  const [daily, pages, pagesMonthly, events, sources, languages, landing, playClicks, tech] = await Promise.all([
     runReport(data, property, {
       dateRanges,
       dimensions: dims('date', 'country', 'deviceCategory', 'sessionDefaultChannelGroup'),
@@ -95,6 +96,25 @@ export async function fetchGa4(auth, config, { startDate, endDate }) {
       dimensions: dims('landingPage', 'sessionDefaultChannelGroup'),
       metrics: mets('sessions', 'engagedSessions', 'bounceRate'),
     }),
+    // Clics sortants vers Google Play (mesure améliorée « clics sortants » : événement click + linkUrl).
+    runReport(data, property, {
+      dateRanges,
+      dimensions: dims('date', 'pagePath', 'linkUrl', 'country'),
+      metrics: mets('eventCount', 'totalUsers'),
+      dimensionFilter: {
+        andGroup: {
+          expressions: [
+            { filter: { fieldName: 'eventName', stringFilter: { matchType: 'EXACT', value: 'click' } } },
+            { filter: { fieldName: 'linkUrl', stringFilter: { matchType: 'CONTAINS', value: 'play.google.com' } } },
+          ],
+        },
+      },
+    }),
+    runReport(data, property, {
+      dateRanges,
+      dimensions: dims('deviceCategory', 'browser', 'operatingSystem'),
+      metrics: mets('activeUsers', 'sessions'),
+    }),
   ]);
 
   return {
@@ -107,5 +127,7 @@ export async function fetchGa4(auth, config, { startDate, endDate }) {
     sources,
     languages,
     landing,
+    playClicks,
+    tech,
   };
 }

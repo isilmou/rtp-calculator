@@ -1,4 +1,5 @@
-// Search Console (rtpcalculator.com) : clics, impressions, CTR, position ; état des sitemaps.
+// Search Console (rtpcalculator.com) : clics, impressions, CTR, position ; séries par jour
+// (requête, page) pour comparer avant / après une modification ; état des sitemaps.
 // Limite API : 16 mois d'historique.
 
 import { google } from 'googleapis';
@@ -45,12 +46,14 @@ export async function fetchGsc(auth, config, { startDate, endDate }) {
   }
   const range = { startDate, endDate };
 
-  const [daily, dailyCountryDevice, queryPage, pages, queryCountry, sitemaps] = await Promise.all([
+  const [daily, dailyCountryDevice, queryPage, pages, queryCountry, dailyQuery, dailyPage, sitemaps] = await Promise.all([
     query(gsc, siteUrl, { ...range, dimensions: ['date'] }),
     query(gsc, siteUrl, { ...range, dimensions: ['date', 'country', 'device'] }),
     query(gsc, siteUrl, { ...range, dimensions: ['query', 'page'] }),
     query(gsc, siteUrl, { ...range, dimensions: ['page'] }),
     query(gsc, siteUrl, { ...range, dimensions: ['query', 'country'] }),
+    query(gsc, siteUrl, { ...range, dimensions: ['date', 'query'] }),
+    query(gsc, siteUrl, { ...range, dimensions: ['date', 'page'] }),
     gsc.sitemaps.list({ siteUrl }).then((r) => r.data.sitemap ?? []),
   ]);
 
@@ -62,6 +65,8 @@ export async function fetchGsc(auth, config, { startDate, endDate }) {
     queryPage,
     pages,
     queryCountry,
+    dailyQuery,
+    dailyPage,
     sitemaps,
   };
 }
