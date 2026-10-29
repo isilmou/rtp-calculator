@@ -20,6 +20,8 @@ FUNCIONES PRINCIPALES
 
 • Cálculo instantáneo del RTP de cualquier apuesta deportiva.
 
+• Detección de surebets: cuando el RTP supera el 100 %, el análisis se señala en azul.
+
 • Todos los formatos de cuotas: decimal (EU), fraccionario (UK) y americano (US), con conversión en un toque.
 
 • Tantos resultados como necesites: ideal para el 1X2, los marcadores exactos y los mercados complejos.

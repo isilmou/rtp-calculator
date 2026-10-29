@@ -20,6 +20,8 @@ FONCTIONNALITÉS CLÉS
 
 • Calcul instantané du TRJ pour n'importe quel pari sportif.
 
+• Détection des surebets : quand le TRJ dépasse 100 %, l'analyse est signalée en bleu.
+
 • Tous les formats de cotes pris en charge : décimal (EU), fractionnaire (UK) et américain (US), avec conversion en un clic.
 
 • Autant d'issues que vous voulez : parfait pour le 1X2, le score exact et les marchés complexes.

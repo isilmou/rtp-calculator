@@ -20,6 +20,8 @@ WICHTIGSTE FUNKTIONEN
 
 • Sofortige RTP-Berechnung für jede Sportwette.
 
+• Surebet-Erkennung: Übersteigt der RTP 100 %, wird die Analyse blau markiert.
+
 • Alle Quotenformate: dezimal (EU), Bruch (UK) und amerikanisch (US), mit Umrechnung per Tippen.
 
 • Beliebig viele Ausgänge: ideal für 1X2, Ergebniswetten und komplexe Märkte.

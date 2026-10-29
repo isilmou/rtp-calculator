@@ -269,7 +269,11 @@ web. Fiche Play et textes du site non touchés dans cette release (deux examens 
   **Étape 6 : release 2.2.0 envoyée en examen, approuvée et publiée par Julien le 29/10/2026** (AAB signé,
   notes depuis `all.txt`, publication gérée). `CLAUDE.md` § 4 et « État courant » mis à jour le 29/10. Commit
   de l'ensemble du 29/10 fait par Claude à la demande de Julien, push par Julien. Chantier 2.2.0 clos.
-  Hors plan, à décider : puce « Détection des surebets » dans les 5 `play/listings/*/full.txt` + `listing:push`.
+  **Fiche Play, puce surebet envoyée en examen le 29/10/2026** (demande de Julien) : « Détection des surebets :
+  quand le TRJ dépasse 100 %, l'analyse est signalée en bleu » et équivalents, insérée après la puce « Calcul
+  instantané » dans les 5 `play/listings/*/full.txt` (16 puces, 2 674 à 3 231 caractères). `listing:push --apply`
+  accepté, relecture à blanc « Aucun écart », relevé `data/2026-10-29/listing.json`. **Clic « Publier » par Julien
+  après approbation** (jusqu'à 7 jours). Fichiers non commités.
 
 ---
 

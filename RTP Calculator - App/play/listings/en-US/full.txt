@@ -20,6 +20,8 @@ KEY FEATURES
 
 • Instant RTP calculation for any sports bet.
 
+• Surebet detection: when the RTP exceeds 100%, the analysis is flagged in blue.
+
 • All odds formats supported: decimal (EU), fractional (UK) and American (US), with one-tap conversion.
 
 • As many outcomes as you need: ideal for 1X2, correct score and complex markets.

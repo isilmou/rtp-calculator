@@ -20,6 +20,8 @@ PRINCIPAIS RECURSOS
 
 • Cálculo instantâneo do RTP para qualquer aposta esportiva.
 
+• Detecção de surebets: quando o RTP ultrapassa 100%, a análise é sinalizada em azul.
+
 • Todos os formatos de odds: decimal (EU), fracionária (UK) e americana (US), com conversão em um toque.
 
 • Quantos resultados você quiser: ideal para 1X2, placar exato e mercados complexos.
