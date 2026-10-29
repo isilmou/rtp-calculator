@@ -206,11 +206,17 @@ Textes FR de Julien, plan validé le 29/10 (`~/.claude/plans/as-tu-la-possibilit
 de Claude validées avec le plan. **Déployé le 29/10/2026** (`push --apply`, 36 fichiers vérifiés en HTTPS, diff à blanc
 vide ensuite, `manifest.json` à jour) ; **non commité**.
 
-- **Nouveau titre du guide combinés** : « Paris combinés : la poule aux œufs d'or des opérateurs » (EN « Accumulators:
-  the operators' golden goose », ES « … la gallina de los huevos de oro de los operadores », DE « Kombiwetten: der
-  Goldesel der Anbieter », PT « … a galinha dos ovos de ouro dos operadores »), URL inchangées, repris à l'identique
-  dans les 7 fichiers de chaque langue (article ×4 : title, og:title, headline, H1 ; accueil, index des guides,
-  calculateur, guides TRJ, formats et lexique). Ancien titre : 0 occurrence restante.
+- **Titre du guide combinés** : renommé le matin en « Paris combinés : la poule aux œufs d'or des opérateurs », puis
+  **revenu le soir même à l'ancien titre** « Paris combinés : une mine d'or pour les bookmakers » (EN « Accumulators:
+  a gold mine for bookmakers », ES « … una mina de oro para las casas de apuestas », DE « Kombiwetten: eine Goldgrube
+  für Buchmacher », PT « … uma mina de ouro para as casas de apostas ») : Julien juge la formule « poule aux œufs d'or »
+  meilleure en **intertitre**. Elle remplace donc le H2 « Pourquoi les combinés sont autant mis en avant » (EN
+  « Accumulators: the operators' golden goose », ES « … la gallina de los huevos de oro de los operadores », DE
+  « Kombiwetten: der Goldesel der Anbieter », PT « … a galinha dos ovos de ouro dos operadores » ; équivalents
+  idiomatiques vérifiés, « Goldesel » retenu pour DE car « die Gans, die goldene Eier legt » est trop lourd en titre).
+  URL inchangées ; titre repris à l'identique dans les 7 fichiers de chaque langue (article ×4 : title, og:title,
+  headline, H1 ; accueil, index des guides, calculateur, guides TRJ, formats et lexique). Les deux passages ont été
+  déployés le 29/10 ; le second (35 fichiers, diff à blanc vide ensuite) est commité avec le journal.
 - **Conclusion du guide combinés** en deux paragraphes (texte de Julien ; le paragraphe « Pourquoi… » était déjà
   identique à son texte). Liens internes conservés sur « calculer le TRJ » (article TRJ) et « sélections
   individuellement » (calculateur), cibles vérifiées dans les 5 langues. « parieurs/parieuses » rendu par le neutre
@@ -223,7 +229,7 @@ vide ensuite, `manifest.json` à jour) ; **non commité**.
   Piège : un heredoc Bash, même en `'EOF'`, a mangé des `\` dans un script : écrire les scripts à regex avec
   l'outil fichier, ou éviter les regex.
 - Captures `tools/shots/2026-10-29-*-textes-2910` (2 guides FR, 375 px), axe 0 violation.
-- Commit par Julien. Bilan GSC fin novembre : position du guide combinés après renommage (titre « poule aux œufs d'or »).
+- Bilan GSC fin novembre : position du guide combinés, titre inchangé au final (« mine d'or »), seul le H2 a changé.
 
 ---
 
