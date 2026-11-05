@@ -8,8 +8,9 @@
 /* Deux modes (05/11/2026) : clair par défaut, sombre quand assets/theme.js pose data-theme="dark" sur <html>
    (bouton de l'en-tête, choix mémorisé ; le réglage de l'appareil n'est pas suivi).
    Mode clair : le jaune, le bleu ciel et l'orange ne servent jamais de couleur de texte (contraste insuffisant),
-   ils deviennent traits ou aplats (--link-line, --hl, --tint, --tint-2, --th-bg, --odds-bg) ; encres dérivées : --accent-2,
-   --odds-ph-ink ; --on-yellow = texte posé sur un aplat jaune, dans les deux modes. */
+   ils deviennent traits ou aplats (--link-line, --hl, --tint, --tint-2, --th-bg, --odds-bg) ; encre dérivée : --accent-2 ;
+   --on-yellow = texte posé sur un aplat jaune, dans les deux modes. Seule exception : le mot « Cote » des champs vides,
+   bleu ciel (--odds-ph) dans les deux modes. --odds-bg = cotes affichées (historique, carte démo), pas le champ de saisie. */
 :root{
   color-scheme:light;
   --bg:#FAFAF7;--card:#FFFFFF;--block:#F1F0EB;--divider:#E8E6E0;
@@ -23,7 +24,7 @@
   --prose:#2E2E34;--tint:#FFF8D2;--header-bg:rgba(250,250,247,.97);--logo-track:#D6D5D0;
   --scroll-shadow:rgba(20,20,22,.14);--shadow:0 18px 40px rgba(20,20,22,.16);--lift:0 6px 18px rgba(20,20,22,.06);
   /* calculateur, carte démo, toast */
-  --odds:#141416;--odds-bg:#FFD600;--odds-ph-ink:#01579B;--on-pill:#0A0A0A;--fld-bg:#F1F0EB;--fld-focus:#141416;
+  --odds:#141416;--odds-bg:#FFD600;--on-pill:#0A0A0A;--fld-bg:#F1F0EB;--fld-focus:#141416;
   --disabled:rgba(20,20,22,.3);--add-hover:#141416;--card-edge:0 0 0 1px #E8E6E0;--mark:#141416;
   --toast-bg:#FFFFFF;--toast-edge:0 0 0 1px #E8E6E0,0 10px 28px rgba(20,20,22,.18);
   --radius-l:12px;--radius-s:8px;
@@ -41,7 +42,7 @@
   --nav-on:#FFD600;--nav-line:transparent;--accent-2:#4FC3F7;--tint-2:#1D3038;--th-bg:#213A46;
   --prose:#AAAAAA;--tint:#141414;--header-bg:rgba(10,10,10,.92);--logo-track:#3A3B40;
   --scroll-shadow:rgba(255,255,255,.14);--shadow:0 16px 44px rgba(0,0,0,.4);--lift:none;
-  --odds:#FFD600;--odds-bg:#0A0A0A;--odds-ph-ink:#4FC3F7;--fld-bg:#0A0A0A;--fld-focus:#FFFFFF;
+  --odds:#FFD600;--odds-bg:#0A0A0A;--fld-bg:#0A0A0A;--fld-focus:#FFFFFF;
   --disabled:rgba(255,255,255,.3);--add-hover:#333333;--card-edge:none;--mark:#FFD600;
   --toast-bg:#222222;--toast-edge:none;
 }
@@ -243,8 +244,10 @@ body.p-app{--max:var(--max-app)}
 .p-app .fmt button{width:40px;height:38px;border:none;cursor:pointer;font-family:inherit;font-size:11.5px;background:var(--f-inactive-bg);color:var(--f-inactive-tx)}
 .p-app .fmt button.on{background:var(--f-active-bg);color:var(--f-active-tx);font-weight:700}
 .p-app .odds-zone{flex:1;display:flex;gap:6px;align-items:center;min-width:0}
-.p-app .odds-zone .fld{background:var(--odds-bg);color:var(--odds);font-weight:800;text-align:center;font-size:16px}
-.p-app .odds-zone .fld::placeholder{color:var(--odds-ph-ink)}
+/* champ de saisie d'une cote : même fond que les autres champs (un aplat jaune le faisait passer pour un bouton) ;
+   « Cote » en bleu ciel non gras dans les deux modes (décision de Julien, malgré le faible contraste sur fond clair) */
+.p-app .odds-zone .fld{color:var(--odds);font-weight:800;text-align:center;font-size:16px}
+.p-app .odds-zone .fld::placeholder{color:var(--odds-ph);font-weight:400}
 .p-app .frac-sep{color:var(--text-3);font-weight:700}
 .p-app .us-sign{flex:none;width:34px;height:38px;border:none;border-radius:var(--radius-s);background:var(--block);color:var(--odds);font-size:17px;font-weight:800;cursor:pointer}
 .p-app .o-del{flex:none;width:44px;height:38px;border:none;background:none;color:var(--danger);cursor:pointer;font-size:16px;border-radius:var(--radius-s)}

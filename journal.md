@@ -267,6 +267,23 @@ changement. **État final en images** : `tools/shots/2026-11-05-2157-etat-final/
 `tools/shots/2026-11-05-2153-revue/index.html` (42 captures) ; la revue `…-2016-revue` et les planches `…-2134-decision`
 montrent l'état d'avant ces deux choix.
 
+**Champ de saisie de la cote (05/11 au soir, après mise en ligne) : déployé et commité le 05/11.**
+Retour de Julien : en clair le champ « Cote » ressemblait à un bouton (aplat jaune vif, mot en gras centré). Cause :
+le jeton `--odds-bg` servait à la fois à afficher une cote (historique, carte démo, image) et au champ de saisie.
+**Décisions de Julien** : le champ a le même fond que les autres champs (`--fld-bg`), sans jaune ni contour ; le mot
+« Cote » (et « 1 / 1 », « 100 ») est **bleu ciel `#4FC3F7` et non gras dans les deux modes**, y compris en clair où
+le contraste est faible (≈ 1,7:1 sur le gris, signalé, choix assumé : seule exception à la règle « pas de bleu ciel en
+texte sur fond clair »). `site.css` seul : `background` retiré de `.p-app .odds-zone .fld`, placeholder en
+`var(--odds-ph)` graisse 400, jeton `--odds-ph-ink` supprimé ; `--odds-bg` (jaune vif en clair) ne sert plus qu'aux
+cotes affichées. Écartées (planche montrée puis rendue caduque par la décision) : contour bleu ou jaune, champ blanc à
+contour gris, champ sombre, « gris puis jaune une fois rempli ». Contrôles : `verify-calc` sans écart en sombre ni en
+géométrie claire (bruit de 0,02 px), axe 0 violation sur `/fr/app/` et `/de/app/` dans les deux modes. Planches avant /
+après : `tools/shots/2026-11-05-2222-champ-cote/`. **Déployé le 05/11 à la demande de Julien** : diff à blanc = `assets/site.css` seul, `push --apply
+--only=assets/site.css` vérifié en HTTPS, « Rien à déployer » ensuite, `manifest.json` à jour ; production comparée à la
+copie locale sur `/fr/`, `/fr/app/`, `/de/app/` × 375 / 1280 × 2 modes : 10 captures sur 12 identiques au pixel près,
+2 à 0,02 % au plus (anticrénelage). `CLAUDE.md` § 6 complété par l'exception (validé). **Commité le 05/11 par Claude à la demande
+de Julien** (commit « Site : champ de saisie de la cote… », avec `manifest.json`, `CLAUDE.md` et ce journal) ; push par Julien.
+
 **Reste à faire** : test par Julien sur S9, S23+ et ordinateur dans les deux modes ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
 confidentialité n'énumère pas les clés stockées par le site : rien à y ajouter pour `rtp_theme`.
 
