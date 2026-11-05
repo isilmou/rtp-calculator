@@ -6,14 +6,14 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (29/10/2026)
+## État courant (05/11/2026)
 
 | Élément | Valeur |
 |---|---|
 | Version en production | **2.2.0 / versionCode 11, publiée le 29/10/2026** (commit du 29/10 ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
+| Chantier en cours | **Thème clair du site livré, déployé et commité le 05/11/2026** (section dédiée ci-dessous ; reste : test sur devices, push ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -197,6 +197,92 @@ d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git
 un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
 `gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
 recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
+
+---
+
+## Thème clair du site (05/11/2026) : livré, déployé et commité (push à faire par Julien)
+
+Les mentions « non commité, non déployé » des lots ci-dessous datent de leur réalisation : l'ensemble a été déployé puis
+commité le 05/11 par Claude à la demande de Julien (site, `cmp.js`, sitemap, manifeste, `CLAUDE.md`, journal).
+
+Demande de Julien : site « plus joli, épuré et moins sombre », harmonieux sur ordinateur et téléphone. Plan validé le
+05/11 (`~/.claude/plans/peux-tu-tablir-un-plan-fluttering-metcalfe.md`), 7 lots validés un à un, rien déployé avant le lot 6.
+
+**Décisions (Julien, 05/11)** : thème clair seul (écartés : sombre adouci, clair + sombre automatique) ; le formulaire
+et l'historique du calculateur ainsi que la carte démo de l'accueil **restent sombres** (écarté : tout en clair), image
+partagée inchangée ; périmètre CSS + retouches HTML légères, aucun texte réécrit.
+
+**Principe** : `:root` de `assets/site.css` porte les jetons clairs ; une « portée sombre » (`.p-home .demo-card`,
+`.p-app .calc`, `.p-app #toast`) redéclare les jetons d'origine. Le jaune `#FFD600` n'est plus jamais une couleur de
+texte hors portée sombre (1,4:1 sur fond clair) : jetons `--link`, `--link-line`, `--hl`, `--tint`, `--accent-ink`.
+Logo recoloré par CSS (`.brand svg circle|line`), SVG des pages intact. Calculateur : `<div class="calc">` autour du
+formulaire et de l'historique (de `p.kicker-sm` à `#empty`), bloc arrondi débordant de la gouttière sur ordinateur,
+bord à bord sous 820 px (`body.p-app{--max:none}`).
+
+**Lot 0 fait le 05/11 (local, non commité, non déployé)** : `site.css` en thème clair = **variante A** (bouton
+principal noir, liens encre soulignés de jaune, « le TRJ » du H1 surligné). **Variante A retenue par Julien le 05/11.**
+Écartée : variante B (bouton principal jaune à texte noir, liens soulignés encre, H1 sans surlignage), soit 6 jetons :
+`--cta:#FFD600;--on-cta:#141416;--cta-hover:#FFE14D;--link-line:currentColor;--link-w:1px;--hl:transparent`.
+Captures 360 / 375 / 768 / 1280 de `/fr/`, `/fr/app/`, guide TRJ : `tools/shots/2026-11-05-1721-clair-avant`
+(référence « avant » du chantier), `…-1724-clair-A`, `…-1733-clair-B`, planches `…-1736-compare` (avant | A) et
+`…-1737-compare` (A | B).
+
+**Lot 1 (socle) fait le 05/11 (local, non commité, non déployé)** : `<div class="calc">` posé dans les 5
+`*/app/index.html` ; en-tête clair (filet arc-en-ciel 2 px, filet gris retiré), entrée de menu active en encre soulignée
+de jaune, sélecteur de langue, boutons, liens, focus encre, logo, pied (liens alignés à gauche sous 560 px).
+**Contrôle du calculateur** (`scratchpad/verify-calc.mjs`, « avant » = même HTML servi avec le `site.css` de HEAD,
+surebet 2,10 / 2,10 enregistré) : styles calculés et dimensions des 82 éléments du bloc identiques dans les 5 langues à
+375 et 1280 px ; pixels identiques à 1280 px en FR / ES / DE / PT, résidus d'anticrénelage ailleurs (quelques dizaines de
+pixels de bord, cause non élucidée, invisibles). Piège évité : ne pas déclarer `color-scheme:dark` sur la portée sombre,
+l'ancien site ne le posait que sur les champs date et heure (rendu natif des contrôles modifié sinon). axe : 0 violation
+sur les 8 pages de référence × 2 largeurs (`…-1804-clair-lot1-a11y`), aucun débordement horizontal sur 10 pages × 4
+largeurs (`…-1805-clair-lot1`, gros plans de l'en-tête dans `socle/`).
+
+**Lot 2 (accueil) fait le 05/11 (local, non commité, non déployé)**, `site.css` section `.p-home` seule, HTML des 5
+accueils intact : héros aéré (88 / 96 px), halo jaune retiré, sections séparées par du blanc (96 px, 60 px sur mobile)
+et non plus par des filets, cartes blanches à filet fin (ombre légère au survol), note « Pour qui ? » en jaune pâle,
+section confidentialité rétrogradée en bloc de pied (filet, H2 à 19 px). **Surtitre « Mentions » masqué par CSS
+(`.p-home .legal .kicker{display:none}`), décision de Julien du 05/11** ; le mot reste dans le HTML. Surligneur du H1
+en `white-space:nowrap` et sans débord : en allemand « den RTP » se coupait sur deux lignes. `scroll-margin-top:24px`
+sur les sections (l'ancre `#apps` du menu arrivait collée sous l'en-tête). Captures des 5 accueils × 4 largeurs
+`tools/shots/2026-11-05-1816-clair-lot2`, aucun débordement ; axe 0 violation sur 5 accueils × 2 largeurs.
+**Défaut de texte antérieur au chantier, corrigé et déployé le 05/11 à la demande de Julien** :
+le menu des accueils ES, DE et PT disait « Guides » alors que toutes les autres pages de ces langues disent « Guías »,
+« Ratgeber », « Guias » (`es|de|pt/index.html` l. 68, un mot par page). En-tête toujours sur une ligne à 360 px
+(79 px, mesuré), `sitemap.xml` régénéré (lastmod 05/11 sur ces 3 accueils). `push --apply` : 4 fichiers vérifiés en
+HTTPS, diff à blanc vide ensuite, libellés relus en production.
+
+**Lots 3 à 6 faits le 05/11** (« finis le travail », puis « tu peux déployer » : Julien a levé la validation lot par lot) :
+- Lot 3, pages de lecture (`site.css`) : texte courant en `--prose` 16 px, encadrés `.ex` jaune pâle, en-têtes de
+  tableau en `--block`, ombres de défilement des tableaux en jetons, listes du texte (à-propos) ramenées dans la
+  colonne avec la couleur des paragraphes (les puces pendaient dans la marge, défaut antérieur), second bouton du bloc
+  `.cta` en contour (`.cta a+a`), ombre au survol des cartes de l'index.
+- Lot 4, calculateur : rien de plus que le bloc `.calc` du lot 1 ; `--header-bg` porté à `.97` d'opacité (l'en-tête
+  collant grisait en passant sur le bloc sombre).
+- Lot 5, `assets/cmp.js` : bandeau cookies en clair (fond blanc, bouton « accepter » noir, « refuser » en contour, lien
+  encre souligné de jaune, cases en `accent-color` encre). **Écarté : `<meta name="theme-color">`** (facultatif au plan,
+  aurait modifié les 45 pages et leur `lastmod` ; à reposer si Julien veut la barre du navigateur mobile assortie).
+- Lot 6, contrôles : 45 pages × 360 et 1280 px sans débordement, sans bouton sur deux lignes
+  (`tools/shots/2026-11-05-1831-clair-final-45pages`) ; axe 0 violation sur les 8 pages de référence × 2 largeurs et
+  sur 3 pages avec bandeau affiché ; calculateur revérifié (styles identiques, 5 langues) ; partage en image : PNG
+  téléchargé, toujours sombre (`…-clair-final-controles/partage.png`). `sitemap.xml` régénéré (lastmod 05/11 sur les 5
+  calculateurs, `--check` OK).
+
+**Déployé le 05/11/2026 à la demande de Julien** (`push --apply`, diff montré avant) : 8 fichiers vérifiés en HTTPS
+(`site.css`, `cmp.js`, 5 `*/app/index.html`, `sitemap.xml`), diff à blanc vide ensuite, `manifest.json` à jour.
+Production comparée à la copie locale : 8 captures sur 8 identiques au pixel près (`/fr/`, `/fr/app/`, `/de/app/`,
+`/fr/guides/formats-de-cotes/` à 375 et 1280 px, `…-1852-compare`). Piège : une capture locale peut sortir en police
+de repli si Google Fonts ne répond pas (écarts de 5 à 6 % et hauteurs différentes) ; relancer avant de conclure.
+
+**Reste à faire** : test par Julien sur S9, S23+ et ordinateur ; `git push` par Julien ;
+`CLAUDE.md` § 6 : ligne « Thème clair » ajoutée le 05/11 (validée par Julien ; puces sitemap et structure éditoriale
+remises en lignes plus longues, sans changement de texte, pour rester à 200 lignes). Images `img/og-*.png` toujours sombres (outil de
+génération non versionné). Scripts de contrôle en scratchpad, perdus avec la session : `verify-calc.mjs` (styles
+calculés du bloc avant / après), `crop-socle.mjs`, `verify-final.mjs` ; à versionner dans `tools/` si le thème évolue.
+
+Restent hors périmètre : images `img/og-*.png` (sombres), `share.js`, favicon. À traiter au lot 5 : `cmp.js` (bandeau
+cookies entièrement en couleurs sombres en dur). Piège : `shots -- --compare` résout les chemins relatifs depuis
+`tools/` ; passer des chemins absolus.
 
 ---
 

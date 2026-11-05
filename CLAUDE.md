@@ -132,14 +132,14 @@ mot de passe dans un fichier du dépôt.
   les requêtes). Si AdSense est un jour approuvé, désactiver la bannière RGPD autonome (double bandeau).
 - SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), l'ASO surtout du Tier 3-4. Ne pas dégrader l'existant.
 - **Typographie : aucun tiret long** (« — »). Titres « A - B », incises par virgules ou deux-points, « · » en pied de page.
-- **`sitemap.xml` est généré**, jamais édité à la main : `node tools/sitemap.mjs` (`loc` = canonical,
-  `lastmod` = dernier commit Git, hreflang = balises des pages). À relancer après toute
-  modification de page, avant le déploiement ; `--check` vérifie sans écrire.
-- **Structure éditoriale (25/10/2026)** : 9 pages par langue, 4 guides (TRJ, combinés, formats de cotes, lexique),
-  une seule page par idée ; titres de guides courts, repris à l'identique (cartes, « À lire ensuite », calculateur) ;
-  menu à 4 entrées (Calculateur · Guides · Application · À propos), Confidentialité et Contact au pied de page ;
-  toute page supprimée exige une 301 dans `.htaccess` (§ 7). Centrage : zones vitrine centrées (sections de
-  l'accueil, héros empilé, têtes de l'index des guides et du calculateur), pages de lecture à gauche.
+- **Thème clair (05/11/2026)** : jetons dans `:root` de `site.css` ; le jaune n'est jamais une couleur de texte hors
+  des blocs sombres ; calculateur, carte démo et toast en portée sombre aux jetons de l'app.
+- **`sitemap.xml` est généré**, jamais édité à la main : `node tools/sitemap.mjs` (`loc` = canonical, `lastmod` = dernier commit Git,
+  hreflang = balises des pages). À relancer après toute modification de page, avant le déploiement ; `--check` vérifie sans écrire.
+- **Structure éditoriale (25/10/2026)** : 9 pages par langue, 4 guides (TRJ, combinés, formats de cotes, lexique), une seule page par idée ;
+  titres de guides courts, repris à l'identique (cartes, « À lire ensuite », calculateur) ; menu à 4 entrées (Calculateur · Guides ·
+  Application · À propos), Confidentialité et Contact au pied de page ; toute page supprimée exige une 301 dans `.htaccess` (§ 7).
+  Centrage : zones vitrine centrées (sections de l'accueil, héros empilé, têtes de l'index des guides et du calculateur), pages de lecture à gauche.
 
 ## 7. Zones interdites sans validation explicite
 
