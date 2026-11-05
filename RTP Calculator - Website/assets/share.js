@@ -11,8 +11,15 @@
 "use strict";
 var S = 3, W = 360, MARGIN = 12, BAR = 4, R_CARD = 8, R_S = 6, GAP = 5;
 var FONT = "'Archivo', system-ui, -apple-system, sans-serif";
-var C = {bg:'#0A0A0A', card:'#141414', block:'#1E1E1E', divider:'#1F1F1F', yellow:'#FFD600',
-         text:'#FFFFFF', text2:'#AAAAAA', text3:'#8A8A8A', onPill:'#0A0A0A', ring:'#3A3B40'};
+/* Deux palettes, mêmes valeurs que les jetons de site.css : l'image suit le mode du site au moment du partage
+   (sombre = image de l'app Android, inchangée ; clair = carte blanche à filet, cotes en encre sur aplat jaune). */
+var DARK = {bg:'#0A0A0A', card:'#141414', block:'#1E1E1E', divider:'#1F1F1F', yellow:'#FFD600',
+            text:'#FFFFFF', text2:'#AAAAAA', text3:'#8A8A8A', onPill:'#0A0A0A', ring:'#3A3B40',
+            odds:'#FFD600', oddsBg:'#0A0A0A', edge:null};
+var LIGHT = {bg:'#FAFAF7', card:'#FFFFFF', block:'#F1F0EB', divider:'#E8E6E0', yellow:'#FFD600',
+             text:'#141416', text2:'#4A4A52', text3:'#6A6A72', onPill:'#0A0A0A', ring:'#D6D5D0',
+             odds:'#141416', oddsBg:'#FFD600', edge:'#E8E6E0'};
+var C = DARK;
 
 function font(weight, size, italic){ return (italic ? 'italic ' : '') + weight + ' ' + size + 'px ' + FONT; }
 
@@ -59,6 +66,7 @@ function logo(ctx, x, y, size){
 
 /* Dessin de la carte. Toutes les cotes sont en pixels CSS de la carte à 360 px ; le canvas est à l'échelle S. */
 function draw(vm){
+  C = document.documentElement.getAttribute('data-theme') === 'dark' ? DARK : LIGHT;
   var outs = vm.outcomes || [], n = outs.length;
   var cols = n > 3 ? 3 : Math.max(n, 1), rows = Math.ceil(n / cols);
   var cardX = MARGIN, cardW = W - 2 * MARGIN;
@@ -91,6 +99,7 @@ function draw(vm){
   ctx.fillStyle = C.card; ctx.fillRect(cardX, MARGIN, cardW, cardH);
   if(vm.rtp){ ctx.fillStyle = vm.rtp.color; ctx.fillRect(cardX, MARGIN, BAR, cardH); }
   ctx.restore();
+  if(C.edge){ ctx.strokeStyle = C.edge; ctx.lineWidth = 1; rrect(ctx, cardX + 0.5, MARGIN + 0.5, cardW - 1, cardH - 1, R_CARD); ctx.stroke(); }
 
   /* en-tête : méta à gauche, pastille TRJ à droite */
   var pillW = 0;
@@ -119,8 +128,8 @@ function draw(vm){
     ctx.fillStyle = C.block; rrect(ctx, bx, by, blockW, blockH, R_S); ctx.fill();
     if(o.label){ ctx.font = font(400, 11); ctx.fillStyle = C.text2; ctx.fillText(fit(ctx, o.label, innerW), tx, by + BPAD + LABEL_H / 2 + 0.5); }
     var fy = by + BPAD + LABEL_H + 3;
-    ctx.fillStyle = C.bg; rrect(ctx, bx + BPAD, fy, blockW - 2 * BPAD, FRAME_H, 4); ctx.fill();
-    ctx.font = font(800, 16); ctx.fillStyle = C.yellow;
+    ctx.fillStyle = C.oddsBg; rrect(ctx, bx + BPAD, fy, blockW - 2 * BPAD, FRAME_H, 4); ctx.fill();
+    ctx.font = font(800, 16); ctx.fillStyle = C.odds;
     ctx.fillText(fit(ctx, o.odds || '–', innerW), tx, fy + FRAME_H / 2 + 0.5);
     if(o.book){ ctx.font = font(400, 11); ctx.fillStyle = C.text3; ctx.fillText(fit(ctx, o.book, innerW), tx, fy + FRAME_H + 3 + BOOK_H / 2 + 0.5); }
   }

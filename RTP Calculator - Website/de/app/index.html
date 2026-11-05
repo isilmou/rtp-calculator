@@ -47,6 +47,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
 
+<script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body class="p-app">
@@ -466,7 +467,7 @@ function renderHistory(flashId){
     function reopen(){ current = JSON.parse(JSON.stringify(a)); renderForm(); window.scrollTo({top:0, behavior:'smooth'}); }
     card.addEventListener('click', function(e){ if(!e.target.closest('.hact')) reopen(); });
     card.addEventListener('keydown', function(e){ if(e.key === 'Enter' && !e.target.closest('.hact')) reopen(); });
-    if(flashId && a.id === flashId){ card.style.outline = '1px solid #FFD600'; setTimeout(function(){ card.style.outline = ''; }, 1400); }
+    if(flashId && a.id === flashId){ card.style.outline = '1px solid var(--mark)'; setTimeout(function(){ card.style.outline = ''; }, 1400); }
     $hist.appendChild(card);
   });
 }

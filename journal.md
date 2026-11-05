@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | **2.2.0 / versionCode 11, publiée le 29/10/2026** (commit du 29/10 ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; reste : test sur devices ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
+| Chantier en cours | **Deux modes et couleur : déployés le 05/11/2026 au soir, NON commités** (section dédiée ci-dessous ; reste : test devices, commit et push par Julien). **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; reste : test sur devices ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -200,7 +200,86 @@ recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regén�
 
 ---
 
+## Deux modes (clair / sombre au bouton), calculateur clair, couleur (05/11/2026 au soir) : déployé, non commité
+
+**Déployé le 05/11/2026 au soir à la demande de Julien** (« ok pour les libellés et CLAUDE.md, tu peux déployer ») :
+diff à blanc conforme à l'annonce (1 nouveau `assets/theme.js`, 49 modifiés : 45 pages, `site.css`, `cmp.js`,
+`share.js`, `sitemap.xml`), `push --apply` : 50 fichiers vérifiés en HTTPS, diff à blanc ensuite « Rien à déployer »
+(58 inchangés), `manifest.json` à jour. Production comparée à la copie locale sur 5 pages × 375 / 1280 × 2 modes :
+19 captures sur 20 identiques au pixel près, `/de/app/` à 1280 en sombre à 0,02 % (anticrénelage).
+Libellés du bouton validés par Julien. `CLAUDE.md` § 6 : ligne « Deux modes » en place de « Thème clair » (validée).
+**Non commité** : site, `deploy/manifest.json`, `tools/` (`verify-calc.mjs`, `--theme`), `CLAUDE.md`, journal.
+Les mentions « non déployé » des paragraphes ci-dessous datent de leur réalisation.
+
+Demande de Julien le soir du 05/11, après le thème clair : éclaircir aussi le calculateur, créer un mode sombre qui
+reprend l'apparence d'avant, ajouter de la couleur dans les deux modes. Plan validé
+(`~/.claude/plans/peux-tu-claircir-le-calculateur-tranquil-pearl.md`). **Julien a demandé de tout préparer d'un trait et
+de montrer le visuel en une seule fois** : validation lot par lot levée pour ce chantier.
+
+**Décisions (Julien, 05/11 soir), qui reviennent sur celles du matin** :
+- Mode sombre **au bouton seul** : clair par défaut pour tous, le réglage de l'appareil n'est pas suivi (écartés :
+  automatique seul, automatique + bouton).
+- Sombre = **couleurs d'avant le 05/11 sur la mise en page actuelle** (écarté : ancienne mise en page à l'identique).
+- En clair : formulaire, historique, carte démo, toast **et image partagée** (écarté : image toujours sombre).
+- Couleur : **palette de l'app étendue** (écartés : une couleur par rubrique, fonds de section teintés, héros coloré).
+
+**Fait (local, non déployé, non commité)** :
+- `assets/site.css` : `:root` = clair, `:root[data-theme="dark"]` = jetons d'origine ; plus de portée sombre, il ne
+  reste qu'une portée de géométrie (rayons 8 / 6 px de l'app sur `.demo-card`, `.calc`, `#toast`). Jetons nouveaux :
+  `--odds` / `--odds-bg` (cotes : encre sur aplat jaune en clair, jaune sur noir en sombre), `--on-pill` (texte des
+  pastilles, noir dans les deux modes : `--on-cta` est blanc en clair), `--odds-ph-ink` (placeholder des cotes,
+  `#01579B` en clair), `--fld-bg`, `--fld-focus`, `--disabled`, `--add-hover`, `--card-edge`, `--mark`, `--toast-bg`,
+  `--toast-edge`, `--hl-ink`, `--nav-on`, `--nav-line`, `--accent-2`, `--lift`, `--rtp-grad`. **`--odds-ph` reste
+  `#4FC3F7` dans les deux modes** : le JS des calculateurs le lit pour la pastille surebet.
+- `assets/theme.js` (nouveau), chargé en bloquant avant `site.css` dans les 45 pages : pose `data-theme="dark"` selon
+  `localStorage['rtp_theme']`, insère le bouton (lune / soleil) en fin de `header.site .nav`, libellés `aria-label`
+  en 5 langues (« Passer en mode sombre / clair » et équivalents, **posés sans validation préalable, à relire**).
+  Sans JavaScript : site clair, pas de bouton. Sur téléphone le bouton est en bout de ligne du menu (la première
+  ligne est pleine en ES / PT) ; écart du menu 16 → 12 px sous 560 px.
+- `assets/cmp.js` : couleurs en `var(--jeton, repli)`, le bandeau suit le mode. `assets/share.js` : palettes `DARK`
+  (inchangée) et `LIGHT`, choisie au rendu. 5 `*/app/index.html` : contour de mise en évidence en `var(--mark)`.
+- Couleur, **variante B retenue par Julien le 05/11 (« plus de contraste »)**, section « Couleur » en fin de
+  `site.css` (elle doit l'emporter sur les règles par type de page) : liseré vertical dégradé TRJ sur `.gcard`,
+  `.appcard`, `.cta` ; filet dégradé au pied de page ; surtitres en pastille jaune à texte noir (`--on-yellow`),
+  y compris « Nouvelle analyse » du calculateur (`#form-mode`, non montré sur les planches, ajouté par cohérence) ;
+  « Lire le guide », survol et point des cartes de guides en bleu ; point vert sur les cartes Application ; note
+  « Pour qui ? » et en-têtes de tableau bleutés (`--tint-2`, `--th-bg`, valeurs fixes par mode : `color-mix` écarté
+  pour les vieux navigateurs) ; barre bleue aux H2 d'article et du calculateur ; puces vertes. Rôles constants,
+  aucune teinte par rubrique. Écartée : variante A (traits seuls, tiret dégradé devant les surtitres).
+- Outillage versionné : `tools/verify-calc.mjs` (`npm run verify-calc`, relevé et comparaison des styles calculés du
+  calculateur et de la carte démo), option `--theme=dark` de `shots.mjs` et `a11y.mjs`. `sitemap.xml` régénéré.
+
+**Contrôles (refaits sur la variante B)** : calculateur en sombre = styles calculés identiques à HEAD sur 1 540
+éléments (5 langues, 375 et 1280), hors conteneur `.calc`, ombre de la carte démo (valeur d'origine) et pastille
+`#form-mode`, qui descend le formulaire de 8 px. 45 pages × 360 / 1280 × 2 modes : aucun débordement, aucun bouton
+sur deux lignes, en-tête 79 à 80 px à 360 px dans les 5 langues. axe : 0 violation sur les 8 pages de référence × 2
+largeurs × 2 modes (bandeau affiché : contrôlé sur la variante A seulement, `cmp.js` inchangé depuis). Captures de
+l'état final : `tools/shots/2026-11-05-2138-B-clair` et `…-B-sombre`. **Défaut antérieur, non traité** : axe `nested-interactive` sur les cartes d'historique
+(`.hcard[role=button]` contenant des boutons), invisible jusque-là car axe tournait sur un historique vide.
+
+**Revue** : `tools/shots/2026-11-05-2016-revue/index.html` (58 captures clair | sombre, image partagée, bandeau,
+alternatives). Julien a préféré des **fichiers image** : 11 planches PNG côte à côte dans
+`tools/shots/2026-11-05-2134-decision/` (01 à 06 : couleur A ou B ; 07 à 09 : cotes pâle ou vif ; 10 et 11 : aperçus). **Cotes en mode clair : aplat jaune vif retenu par Julien le 05/11** (écarté : jaune pâle `#FFF8D2`) :
+`--odds-bg:#FFD600` dans `:root` et `oddsBg` de la palette `LIGHT` de `share.js`. Conséquence : le placeholder bleu
+des cotes passe de `#0277BD` à `#01579B` en clair (`--odds-ph-ink`, 3,4:1 sur jaune vif sinon, 5,2:1 ainsi) ;
+`--accent-2` (« Lire le guide ») reste `#0277BD`. axe 0 violation sur `/fr/`, `/fr/app/`, `/de/app/` en clair après ce
+changement. **État final en images** : `tools/shots/2026-11-05-2157-etat-final/` (9 planches clair | sombre) et
+`tools/shots/2026-11-05-2153-revue/index.html` (42 captures) ; la revue `…-2016-revue` et les planches `…-2134-decision`
+montrent l'état d'avant ces deux choix.
+
+**Reste à faire** : test par Julien sur S9, S23+ et ordinateur dans les deux modes ; commit (sur demande) et push
+par Julien ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
+confidentialité n'énumère pas les clés stockées par le site : rien à y ajouter pour `rtp_theme`.
+
+Pièges : un heredoc Bash `'EOF'` réduit `\\` à `\` (une regex `[\\/]` ne voit plus les chemins Windows) : écrire ces
+scripts avec l'outil fichier. Les scripts de `tools/` occupent le port 8123 : ne pas en lancer deux à la fois.
+
+---
+
 ## Thème clair du site (05/11/2026) : livré, déployé, commité `8330315` et poussé
+
+**Section en partie dépassée le soir même** (section ci-dessus) : le calculateur n'est plus sombre en mode clair, il
+n'y a plus de « portée sombre », et un mode sombre existe. Ce qui suit décrit l'état en production.
 
 Les mentions « non commité, non déployé » des lots ci-dessous datent de leur réalisation : l'ensemble a été déployé puis
 commité le 05/11 par Claude à la demande de Julien (site, `cmp.js`, sitemap, manifeste, `CLAUDE.md`, journal).

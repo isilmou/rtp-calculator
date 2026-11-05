@@ -132,8 +132,8 @@ mot de passe dans un fichier du dépôt.
   les requêtes). Si AdSense est un jour approuvé, désactiver la bannière RGPD autonome (double bandeau).
 - SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), l'ASO surtout du Tier 3-4. Ne pas dégrader l'existant.
 - **Typographie : aucun tiret long** (« — »). Titres « A - B », incises par virgules ou deux-points, « · » en pied de page.
-- **Thème clair (05/11/2026)** : jetons dans `:root` de `site.css` ; le jaune n'est jamais une couleur de texte hors
-  des blocs sombres ; calculateur, carte démo et toast en portée sombre aux jetons de l'app.
+- **Deux modes (05/11/2026)** : clair par défaut, sombre au bouton seul (`assets/theme.js`, clé `rtp_theme`, réglage de l'appareil non suivi) ; jetons dans `:root` et `:root[data-theme="dark"]` de `site.css` ;
+  en clair, jaune, bleu ciel et orange ne sont jamais une couleur de texte ; `--odds-ph` reste `#4FC3F7` (lu par le JS) ; contrôle par `npm --prefix tools run verify-calc`.
 - **`sitemap.xml` est généré**, jamais édité à la main : `node tools/sitemap.mjs` (`loc` = canonical, `lastmod` = dernier commit Git,
   hreflang = balises des pages). À relancer après toute modification de page, avant le déploiement ; `--check` vérifie sans écrire.
 - **Structure éditoriale (25/10/2026)** : 9 pages par langue, 4 guides (TRJ, combinés, formats de cotes, lexique), une seule page par idée ;

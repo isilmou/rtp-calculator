@@ -1,6 +1,7 @@
 // Contrôle d'accessibilité avec axe-core (WCAG 2.x A/AA + bonnes pratiques) sur la copie locale.
 //   node a11y.mjs                                  → 8 pages × 375/1280 → tools/shots/<date>-a11y/
 //   node a11y.mjs --pages=/fr/,/fr/app/ --url=https://rtpcalculator.com
+//   node a11y.mjs --theme=dark                     → mode sombre du site ; --cmp garde le bandeau cookies affiché
 import { DEFAULT_PAGES, SHOTS_DIR, parseArgs, slug, timestamp } from './lib/env.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -24,6 +25,7 @@ for (const width of widths) {
   const ctx = await browser.newContext({ viewport: { width, height: width < 600 ? 740 : 900 }, isMobile: width < 600, hasTouch: width < 600, colorScheme: 'dark' });
   await ctx.route(/.*/, (r) => BLOCKED.test(r.request().url()) ? r.abort() : r.continue());
   if (!args.cmp) await ctx.addInitScript(() => { try { localStorage.setItem('rtp_consent_v1', JSON.stringify({ analytics: false, ads: false, ts: Date.now() })); } catch (e) {} });
+  if (args.theme === 'dark') await ctx.addInitScript(() => { try { localStorage.setItem('rtp_theme', 'dark'); } catch (e) {} });
   for (const p of pages) {
     const page = await ctx.newPage();
     await page.goto(base.replace(/\/$/, '') + p, { waitUntil: 'networkidle', timeout: 60000 });

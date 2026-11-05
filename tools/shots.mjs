@@ -4,6 +4,7 @@
 //   node shots.mjs --url=https://rtpcalculator.com → production (GA4/AdSense bloqués : aucune session comptée)
 //   node shots.mjs --pages=/fr/,/fr/app/ --widths=375,1280 --label=lot1
 //   node shots.mjs --cmp                         → garde la bannière de consentement visible
+//   node shots.mjs --theme=dark                  → mode sombre du site (clé rtp_theme ; sans l'option : clair)
 //   node shots.mjs --compare <dossierA> <dossierB> → planches côte à côte + différence
 //
 // Chaque dossier contient report.json et report.md : défilement horizontal, boutons sur
@@ -45,6 +46,8 @@ for (const width of widths) {
       try { localStorage.setItem('rtp_consent_v1', JSON.stringify({ analytics: false, ads: false, ts: Date.now() })); } catch (e) {}
     });
   }
+  // Le contexte émule un appareil en sombre : sans --theme=dark, le site doit rester clair (bouton seul).
+  if (args.theme === 'dark') await ctx.addInitScript(() => { try { localStorage.setItem('rtp_theme', 'dark'); } catch (e) {} });
   for (const p of pages) {
     const page = await ctx.newPage();
     const url = base.replace(/\/$/, '') + p;

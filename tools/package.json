@@ -8,6 +8,7 @@
     "serve": "node serve.mjs",
     "shots": "node shots.mjs",
     "a11y": "node a11y.mjs",
+    "verify-calc": "node verify-calc.mjs",
     "browsers": "node browsers.mjs",
     "copy:extract": "node copy/extract.mjs",
     "copy:apply": "node copy/apply.mjs"
