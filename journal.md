@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | **2.2.0 / versionCode 11, publiée le 29/10/2026** (commit du 29/10 ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | **Thème clair du site livré, déployé et commité le 05/11/2026** (section dédiée ci-dessous ; reste : test sur devices, push ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
+| Chantier en cours | **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; reste : test sur devices ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -200,7 +200,7 @@ recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regén�
 
 ---
 
-## Thème clair du site (05/11/2026) : livré, déployé et commité (push à faire par Julien)
+## Thème clair du site (05/11/2026) : livré, déployé, commité `8330315` et poussé
 
 Les mentions « non commité, non déployé » des lots ci-dessous datent de leur réalisation : l'ensemble a été déployé puis
 commité le 05/11 par Claude à la demande de Julien (site, `cmp.js`, sitemap, manifeste, `CLAUDE.md`, journal).
@@ -274,7 +274,7 @@ Production comparée à la copie locale : 8 captures sur 8 identiques au pixel p
 `/fr/guides/formats-de-cotes/` à 375 et 1280 px, `…-1852-compare`). Piège : une capture locale peut sortir en police
 de repli si Google Fonts ne répond pas (écarts de 5 à 6 % et hauteurs différentes) ; relancer avant de conclure.
 
-**Reste à faire** : test par Julien sur S9, S23+ et ordinateur ; `git push` par Julien ;
+**Reste à faire** : test par Julien sur S9, S23+ et ordinateur ;
 `CLAUDE.md` § 6 : ligne « Thème clair » ajoutée le 05/11 (validée par Julien ; puces sitemap et structure éditoriale
 remises en lignes plus longues, sans changement de texte, pour rester à 200 lignes). Images `img/og-*.png` toujours sombres (outil de
 génération non versionné). Scripts de contrôle en scratchpad, perdus avec la session : `verify-calc.mjs` (styles
