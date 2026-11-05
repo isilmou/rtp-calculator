@@ -13,7 +13,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 | Version en production | **2.2.0 / versionCode 11, publiée le 29/10/2026** (commit du 29/10 ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
 | Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | **Deux modes et couleur : déployés le 05/11/2026 au soir, NON commités** (section dédiée ci-dessous ; reste : test devices, commit et push par Julien). **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; reste : test sur devices ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
+| Chantier en cours | **Deux modes et couleur : déployés et commités le 05/11/2026 au soir** (commit `ddf896b`, section dédiée ci-dessous ; reste : push et test devices par Julien). **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; reste : test sur devices ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -200,7 +200,7 @@ recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regén�
 
 ---
 
-## Deux modes (clair / sombre au bouton), calculateur clair, couleur (05/11/2026 au soir) : déployé, non commité
+## Deux modes (clair / sombre au bouton), calculateur clair, couleur (05/11/2026 au soir) : déployé, commité `ddf896b`
 
 **Déployé le 05/11/2026 au soir à la demande de Julien** (« ok pour les libellés et CLAUDE.md, tu peux déployer ») :
 diff à blanc conforme à l'annonce (1 nouveau `assets/theme.js`, 49 modifiés : 45 pages, `site.css`, `cmp.js`,
@@ -208,7 +208,7 @@ diff à blanc conforme à l'annonce (1 nouveau `assets/theme.js`, 49 modifiés :
 (58 inchangés), `manifest.json` à jour. Production comparée à la copie locale sur 5 pages × 375 / 1280 × 2 modes :
 19 captures sur 20 identiques au pixel près, `/de/app/` à 1280 en sombre à 0,02 % (anticrénelage).
 Libellés du bouton validés par Julien. `CLAUDE.md` § 6 : ligne « Deux modes » en place de « Thème clair » (validée).
-**Non commité** : site, `deploy/manifest.json`, `tools/` (`verify-calc.mjs`, `--theme`), `CLAUDE.md`, journal.
+**Commité le 05/11 par Claude à la demande de Julien : `ddf896b`** (57 fichiers : site, `deploy/manifest.json`, `tools/`, `CLAUDE.md`, journal) ; **push à faire par Julien**.
 Les mentions « non déployé » des paragraphes ci-dessous datent de leur réalisation.
 
 Demande de Julien le soir du 05/11, après le thème clair : éclaircir aussi le calculateur, créer un mode sombre qui
@@ -267,8 +267,7 @@ changement. **État final en images** : `tools/shots/2026-11-05-2157-etat-final/
 `tools/shots/2026-11-05-2153-revue/index.html` (42 captures) ; la revue `…-2016-revue` et les planches `…-2134-decision`
 montrent l'état d'avant ces deux choix.
 
-**Reste à faire** : test par Julien sur S9, S23+ et ordinateur dans les deux modes ; commit (sur demande) et push
-par Julien ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
+**Reste à faire** : test par Julien sur S9, S23+ et ordinateur dans les deux modes ; push par Julien ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
 confidentialité n'énumère pas les clés stockées par le site : rien à y ajouter pour `rtp_theme`.
 
 Pièges : un heredoc Bash `'EOF'` réduit `\\` à `\` (une regex `[\\/]` ne voit plus les chemins Windows) : écrire ces
