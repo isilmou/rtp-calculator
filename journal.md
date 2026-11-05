@@ -282,7 +282,7 @@ après : `tools/shots/2026-11-05-2222-champ-cote/`. **Déployé le 05/11 à la d
 --only=assets/site.css` vérifié en HTTPS, « Rien à déployer » ensuite, `manifest.json` à jour ; production comparée à la
 copie locale sur `/fr/`, `/fr/app/`, `/de/app/` × 375 / 1280 × 2 modes : 10 captures sur 12 identiques au pixel près,
 2 à 0,02 % au plus (anticrénelage). `CLAUDE.md` § 6 complété par l'exception (validé). **Commité le 05/11 par Claude à la demande
-de Julien** (commit « Site : champ de saisie de la cote… », avec `manifest.json`, `CLAUDE.md` et ce journal) ; push par Julien.
+de Julien** (commit « Site : champ de saisie de la cote… », avec `manifest.json`, `CLAUDE.md` et ce journal : `126c149`) ; **poussé par Julien le 05/11** (`127a0b4..126c149`).
 
 **Reste à faire** : test par Julien sur S9, S23+ et ordinateur dans les deux modes ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
 confidentialité n'énumère pas les clés stockées par le site : rien à y ajouter pour `rtp_theme`.
