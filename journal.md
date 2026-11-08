@@ -6,14 +6,14 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 
 ---
 
-## État courant (05/11/2026)
+## État courant (08/11/2026)
 
 | Élément | Valeur |
 |---|---|
-| Version en production | **2.2.0 / versionCode 11, publiée le 29/10/2026** (commit du 29/10 ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
+| Version en production | **2.2.0 / versionCode 12, publiée le 29/10/2026** (commit `e278023` passe de 10 à 12 ; le journal et `CLAUDE.md` § 4 disaient 11 : constaté le 08/11 dans les CSV Play, `CLAUDE.md` à corriger après validation ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
-| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale faite le 23/10/2026 : `stats/reports/2026-10-23-analyse-globale.md` |
-| Chantier en cours | **Deux modes et couleur : déployés et commités le 05/11/2026 au soir** (commit `ddf896b`, poussé ; section dédiée ci-dessous ; reste : test devices par Julien). **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; reste : test sur devices ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **étape 7 en attente du bilan du 06/11**. Contrôle `inspect` vers le 31/10, **bilan début novembre (point convenu « dans une semaine ou deux », 25/10)** |
+| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale le 23/10/2026 (`stats/reports/2026-10-23-analyse-globale.md`) ; **audit global et bilan d'octobre le 08/11/2026 : `stats/reports/2026-11-08-audit-global.md`**, relevé `data/2026-11-08/` (section dédiée ci-dessous). Prochain bilan : première semaine de décembre 2026 |
+| Chantier en cours | **Suites de l'audit du 08/11 : événements GA4 du calculateur web déployés, 10 anciennes pages supprimées du serveur, manifeste nettoyé ; le tout non commité** (section « Audit global » ci-dessous). **Deux modes et couleur : déployés et commités le 05/11/2026 au soir** (commit `ddf896b`, poussé ; section dédiée ci-dessous ; **testés OK sur devices par Julien le 08/11**). **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; testé OK sur devices le 08/11 ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **bilan fait le 08/11/2026** (rapport ci-dessus) : étape 7 à décider au bilan de décembre, recommandation = limiter au guide EN « bookmaker margin », ne pas toucher l'accueil EN ; actions immédiates proposées = demandes d'indexation par Julien, suivi des 301 dans `inspect`, événements GA4 du calculateur web |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
 
@@ -168,10 +168,12 @@ Ordre validé par Julien le 23/10/2026 (détail et justification dans le rapport
      version 2.2.0 / code 11 ; notes de version à versionner dans `play/release-notes/<version>/`.
      `RtpResult` n'est pas persisté : ni ProGuard ni migration.
 7. **Repositionnement EN** (bookmaker margin / overround), puis `npm run report`. **En attente
-   (Julien, 25/10/2026)** : ne pas commencer avant le bilan du 06/11, qui mesurera d'abord l'effet du
-   lot CTR et de la fiche Play. Question à trancher à ce moment : la « marge dans le calculateur
-   web » prévue par le rapport, alors que la marge a été refusée dans l'app (écran calme) ; l'étape
-   peut se limiter aux titres et textes EN.
+   (Julien, 25/10/2026)**, réexaminé au bilan du 08/11/2026 : l'accueil EN vient de gagner « rtp
+   calculator » en position 5 avec 4 clics (CTR 7,3 % après le lot CTR), le réécrire autour de la marge
+   serait une régression ; « bookmaker margin » n'apparaît qu'à 1 à 3 impressions. **Recommandation du
+   08/11 : limiter l'étape au titre et à l'extrait de `/guides/calculate-bookmaker-margin/` (pos. 5,9,
+   CTR 7 %), décision au bilan de décembre.** La « marge dans le calculateur web » reste écartée
+   (cohérence avec l'app, écran calme).
 
 8. ~~**Refonte du contenu du site (audit du 25/10/2026)**~~ : **livrée, déployée et testée OK sur S9 et
    S23+ le 25/10/2026** (plan validé par Julien le 25/10, `~/.claude/plans/j-aimerais-un-audit-du-linear-candle.md`,
@@ -184,10 +186,10 @@ Hors plan, toujours valables :
 - Retirer `material-icons-extended` (AAR 35 Mo, seules `AccessTime` et `ContentCopy` sont hors
   jeu de base). Gain sur le build debug uniquement.
 - **Kotlin 2 / Compose récent** : chantier à part.
-- Revoir vers le 06/11/2026 le pic Search Console du 20–22/10 (45–55 impressions/jour).
-- Julien : recouper AdMob 1,36 € et Play 95 installs avec les consoles ; statut AdSense.
 - Meta description des 5 accueils : ≈ 195 caractères (choix de Julien, 24/10). Google tronque
-  vers 155 : vérifier l'extrait réellement affiché lors du prochain bilan Search Console.
+  vers 155 : vérifier l'extrait réellement affiché dans la console (toujours à faire au 08/11).
+- Images `og-*.png` sombres alors que le site est clair par défaut depuis le 05/11 ; outil de
+  génération non versionné (recette dans l'étape 2 ci-dessus).
 - Play Console, « Sécurité des données » : si les URL de politique / suppression pointent vers
   `/fr/#privacy`, les faire pointer vers `/fr/privacy/` (les ancres restent valides).
 
@@ -197,6 +199,73 @@ d'écrire si le texte d'origine n'est pas trouvé exactement une fois, puis `git
 un fichier `.mjs`. Le scratchpad est propre à la session : les outils `propagate.mjs`,
 `gen.mjs` (og:image, sharp + Archivo) et les JSON par langue ont disparu avec elle ; la
 recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regénérer les images.
+
+---
+
+## Audit global et bilan d'octobre (08/11/2026)
+
+Rapport : `stats/reports/2026-11-08-audit-global.md`, **version Word `2026-11-08-audit-global.docx` à côté** (demande de Julien, générée par `md2docx.mjs` en scratchpad, `docx` de `tools/`, rendu non vérifié faute de LibreOffice) ; relevé `data/2026-11-08/`, 7 sources : `--all`,
+`inspect`, `listing`). Périmètre choisi par Julien : données Google seulement, historique complet. À retenir :
+
+- **Fiche Play (25/10) : effet visible en 9 jours.** Myanmar 7 installs sur 17 dans les 30 jours avant,
+  **0 sur 9** après ; désinstallations 88 % → 44 % ; actifs 9 → **15** (03/11) ; 11 actifs sur 15 en 2.2.0.
+  Nuance : l'unique noteur (5 étoiles, 04/09 puis 05/11 en 2.2.0) est au Myanmar et y utilise l'app
+  régulièrement (16 requêtes AdMob le 07/11) : la confusion casino explique les désinstalls J+1, pas tout le pays.
+- **Search Console : hausse × 8 des impressions (40 → 340 par semaine) qui commence le 19/10, avant le lot
+  CTR**, après le recrawl massif du 18/10. Attribuable au lot CTR : `/` passe de 1,5 % à 7,3 % de CTR,
+  « rtp calculator » de la position 7 à 5 avec 4 clics ; `/fr/` 0 → 4 clics. Novembre : 12 clics en 7 jours,
+  position 8,6.
+- **Anomalie du 27/10** : 276 impressions dont 209 sur le lexique FR en position 24 depuis des ordinateurs
+  US / BR / MX / CA / CN : outil automatisé (suivi de positions ou agent IA), pas des lecteurs. Le pic du
+  20 au 22/10 était le début de la hausse générale (50 pays, positions 6 à 10), pas une anomalie. Clos.
+- **Canonicalisation http / www : réglée sans intervention** (dernière impression `http://…/fr/` le 21/10).
+- **Refonte du 25/10 : trop tôt.** Les 10 anciennes URL sont encore servies (1 clic le 06/11) ; l'article TRJ
+  fusionné FR, `formats-de-cotes` FR, `/de/app/`, `/privacy/` **non recrawlés depuis le 18/10**. Indexation :
+  37 / 45 ; gagnés `/app/`, `/fr/app/`, `/es/` ; perdu le lexique ES ; `/pt/app/` et 2 guides PT toujours
+  inconnus de Google, `/pt/sobre/` détectée non indexée.
+- **GA4** : trafic direct de robots terminé (novembre = 9 sessions, toutes organiques) ; 3 clics vers Play via
+  les UTM du 24/10 (Play les agrège en « Other ») ; **aucun événement propre au calculateur web** : usage
+  invisible. iOS = 14 sessions sur ≈ 40 mobiles humaines. Canal « AI Assistant » (ChatGPT) apparu en octobre ;
+  une requête GSC du 21/10 est un prompt d'agent IA mot pour mot.
+- **AdMob** 1,62 € cumulés ; requêtes 2,6 → 6,4 par jour depuis le 26/10. **AdSense** inchangé (site jamais activé).
+- « calculo rtp » en position 5,5 avec 0 clic sur 14 impressions : intention casino confirmée, ne pas chasser.
+- Belgique : 2e marché francophone (113 impressions, 0 clic), requête NL « rtp sport gokken » (16 impr., pos. 8,5)
+  sur l'accueil EN : surveiller, pas d'action.
+
+**Suites validées par Julien le 08/11** (plan `~/.claude/plans/peux-tu-effectuer-un-audit-immutable-reef.md`) :
+1. ~~Demandes d'indexation~~ : **faites par Julien le 08/11** pour les 10 URL (article TRJ FR, formats FR, `/pt/app/`,
+   2 guides PT, `/pt/sobre/`, lexique ES, 2 anciennes URL FR, `/de/app/`). Contrôle au relevé de décembre.
+2. ~~Suivi des 301~~ : **fait le 08/11**, les 10 anciennes URL ajoutées à `stats/config.json` → `inspect.extraUrls`
+   (14 URL hors sitemap, 59 appels au prochain `--source=inspect`) ; à retirer quand toutes sont « Page avec redirection ».
+3. **Événements GA4 du calculateur web : fait en local le 08/11, non déployé, non commité.** 5 `*/app/index.html`,
+   5 lignes chacun (script `scratchpad/patch-ga4-events.mjs`, ancrages à occurrence unique, CRLF conservé) :
+   `track()` (appelle `gtag('event', …)` si défini), `rtp_save` {outcomes, format, surebet 0/1, update 0/1} après le
+   calcul de `idx` dans le gestionnaire `#save`, `rtp_add_outcome` {outcomes} dans `#add`, `rtp_share` {outcomes}
+   dans `shareA` et {mode:'text'} dans `shareText`. Aucune cote ni donnée personnelle ; même régime Consent Mode que
+   les pages vues ; politique de confidentialité inchangée (mesure d'audience déjà annoncée). `outcomes` compte les
+   lignes du formulaire, vides comprises. `sitemap.xml` régénéré (lastmod 08/11 sur les 5 calculateurs, `--check` OK).
+   **Vérifié dans Chromium** (`scratchpad/verify-ga4-events.mjs`, serveur local 8124, Google bloqué) : sur les 5 pages,
+   0 événement au chargement, puis `rtp_add_outcome` {3}, `rtp_save` {3, EU, surebet 1, update 0} pour 2,10 / 2,10,
+   `rtp_share` au clic Partager ; aucune erreur de page (seuls les 2 scripts Google bloqués échouent, attendu).
+   `verify-calc` non relancé : aucun CSS ni DOM modifié (JS seul). **Déployé le 08/11/2026 à la demande de Julien**
+   (« Go pour les deux ») : `push --apply`, 6 fichiers (5 calculateurs + sitemap) vérifiés en HTTPS, diff à blanc
+   « Rien à déployer » ensuite, `manifest.json` à jour, code `rtp_save` / `track()` relu en production sur les 5 pages.
+   **Non commité.** Contrôle 24 à 48 h après dans GA4 Temps réel, puis `snapshot` (`ga4.events` par mois).
+   **Nettoyage des 10 anciennes pages fait le 08/11/2026 par Claude, à la demande explicite de Julien** (« Peux-tu
+   les supprimer toi-même ») : `curl --netrc-file _secrets/netrc` avec `-Q "DELE <dossier>/index.html" -Q "RMD
+   <dossier>"`, hôte lu dans la sortie de `push` (jamais dans `_secrets/`), listing FTP avant (1 `index.html` par
+   dossier) et après (les 5 dossiers `guides` ne contiennent plus que leurs 4 guides), les 301 répondent toujours
+   (règles `.htaccess` évaluées avant la lecture du fichier). `deploy/` lui-même reste sans suppression (règle 8
+   inchangée) : opération ponctuelle hors outil. 10 entrées retirées de `deploy/manifest.json` (69 → 59 fichiers),
+   `diff` à blanc ensuite : seul `.htaccess` reste listé « absent en local » (quirk connu, fichier protégé).
+4. Étape 7 limitée au guide EN : décision au bilan de décembre. 5 PWA iOS : après le point 3. 6 AdSense : seuil
+   100 clics GSC / mois sur 2 mois. 7 analytics in-app : seuil 100 actifs. 8 ~~`CLAUDE.md` § 4~~ : **versionCode 12
+   corrigé le 08/11** (validé par Julien avec le plan).
+Écartées : chasser « calculo rtp », toucher l'accueil EN, nouvelle page FR avant recrawl des guides.
+
+**Prochain bilan : première semaine de décembre 2026**, indicateurs en § 9 du rapport. Scripts d'agrégation en
+scratchpad (`a-play.mjs`, `b-gsc.mjs`, `c-ga4-admob.mjs`, `d-inspect-listing.mjs`), non versionnés : la
+logique « avant / après une date » serait le cœur d'un futur `npm run report`.
 
 ---
 
@@ -284,7 +353,7 @@ copie locale sur `/fr/`, `/fr/app/`, `/de/app/` × 375 / 1280 × 2 modes : 10 ca
 2 à 0,02 % au plus (anticrénelage). `CLAUDE.md` § 6 complété par l'exception (validé). **Commité le 05/11 par Claude à la demande
 de Julien** (commit « Site : champ de saisie de la cote… », avec `manifest.json`, `CLAUDE.md` et ce journal : `126c149`) ; **poussé par Julien le 05/11** (`127a0b4..126c149`).
 
-**Reste à faire** : test par Julien sur S9, S23+ et ordinateur dans les deux modes ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
+**Reste à faire** : ~~test par Julien sur S9, S23+ et ordinateur dans les deux modes~~ (**fait, OK, 08/11**) ; défaut axe `nested-interactive` des cartes d'historique, si Julien veut le traiter. La politique de
 confidentialité n'énumère pas les clés stockées par le site : rien à y ajouter pour `rtp_theme`.
 
 Pièges : un heredoc Bash `'EOF'` réduit `\\` à `\` (une regex `[\\/]` ne voit plus les chemins Windows) : écrire ces
@@ -417,7 +486,7 @@ vide ensuite, `manifest.json` à jour) ; **non commité**.
 ## Release 2.2.0 de l'app : surebet, signature de l'image, placeholder bleu (29/10/2026)
 
 Plan validé par Julien le 29/10 (`~/.claude/plans/as-tu-la-possibilit-de-peaceful-shell.md`) : version
-**2.2.0 / versionCode 11**, trois changements visibles (placeholder bleu, surebet, adresse du site dans l'image
+**2.2.0 / versionCode 12** (le plan disait 11 ; le commit `e278023` a écrit 12, constaté le 08/11), trois changements visibles (placeholder bleu, surebet, adresse du site dans l'image
 partagée), notes de version dans `play/release-notes/2.2.0/` (FR validée puis 4 traductions, ≤ 500 caractères,
 `all.txt` balisé à coller en une fois dans la Play Console), publication manuelle par Julien (§ 5).
 
@@ -443,7 +512,7 @@ web. Fiche Play et textes du site non touchés dans cette release (deux examens 
   par `#add` / `#save` (libellés différents par langue).
 - **Étapes 2 et 3 faites le 29/10** : `ShareableCard.kt` signe « <nom de l'app> · rtpcalculator.com » (chaîne
   `share_signature_site`, `translatable="false"`, base seule) ; `share_signature_available_on` retirée des 5
-  `strings.xml` ; `build.gradle.kts` 2.2.0 / versionCode 11. Tests 38 / 0 échec, `assembleDebug` OK.
+  `strings.xml` ; `build.gradle.kts` 2.2.0 / versionCode 12 (et non 11, cf. état courant). Tests 38 / 0 échec, `assembleDebug` OK.
   Liseré bleu et signature : **testés OK sur S9 et S23+ par Julien le 29/10** (avec le surebet, étape 5).
 - **Étape 4 faite le 29/10** : `play/release-notes/2.2.0/{fr-FR,en-US,es-ES,de-DE,pt-BR}.txt` (texte FR de
   Julien, 4 traductions ; 275 à 312 caractères sur 500, 3 puces « • », aucun tiret long, LF) et `all.txt` =

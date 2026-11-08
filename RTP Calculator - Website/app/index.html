@@ -383,6 +383,7 @@ document.getElementById('f-time').addEventListener('input', function(e){ current
 document.getElementById('f-time').addEventListener('change', syncDtPh);
 document.getElementById('f-bettype').addEventListener('input', function(e){ current.betType = e.target.value; });
 document.getElementById('add').addEventListener('click', function(){
+  track('rtp_add_outcome', {outcomes: current.outcomes.length + 1});
   current.outcomes.push(newOutcome(current.outcomes[current.outcomes.length-1].format));
   renderForm();
   var rows = $out.querySelectorAll('.outcome');
@@ -394,6 +395,7 @@ document.getElementById('save').addEventListener('click', function(){
   if(!r){ toast(T.needOdds); return; }
   current.outcomes.forEach(function(o){ if(o.format === 'EU' && o.decimalRaw) o.decimalRaw = pad2(o.decimalRaw); });
   var idx = history.findIndex(function(a){ return a.id === current.id; });
+  track('rtp_save', {outcomes: current.outcomes.length, format: current.outcomes[0].format, surebet: isSurebet(r) ? 1 : 0, update: idx >= 0 ? 1 : 0});
   if(idx >= 0){ current.savedAt = history[idx].savedAt; history[idx] = current; toast(T.updated); }
   else { current.savedAt = Date.now(); history.push(current); toast(T.saved); }
   persist();
@@ -487,6 +489,7 @@ function duplicate(a){
   persist(); renderHistory(copy.id);
 }
 function shareText(a){
+  track('rtp_share', {outcomes: a.outcomes.length, mode: 'text'});
   var r = calcRtp(a.outcomes);
   var parts = [];
   if(a.eventName) parts.push(a.eventName);
@@ -499,6 +502,7 @@ function shareText(a){
 }
 /* Partage en image (assets/share.js) : feuille de partage, presse-papiers ou téléchargement ; texte si le script manque. */
 function shareA(a){
+  track('rtp_share', {outcomes: a.outcomes.length});
   if(!window.RTPShare){ shareText(a); return; }
   var r = calcRtp(a.outcomes);
   var vm = {
@@ -514,6 +518,7 @@ function shareA(a){
   }).catch(function(){ toast(T.shareFail); });
 }
 var toastTimer;
+function track(name, params){ try{ if(typeof gtag === 'function') gtag('event', name, params || {}); }catch(e){} }
 function toast(msg){
   var t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');

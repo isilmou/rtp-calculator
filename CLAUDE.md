@@ -96,7 +96,7 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
 
 - patch `x.x.1` : correction de bug
 - mineure `x.1.0` : nouvelle fonctionnalité ou nouvelle langue
-- version en production au 29/10/2026 : **2.2.0** (versionCode 11, publiée le 29/10/2026)
+- version en production au 29/10/2026 : **2.2.0** (versionCode 12, publiée le 29/10/2026)
 
 ## 5. Chaîne de publication Android
 
