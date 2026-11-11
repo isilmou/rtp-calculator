@@ -202,6 +202,36 @@ recette est décrite ci-dessus, à versionner dans `tools/` si l'on doit regén�
 
 ---
 
+## Favicon absent des résultats Google (11/11/2026) : corrigé, **déployé et commité le 11/11/2026**
+
+Constat de Julien : dans Google, le site s'affiche sans logo. **Cause** : aucun fichier favicon. Les 45 pages
+déclaraient l'icône en `data:image/svg+xml` dans la balise ; Google exige un fichier crawlable à URL stable (ICO,
+PNG…), `/favicon.ico` répondait 404 et le service favicon de Google (`google.com/s2/favicons?domain=…`) aussi.
+
+- **Fichiers** à la racine du site : `favicon.ico` (16 / 32 / 48, entrées PNG), `favicon-96x96.png`, `apple-touch-icon.png`
+  (180, fond plein sans alpha). Générés par **`RTP Calculator - App/generate_favicons.mjs`** (nouveau, `sharp` de ce
+  dossier, SVG maîtres de `logo/`, conteneur ICO assemblé à la main). Ne pas confondre avec `generate_icons.mjs`, qui
+  régénère l'icône adaptative Android (zone interdite) : ni lancé ni modifié.
+- **Balise** remplacée dans les 45 pages par 3 lignes (`/favicon.ico` `sizes="48x48"`, PNG 96, `apple-touch-icon`),
+  script scratchpad à occurrence unique, CRLF conservé ; `git diff` = 45 fichiers à +3 / −1. `sitemap.xml` régénéré
+  (lastmod 11/11 sur les 45 pages, `--check` OK). Écarté : SVG en fichier (format absent de la liste Google).
+- **Avant modification** : les 45 pages en production étaient identiques au local (relecture HTTPS, LF normalisé).
+- **Diff à blanc** : 3 nouveaux, 46 modifiés (45 pages + sitemap), 12 inchangés.
+- **Déployé le 11/11/2026 par Claude à la demande de Julien** (`_secrets/` importé par Julien sur ce poste, absent
+  jusque-là) : `push --apply` en trois temps, 3 favicons, puis `index.html` seul, puis 44 pages + sitemap ; 49 fichiers
+  vérifiés en HTTPS, diff à blanc « Rien à déployer » ensuite (61 inchangés), `manifest.json` à jour (62 fichiers).
+  Relecture indépendante : 45 pages et 3 favicons identiques au local, 0 `data:` restant, 301 `http://www` et
+  `/index.html` inchangées. `favicon.ico` servi en `image/vnd.microsoft.icon`.
+- **Indexation de `/` demandée par Julien dans Search Console le 11/11.** Commité le 11/11 par Claude à la demande de
+  Julien (commit « Site : favicon en fichiers… »). Délai Google : quelques jours à plusieurs semaines, affichage
+  jamais garanti. Contrôle au bilan de décembre : le service favicon de Google répondait encore 404 juste après la
+  mise en ligne (attendu), il doit passer à 200.
+- **Piège du jour** : cette copie locale avait 33 commits de retard sur GitHub (travail fait ailleurs depuis le
+  18/10), le premier plan a été bâti sur un site à 55 pages et sans `deploy/`. D'où `CLAUDE.md` règle 9
+  (synchronisation avant tout travail, demandée par Julien) et § 6 (ligne Favicon) ; § 3 renvoie à la règle 9.
+
+---
+
 ## Audit global et bilan d'octobre (08/11/2026)
 
 Rapport : `stats/reports/2026-11-08-audit-global.md`, **version Word `2026-11-08-audit-global.docx` à côté** (demande de Julien, générée par `md2docx.mjs` en scratchpad, `docx` de `tools/`, rendu non vérifié faute de LibreOffice) ; relevé `data/2026-11-08/`, 7 sources : `--all`,

@@ -39,17 +39,18 @@ Les noms de dossiers contiennent des espaces : toujours encadrer les chemins de 
      en indiquant le chemin voulu et la raison. Ne pas contourner par une commande shell.
    - Les commandes shell obéissent à la même règle : pas de `cd ..`, pas de chemin absolu
      remontant hors de la racine, pas de script qui ouvre des fichiers hors périmètre.
-   - Sauvegardes Git locales (`git bundle`) dans `C:\RTP-Calculator\_backup\` (ignoré par
-     Git), jamais dans le scratchpad.
+   - Sauvegardes Git locales (`git bundle`) dans `C:\RTP-Calculator\_backup\` (ignoré par Git), jamais dans le scratchpad.
 8. **Déploiement du site uniquement sur demande explicite de Julien**, diff montré avant tout
    envoi. `deploy/` ne supprime jamais rien à distance et n'envoie `.htaccess` que sur drapeau.
+9. **Synchronisation GitHub avant tout travail.** En début de session, avant de lire `journal.md` et avant toute modification : `git fetch origin`, puis comparer `HEAD` et `origin/main`.
+   En retard : le signaler, lister les commits entrants, `git pull --ff-only`. Divergence ou conflit avec des modifications locales : s'arrêter et demander ; jamais de merge ni de rebase sans validation.
 
 ## 3. Journal de bord — `journal.md`
 
 Un fichier `journal.md` est tenu à la racine `C:\RTP-Calculator\`. Il sert de mémoire
 inter-sessions à Claude Code, qui repart d'un contexte vide à chaque lancement.
 
-**Lecture : lire `journal.md` en début de session, avant toute action.**
+**Lecture : lire `journal.md` en début de session, après la synchronisation GitHub (règle 9), avant toute autre action.**
 
 **Écriture : mettre à jour `journal.md` sans attendre qu'on le demande, dès que**
 - une décision technique est prise, ou écartée — noter la raison dans les deux cas ;
@@ -113,12 +114,10 @@ problème, condenser ou déplacer un sujet vers `.claude/rules/`.
 migration de données, appareils de test AdMob) dans `.claude/rules/android-release.md`,
 chargé automatiquement pour tout travail sous `RTP Calculator - App/`.
 
-**Keystore** : `rtp-calculator.jks`, stocké en local dans `C:\RTP-Calculator-Keystore\`.
-Cet emplacement est **hors du périmètre de travail défini en règle 7** — c'est délibéré.
-Claude Code n'y accède jamais : la signature se fait manuellement via l'assistant Android
-Studio. Ne jamais demander l'ajout de ce dossier en répertoire supplémentaire, ne jamais
-copier le keystore dans `C:\RTP-Calculator\`, ne jamais le commiter, ne jamais écrire son
-mot de passe dans un fichier du dépôt.
+**Keystore** : `rtp-calculator.jks`, stocké en local dans `C:\RTP-Calculator-Keystore\`. Cet emplacement est **hors du périmètre
+de travail défini en règle 7** — c'est délibéré. Claude Code n'y accède jamais : la signature se fait manuellement via l'assistant
+Android Studio. Ne jamais demander l'ajout de ce dossier en répertoire supplémentaire, ne jamais copier le keystore dans
+`C:\RTP-Calculator\`, ne jamais le commiter, ne jamais écrire son mot de passe dans un fichier du dépôt.
 
 ## 6. Site web — contraintes connues
 
@@ -131,6 +130,7 @@ mot de passe dans un fichier du dépôt.
 - **GA4** (`G-WD1V10FW80`) : chaîne Consent Mode critique ; sans CMP, collecte nulle (`gcs=G100` dans
   les requêtes). Si AdSense est un jour approuvé, désactiver la bannière RGPD autonome (double bandeau).
 - SEO : le canal web attire du trafic Tier 1 (US, France, Canada, Danemark), l'ASO surtout du Tier 3-4. Ne pas dégrader l'existant.
+- **Favicon** : fichiers réels à la racine (`favicon.ico`, `favicon-96x96.png`, `apple-touch-icon.png`), générés par `node generate_favicons.mjs` depuis `RTP Calculator - App` (SVG maîtres de `logo/`). Jamais de `data:` URI : Google ne l'affiche pas dans ses résultats.
 - **Typographie : aucun tiret long** (« — »). Titres « A - B », incises par virgules ou deux-points, « · » en pied de page.
 - **Deux modes (05/11/2026)** : clair par défaut, sombre au bouton seul (`assets/theme.js`, clé `rtp_theme`, réglage de l'appareil non suivi) ; jetons dans `:root` et `:root[data-theme="dark"]` de `site.css` ;
   en clair, jaune, bleu ciel et orange ne sont jamais une couleur de texte, sauf le mot « Cote » des champs vides (bleu ciel non gras dans les deux modes) ; `--odds-ph` reste `#4FC3F7` (lu par le JS) ; contrôle par `npm --prefix tools run verify-calc`.
