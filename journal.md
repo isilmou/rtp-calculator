@@ -232,7 +232,7 @@ PNG…), `/favicon.ico` répondait 404 et le service favicon de Google (`google.
 
 ---
 
-## Audit de performance, évolution et projections (20/11/2026) : rapport livré, non commité
+## Audit de performance, évolution et projections (20/11/2026) : rapport livré, commité `94116b0`, push à faire
 
 Plan validé par Julien le 20/11 (`~/.claude/plans/peux-tu-tablir-un-plan-tidy-storm.md`) : résultats chiffrés + volet
 technique léger (Playwright de `tools/`, poids de l'APK ; écartés : Lighthouse, PageSpeed Insights), 3 scénarios à
@@ -299,8 +299,10 @@ de décembre est maintenu, en contrôle court.
   de pays (le Myanmar fait 68 % des revenus AdMob et le seul avis).
 - **Bilan de décembre** : `snapshot --all`, `inspect`, `npm run series -- --pivot=2026-10-25 --window=40` ; indicateurs
   en § 10 du rapport (dont le favicon du 11/11 et la position de novembre par rapport aux trois scénarios).
-- **À commiter (par Julien ou sur sa demande)** : `stats/series.mjs`, `stats/package.json`, les deux fichiers du
-  rapport, `CLAUDE.md` (§ 9), `journal.md` ; puis push, qui emportera aussi `774ab63`.
+- **Commité le 20/11 par Claude à la demande de Julien : `94116b0`** (`stats/series.mjs`, `stats/package.json`, les
+  deux fichiers du rapport, `CLAUDE.md` § 9, `journal.md`). **Push à faire par Julien** (2 commits : `774ab63` et
+  `94116b0`) : demandé à Claude le 20/11, mais la commande `git push` a été refusée par les permissions de la session.
+  Cette correction du journal n'est pas commitée.
 
 ---
 
