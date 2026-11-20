@@ -12,7 +12,7 @@ raisons, pistes écartées, états. Pas de narration ; les contraintes durables 
 |---|---|
 | Version en production | **2.2.0 / versionCode 12, publiée le 29/10/2026** (commit `e278023` passe de 10 à 12 ; le journal et `CLAUDE.md` § 4 disaient 11 : constaté le 08/11 dans les CSV Play, `CLAUDE.md` à corriger après validation ; 2.1.1 / code 10 du 19/09 = `f0586de`) |
 | Obscurcissement DEX | Livré en 2.1.1 ; **alerte Play « 0 % » disparue, vérifié par Julien le 25/10/2026**. Clos |
-| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale le 23/10/2026 (`stats/reports/2026-10-23-analyse-globale.md`) ; **audit global et bilan d'octobre le 08/11/2026 : `stats/reports/2026-11-08-audit-global.md`**, relevé `data/2026-11-08/` (section dédiée ci-dessous). Prochain bilan : première semaine de décembre 2026 |
+| Statistiques Google | Collecte opérationnelle depuis le 23/10/2026 (`stats/`, 5 sources depuis le 29/10 : AdSense ajouté, compte non activé pour le site). `npm run summary` = chiffres clés du dernier relevé. Analyse initiale le 23/10/2026 (`stats/reports/2026-10-23-analyse-globale.md`) ; **audit global et bilan d'octobre le 08/11/2026 : `stats/reports/2026-11-08-audit-global.md`**, relevé `data/2026-11-08/` (section dédiée ci-dessous) ; **audit de performance, évolution et projections le 20/11/2026 : `stats/reports/2026-11-20-audit-performance.md`**, relevé `data/2026-11-20/`, séries par `npm run series` (section dédiée ci-dessous). Prochain bilan : première semaine de décembre 2026 |
 | Chantier en cours | **Suites de l'audit du 08/11 : événements GA4 du calculateur web déployés, 10 anciennes pages supprimées du serveur, manifeste nettoyé ; commité `941f3c0` par Claude à la demande de Julien, **poussé par Julien le 08/11** (`16467d4..4c01bf4`)** (section « Audit global » ci-dessous). **Deux modes et couleur : déployés et commités le 05/11/2026 au soir** (commit `ddf896b`, poussé ; section dédiée ci-dessous ; **testés OK sur devices par Julien le 08/11**). **Thème clair du site livré, déployé et commité le 05/11/2026** (commit `8330315`, poussé ; section dédiée ci-dessous ; testé OK sur devices le 08/11 ; `CLAUDE.md` § 6 mis à jour ; menu des accueils ES / DE / PT corrigé et déployé le même jour). **Refonte du contenu du site livrée et déployée le 25/10/2026** (étape 8 ci-dessous : 45 pages, 4 guides, menu à 4 entrées, testée OK sur S9 et S23+ ; commit à faire par Julien). Plan d'amélioration validé le 23/10/2026 (ordre ci-dessous). Étapes 2 (lot CTR, `6e83ce9`) et 3 (sitemap généré, source `inspect`, réindexation demandée) faites le 24/10/2026. Intercalés le 24/10 : **présentation du site** (lots 1a → 6 livrés et déployés, `da63d6c`) puis **relecture de tous les textes par Julien** (Word rendu et réinjecté le 24/10 au soir, tirets longs supprimés, guide « marge » réécrit en 5 langues : **commité `2d62671`, déployé le 24/10 au soir** ; section dédiée ci-dessous) ; **étape 4 (fiche Play) : terminée, nouvelle fiche publiée le 25/10/2026** (envoi par l'API, approbation et clic « Publier » le même jour). Repère pour le bilan : installs Brésil et désinstalls J+1 à partir du 26/10. **Étapes 5 et 6 closes le 25/10/2026** sans livrable (détail ci-dessous) ; **bilan fait le 08/11/2026** (rapport ci-dessus) : étape 7 à décider au bilan de décembre, recommandation = limiter au guide EN « bookmaker margin », ne pas toucher l'accueil EN ; actions immédiates proposées = demandes d'indexation par Julien, suivi des 301 dans `inspect`, événements GA4 du calculateur web |
 | Devices de test | S9 (Android 10) et S23+ (Android 16), builds hors Play Store, déclarés test AdMob |
 | Dépôt distant | GitHub privé `isilmou/rtp-calculator`, branche `main`, créé le 18/10/2026. Sauvegarde des sources uniquement : pas de CI, pas d'hébergement du site. Push manuel par Julien après chaque commit |
@@ -229,6 +229,78 @@ PNG…), `/favicon.ico` répondait 404 et le service favicon de Google (`google.
 - **Piège du jour** : cette copie locale avait 33 commits de retard sur GitHub (travail fait ailleurs depuis le
   18/10), le premier plan a été bâti sur un site à 55 pages et sans `deploy/`. D'où `CLAUDE.md` règle 9
   (synchronisation avant tout travail, demandée par Julien) et § 6 (ligne Favicon) ; § 3 renvoie à la règle 9.
+
+---
+
+## Audit de performance, évolution et projections (20/11/2026) : rapport livré, non commité
+
+Plan validé par Julien le 20/11 (`~/.claude/plans/peux-tu-tablir-un-plan-tidy-storm.md`) : résultats chiffrés + volet
+technique léger (Playwright de `tools/`, poids de l'APK ; écartés : Lighthouse, PageSpeed Insights), 3 scénarios à
+3 / 6 / 12 mois, livrable `stats/reports/2026-11-20-audit-performance.md` + `.docx`. Le bilan de la première semaine
+de décembre est maintenu, en contrôle court.
+
+- **Étape 0, synchronisation (règle 9)** : ce poste avait divergé de GitHub (local `a6f1ec8`, une ligne de journal du
+  08/11 jamais poussée ; GitHub `1902365`, favicon du 11/11). Sauvegarde `_backup/2026-11-20-avant-rebase.bundle`,
+  puis rebase validé par Julien : `774ab63` par-dessus `1902365`, sans conflit. **Push à faire par Julien.**
+- **Étape 1, collecte faite** : `stats/data/2026-11-20/` (`--all` jusqu'au 19/11, `inspect` 59 URL, `listing`), aucune
+  source en échec. Cumul : 125 installs / 114 désinstalls, 18 actifs (16/11), AdMob 1,93 €, GSC 61 clics / 2 696
+  impressions, inspect 48 PASS sur 59. **À creuser en étape 2 : Myanmar repasse de 33 à 38 installs cumulés depuis
+  le 03/11**, le « 0 install » des 9 jours suivant la fiche ne tient donc pas sur la durée.
+- **Étape 2, séries faites** : **`stats/series.mjs` versionné (décision de Julien, 20/11), `npm run series`**
+  (`--dir`, `--pivot=AAAA-MM-JJ --window=N` pour un avant / après, `--exclude` = jours d'anomalie GSC, défaut 27/10,
+  `--top`). Lecture seule, Markdown : Play, AdMob, GSC, GA4 par mois et par semaine, pays, pages, requêtes, parc actif,
+  indexation comparée entre tous les relevés `inspect` présents. Recoupe l'audit du 08/11 (octobre : 18 installs,
+  962 impressions, 18 clics). Non commité. À proposer : mention au § 9 de `CLAUDE.md`.
+  Constats nouveaux : (1) **Myanmar inchangé, 5 installs / 5 désinstalls en novembre comme chaque mois** : la fiche du
+  25/10 n'a pas coupé ce flux, conclusion du 08/11 infirmée ; (2) Brésil en hausse, 5 actifs sur 18, premier pays du
+  parc ; (3) GSC : 50 à 95 impressions par jour sans pic en novembre, 34 clics en 19 jours, `/` porte 16 clics
+  (pos. 5,3) ; position moyenne dégradée (8,7 → 14) par le lexique ES réindexé en position 30 à 34, pas par une
+  baisse des pages existantes ; (4) **aucun événement `rtp_*` dans GA4 depuis le déploiement du 08/11**, pour
+  4 pages vues des calculateurs en novembre : volume trop faible pour conclure, à vérifier en Temps réel ;
+  (5) indexation 40 / 45 (35 le 24/10) : pages PT et `/de/app/` gagnées, guides ES « marge » et « formats » passés en
+  « explorée, non indexée » ; **7 anciennes URL sur 10 toujours indexées, non recrawlées depuis le 18 au 24/10** ;
+  (6) données de la fiche Play (visiteurs, acquisitions) arrêtées au 07/11 dans les CSV : retard de Google, les
+  zéros des semaines suivantes ne sont pas des zéros.
+- **Étape 3, volet technique fait** (`CLAUDE.md` § 9 : `series` ajouté à la ligne `summary`, validé le 20/11).
+  Site, production, 6 pages × 2 profils × 3 passes à froid sans consentement (script scratchpad `perf.mjs`, Playwright
+  de `tools/`, CDP : 4G lente 1,6 Mbit/s + 150 ms, processeur ×4) : mobile bridé FCP = LCP 1,0 à 1,2 s, CLS 0,
+  TTFB 70 à 100 ms ; ordinateur LCP 0,3 s. **Le site pèse 16 à 27 Ko, les tiers 93 à 95 % des octets** : Google Fonts
+  47 Ko, gtag 179 Ko, et **sur les 5 calculateurs le script AdSense (compte jamais activé) : 10 requêtes, 330 Ko,
+  fin de chargement mobile 4,3 s au lieu de 2,0 s, blocage du fil principal 870 ms au lieu de 515 ms**, pour 0 €.
+  Piste à soumettre : retirer ce script tant qu'AdSense n'est pas approuvé. Aucun `cache-control` ni `expires`
+  (ETag et Last-Modified seuls, gzip et HTTP/2 actifs) : piste « cache `.htaccess` » déjà écartée le 23/10, effet
+  limité aux visites répétées, non rouverte. Aucune ressource en 404.
+  App : builds de la 2.2.0 du 29/10 déjà sur disque, pas de recompilation. APK release universel 3,4 Mo (DEX 2,5 Mo
+  compressé, table des ressources 0,56 Mo), AAB 6,8 Mo dont l'essentiel = métadonnées non livrées ; APK debug
+  20,9 Mo (rappel `material-icons-extended`). Parc actif : API 30 à 37, aucun appareil sous Android 11 ; le S9
+  (API 29) couvre un segment absent du parc actuel, `minSdk` 24. Démarrage à froid : non mesuré (pas de device
+  branché) ; vitals Play vides.
+- **Étape 4, projections : hypothèses validées par Julien le 20/11** (retrait du script AdSense =
+  piste n° 1 du rapport, décision de Julien). Rythmes de base : GSC 184 impressions et 4,6 clics par mois du 01/08 au
+  18/10, puis 1 900 et 50 depuis le 25/10 ; Play 18 installs par mois de mai au 25/10, 39 depuis ; solde net
+  historique + 1,1 par mois. **CTR par position depuis le 25/10 : 8,0 % en 1 à 3, 4,8 % en 4 à 6, 1,3 % en 7 à 10**,
+  et le plus gros volume (635 impressions) est en 7 à 10 : gagner 3 places vaut plus que gagner des impressions.
+  **Contrôle rétrospectif échoué** : le rythme des 4 semaines closes fin octobre prédisait 440 impressions et
+  18 installs par mois, novembre fait 1 950 et 47 ; un prolongement à plat ne voit pas les ruptures, d'où des
+  scénarios larges. Seuils : 100 clics GSC par mois atteints vers mai à juin 2027 dans le seul scénario favorable ;
+  100 appareils actifs hors d'atteinte à 12 mois dans les trois ; requêtes NL à 21 impressions par mois (seuil 50).
+- **Étape 5, rapport livré le 20/11** : `stats/reports/2026-11-20-audit-performance.md` et `.docx` (paysage,
+  22 tableaux, généré par `md2docx.mjs` en scratchpad avec le `docx` de `tools/` ; structure XML contrôlée, rendu non
+  vérifié faute de LibreOffice ; script perdu avec la session, à versionner dans `tools/` s'il resert une 3e fois).
+  Scénarios retenus : prudent (moitié du gain d'octobre perdue : 1 050 impressions, 26 clics, 18 installs par mois,
+  10 actifs), tendanciel (1 900, 50, 30, actifs 21 / 25 / 31 à 3 / 6 / 12 mois), favorable (clics 76 / 103 / 157,
+  45 installs, actifs 30 / 42 / 66). **Règle de méthode adoptée : aucun effet déclaré sur moins de 28 jours** (les
+  9 jours du 08/11 ont donné deux conclusions fausses : Myanmar et désinstallations).
+- **Pistes du rapport, en attente de décision de Julien** : 1 retirer le script AdSense des 5 calculateurs (site +
+  déploiement, sur demande) ; 2 Julien teste un calcul enregistré sur `/fr/app/` après consentement et lit le Temps
+  réel GA4 (événements `rtp_*`) ; 3 demandes d'indexation des 7 anciennes URL encore indexées, des guides ES « marge »
+  et « formats », de `/de/privacy/` ; 4 titres et extraits des pages FR en positions 7 à 10, à décider en décembre ;
+  5 étape 7 (guide EN) inchangée ; 6 Brésil à surveiller ; 7 PWA iOS après le point 2. Écartée à nouveau : exclusion
+  de pays (le Myanmar fait 68 % des revenus AdMob et le seul avis).
+- **Bilan de décembre** : `snapshot --all`, `inspect`, `npm run series -- --pivot=2026-10-25 --window=40` ; indicateurs
+  en § 10 du rapport (dont le favicon du 11/11 et la position de novembre par rapport aux trois scénarios).
+- **À commiter (par Julien ou sur sa demande)** : `stats/series.mjs`, `stats/package.json`, les deux fichiers du
+  rapport, `CLAUDE.md` (§ 9), `journal.md` ; puis push, qui emportera aussi `774ab63`.
 
 ---
 

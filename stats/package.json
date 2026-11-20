@@ -7,7 +7,8 @@
     "auth": "node lib/auth.mjs",
     "snapshot": "node snapshot.mjs",
     "listing:push": "node listing-push.mjs",
-    "summary": "node summary.mjs"
+    "summary": "node summary.mjs",
+    "series": "node series.mjs"
   },
   "dependencies": {
     "googleapis": "^188.0.0"

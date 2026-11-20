@@ -187,7 +187,7 @@ Avant toute analyse, Claude lance lui-même la collecte, sans rien demander à J
 ```powershell
 npm --prefix "C:\RTP-Calculator\stats" run snapshot [-- --all]         # 28 derniers jours ; --all = historique complet
 npm --prefix "C:\RTP-Calculator\stats" run snapshot -- --source=gsc    # admob | adsense | ga4 | gsc | play ; hors défaut : inspect (indexation par URL), listing (fiche Play)
-npm --prefix "C:\RTP-Calculator\stats" run summary                     # chiffres clés du dernier relevé, à lire après snapshot
+npm --prefix "C:\RTP-Calculator\stats" run summary | series [-- --pivot=AAAA-MM-JJ]  # chiffres clés du dernier relevé | évolution par mois et semaine (après --all)
 ```
 
 Résultats non versionnés dans `stats/data/AAAA-MM-JJ/` ; identifiants non secrets dans `stats/config.json`.
